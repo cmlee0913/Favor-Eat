@@ -1,7 +1,7 @@
 import { useScrollState } from "@/types/Hooks/dummy";
 import { useState, useEffect, useCallback } from "react";
 
-export function useScroll() {
+export function useScroll():Array<number> {
   const [scroll, setScroll] = useState<useScrollState>({
     lastScrollTop: 0,
     bodyOffset: undefined,
@@ -10,13 +10,13 @@ export function useScroll() {
   })
 
   //화면 전체 길이
-  let viewHeight = null
+  let viewHeight = 0
 
   if (typeof document !== "undefined") {
      viewHeight= document.documentElement.clientHeight
   }
 
-  const handleScrollEvent = useCallback((e)=>{
+  const handleScrollEvent = useCallback((e:any)=>{
     setScroll((prevState) => {
         const prevLastScrollTop = prevState.lastScrollTop
         const bodyOffset = document.body.getBoundingClientRect()
@@ -32,7 +32,7 @@ export function useScroll() {
   }, [])
 
   useEffect(()=>{
-    const scrollListener = (e) => {
+    const scrollListener = (e:any) => {
         handleScrollEvent(e)
     }
 
