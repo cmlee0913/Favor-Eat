@@ -73,8 +73,8 @@ export const SampleImg = styled.div<{ picPos: number }>`
     width: 15%;
     height: auto;
     position: absolute;
-    right: ${props => props.picPos}px;
-    top: ${props => props.picPos/2}px;
+    right: ${props => props.picPos*2}px;
+    top: ${props => props.picPos*1.2}px;
     z-index: 6;
   }
 `;
