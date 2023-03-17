@@ -4,7 +4,7 @@ import AutoHeightImage from "./AutoHeightImage";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 import { theme } from "@/action/theme";
-import * as styles from "./MarsonryLayout.styles";
+import * as styles from "./MasonryLayout.styles";
 
 function getItems(nextGroupKey: number, count: number) {
   const nextItems = [];
