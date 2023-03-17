@@ -20,6 +20,7 @@ export const Title = styled.div`
 `;
 
 export const Content = styled.div`
+  transition: all 0.2s ease;
   width: calc(100%-2rem);
   padding: 1.5rem 1rem 1.5rem 1rem;
 `;
@@ -37,7 +38,7 @@ export const Container = styled.div<{ open: boolean; idx: number }>`
       props.open ? color[props.idx] : theme.colors.mono.dark_1};
 
     & svg {
-      transform: rotate(${(props) => props.open? '0.5turn': '0'});
+      transform: rotate(${(props) => (props.open ? "0.5turn" : "0")});
       path {
         fill: ${(props) =>
           props.open ? color[props.idx] : theme.colors.mono.dark_1};
