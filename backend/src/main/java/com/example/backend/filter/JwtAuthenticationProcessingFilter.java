@@ -1,8 +1,8 @@
 package com.example.backend.filter;
 
-import com.example.backend.domain.users.entity.Users;
-import com.example.backend.domain.users.repository.UsersRepository;
-import com.example.backend.service.JwtService;
+import com.example.backend.api.domain.users.entity.Users;
+import com.example.backend.api.domain.users.repository.UsersRepository;
+import com.example.backend.api.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
