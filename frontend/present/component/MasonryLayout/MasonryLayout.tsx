@@ -31,6 +31,7 @@ export default function App() {
   const isPhone = useMediaQuery("(min-width: 426px)");
 
   let columnNumber = 6;
+  
   // 삼항연산자 사용
   `${
     isTablet && isPhone
