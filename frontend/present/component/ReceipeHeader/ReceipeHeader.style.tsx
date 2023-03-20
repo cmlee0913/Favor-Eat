@@ -51,11 +51,11 @@ export const Info = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{selectIdx:number}>`
   width: calc(100% - 4rem);
   border-radius: 2rem 2rem 0 0;
   padding: 1.5rem 2rem;
-  background-color: blue;
+  background-color: ${props => theme.accordianColor[props.selectIdx]};
   color: ${theme.colors.mono.light_1};
 
   & h2 {

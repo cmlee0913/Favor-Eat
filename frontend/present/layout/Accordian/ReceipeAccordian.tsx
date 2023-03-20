@@ -1,30 +1,23 @@
-import React from "react";
+import React, {useRef} from "react";
 import AccordianCompo from "@/present/component/AccordianCompo/AccordianCompo";
-import Piechart from "@/present/component/PieChart/PieChart";
+import { ReceipeContentProps } from "@/types/Receipe/dummy";
 
-export default function ReceipeAccordian() {
-  const test = [
-    {
-      category: "맛",
-      content: <div>HIHI</div>,
-    },
-    {
-      category: "영양소",
-      content: <Piechart />,
-    },
-    {
-      category: "레시피",
-      content: <div>HIHI</div>,
-    },
-  ];
+export default function ReceipeAccordian({ReceipeArr, selectIdx, setSelectedIdx}:ReceipeContentProps) {
+  const accordianRef = useRef()
 
-  const accordians = test.map((elem, idx) => {
+  const accordianHandler = (idx:number) => {
+    setSelectedIdx(idx)
+  }
+  
+  // 아코디언 컴포넌트 생성
+  const accordians = ReceipeArr.map((elem, idx) => {
     return (
       <AccordianCompo
         key={idx}
         category={elem.category}
         content={elem.content}
         idx={idx}
+        accordianHandler={()=>accordianHandler(idx)}
       />
     );
   });

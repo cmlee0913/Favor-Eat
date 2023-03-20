@@ -29,8 +29,15 @@ const devices = {
   desktop: `@media only screen and (max-width: 2000px)`,
 };
 
+const accordianColor = [
+  colors.main.red,
+  colors.main.yellow,
+  colors.main.skyblue,
+];
+
 export const theme = {
   colors,
   devices,
   trans,
+  accordianColor
 };

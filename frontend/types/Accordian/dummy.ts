@@ -6,5 +6,6 @@ export interface AccordianCompoTypes {
 export interface AccordianProps {
     category:string;
     content:any;
-    idx:number
+    idx:number;
+    accordianHandler: Function
 }

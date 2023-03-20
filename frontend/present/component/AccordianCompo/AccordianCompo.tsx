@@ -7,11 +7,13 @@ export default function AccordianCompo({
   category,
   content,
   idx,
+  accordianHandler
 }: AccordianProps) {
   const [open, setOpen] = useState(false);
 
   const openSub = () => {
     setOpen(!open);
+    accordianHandler()
   };
 
   return (
