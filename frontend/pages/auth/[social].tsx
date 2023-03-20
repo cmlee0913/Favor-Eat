@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { useAtom } from "jotai";
 import { userDataSave, userTokenSave } from "@/store/userStore";
+import { access } from "fs";
 
 const getIndexingOrValue = (value: string | string[]): string =>
   typeof value === "string" ? value : value[0];
@@ -15,12 +16,8 @@ export default function SocialLogin() {
   useEffect(() => {
     if (!router.isReady) return;
 
-    const accessToken = router.query.accessToken;
-    const refreshToken = router.query.refreshToken;
-    const nickname = router.query.nickname;
-    const email = router.query.role;
-    const role = router.query.role;
-    const error = router.query.error;
+    const { accessToken, refreshToken, nickname, email, role, error } =
+      router.query;
 
     if (error) {
       console.log(error);
@@ -31,6 +28,10 @@ export default function SocialLogin() {
         nickname: getIndexingOrValue(nickname),
         email: getIndexingOrValue(email),
         role: getIndexingOrValue(role),
+      });
+      setUserToken({
+        accessToken: getIndexingOrValue(accessToken),
+        refreshToken: getIndexingOrValue(refreshToken),
       });
     }
 
