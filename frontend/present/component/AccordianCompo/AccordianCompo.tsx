@@ -4,23 +4,22 @@ import { AccordianProps } from "@/types/Accordian/dummy.js";
 import Arrow from "@/assets/icon/arrow.svg"
 
 export default function AccordianCompo({
-  category,
-  content,
+  elem,
   idx,
+  accordianHandler
 }: AccordianProps) {
-  const [open, setOpen] = useState(false);
 
   const openSub = () => {
-    setOpen(!open);
-  };
+    accordianHandler()
+  }
 
   return (
-    <style.Container open={open} idx={idx}>
+    <style.Container open={elem.isOpen} idx={idx}>
       <style.Title onClick={openSub}>
-        <div>{category}</div>
+        <div>{elem.category}</div>
         <Arrow />
       </style.Title>
-      {open && <style.Content>{content}</style.Content>}
+      {elem.isOpen && <style.Content>{elem.content}</style.Content>}
     </style.Container>
   );
 }
