@@ -9,8 +9,37 @@ spring:
       hibernate:
         show-sql: true
         format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 3f660847d40155171d5d2300672e2f73 # 보안 수정할 것
+            client-secret: w50qQUwy9BMIeHyPMQ3WSORVTYivZU4S
+            redirect-uri: http://localhost:8080/auth/kakao
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope: account_email, profile_nickname
+            client-name: Kakao
+
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
 logging:
   level:
     org:
       hibernate:
         SQL: debug
+jwt:
+  secretKey: dhsmfanjajrwl
+
+  access:
+    expiration: 3600000 # 1시간
+    header: Authorization
+
+  refresh:
+    expiration: 1209600000 # 2주
+    header: Authorization-refresh
