@@ -4,7 +4,7 @@ import AutoHeightImage from "./AutoHeightImage";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 import { theme } from "@/action/theme";
-import * as styles from "./MarsonryLayout.styles";
+import * as styles from "./MasonryLayout.styles";
 
 function getItems(nextGroupKey: number, count: number) {
   const nextItems = [];
@@ -31,6 +31,7 @@ export default function App() {
   const isPhone = useMediaQuery("(min-width: 426px)");
 
   let columnNumber = 6;
+  
   // 삼항연산자 사용
   `${
     isTablet && isPhone
