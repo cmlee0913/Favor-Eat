@@ -3,18 +3,19 @@ export interface ReceipeImgProps {
     subImg: any
 }
 
-export interface ReceipeNav {
+export interface ReceipeNavType {
     category: string;
-    content: JSX.Element
+    content: JSX.Element;
+    isOpen: boolean
 }
 
 export interface ReceipeProps {
-    ReceipeArr: Array<ReceipeNav>;
+    receipeArr: Array<ReceipeNavType>;
     selectIdx: number;
 }
 
 export interface ReceipeContentProps {
-    ReceipeArr: Array<ReceipeNav>;
+    receipeArr: Array<ReceipeNavType>;
     selectIdx: number;
     setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
 }

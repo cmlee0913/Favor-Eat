@@ -2,7 +2,6 @@ import { theme } from "@/action/theme";
 import styled from "styled-components";
 
 export const Info = styled.div`
-  display: flex;
   margin: 1rem 0 0 0;
   display: flex;
 
@@ -51,12 +50,14 @@ export const Info = styled.div`
   }
 `;
 
-export const Container = styled.div<{selectIdx:number}>`
+export const Container = styled.div<{ selectIdx: number }>`
   width: calc(100% - 4rem);
   border-radius: 2rem 2rem 0 0;
   padding: 1.5rem 2rem;
-  background-color: ${props => theme.accordianColor[props.selectIdx]};
+  background-color: ${(props) => theme.accordianColor[props.selectIdx]};
   color: ${theme.colors.mono.light_1};
+  position: relative;
+  z-index: 2;
 
   & h2 {
     margin: 0;

@@ -1,11 +1,13 @@
 import React from "react";
 import ReceipeHeader from "@/present/component/ReceipeHeader/ReceipeHeader";
 import ReceipeMobileHeader from "../ReceipeMobileHeader/ReceipeMobileHeader";
-import { ReceipeProps } from "@/types/Receipe/dummy";
+import { ReceipeContentProps } from "@/types/Receipe/dummy";
 
-export default function ReceipeNav({ReceipeArr, selectIdx }:ReceipeProps) {
-    return <>
-        <ReceipeHeader selectIdx={selectIdx}/>
-        <ReceipeMobileHeader ReceipeArr={ReceipeArr} selectIdx= {selectIdx}/>
+export default function ReceipeNav({ receipeArr, selectIdx, setSelectedIdx }: ReceipeContentProps) {
+  return (
+    <>
+      <ReceipeHeader selectIdx={selectIdx} />
+      <ReceipeMobileHeader receipeArr={receipeArr} selectIdx={selectIdx} setSelectedIdx={setSelectedIdx}/>
     </>
+  );
 }

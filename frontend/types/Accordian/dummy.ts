@@ -1,11 +1,12 @@
+import { ReceipeNavType } from "../Receipe/dummy";
+
 export interface AccordianCompoTypes {
     category:string;
     content:any
 }
 
 export interface AccordianProps {
-    category:string;
-    content:any;
+    elem: ReceipeNavType;
     idx:number;
-    accordianHandler: Function
+    accordianHandler: Function;
 }

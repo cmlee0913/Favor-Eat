@@ -1,11 +1,34 @@
 import React from "react";
-import { ReceipeProps } from "@/types/Receipe/dummy";
+import { ReceipeContentProps } from "@/types/Receipe/dummy";
 import * as style from "./ReceipeMobileHeader.style";
 
-export default function ReceipeMobileHeader({ ReceipeArr }: ReceipeProps) {
-  const NavArr = ReceipeArr.map((elem, idx) => {
-    return <style.Compo key={idx}>{elem.category}</style.Compo>;
+export default function ReceipeMobileHeader({
+  receipeArr,
+  selectIdx,
+  setSelectedIdx,
+}: ReceipeContentProps) {
+  const navHandler = (idx: number) => {
+    setSelectedIdx(idx);
+  };
+
+  const NavArr = receipeArr.map((elem, idx) => {
+    return (
+      <style.Compo
+        key={idx}
+        onClick={() => {
+          navHandler(idx);
+        }}
+        open={elem.isOpen}
+        idx={idx}
+      >
+        {elem.category}
+      </style.Compo>
+    );
   });
-  
-  return <style.ContainerNav>{NavArr}</style.ContainerNav>;
+
+  return (
+    <style.ContainerNav selectIdx={selectIdx}>
+      
+      {NavArr}</style.ContainerNav>
+  );
 }

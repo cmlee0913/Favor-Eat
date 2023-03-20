@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import GridLayout from "@/present/layout/GridLayout/GridLayout";
 import ReceipeImg from "@/present/layout/Receipe/ReceipeImg/ReceipeImg";
 
@@ -6,28 +6,46 @@ import Test from "@/assets/image/test.jpg";
 import ReceipeNav from "@/present/layout/Receipe/ReceipeNav/ReceipeNav";
 import ReceipeContent from "@/present/layout/Receipe/ReceipeContent/ReceipeContent";
 import Piechart from "@/present/component/PieChart/PieChart";
+import { ReceipeNavType } from "@/types/Receipe/dummy";
 
 export default function Receipe() {
-  const [selectIdx, setSelectedIdx] = useState(0)
-  //TestImg
-  const mainImg = Test;
-  const subImg = [Test, Test, Test];
-
-  //Accordian Category
-  const ReceipeArr = [
+  //색상 선택
+  const [selectIdx, setSelectedIdx] = useState(0);
+  const [receipeArr, setReceipeArr] = useState<Array<ReceipeNavType>>([
     {
       category: "맛",
       content: <div>HIHI</div>,
+      isOpen: true,
     },
     {
       category: "영양소",
       content: <Piechart />,
+      isOpen: false,
     },
     {
       category: "레시피",
       content: <div>HIHI</div>,
+      isOpen: false,
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    const tmp = receipeArr.map((elem, idx) => {
+      if (idx === selectIdx) {
+        elem.isOpen = true;
+      } else {
+        elem.isOpen = false;
+      }
+
+      return elem;
+    });
+
+    setReceipeArr([...tmp]);
+  }, [selectIdx]);
+
+  //TestImg
+  const mainImg = Test;
+  const subImg = [Test, Test, Test];
 
   return (
     <>
@@ -37,8 +55,16 @@ export default function Receipe() {
 
         {/* 음식 상세 정보 */}
         <div>
-          <ReceipeNav ReceipeArr={ReceipeArr} selectIdx={selectIdx} />
-          <ReceipeContent ReceipeArr={ReceipeArr} selectIdx={selectIdx} setSelectedIdx={setSelectedIdx}/>
+          <ReceipeNav
+            receipeArr={receipeArr}
+            selectIdx={selectIdx}
+            setSelectedIdx={setSelectedIdx}
+          />
+          <ReceipeContent
+            receipeArr={receipeArr}
+            selectIdx={selectIdx}
+            setSelectedIdx={setSelectedIdx}
+          />
         </div>
       </GridLayout>
     </>
