@@ -1,12 +1,11 @@
 package com.example.backend.config;
 
-import com.example.backend.service.CustomOAuth2UserService;
-import com.example.backend.service.JwtService;
-import com.example.backend.domain.users.repository.UsersRepository;
+import com.example.backend.api.service.oauth2.CustomOAuth2UserService;
+import com.example.backend.api.service.jwt.JwtService;
+import com.example.backend.api.domain.users.repository.UsersRepository;
 import com.example.backend.filter.JwtAuthenticationProcessingFilter;
-import com.example.backend.handler.OAuth2LoginFailureHandler;
-import com.example.backend.handler.OAuth2LoginSuccessHandler;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.backend.handler.oauth2.OAuth2LoginFailureHandler;
+import com.example.backend.handler.oauth2.OAuth2LoginSuccessHandler;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
