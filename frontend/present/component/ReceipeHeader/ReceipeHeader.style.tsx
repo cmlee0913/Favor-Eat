@@ -23,7 +23,30 @@ export const Info = styled.div`
     }
 
     span:first-child {
+      font-weight: bold;
+    }
+  }
+
+  ${theme.devices.mobile} {
+    & * {
+      margin: 0 0.5rem 0 0;
+    }
+
+    & div:first-child {
+      height: 1rem;
+    }
+
+    & div {
+      font-size: 1rem;
+      display: flex;
+
+      span {
+        line-height: 1rem;
+      }
+
+      span:first-child {
         font-weight: bold;
+      }
     }
   }
 `;
@@ -60,6 +83,16 @@ export const Container = styled.div`
 
     & img:nth-child(2) {
       transform: scaleY(-1);
+    }
+  }
+
+  ${theme.devices.mobile} {
+    width: calc(100% - 3rem);
+    padding: 1.5rem;
+    border-radius: 0;
+
+    & h2 {
+      font-size: 1.6rem;
     }
   }
 `;

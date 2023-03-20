@@ -29,5 +29,5 @@ export default function ReceipeAccordian() {
     );
   });
 
-  return <div>{accordians}</div>;
+  return <div id="accordian">{accordians}</div>;
 }

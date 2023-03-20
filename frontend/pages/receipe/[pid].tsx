@@ -1,10 +1,10 @@
 import React from "react";
 import GridLayout from "@/present/layout/GridLayout/GridLayout";
-import ReceipeAccordian from "@/present/layout/Accordian/ReceipeAccordian";
 import ReceipeImg from "@/present/layout/ReceipeImg/ReceipeImg";
 
 import Test from "@/assets/image/test.jpg";
 import ReceipeNav from "@/present/layout/ReceipeNav/ReceipeNav";
+import ReceipeContent from "@/present/layout/ReceipeContent/ReceipeContent";
 
 export default function Receipe() {
   const mainImg = Test;
@@ -15,8 +15,8 @@ export default function Receipe() {
       <GridLayout>
         <ReceipeImg mainImg={mainImg} subImg={subImg} />
         <div>
-            <ReceipeNav />
-          <ReceipeAccordian />
+          <ReceipeNav />
+          <ReceipeContent />
         </div>
       </GridLayout>
     </>

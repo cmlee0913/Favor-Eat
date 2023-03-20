@@ -1,3 +1,4 @@
+import { theme } from "@/action/theme";
 import styled from "styled-components";
 
 export const ImgContainer = styled.div`
@@ -21,5 +22,22 @@ export const Container = styled.div`
 
   & #mainImg {
     height: 60vh;
+  }
+
+  ${theme.devices.tablet} {
+    & #mainImg {
+      height: 30vh;
+    }
+
+    h3,
+    ${ImgContainer} {
+      display: none;
+    }
+
+    & img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
   }
 `;
