@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
+import ThumbSvg from "@/assets/icon/Thumb.svg";
 
 const color = {
   back: "#9494E0",
+  thumb: "#4340B5",
 };
 
 export const Container = styled.div`
@@ -79,7 +81,7 @@ export const Back = styled.div`
 `;
 
 export const FoodFlexBox = styled.div`
-  margin: 10px 20px;
+  margin: 5% 12%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -92,6 +94,20 @@ export const FlexItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const FlavorBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const FlavorValue = styled.span`
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 export const FoodName = styled.span`
@@ -107,4 +123,31 @@ export const ContentName = styled.span`
 export const ContentValue = styled.span`
   font-size: 20px;
   font-weight: 500;
+`;
+
+export const LikeHateBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const FavorButtonStyle = css`
+  width: 30px;
+  height: 30px;
+
+  path {
+    fill: ${color.thumb};
+  }
+`;
+
+export const LikeButton = styled(ThumbSvg)`
+  ${FavorButtonStyle}
+`;
+
+export const HateButton = styled(ThumbSvg)`
+  ${FavorButtonStyle}
+
+  transform: rotate(90deg);
 `;

@@ -1,6 +1,12 @@
 import useImageRatioSize from "@/action/hooks/useImageRatioSize";
 import useWindowDimensions from "@/action/hooks/useWindowSize";
 import * as style from "./FlipImageCardCompo.style";
+import Image from "next/image";
+
+import Spicy from "@/assets/image/Character/Spicy.png";
+import Sweet from "@/assets/image/Character/Sweet.png";
+import Salty from "@/assets/image/Character/Salty.png";
+import Oily from "@/assets/image/Character/Oily.png";
 
 export default function FilpImageCardCompo({
   imgSrc,
@@ -15,6 +21,19 @@ export default function FilpImageCardCompo({
     windowSize.height * 0.48,
   );
 
+  const getCharacter = (type: string) => {
+    switch (type) {
+      case "spicy":
+        return Spicy;
+      case "sweet":
+        return Sweet;
+      case "salty":
+        return Salty;
+      case "oily":
+        return Oily;
+    }
+  };
+
   return (
     <style.Container>
       <style.CardWrapper width={width} height={height}>
@@ -24,10 +43,23 @@ export default function FilpImageCardCompo({
           </style.Front>
           <style.Back className="back">
             <style.FoodFlexBox>
+              <style.LikeHateBox>
+                <style.LikeButton />
+                <style.HateButton />
+              </style.LikeHateBox>
               <style.FlexItem>
                 <style.FoodName>{foodName}</style.FoodName>
-                <span>{flavor.type}</span>
-                <span>{flavor.value}</span>
+                <style.FlavorBox>
+                  <span>
+                    <Image
+                      width={40}
+                      height={50}
+                      src={getCharacter(flavor.type)}
+                      alt="flavor character"
+                    />
+                  </span>
+                  <style.FlavorValue>{flavor.value}</style.FlavorValue>
+                </style.FlavorBox>
               </style.FlexItem>
               {contents.map((item) => (
                 <style.FlexItem key={item.key}>
