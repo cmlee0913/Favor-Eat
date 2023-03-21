@@ -15,13 +15,13 @@ import GuideCharacter from "@/assets/image/Guide.png";
 
 export default function Guide() {
   const [scrollY, viewHeight] = useScroll();
-  const [picPos, setPicPos] = useState<number>(0)
+  const [picPos, setPicPos] = useState<number>(0);
 
-  useEffect(()=> {
-    console.log(scrollY)
-    const tmp = scrollY-viewHeight
-    if (tmp>0) setPicPos(tmp)
-  }, [scrollY])
+  useEffect(() => {
+    console.log(scrollY);
+    const tmp = scrollY - viewHeight;
+    if (tmp > 0) setPicPos(tmp);
+  }, [scrollY]);
 
   //새로고침 할 때마다 초점이 내려가는 현상 막기
   useEffect(() => {
@@ -45,15 +45,6 @@ export default function Guide() {
       <SuggestLayout picPos={picPos} />
       <FunctionLayout />
       <EndLayout />
-      <div>
-      {/* {socialLoginBtnList.map((item) => (
-        <SocialLoginBtnCompo
-          key={item.type}
-          type={item.type}
-          title={item.title}
-        />
-      ))} */}
-    </div>
     </>
   );
 }

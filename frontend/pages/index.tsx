@@ -1,6 +1,8 @@
 import { deleteAsync } from "@/action/apis/apis";
-import { ACCESS_TOKEN, apiURL } from "@/store/constants";
+import { apiURL } from "@/store/constants";
+import { userTokenSave } from "@/store/userStore";
 import { ApiStateRes } from "@/types/Common/dummy";
+import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -10,16 +12,18 @@ export default function Home() {
     result: "",
   });
   const router = useRouter();
+  const [token] = useAtom(userTokenSave);
 
   useEffect(() => {
     if (!router.isReady) return;
-    if (!localStorage) return;
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
-
-    if (accessToken) {
-      router.replace("/");
-    }
   }, [router.isReady]);
+
+  useEffect(() => {
+    if (token.accessToken) {
+      router.replace("/main");
+      return;
+    } else router.replace("/guide");
+  }, [token]);
 
   useEffect(() => {
     deleteAsync(apiURL + "posts/1").then((res) => {
