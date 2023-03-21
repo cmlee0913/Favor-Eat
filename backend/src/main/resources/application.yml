@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/Favoreat?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://j8d108.p.ssafy.io/Favoreat?serverTimezone=Asia/Seoul
     username: ssafy
     password: ssafy
   jpa:
@@ -43,3 +43,18 @@ jwt:
   refresh:
     expiration: 1209600000 # 2주
     header: Authorization-refresh
+
+springdoc:
+  version: "v1"
+  packages-to-scan: com.example.backend.api.controller
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    tags-sorter: alpha            # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
+    operations-sorter: alpha      # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
+  api-docs:
+    groups:
+      enabled: true
+    path: "/api-docs"
+  cache:
+    disabled: true
