@@ -47,7 +47,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             log.info("findUser.getToken() : " + findUser.getToken());
             findUser.authorizeUser();// TODO : 취향분석 페이지 리다이렉트 받기
             // response.sendRedirect("http://localhost:3000/auth/kakao?token=" + accessToken);
-            response.sendRedirect("http://i8d205.p.ssafy.io:3000/auth/kakao?token=" + accessToken);
+            response.sendRedirect("http://j8d108.p.ssafy.io:3000/auth/kakao?token=" + accessToken);
 
         } catch (Exception e) {
             throw e;
