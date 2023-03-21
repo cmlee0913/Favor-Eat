@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { GlobalStyle } from "@/action/GlobalStyle";
 import Image from "next/image";
 
-import EndLayout from "@/present/layout/guide/EndLayout";
-import FunctionLayout from "@/present/layout/guide/FunctionLayout";
-import StartLayout from "@/present/layout/guide/StartLayout";
-import SuggestLayout from "@/present/layout/guide/SuggestLayout";
+import EndLayout from "@/present/layout/Guide/EndLayout";
+import FunctionLayout from "@/present/layout/Guide/FunctionLayout";
+import StartLayout from "@/present/layout/Guide/StartLayout";
+import SuggestLayout from "@/present/layout/Guide/SuggestLayout";
+import SocialLoginBtnCompo from "@/present/component/SocialLoginBtnCompo/SocialLoginBtnCompo";
 import { useScroll } from "@/action/hooks/useScroll";
 
-import { Character } from "@/present/layout/guide/Guide.style";
+import { Character } from "@/present/layout/Guide/Guide.style";
 
 import GuideCharacter from "@/assets/image/Guide.png";
 
@@ -41,8 +42,8 @@ export default function Guide() {
       <StartLayout />
       <SuggestLayout picPos={picPos} />
       <FunctionLayout />
-      <FunctionLayout />
       <SuggestLayout picPos={picPos} />
+      <FunctionLayout />
       <EndLayout />
     </>
   );

@@ -139,7 +139,6 @@ const Piechart = () => {
       : `${!isTablet && isPhone ? (legendHeight = 20) : (legendHeight = 10)}`
   }`;
 
-
   let symbolSize = 25;
   `${
     isTablet && isPhone

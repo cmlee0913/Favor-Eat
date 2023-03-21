@@ -21,7 +21,7 @@ const colors = {
   }
 };
 
-const trans = "all 0.2s ease";
+const trans = "all 0.5s ease-out";
 
 const devices = {
   mobile: `@media only screen and (max-width: 426px)`,
@@ -29,8 +29,15 @@ const devices = {
   desktop: `@media only screen and (max-width: 2000px)`,
 };
 
+const accordianColor = [
+  colors.main.red,
+  colors.main.yellow,
+  colors.main.skyblue,
+];
+
 export const theme = {
   colors,
   devices,
   trans,
+  accordianColor
 };
