@@ -14,9 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Slf4j
 @Entity
 @Builder
 @Table(name = "users")
@@ -59,6 +61,10 @@ public class Users {
 
     // 리프레쉬 토근 업데이트 메서드
     public void updateRefreshToken(String updateRefreshToken) {
+        log.info("updateRefreshToken : " + updateRefreshToken);
         this.token = updateRefreshToken;
+        log.info("토큰 업데이트 완료");
+        log.info("this.token : " + this.token);
+        // TODO : 업데이트된 값을 DB에 저장하는 로직 추가
     }
 }

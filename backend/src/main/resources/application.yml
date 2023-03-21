@@ -16,7 +16,7 @@ spring:
           kakao:
             client-id: 3f660847d40155171d5d2300672e2f73 # 보안 수정할 것
             client-secret: w50qQUwy9BMIeHyPMQ3WSORVTYivZU4S
-            redirect-uri: http://localhost:8080/auth/kakao
+            redirect-uri: http://j8d108.p.ssafy.io:8000/login/oauth2/code/kakao
             client-authentication-method: POST
             authorization-grant-type: authorization_code
             scope: account_email, profile_nickname
