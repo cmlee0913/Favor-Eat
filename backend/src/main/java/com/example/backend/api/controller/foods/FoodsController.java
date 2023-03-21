@@ -5,8 +5,11 @@ import com.example.backend.api.service.foods.FoodsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,4 +24,13 @@ public class FoodsController {
         return new ResponseEntity<>(foodsService.getFoodInfo(id), HttpStatus.OK);
     }
 
+    @PostMapping("/favor/{id}")
+    private ResponseEntity<?> registFavorFood(@AuthenticationPrincipal User users, @PathVariable Long id){
+        if(foodsService.registFavorFood(Long.parseLong(users.getUsername()), id)){
+            return new ResponseEntity<>(id+" : 즐겨찾기 등록 성공", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(id+" : 즐겨찾기 등록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 }

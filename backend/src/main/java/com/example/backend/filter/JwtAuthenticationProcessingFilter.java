@@ -117,7 +117,6 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
             .ifPresent(accessToken -> jwtService.extractEmail(accessToken)
                 .ifPresent(email -> usersRepository.findByEmail(email)
                     .ifPresent(this::saveAuthentication)));
-
         filterChain.doFilter(request, response);
     }
 
@@ -137,8 +136,9 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
      * setAuthentication()을 이용하여 위에서 만든 Authentication 객체에 대한 인증 허가 처리
      */
     public void saveAuthentication(Users myUser) {
+        log.info("saveAuthentication() 호출");
         UserDetails userDetailsUser = org.springframework.security.core.userdetails.User.builder()
-            .username(myUser.getEmail())
+            .username(String.valueOf(myUser.getNo()))
             .password("-")
             .roles(myUser.getRole().name())
             .build();
@@ -146,7 +146,6 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
         Authentication authentication =
             new UsernamePasswordAuthenticationToken(userDetailsUser, null,
                 authoritiesMapper.mapAuthorities(userDetailsUser.getAuthorities()));
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
