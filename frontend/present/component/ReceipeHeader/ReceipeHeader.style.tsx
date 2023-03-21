@@ -54,6 +54,7 @@ export const Container = styled.div<{ selectIdx: number }>`
   width: calc(100% - 4rem);
   border-radius: 2rem 2rem 0 0;
   padding: 1.5rem 2rem;
+  transition: ${theme.trans};
   background-color: ${(props) => theme.accordianColor[props.selectIdx]};
   color: ${theme.colors.mono.light_1};
   position: relative;
