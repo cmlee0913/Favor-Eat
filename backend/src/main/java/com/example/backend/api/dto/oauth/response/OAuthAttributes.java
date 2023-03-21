@@ -65,7 +65,7 @@ public class OAuthAttributes {
             //  TODO : 구글 로그인 넣으면 추가할 것
             // .socialType(socialType) 구글 로그인 넣으면 추가할 것
             // .socialId(oauth2UserInfo.getId())
-            .email(UUID.randomUUID() + "@socialUser.com")
+            .email(oauth2UserInfo.getEmail())
             .nickname(oauth2UserInfo.getNickname())
             .role(Role.GUEST)
             .build();

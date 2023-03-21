@@ -30,23 +30,24 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         try {
             CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-            String accessToken = jwtService.createAccessToken(oAuth2User.getEmail(), oAuth2User.getNickName());
+//            String accessToken = jwtService.createAccessToken(oAuth2User.getEmail(), oAuth2User.getNickName());
             String refreshToken = jwtService.createRefreshToken();
+            String accessToken = jwtService.createAccessToken(oAuth2User.getEmail(), oAuth2User.getNickName());
             // 헤더에 담아서 두개 다 던진다.
-            jwtService.sendAccessAndRefreshToken(response, accessToken, refreshToken);
+//            jwtService.sendAccessAndRefreshToken(response, accessToken, refreshToken);
             jwtService.updateRefreshToken(oAuth2User.getEmail(), refreshToken);
 
-            if(oAuth2User.getRole() == Role.GUEST) {
-                // TODO : 취향분석 페이지 리다이렉트 받기
-                response.sendRedirect("");
 
-                Users findUser = usersRepository.findByEmail(oAuth2User.getEmail())
-                                .orElseThrow(() -> new IllegalArgumentException("이메일에 해당하는 유저가 없습니다."));
-                findUser.authorizeUser();
-            } else {
-                // TODO : 메인 페이지 리다이렉트
-                response.sendRedirect("");
-            }
+            jwtService.sendAccessAndRefreshToken(response, accessToken, null);
+            log.info("여기 들어와?");
+            log.info("oAuth2User.getEmail() : " + oAuth2User.getEmail());
+            Users findUser = usersRepository.findByEmail(oAuth2User.getEmail())
+                            .orElseThrow(() -> new IllegalArgumentException("이메일에 해당하는 유저가 없습니다."));
+            log.info("findUser.getEmail() : " + findUser.getEmail());
+            log.info("findUser.getToken() : " + findUser.getToken());
+            findUser.authorizeUser();// TODO : 취향분석 페이지 리다이렉트 받기
+            response.sendRedirect("http://localhost:3000/auth/kakao?token=" + accessToken);
+
         } catch (Exception e) {
             throw e;
         }
