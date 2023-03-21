@@ -88,7 +88,7 @@ export const Container = styled.div<{ selectIdx: number }>`
     }
   }
 
-  ${theme.devices.mobile} {
+  ${theme.devices.tablet} {
     width: calc(100% - 3rem);
     padding: 1.5rem;
     border-radius: 0;

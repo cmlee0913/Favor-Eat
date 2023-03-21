@@ -1,25 +1,6 @@
 import { theme } from "@/action/theme";
 import styled from "styled-components";
 
-// export const HoriSelector = styled.div<{ selectIdx: number }>`
-//   position: absolute;
-//   top: 0px;
-
-//   & * {
-//     display: inline-block;
-//     width: 25px;
-//     height: 25px;
-//     background-color: ${(props) => theme.accordianColor[props.selectIdx]};
-//   }
-
-//   & .right:before {
-//     content: "";
-//     width: 50px;
-//     height: 50px;
-//     background-color: aqua;
-//   }
-// `;
-
 export const Compo = styled.li<{ open: boolean; idx: number }>`
   display: inline-block;
   width: calc(100% / 3 - 4rem);
@@ -54,13 +35,13 @@ export const Indicator = styled.div<{ selectIdx: number }>`
     --width: 2rem;
     width: var(--width);
     position: absolute;
-    top: calc(var(--width) * -1 - 3px);;
+    top: calc(var(--width) * -1 - 3px);
     fill: ${(props) => theme.accordianColor[props.selectIdx]};
 
     &:nth-child(1) {
       right: calc(var(--width) * -1 + 1px);
     }
-    
+
     &:nth-child(2) {
       left: calc(var(--width) * -1 + 1px);
       transform: scaleX(-1);
@@ -74,7 +55,8 @@ export const ContainerNav = styled.ul<{ selectIdx: number }>`
   padding: 0;
   margin: 0;
   position: relative;
-  overflow-x: hidden;
+  top: -2px;
+  overflow: hidden;
 
   ${theme.devices.tablet} {
     display: flex;

@@ -7,6 +7,9 @@ import ReceipeNav from "@/present/layout/Receipe/ReceipeNav/ReceipeNav";
 import ReceipeContent from "@/present/layout/Receipe/ReceipeContent/ReceipeContent";
 import Piechart from "@/present/component/PieChart/PieChart";
 import { ReceipeNavType } from "@/types/Receipe/dummy";
+import ReceipeTab from "@/present/layout/Receipe/ReceipeTab/ReceipeTab";
+
+import * as style from "@/present/layout/Receipe/pageStyle";
 
 export default function Receipe() {
   //색상 선택
@@ -14,7 +17,7 @@ export default function Receipe() {
   const [receipeArr, setReceipeArr] = useState<Array<ReceipeNavType>>([
     {
       category: "맛",
-      content: <div>HIHI</div>,
+      content: <div>HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br /></div>,
       isOpen: true,
     },
     {
@@ -24,7 +27,7 @@ export default function Receipe() {
     },
     {
       category: "레시피",
-      content: <div>HIHI</div>,
+      content: <ReceipeTab />,
       isOpen: false,
     },
   ]);
@@ -48,7 +51,8 @@ export default function Receipe() {
   const subImg = [Test, Test, Test];
 
   return (
-    <>
+    <style.PageContainer>
+      {/* PC ver */}
       <GridLayout>
         {/* 음식 이미지 */}
         <ReceipeImg mainImg={mainImg} subImg={subImg} />
@@ -67,6 +71,21 @@ export default function Receipe() {
           />
         </div>
       </GridLayout>
-    </>
+
+      {/* Mobile ver */}
+      <GridLayout>
+        {/* 음식 상세 정보 */}
+        <ReceipeNav
+          receipeArr={receipeArr}
+          selectIdx={selectIdx}
+          setSelectedIdx={setSelectedIdx}
+        />
+        <ReceipeContent
+          receipeArr={receipeArr}
+          selectIdx={selectIdx}
+          setSelectedIdx={setSelectedIdx}
+        />
+      </GridLayout>
+    </style.PageContainer>
   );
 }
