@@ -1,6 +1,6 @@
-package com.example.backend.api.domain.users.oauth;
+package com.example.backend.api.entity.users.oauth2;
 
-import com.example.backend.api.domain.users.Role;
+import com.example.backend.api.entity.users.Role;
 import java.util.Collection;
 import java.util.Map;
 import lombok.Getter;

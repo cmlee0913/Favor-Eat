@@ -1,20 +1,22 @@
-package com.example.backend.api.domain.favorites.entity;
+package com.example.backend.api.entity.favorites;
 
-import com.example.backend.api.domain.foods.entity.Foods;
-import com.example.backend.api.domain.users.entity.Users;
+import com.example.backend.api.entity.idclass.UsersFoodsID;
+import com.example.backend.api.entity.foods.Foods;
+import com.example.backend.api.entity.users.Users;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-@IdClass(FavoritesPK.class)
+@IdClass(UsersFoodsID.class)
 @Entity(name = "favorites")
 public class Favorites {
     @Id

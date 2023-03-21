@@ -1,4 +1,4 @@
-package com.example.backend.api.domain.foods.entity;
+package com.example.backend.api.entity.idclass;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipesPK implements Serializable {
+public class RecipesID implements Serializable {
     @Column(name = "foods_id")
     private Long foodsId;
     private Integer step;

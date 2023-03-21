@@ -1,7 +1,7 @@
 package com.example.backend.filter;
 
-import com.example.backend.api.domain.users.entity.Users;
-import com.example.backend.api.domain.users.repository.UsersRepository;
+import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.repository.users.UsersRepository;
 import com.example.backend.api.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

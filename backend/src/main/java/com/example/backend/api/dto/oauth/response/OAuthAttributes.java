@@ -1,15 +1,14 @@
 package com.example.backend.api.dto.oauth.response;
 
-import com.example.backend.api.domain.users.entity.Users;
-import com.example.backend.api.domain.users.oauth.KakaoOAuth2UserInfo;
-import com.example.backend.api.domain.users.oauth.OAuth2UserInfo;
-import com.example.backend.api.domain.users.Role;
-import com.example.backend.api.domain.users.SocialType;
+import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.entity.users.oauth2.KakaoOAuth2UserInfo;
+import com.example.backend.api.entity.users.oauth2.OAuth2UserInfo;
+import com.example.backend.api.entity.users.Role;
+import com.example.backend.api.entity.users.SocialType;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * 각 소셜에서 받아오는 데이터가 다르므로

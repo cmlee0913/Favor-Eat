@@ -1,6 +1,5 @@
-package com.example.backend.api.domain.users.entity;
+package com.example.backend.api.entity.users;
 
-import com.example.backend.api.domain.users.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

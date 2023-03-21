@@ -1,7 +1,7 @@
 package com.example.backend.api.service.users;
 
-import com.example.backend.api.domain.users.entity.Users;
-import com.example.backend.api.domain.users.repository.UsersRepository;
+import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.repository.users.UsersRepository;
 import com.example.backend.api.dto.users.UsersSignUpRequest;
 import com.example.backend.api.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;

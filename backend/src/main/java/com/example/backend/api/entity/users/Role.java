@@ -1,4 +1,4 @@
-package com.example.backend.api.domain.users;
+package com.example.backend.api.entity.users;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

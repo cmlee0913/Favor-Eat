@@ -1,4 +1,4 @@
-package com.example.backend.api.domain.users.oauth;
+package com.example.backend.api.entity.users.oauth2;
 
 import java.util.Map;
 

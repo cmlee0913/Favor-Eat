@@ -1,6 +1,6 @@
-package com.example.backend.api.domain.foods.repository;
+package com.example.backend.api.repository.foods;
 
-import com.example.backend.api.domain.foods.entity.Foods;
+import com.example.backend.api.entity.foods.Foods;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
