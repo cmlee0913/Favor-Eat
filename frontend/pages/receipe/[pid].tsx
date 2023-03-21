@@ -11,13 +11,21 @@ import ReceipeTab from "@/present/layout/Receipe/ReceipeTab/ReceipeTab";
 
 import * as style from "@/present/layout/Receipe/pageStyle";
 
+import FlavorProgressListCompo from "@/present/common/FlavorProgress/FlavorProgressListCompo";
+import { FlavorInfo } from "@/types/FlavorProgress/FlavorSummaryTypes";
+
 export default function Receipe() {
+  const flavorList: Array<FlavorInfo> = [
+    { type: "spicy", value: 4 },
+    { type: "sweet", value: 2.5 },
+    { type: "salty", value: 3 },
+  ];
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
   const [receipeArr, setReceipeArr] = useState<Array<ReceipeNavType>>([
     {
       category: "맛",
-      content: <div>HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br />HIHI<br /></div>,
+      content: <FlavorProgressListCompo flavors={flavorList} image={Test} />,
       isOpen: true,
     },
     {

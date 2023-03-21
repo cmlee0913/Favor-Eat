@@ -22,13 +22,13 @@ export default ({ value, type }: FlavorInfo) => {
         <span>
           이 음식의 {flavorTypeString}는 {value}&nbsp;입니다.
         </span>
-        <div>
+        <style.ProgressBox>
           <style.ProgressIndicator left={percentage} flavor={type} />
           <style.Progress flavor={type}></style.Progress>
-        </div>
-        <style.ProgressLevelWrapper>
-          {style.ProgressLevelList(type)}
-        </style.ProgressLevelWrapper>
+          <style.ProgressLevelWrapper>
+            {style.ProgressLevelList(type)}
+          </style.ProgressLevelWrapper>
+        </style.ProgressBox>
       </style.Container>
     </>
   );
