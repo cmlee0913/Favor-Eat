@@ -35,13 +35,13 @@ export const Indicator = styled.div<{ selectIdx: number }>`
     --width: 2rem;
     width: var(--width);
     position: absolute;
-    top: calc(var(--width) * -1 - 3px);;
+    top: calc(var(--width) * -1 - 3px);
     fill: ${(props) => theme.accordianColor[props.selectIdx]};
 
     &:nth-child(1) {
       right: calc(var(--width) * -1 + 1px);
     }
-    
+
     &:nth-child(2) {
       left: calc(var(--width) * -1 + 1px);
       transform: scaleX(-1);
@@ -55,7 +55,7 @@ export const ContainerNav = styled.ul<{ selectIdx: number }>`
   padding: 0;
   margin: 0;
   position: relative;
-  top: -1px;
+  top: -2px;
   overflow: hidden;
 
   ${theme.devices.tablet} {
