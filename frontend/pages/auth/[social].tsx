@@ -1,26 +1,40 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-import { ACCESS_TOKEN } from "@/store/constants";
+import { useAtom } from "jotai";
+import { userDataSave, userTokenSave } from "@/store/userStore";
+import { access } from "fs";
+
+const getIndexingOrValue = (value: string | string[]): string =>
+  typeof value === "string" ? value : value[0];
 
 export default function SocialLogin() {
   const router = useRouter();
+  const [, setUserData] = useAtom(userDataSave);
+  const [, setUserToken] = useAtom(userTokenSave);
 
   useEffect(() => {
     if (!router.isReady) return;
 
-    const token = router.query.token;
-    const error = router.query.error;
+    const { accessToken, refreshToken, nickname, email, role, error } =
+      router.query;
 
-    if (token) {
-      localStorage.setItem(
-        ACCESS_TOKEN,
-        typeof token === "string" ? token : token[0],
-      );
-      router.replace("/taste");
-    }
     if (error) {
-      router.replace("/500");
+      console.log(error);
+      return;
     }
+    if (!nickname && !email && !role && !accessToken && !refreshToken) {
+      setUserData({
+        nickname: getIndexingOrValue(nickname),
+        email: getIndexingOrValue(email),
+        role: getIndexingOrValue(role),
+      });
+      setUserToken({
+        accessToken: getIndexingOrValue(accessToken),
+        refreshToken: getIndexingOrValue(refreshToken),
+      });
+    }
+
+    router.replace("/taste");
   }, [router.isReady]);
 }

@@ -1,8 +1,5 @@
 import React from "react";
 
 export default function info() {
-  return (
-    <div>
-    </div>
-  );
+  return <div>info</div>;
 }

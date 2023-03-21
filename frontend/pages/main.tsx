@@ -1,17 +1,23 @@
 import React from "react";
 import { logoutAsync } from "@/action/apis/auth";
-import { ACCESS_TOKEN } from "@/store/constants";
 import { useRouter } from "next/router";
+import { userDataSave, userTokenSave } from "@/store/userStore";
+import { useAtom } from "jotai";
+import { RESET } from "jotai/utils";
 
 export default function Home() {
   const router = useRouter();
+  const [, setUserData] = useAtom(userDataSave);
+  const [token, setUserToken] = useAtom(userTokenSave);
 
   const logout = async () => {
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    const logoutResult = await logoutAsync(token);
+    if (!token.accessToken) return;
+
+    const logoutResult = await logoutAsync(token.accessToken);
 
     if (logoutResult.isSuccess) {
-      localStorage.removeItem(ACCESS_TOKEN);
+      setUserData(RESET);
+      setUserToken(RESET);
       router.replace("/guide");
     }
   };
