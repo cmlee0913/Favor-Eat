@@ -30,9 +30,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         try {
             CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-//            String accessToken = jwtService.createAccessToken(oAuth2User.getEmail(), oAuth2User.getNickName());
             String refreshToken = jwtService.createRefreshToken();
             String accessToken = jwtService.createAccessToken(oAuth2User.getEmail(), oAuth2User.getNickName());
+            log.info("accessToken : " + accessToken);
             // 헤더에 담아서 두개 다 던진다.
 //            jwtService.sendAccessAndRefreshToken(response, accessToken, refreshToken);
             jwtService.updateRefreshToken(oAuth2User.getEmail(), refreshToken);
