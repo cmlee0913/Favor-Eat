@@ -28,6 +28,7 @@ public class Foods {
     private String quantity;
     private String time;
     private String level;
+    private String image;
     private Float spiciness;
     private Float sweetness;
     private Float saltiness;
@@ -65,6 +66,7 @@ public class Foods {
             .level(this.getLevel())
             .quantity(this.getQuantity())
             .time(this.getTime())
+            .image(this.getImage())
             .recipesList(recipesListEntityToDTO(this.recipesList))
             .nutrientInfo(buildNutrientInfoDTO())
             .tasteInfo(buildTasteInfoDTO())

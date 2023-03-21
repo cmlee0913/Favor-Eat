@@ -12,6 +12,7 @@ public class ResponseFoodInfo {
     private String quantity;
     private String time;
     private String level;
+    private String image;
 
     private ResponseNutrientInfo nutrientInfo;
     private ResponseTasteInfo tasteInfo;
@@ -19,7 +20,7 @@ public class ResponseFoodInfo {
     private List<ResponseIngredientsInFood> ingredientsInFoodsList;
 
     @Builder
-    public ResponseFoodInfo(String name, String quantity, String time, String level,
+    public ResponseFoodInfo(String name, String quantity, String time, String level, String image,
         ResponseNutrientInfo nutrientInfo,
         ResponseTasteInfo tasteInfo,
         List<ResponseRecipe> recipesList,
@@ -28,6 +29,7 @@ public class ResponseFoodInfo {
         this.quantity = quantity;
         this.time = time;
         this.level = level;
+        this.image = image;
         this.nutrientInfo = nutrientInfo;
         this.tasteInfo = tasteInfo;
         this.recipesList = recipesList;
