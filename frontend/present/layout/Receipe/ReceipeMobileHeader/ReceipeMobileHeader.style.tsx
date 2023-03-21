@@ -1,25 +1,6 @@
 import { theme } from "@/action/theme";
 import styled from "styled-components";
 
-// export const HoriSelector = styled.div<{ selectIdx: number }>`
-//   position: absolute;
-//   top: 0px;
-
-//   & * {
-//     display: inline-block;
-//     width: 25px;
-//     height: 25px;
-//     background-color: ${(props) => theme.accordianColor[props.selectIdx]};
-//   }
-
-//   & .right:before {
-//     content: "";
-//     width: 50px;
-//     height: 50px;
-//     background-color: aqua;
-//   }
-// `;
-
 export const Compo = styled.li<{ open: boolean; idx: number }>`
   display: inline-block;
   width: calc(100% / 3 - 4rem);
@@ -74,7 +55,8 @@ export const ContainerNav = styled.ul<{ selectIdx: number }>`
   padding: 0;
   margin: 0;
   position: relative;
-  overflow-x: hidden;
+  top: -1px;
+  overflow: hidden;
 
   ${theme.devices.tablet} {
     display: flex;

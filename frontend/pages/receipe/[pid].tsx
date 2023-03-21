@@ -7,6 +7,7 @@ import ReceipeNav from "@/present/layout/Receipe/ReceipeNav/ReceipeNav";
 import ReceipeContent from "@/present/layout/Receipe/ReceipeContent/ReceipeContent";
 import Piechart from "@/present/component/PieChart/PieChart";
 import { ReceipeNavType } from "@/types/Receipe/dummy";
+import ReceipeTab from "@/present/layout/Receipe/ReceipeTab/ReceipeTab";
 
 export default function Receipe() {
   //색상 선택
@@ -24,7 +25,7 @@ export default function Receipe() {
     },
     {
       category: "레시피",
-      content: <div>HIHI</div>,
+      content: <ReceipeTab />,
       isOpen: false,
     },
   ]);

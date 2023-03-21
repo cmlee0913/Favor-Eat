@@ -9,6 +9,7 @@ export default function ReceipeMobileHeader({
   selectIdx,
   setSelectedIdx,
 }: ReceipeContentProps) {
+  
   const navHandler = (idx: number) => {
     setSelectedIdx(idx);
   };

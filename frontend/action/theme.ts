@@ -1,5 +1,3 @@
-import { DefaultTheme } from "styled-components";
-
 const colors = {
   main: {
     pink: "#f9afc7",
@@ -30,9 +28,9 @@ const devices = {
 };
 
 const accordianColor = [
-  colors.main.red,
-  colors.main.yellow,
   colors.main.skyblue,
+  colors.main.yellow,
+  colors.main.red,
 ];
 
 export const theme = {
