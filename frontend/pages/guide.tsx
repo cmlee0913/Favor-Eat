@@ -6,7 +6,6 @@ import EndLayout from "@/present/layout/Guide/EndLayout";
 import FunctionLayout from "@/present/layout/Guide/FunctionLayout";
 import StartLayout from "@/present/layout/Guide/StartLayout";
 import SuggestLayout from "@/present/layout/Guide/SuggestLayout";
-import SocialLoginBtnCompo from "@/present/component/SocialLoginBtnCompo/SocialLoginBtnCompo";
 import { useScroll } from "@/action/hooks/useScroll";
 
 import { Character } from "@/present/layout/Guide/Guide.style";
