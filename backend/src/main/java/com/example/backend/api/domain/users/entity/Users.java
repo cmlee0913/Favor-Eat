@@ -65,6 +65,6 @@ public class Users {
         this.token = updateRefreshToken;
         log.info("토큰 업데이트 완료");
         log.info("this.token : " + this.token);
-        // 업데이트된 값을 DB에 저장하는 로직 추가
+        // TODO : 업데이트된 값을 DB에 저장하는 로직 추가
     }
 }
