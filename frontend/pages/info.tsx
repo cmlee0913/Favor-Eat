@@ -1,22 +1,55 @@
-import React from "react";
-import AccordianCompo from "@/present/component/AccordianCompo/AccordianCompo";
+import { useState, useEffect } from "react";
+
 import TestCompo from "@/present/component/TestCompo";
-import { AccordianCompoTypes } from "@/types/Accordian/dummy";
+import GridLayout from "@/present/layout/GridLayout/GridLayout";
+import InfoAccordian from "@/present/layout/info/InfoAccordian";
+import Information from "@/present/layout/info/Information";
+import { InfoTypes } from "@/types/Info/dummy";
 
 export default function info() {
-  const test:Array<AccordianCompoTypes> = [
-    { category: "맛", content: <TestCompo /> },
-    { category: "영양소", content: <TestCompo /> },
-    { category: "레시피", content: <TestCompo /> },
-  ];
+  const [selectIdx, setSelectedIdx] = useState(0);
+  const [infoArr, setInfoArr] = useState<Array<InfoTypes>>([
+    {
+      category: "AAA",
+      content: <TestCompo />,
+      isOpen: true,
+    },
+    {
+      category: "BBB",
+      content: <TestCompo />,
+      isOpen: false,
+    },
+    {
+      category: "CCC",
+      content: <TestCompo />,
+      isOpen: false,
+    },
+  ]);
 
-  const accordian:any = test.map((elem, idx) => {
-    return <AccordianCompo key={idx} category={elem.category} content={elem.content} idx={idx}/>
-  });
+  useEffect(() => {
+    const tmp = infoArr.map((elem, idx) => {
+      if (idx === selectIdx) {
+        elem.isOpen = true;
+      } else {
+        elem.isOpen = false;
+      }
+
+      return elem;
+    });
+
+    setInfoArr([...tmp]);
+  }, [selectIdx]);
 
   return (
-    <div>
-        {accordian}
-    </div>
+    <>
+      <GridLayout>
+        <Information />
+        <InfoAccordian
+          infoArr={infoArr}
+          selectIdx={selectIdx}
+          setSelectedIdx={setSelectedIdx}
+        />
+      </GridLayout>
+    </>
   );
 }
