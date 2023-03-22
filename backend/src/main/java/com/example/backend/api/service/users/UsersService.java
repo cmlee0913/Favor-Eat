@@ -1,16 +1,23 @@
 package com.example.backend.api.service.users;
 
 import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
-import com.example.backend.api.dto.users.UsersSignUpRequest;
+import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.dto.users.request.UsersSignUpRequest;
 import com.example.backend.api.service.jwt.JwtService;
+import java.util.List;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UsersService{
     private final UsersRepository usersRepository;
+    private final EvaluationsRepository evaluationsRepository;
     private final JwtService jwtService;
 
     public Users getUser(Long userNo){
@@ -37,5 +44,11 @@ public class UsersService{
     public Long checkNickname(String userNickname) {
         return usersRepository.countUsersByNickname(userNickname);
     }
-}
 
+    @Transactional
+    public void registInitialEvaluations(Long usersNo, List<RequestTasteEvaluations> request) throws RuntimeException {
+        for(RequestTasteEvaluations evaluations : request) {
+            evaluationsRepository.save(evaluations.toEntity(usersNo));
+        }
+    }
+}

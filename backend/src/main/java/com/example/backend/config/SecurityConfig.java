@@ -49,7 +49,7 @@ public class SecurityConfig {
         // Access-Control-Allow-Origin 값을 설정한다.
         // setAllowedOrigins로 여러개를 한꺼번에 설정할 수 도 있다.
         corsConfiguration.setAllowedOrigins(
-            Arrays.asList("http://localhost:3000", "https://j8d108.p.ssafy.io"));
+            Arrays.asList("http://localhost:3000", "http://j8d108.p.ssafy.io:3000"));
         // 어떤 HTTP 메서드를 허용할지 정할 수 있다.
         // setAllowedMethods로 여러개를 한꺼번에 설정할 수 있다.
         corsConfiguration.addAllowedMethod("*");
