@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   ${theme.devices.tablet} {
     display: block;
-    padding: 0;
+    padding: 0px;
     gap: 0;
     width: 100%;
   }

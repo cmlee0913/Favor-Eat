@@ -2,6 +2,7 @@ import React from "react";
 
 import AccordianCompo from "@/present/component/AccordianCompo/AccordianCompo";
 import { InfoContentProps } from "@/types/Info/dummy";
+import * as style from "./Info.style";
 
 export default function InfoAccordian({
   infoArr,
@@ -23,5 +24,5 @@ export default function InfoAccordian({
     );
   });
 
-  return <div id="accordian">{accordians}</div>;
+  return <style.Accordians>{accordians}</style.Accordians>;
 }
