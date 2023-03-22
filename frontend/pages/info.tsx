@@ -1,5 +1,11 @@
-import React from "react";
+import { useState, useEffect } from "react";
+
+import InfoLayout from "@/present/layout/info/InfoLayout";
 
 export default function info() {
-  return <div>info</div>;
+  return (
+    <div>
+      <InfoLayout />
+    </div>
+  );
 }
