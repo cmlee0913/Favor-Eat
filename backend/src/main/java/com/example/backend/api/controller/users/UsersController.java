@@ -37,11 +37,10 @@ public class UsersController {
 
     @PutMapping("/signout/{userNo}")
     public ResponseEntity<String> signOutUser(@PathVariable Long userNo) {
-        if (usersService.signOutUser(userNo).getToken().equals(null)){
+        if (usersService.signOutUser(userNo).getToken() == null)
             return new ResponseEntity<>("signOut 성공", HttpStatus.valueOf(200));
-        } else {
+        else
             return new ResponseEntity<>("signOut 실패", HttpStatus.valueOf(400));
-        }
     }
 
     @PostMapping()
