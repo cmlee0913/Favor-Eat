@@ -6,6 +6,7 @@ import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.repository.favorites.FavoritesRepository;
 import com.example.backend.api.repository.foods.FoodsRepository;
+import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,25 +18,29 @@ public class FoodsService {
     private final FoodsRepository foodsRepository;
     private final FavoritesRepository favoritesRepository;
 
-    public ResponseFoodInfo getFoodInfo(Long id) {
-        Foods foods = foodsRepository.findById(id).get();
-
-        ResponseFoodInfo responseFoodInfo = null;
-        if (foods != null) {
-            responseFoodInfo = foods.toDTO();
-        }
-        return responseFoodInfo;
+    /**
+     * @param id must not be null
+     * @return food info dto, never return null
+     * @throws NullPointerException if it can't find entity
+     */
+    public ResponseFoodInfo getFoodInfo(Long id) throws NullPointerException {
+        //ResponseFoodInfo responseFoodInfo = null;
+        return foodsRepository.findById(id)
+            .map(Foods::toDTO).orElseThrow(NullPointerException::new);
     }
 
+    /**
+     *
+     * @param no must not be null
+     * @param id must not be null
+     * @return true if the given values saved, otherwise false
+     */
+    @Transactional
     public boolean registFavorFood(Long no, Long id) {
         Favorites favorites = favoritesRepository.save(
             Favorites.builder().no(no).foodsId(id).build());
 
-        if (favorites.getNo() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return favorites.getNo() > 0;
     }
 
     @Transactional
