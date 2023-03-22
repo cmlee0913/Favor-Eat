@@ -77,3 +77,31 @@ export const PCHover = styled.div<{ show: boolean }>`
     height: 100%;
   }
 `;
+
+export const MobileHover = styled.div<{ show: boolean; left: number }>`
+  height: auto;
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  box-shadow: 5px 5px 8px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  left: 10%;
+
+  ${theme.devices.desktop} {
+    display: none;
+  }
+  ${theme.devices.tablet} {
+    width: 80vw;
+    display: ${({ show }) => (show ? "block" : "none")};
+    bottom: -5%;
+  }
+  ${theme.devices.mobile} {
+    width: 80vw;
+    display: ${({ show }) => (show ? "block" : "none")};
+    bottom: 10%;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;

@@ -30,3 +30,9 @@ export interface RecipeFlavorProps {
   values: Array<FlavorInfo>;
   recipeImage: StaticImageData;
 }
+
+export interface HoverBoxImageType {
+  pcImage: StaticImageData;
+  mobileImage: StaticImageData;
+  left: number;
+}

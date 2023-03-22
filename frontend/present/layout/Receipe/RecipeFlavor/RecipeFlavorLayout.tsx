@@ -4,14 +4,22 @@ import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
 import Salty from "@/assets/image/Character/Salty.png";
 import Oily from "@/assets/image/Character/Oily.png";
-import { FlavorCharacter, RecipeFlavorProps } from "@/types/RecipeFlavor/dummy";
-import Image, { StaticImageData } from "next/image";
+import {
+  FlavorCharacter,
+  HoverBoxImageType,
+  RecipeFlavorProps,
+} from "@/types/RecipeFlavor/dummy";
+import Image from "next/image";
 import FlavorCharacterCompo from "@/present/component/FlavorCharacterCompo/FlavorCharacterCompo";
 import FlavorProgressCompo from "@/present/common/FlavorProgress/FlavorProgressCompo";
 
 import SpicyHoverBoxPC from "@/assets/image/SpicyHoverBoxPC.png";
 import SweetHoverBoxPC from "@/assets/image/SweetHoverBoxPC.png";
 import SaltyHoverBoxPC from "@/assets/image/SaltyHoverBoxPC.png";
+
+import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
+import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
+import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
 import { useState } from "react";
 
 export default function RecipeFlavorLayout({
@@ -38,6 +46,29 @@ export default function RecipeFlavorLayout({
     },
   };
 
+  const hoverBoxValue = {
+    spicy: {
+      pcImage: SpicyHoverBoxPC,
+      mobileImage: SpicyHoverBoxMobile,
+      left: 7,
+    },
+    sweet: {
+      pcImage: SweetHoverBoxPC,
+      mobileImage: SweetHoverBoxMobile,
+      left: 20,
+    },
+    salty: {
+      pcImage: SaltyHoverBoxPC,
+      mobileImage: SaltyHoverBoxMobile,
+      left: 30,
+    },
+    oily: {
+      pcImage: SaltyHoverBoxPC,
+      mobileImage: SaltyHoverBoxMobile,
+      left: 30,
+    },
+  };
+
   const flavorList: Array<FlavorCharacter> = [];
   values.forEach((item) => {
     const obj: any = {
@@ -49,22 +80,8 @@ export default function RecipeFlavorLayout({
   });
 
   const onActive = (type: string) => {
-    let img;
-    switch (type) {
-      case "spicy":
-        img = SpicyHoverBoxPC;
-        break;
-      case "sweet":
-        img = SweetHoverBoxPC;
-        break;
-      case "salty":
-        img = SaltyHoverBoxPC;
-        break;
-      case "oily":
-        img = SaltyHoverBoxPC;
-        break;
-    }
-    setInfoImg(img);
+    setHoverBoxImage(hoverBoxValue[type]);
+    setInfoShow(false);
     setInfoShow(true);
   };
 
@@ -72,7 +89,9 @@ export default function RecipeFlavorLayout({
     setInfoShow(false);
   };
 
-  const [infoImg, setInfoImg] = useState<StaticImageData>();
+  const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
+    hoverBoxValue.spicy,
+  );
   const [infoShow, setInfoShow] = useState(false);
 
   return (
@@ -81,9 +100,17 @@ export default function RecipeFlavorLayout({
         <Image src={recipeImage} alt="" />
       </style.ImgForMobile>
       <style.PCHover show={infoShow}>
-        <Image src={infoImg} alt="" width={200} height={500} />
+        <Image src={hoverBoxImage.pcImage} alt="" width={200} height={500} />
       </style.PCHover>
       <style.CharacterContainer>
+        <style.MobileHover left={hoverBoxImage.left} show={infoShow}>
+          <Image
+            src={hoverBoxImage.mobileImage}
+            alt=""
+            width={800}
+            height={800}
+          />
+        </style.MobileHover>
         {flavorList.map((item, index) => (
           <FlavorCharacterCompo
             key={index}
@@ -94,6 +121,7 @@ export default function RecipeFlavorLayout({
           />
         ))}
       </style.CharacterContainer>
+
       <style.ProgressContainer>
         {values.map((item, index) => (
           <FlavorProgressCompo
