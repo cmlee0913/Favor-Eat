@@ -1,9 +1,9 @@
 package com.example.backend.api.service.foods;
 
-import com.example.backend.api.domain.favorites.entity.Favorites;
-import com.example.backend.api.domain.favorites.repository.FavoritesRepository;
-import com.example.backend.api.domain.foods.entity.Foods;
-import com.example.backend.api.domain.foods.repository.FoodsRepository;
+import com.example.backend.api.entity.favorites.Favorites;
+import com.example.backend.api.repository.favorites.FavoritesRepository;
+import com.example.backend.api.entity.foods.Foods;
+import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package com.example.backend.config;
 
 import com.example.backend.api.service.oauth2.CustomOAuth2UserService;
 import com.example.backend.api.service.jwt.JwtService;
-import com.example.backend.api.domain.users.repository.UsersRepository;
+import com.example.backend.api.repository.users.UsersRepository;
 import com.example.backend.filter.JwtAuthenticationProcessingFilter;
 import com.example.backend.handler.oauth2.OAuth2LoginFailureHandler;
 import com.example.backend.handler.oauth2.OAuth2LoginSuccessHandler;
