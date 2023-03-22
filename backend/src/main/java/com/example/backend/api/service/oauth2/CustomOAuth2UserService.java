@@ -1,9 +1,9 @@
 package com.example.backend.api.service.oauth2;
 
-import com.example.backend.api.domain.users.entity.Users;
-import com.example.backend.api.domain.users.repository.UsersRepository;
-import com.example.backend.api.domain.users.SocialType;
-import com.example.backend.api.domain.users.oauth.CustomOAuth2User;
+import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.repository.users.UsersRepository;
+import com.example.backend.api.entity.users.SocialType;
+import com.example.backend.api.entity.users.oauth2.CustomOAuth2User;
 import com.example.backend.api.dto.oauth.response.OAuthAttributes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
