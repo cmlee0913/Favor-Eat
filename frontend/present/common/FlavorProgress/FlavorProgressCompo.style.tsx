@@ -7,21 +7,7 @@ import { theme } from "@/action/theme";
 const spicyColors = ["#ABAFC4", "#C7959E", "#E37C79", "#E05D60", "#DC3C47"];
 const sweetColors = ["#ABAFC4", "#D6BE94", "#FFCC66", "#FFBB4C", "#FFAA33"];
 const saltyColors = ["#ABAFC4", "#77B4D2", "#47B8E0", "#3E9CE0", "#3681E0"];
-
-export const ImgForMobile = styled.div`
-  display: none;
-  width: 100%;
-
-  img {
-    height: 30vh;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  ${theme.devices.tablet} {
-    display: block;
-  }
-`;
+const oilyColors = ["#ABAFC4", "#b4b4b4", "#767676", "#3b3b3b", "#242424"];
 
 const chooseColor = (type: string) => {
   switch (type) {
@@ -31,6 +17,8 @@ const chooseColor = (type: string) => {
       return sweetColors[4];
     case "salty":
       return saltyColors[4];
+    case "oily":
+      return oilyColors[4];
   }
 };
 
@@ -46,9 +34,9 @@ export const Container = styled.div`
 `;
 
 export const ProgressBox = styled.div`
-  padding: 0 3vw;
+  padding: 0 1vw;
   ${theme.devices.tablet} {
-    padding: 0 8vw;
+    padding: 0 4vw;
   }
 `;
 
@@ -66,6 +54,8 @@ export const Progress = styled.div<{ flavor: string }>`
           return sweetColors.join();
         case "salty":
           return saltyColors.join();
+        case "oily":
+          return oilyColors.join();
       }
     }}
   );
@@ -88,8 +78,8 @@ const LevelWrapper = styled.div`
 `;
 
 const LevelIcon = styled(LevelSvg)`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   & path {
     fill: ${({ color }) => color};
   }
@@ -118,7 +108,7 @@ export const ProgressLevelWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 -1.2rem;
+  margin: 0 -1rem;
 
   ${theme.devices.tablet} {
     margin: 0 -0.9rem;
@@ -146,5 +136,7 @@ export const ProgressLevelList = (type: string) => {
       return makeLevelList(sweetColors);
     case "salty":
       return makeLevelList(saltyColors);
+    case "oily":
+      return makeLevelList(oilyColors);
   }
 };
