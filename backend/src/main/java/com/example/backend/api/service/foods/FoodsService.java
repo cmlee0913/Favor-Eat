@@ -1,10 +1,12 @@
 package com.example.backend.api.service.foods;
 
-import com.example.backend.api.entity.favorites.Favorites;
-import com.example.backend.api.repository.favorites.FavoritesRepository;
-import com.example.backend.api.entity.foods.Foods;
-import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
+import com.example.backend.api.entity.favorites.Favorites;
+import com.example.backend.api.entity.foods.Foods;
+import com.example.backend.api.entity.idclass.UsersFoodsID;
+import com.example.backend.api.repository.favorites.FavoritesRepository;
+import com.example.backend.api.repository.foods.FoodsRepository;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +31,16 @@ public class FoodsService {
         Favorites favorites = favoritesRepository.save(
             Favorites.builder().no(no).foodsId(id).build());
 
-        if(favorites.getNo() > 0){
+        if (favorites.getNo() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
+    }
+
+    @Transactional
+    public void unregistFavorFood(Long no, Long id) throws RuntimeException{
+        UsersFoodsID favoritesId = new UsersFoodsID(no, id);
+        favoritesRepository.deleteById(favoritesId);
     }
 }
