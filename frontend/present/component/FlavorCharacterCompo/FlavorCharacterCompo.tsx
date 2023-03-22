@@ -1,16 +1,30 @@
 import * as style from "./FlavorCharacterCompo.style";
 
 import Image from "next/image";
-import { FlavorCharacter } from "@/types/RecipeFlavor/dummy";
+import { FlavorCharacterProps } from "@/types/RecipeFlavor/dummy";
 
 export default function FlavorCharacterCompo({
+  type,
   title,
   value,
   img,
-}: FlavorCharacter) {
+  hoverActive,
+  hoverInactive,
+}: FlavorCharacterProps) {
+  const onHandleMouseOver = () => {
+    hoverActive(type);
+  };
+
+  const onHandleMouseOut = () => {
+    hoverInactive();
+  };
+
   return (
     <style.Container>
-      <style.HoverIconWrapper>
+      <style.HoverIconWrapper
+        onMouseOver={onHandleMouseOver}
+        onMouseOut={onHandleMouseOut}
+      >
         <style.HoverIconText>?</style.HoverIconText>
       </style.HoverIconWrapper>
       <style.CharacterWrapper>

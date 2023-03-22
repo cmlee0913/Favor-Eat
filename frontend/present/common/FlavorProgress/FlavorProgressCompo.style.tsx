@@ -25,8 +25,8 @@ const chooseColor = (type: string) => {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-width: 300px;
+  width: 90%;
+  min-width: 150px;
 
   ${theme.devices.tablet} {
     width: 100%;

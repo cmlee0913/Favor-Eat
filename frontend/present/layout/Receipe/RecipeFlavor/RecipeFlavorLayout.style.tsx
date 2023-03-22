@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
   height: 100%;
   gap: 1rem;
@@ -49,6 +50,8 @@ export const CharacterContainer = styled.div`
 export const ProgressContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
   gap: 2rem;
   ${theme.devices.desktop} {
     flex-grow: 2;
@@ -59,5 +62,18 @@ export const ProgressContainer = styled.div`
 
   & > div {
     flex-grow: 1;
+  }
+`;
+
+export const PCHover = styled.div<{ show: boolean }>`
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
+  width: 6.5rem;
+
+  ${theme.devices.tablet} {
+    display: none;
+  }
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;

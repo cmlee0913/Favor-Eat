@@ -60,8 +60,12 @@ export const HoverIconWrapper = styled.div`
     right: 0;
   }
 
-  :hover {
+  &:hover {
     cursor: pointer;
+
+    .pc-hover {
+      display: block;
+    }
   }
 `;
 
