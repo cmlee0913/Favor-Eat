@@ -1,5 +1,6 @@
 package com.example.backend.api.entity.favorites;
 
+import com.example.backend.api.dto.foods.response.ResponseFavorFood;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.users.Users;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @IdClass(UsersFoodsID.class)
 @Entity(name = "favorites")
 public class Favorites {
+
     @Id
     @Column(name = "no")
     private Long no;
@@ -34,8 +36,17 @@ public class Favorites {
     private Foods foods;
 
     @Builder
-    public Favorites(Long no, Long foodsId){
+    public Favorites(Long no, Long foodsId) {
         this.no = no;
         this.foodsId = foodsId;
     }
+
+    public ResponseFavorFood toDTO() {
+        return ResponseFavorFood.builder()
+            .foodsId(this.foodsId)
+            .name(this.foods.getName())
+            .image(this.foods.getImage())
+            .build();
+    }
+
 }
