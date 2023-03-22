@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,15 @@ public class FoodsController {
         }else{
             return new ResponseEntity<>(id+" : 즐겨찾기 등록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
 
+    @DeleteMapping("/favor/{id}")
+    private ResponseEntity<?> unregistFavorFood(@AuthenticationPrincipal User users, @PathVariable Long id){
+        try{
+            foodsService.unregistFavorFood(Long.parseLong(users.getUsername()), id);
+            return new ResponseEntity<>(id+" : 즐겨찾기 해제 성공", HttpStatus.OK);
+        }catch (RuntimeException e){
+            return new ResponseEntity<>(id+" : 즐겨찾기 해제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
