@@ -73,9 +73,27 @@ export const SampleImg = styled.div<{ picPos: number }>`
     width: 15%;
     height: auto;
     position: absolute;
-    right: ${props => props.picPos*2}px;
-    top: ${props => props.picPos*1.2}px;
     z-index: 6;
+
+    &:nth-child(1) {
+      right: ${(props) => props.picPos * 1.2 - 300}px;
+      top: ${(props) => props.picPos * 1.2}px;
+    }
+
+    &:nth-child(2) {
+      right: ${(props) => props.picPos * 1.2 - 600}px;
+      top: ${(props) => props.picPos * 1.2 - 300}px;
+    }
+
+    &:nth-child(3) {
+      right: ${(props) => props.picPos * 1.2 - 830}px;
+      top: ${(props) => props.picPos * 1.2 + 150}px;
+    }
+
+    &:nth-child(4) {
+      right: ${(props) => props.picPos * 1.2 - 1100}px;
+      top: ${(props) => props.picPos * 1.2 - 500}px;
+    }
   }
 `;
 
@@ -305,7 +323,7 @@ export const Cloud = styled.div`
       }
     }
   }
-`
+`;
 
 export const Container = styled.div`
   position: relative;
