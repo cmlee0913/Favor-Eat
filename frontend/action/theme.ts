@@ -19,7 +19,7 @@ const colors = {
   }
 };
 
-const trans = "all 0.5s ease-out";
+const trans = "all 0.2s ease-out";
 
 const devices = {
   mobile: `@media only screen and (max-width: 426px)`,
