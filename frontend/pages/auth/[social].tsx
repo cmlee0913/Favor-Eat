@@ -31,11 +31,12 @@ export default function SocialLogin() {
   useEffect(() => {
     if (!router.isReady) return;
 
-    let { token } = router.query;
-    token = getIndexingOrValue(token);
+    let { access, refresh } = router.query;
+    access = getIndexingOrValue(access);
+    refresh = getIndexingOrValue(refresh);
 
-    if (token) {
-      const decodedJson = parseJwt(token);
+    if (access) {
+      const decodedJson = parseJwt(access);
 
       const { role, email, nickname } = decodedJson;
 
@@ -45,8 +46,8 @@ export default function SocialLogin() {
         role: role,
       });
       setUserToken({
-        accessToken: token,
-        refreshToken: "",
+        accessToken: access,
+        refreshToken: refresh,
       });
 
       if (role === "USER") {
