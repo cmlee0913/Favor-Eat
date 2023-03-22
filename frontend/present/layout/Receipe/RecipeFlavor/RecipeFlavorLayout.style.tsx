@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: row;
   width: 100%;
   height: 100%;
-  gap: 10%;
+  gap: 1rem;
   ${theme.devices.tablet} {
     flex-direction: column;
     gap: 5vh;
@@ -31,7 +31,7 @@ export const ImgForMobile = styled.div`
 export const CharacterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 15%;
+  width: 3rem;
   gap: 2rem;
   ${theme.devices.desktop} {
     flex-grow: 0.5;

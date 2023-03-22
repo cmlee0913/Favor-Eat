@@ -39,7 +39,7 @@ export const Character = styled.div`
 `;
 
 export const FlavorLevel = styled.span`
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 `;
 
 export const HoverIconWrapper = styled.div`
@@ -50,11 +50,18 @@ export const HoverIconWrapper = styled.div`
   display: inline-block;
   text-align: center;
   position: relative;
-  bottom: 0;
+  bottom: 3px;
+  right: -5px;
   align-self: end;
 
   ${theme.devices.tablet} {
     align-self: center;
+    bottom: 0;
+    right: 0;
+  }
+
+  :hover {
+    cursor: pointer;
   }
 `;
 
