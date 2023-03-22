@@ -14,4 +14,5 @@ export interface FlavorData {
 
 export type FlavorProps = {
   flavors: Array<FlavorInfo>;
+  image: StaticImageData;
 };
