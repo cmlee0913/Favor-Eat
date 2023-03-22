@@ -42,7 +42,8 @@ public class JwtService {
     private static final String ACCESS_TOKEN_SUBJECT = "AccessToken";
     private static final String REFRESH_TOKEN_SUBJECT = "RefreshToken";
     private static final String EMAIL_CLAIM = "email";
-    private static final String EMAIL_NICKNAME = "nickname";
+    private static final String NICKNAME_CLAIM = "nickname";
+    private static final String ROLE_CLAIM = "role";
     private static final String BEARER = "Bearer ";
 
     private final UsersRepository usersRepository;
@@ -50,7 +51,7 @@ public class JwtService {
     /**
      * AccessToken 생성 메소드
      */
-    public String createAccessToken(String email, String nickname) {
+    public String createAccessToken(String email, String nickname, String role) {
         Date now = new Date();
         return JWT.create() // JWT 토큰을 생성하는 빌더 반환 (페이로드 부분 생성)
             .withSubject(ACCESS_TOKEN_SUBJECT) // JWT의 Subject 지정 -> AccessToken이므로 AccessToken
@@ -58,7 +59,8 @@ public class JwtService {
             
             // 이메일, 닉네임 클레임 추가
             .withClaim(EMAIL_CLAIM, email)
-            .withClaim(EMAIL_NICKNAME, nickname)
+            .withClaim(NICKNAME_CLAIM, nickname)
+            .withClaim(ROLE_CLAIM, role)
             .sign(Algorithm.HMAC512(secretKey)); // HMAC512 알고리즘 사용, application-jwt.yml에서 지정한 secret 키로 암호화
     }
 

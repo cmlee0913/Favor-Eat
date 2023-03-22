@@ -84,7 +84,7 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
     public void checkRefreshTokenAndReIssueAccessToken(HttpServletResponse response, String refreshToken) {
         usersRepository.findByToken(refreshToken) // 리프레쉬 토큰으로 유저 찾음
             .ifPresent(users -> {
-                jwtService.sendAccessAndRefreshToken(response, jwtService.createAccessToken(users.getEmail(), users.getNickname()),
+                jwtService.sendAccessAndRefreshToken(response, jwtService.createAccessToken(users.getEmail(), users.getNickname(), users.getRole().getKey()),
                     reIssueRefreshToken(users)); // RTR 방식이므로 액세스 토큰이 만료될 때마다 리프레쉬 토큰도 재발급
             });
     }
