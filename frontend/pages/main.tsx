@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { RESET } from "jotai/utils";
 import { GlobalStyle } from "@/action/GlobalStyle";
 import MainLayout from "@/present/layout/Main/MainLayout";
+import Header from "@/present/layout/Header/Header";
 
 export default function Home() {
   const router = useRouter();
@@ -72,6 +73,7 @@ export default function Home() {
   return (
     <div>
       <GlobalStyle />
+      <Header />
       <MainLayout foods={foodList} />
     </div>
   );

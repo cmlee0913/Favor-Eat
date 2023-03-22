@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 9vw;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 6rem);
 `;
 
 export const Foods = styled.div`
