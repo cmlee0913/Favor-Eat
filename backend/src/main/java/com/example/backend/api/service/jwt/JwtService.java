@@ -173,7 +173,7 @@ public class JwtService {
             .updateRefreshToken(refreshToken);
 //            .ifPresentOrElse(
 //                user -> user.updateRefreshToken(refreshToken),
-//                () -> throw new Exception("일치하는 회원이 없습니다.")
+//                () -> new Exception("일치하는 회원이 없습니다.")
 //            );
     }
 
