@@ -2,6 +2,7 @@ package com.example.backend.api.service.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.users.UsersRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -158,7 +159,8 @@ public class JwtService {
         log.info("email : " + email);
         usersRepository.findByEmail(email)
             .ifPresentOrElse(
-                user -> user.updateRefreshToken(refreshToken),
+                user -> {user.updateRefreshToken(refreshToken);
+                    usersRepository.save(user);},
                 () -> new Exception("일치하는 회원이 없습니다.")
             );
     }
