@@ -49,7 +49,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             response.sendRedirect("http://j8d108.p.ssafy.io:3000/auth/kakao?access=" + accessToken + "&refresh=" + refreshToken);
 
         } catch (Exception e) {
-            throw e;
+            throw new IOException(e.getMessage());
         }
     }
 }

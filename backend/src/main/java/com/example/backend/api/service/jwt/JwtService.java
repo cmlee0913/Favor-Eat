@@ -50,7 +50,11 @@ public class JwtService {
     private final UsersRepository usersRepository;
 
     /**
-     * AccessToken 생성 메소드
+     * create AccessToken
+     *
+     * @param email must not be null
+     * @param nickname must not be null
+     * @return AccessToken
      */
     public String createAccessToken(String email, String nickname, String role) {
         Date now = new Date();
@@ -66,8 +70,9 @@ public class JwtService {
     }
 
     /**
-     * RefreshToken 생성
-     * RefreshToken은 Custom Claim 추가 안 함
+     * create RefreshToken
+     *
+     * @return RefreshToken
      */
     public String createRefreshToken() {
         Date now = new Date();
@@ -99,7 +104,9 @@ public class JwtService {
     }
 
     /**
-     * 헤더에 담겨온 리프레쉬 토큰 추출
+     * extract RefreshToken from Header
+     *
+     * @return RefreshToken
      */
     public Optional<String> extractRefreshToken(HttpServletRequest request) {
         return Optional.ofNullable(request.getHeader(refreshHeader)) // 옵셔널 메서드, 만약 null이 아니라면
@@ -108,7 +115,9 @@ public class JwtService {
     }
 
     /**
-     * 헤더에 담겨온 액세스 토큰 추출
+     * extract AccessToken from Header
+     *
+     * @return AccessToken
      */
     public Optional<String> extractAccessToken(HttpServletRequest request) {
         return Optional.ofNullable(request.getHeader(accessHeader)) // 옵셔널 메서드, 만약 null이 아니라면
@@ -117,11 +126,10 @@ public class JwtService {
     }
 
     /**
-     * AccessToken에서 Email 추출
-     * 추출 전에 JWT.require()로 검증기 생성
-     * verify로 AceessToken 검증 후
-     * 유효하다면 getClaim()으로 이메일 추출
-     * 유효하지 않다면 빈 Optional 객체 반환
+     * Extracting Email from an AccessToken
+     * Create validator with JWT.require() before extraction
+     *
+     * @return return email if valid, otherwise an empty Optional object
      */
     public Optional<String> extractEmail(String accessToken) {
         try {
@@ -153,18 +161,28 @@ public class JwtService {
 
     /**
      * RefreshToken DB 저장(업데이트)
+     *
+     * @param email must not be null
+     * @param refreshToken must not be null
+     * @throws Exception can't find user
      */
-    public void updateRefreshToken(String email, String refreshToken) {
+    public void updateRefreshToken(String email, String refreshToken) throws Exception{
         log.info("refreshToken : " + refreshToken);
         log.info("email : " + email);
-        usersRepository.findByEmail(email)
-            .ifPresentOrElse(
-                user -> {user.updateRefreshToken(refreshToken);
-                    usersRepository.save(user);},
-                () -> new Exception("일치하는 회원이 없습니다.")
-            );
+        usersRepository.findByEmail(email).orElseThrow(() -> new Exception("일치하는 회원이 없습니다."))
+            .updateRefreshToken(refreshToken);
+//            .ifPresentOrElse(
+//                user -> user.updateRefreshToken(refreshToken),
+//                () -> new Exception("일치하는 회원이 없습니다.")
+//            );
     }
 
+    /**
+     * check token
+     *
+     * @param token must not be null
+     * @return true if token is valid, otherwise false
+     */
     public boolean isTokenValid(String token) {
         try {
             JWT.require(Algorithm.HMAC512(secretKey)).build().verify(token);

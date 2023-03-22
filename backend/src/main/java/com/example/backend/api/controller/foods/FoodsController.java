@@ -24,7 +24,11 @@ public class FoodsController {
 
     @GetMapping("/{id}")
     private ResponseEntity<ResponseFoodInfo> getFoodInfo(@PathVariable Long id) {
-        return new ResponseEntity<>(foodsService.getFoodInfo(id), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(foodsService.getFoodInfo(id), HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/favor")
