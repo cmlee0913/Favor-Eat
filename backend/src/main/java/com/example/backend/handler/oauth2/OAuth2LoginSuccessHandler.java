@@ -39,15 +39,14 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 //            jwtService.sendAccessAndRefreshToken(response, accessToken, refreshToken);
             jwtService.updateRefreshToken(oAuth2User.getEmail(), refreshToken);
 
-
             jwtService.sendAccessAndRefreshToken(response, accessToken, null);
             log.info("여기 들어와?");
             log.info("oAuth2User.getEmail() : " + oAuth2User.getEmail());
             log.info("findUser.getEmail() : " + findUser.getEmail());
             log.info("findUser.getToken() : " + findUser.getToken());
             findUser.authorizeUser();// TODO : 취향분석 페이지 리다이렉트 받기
-            // response.sendRedirect("http://localhost:3000/auth/kakao?token=" + accessToken);
-            response.sendRedirect("http://j8d108.p.ssafy.io:3000/auth/kakao?token=" + accessToken);
+            // response.sendRedirect("http://localhost:3000/auth/kakao?token=" + accessToken + "&refresh=" + refreshToken);
+            response.sendRedirect("http://j8d108.p.ssafy.io:3000/auth/kakao?access=" + accessToken + "&refresh=" + refreshToken);
 
         } catch (Exception e) {
             throw e;
