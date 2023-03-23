@@ -1,5 +1,5 @@
 import { theme } from "@/action/theme";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Sky = styled.p`
   & img.Sky {
@@ -281,60 +281,74 @@ export const Hill = styled.p`
   }
 `;
 
-export const Character = styled.p`
-  & img.Character {
-    position: absolute;
-    height: auto;
+export const CharacterContainer = styled.div`
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 6vw;
+  z-index: 1000;
 
-    &.Responsive {
-      &:nth-child(1) {
-        z-index: 6;
-        width: 6.5%;
-        left: 34.07%;
-        bottom: 26%;
-      }
-      &:nth-child(2) {
-        z-index: 6;
-        width: 6.85%;
-        left: 46.5%;
-        bottom: 26%;
-      }
-      &:nth-child(3) {
-        z-index: 6;
-        width: 6.25%;
-        right: 34.07%;
-        bottom: 26%;
-      }
-      &:nth-child(4) {
-        z-index: 6;
-        width: 8.33%;
-        left: 16%;
-        bottom: 4.5%;
-      }
+  ${theme.devices.tablet} {
+    gap: 13vw;
+    top: 50%;
+    left: 50%;
+  }
+  ${theme.devices.mobile} {
+    gap: 10vw;
+    top: 50%;
+    left: 50%;
+  }
+`;
 
-      ${theme.devices.tablet} {
-      }
+export const CharacterNameStyle = css`
+  font-size: 1.3rem;
+  text-align: center;
+  margin-top: 10px;
 
-      ${theme.devices.mobile} {
-        &:nth-child(1) {
-          width: 17.39%;
-          left: 6.34%;
-        }
-        &:nth-child(2) {
-          width: 17.39%;
-          left: 41%;
-        }
-        &:nth-child(3) {
-          width: 17.39%;
-          right: 6.58%;
-        }
-        &:nth-child(4) {
-          width: 14.07%;
-          left: 28.23%;
-          bottom: 2.31%;
-        }
-      }
-    }
+  ${theme.devices.tablet} {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 5px;
+  }
+  ${theme.devices.tablet} {
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: 5px;
+  }
+`;
+
+export const Character = styled.div`
+  width: 4rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ${theme.devices.tablet} {
+    width: 3rem;
+  }
+  ${theme.devices.mobile} {
+    width: 2.5rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.selected {
+    transform: scale(1.5);
+    transition: ${theme.trans};
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  div {
+    ${CharacterNameStyle}
   }
 `;
 
@@ -344,48 +358,54 @@ export const Introduction = styled.p`
     position: absolute;
     margin: 0;
 
+    /* introduction text */
     :nth-child(1) {
-      font-size: 45px;
+      font-size: 1.8rem;
+      font-weight: 600;
       text-align: center;
-      left: 40%;
-      top: 0;
-    }
-    :nth-child(2) {
-      font-size: 30px;
-      bottom: 20%;
-      left: 35%;
-    }
-    :nth-child(3) {
-      font-size: 30px;
-      bottom: 20%;
-      left: 49%;
-    }
-    :nth-child(4) {
-      font-size: 30px;
-      bottom: 20%;
-      left: 61%;
-    }
+      width: 100%;
+      left: 50%;
+      top: 15%;
+      transform: translateX(-50%) translateY(-50%);
+      line-height: 2.8rem;
+      letter-spacing: 0.1px;
 
-    ${theme.devices.tablet} {
-    }
-    ${theme.devices.mobile} {
-      :nth-child(1) {
-        font-size: 15px;
-        left: 30%;
-        top: 10%;
+      ${theme.devices.tablet} {
+        font-size: 1.5rem;
       }
-      :nth-child(2) {
-        bottom: 20%;
-        left: 10%;
-      }
-      :nth-child(3) {
-        bottom: 20%;
-        left: 47%;
-      }
-      :nth-child(4) {
-        bottom: 20%;
-        left: 80%;
+      ${theme.devices.mobile} {
+        font-size: 1.5rem;
+        top: 20%;
       }
     }
+  }
+`;
+
+export const ChooseButton = styled.div`
+  background-color: ${theme.colors.main.purple.dark_4};
+  color: ${theme.colors.mono.light_1};
+  padding: 1.3rem 1.8rem;
+  border-radius: 100px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  z-index: 1000;
+  position: absolute;
+  bottom: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  :hover {
+    cursor: pointer;
+  }
+
+  ${theme.devices.tablet} {
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    bottom: 30vh;
+  }
+  ${theme.devices.tablet} {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    bottom: 25vh;
   }
 `;

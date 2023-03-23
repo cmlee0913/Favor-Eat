@@ -5,6 +5,13 @@ const colors = {
     yellow: "#ffcc66",
     skyblue: "#54bddd",
     blue: "#4340b5",
+    purple: {
+      light_1: "#EBEBFF",
+      dark_1: "#9494E0",
+      dark_2: "#6565D8",
+      dark_3: "#4340B5",
+      dark_4: "#4242CE",
+    },
   },
   mono: {
     light_1: "#ffffff",
@@ -15,8 +22,8 @@ const colors = {
   },
   background: {
     pink: "#FFF3F5",
-    violet: "#EBEBFF"
-  }
+    violet: "#EBEBFF",
+  },
 };
 
 const trans = "all 0.2s ease-out";
@@ -37,5 +44,5 @@ export const theme = {
   colors,
   devices,
   trans,
-  accordianColor
+  accordianColor,
 };
