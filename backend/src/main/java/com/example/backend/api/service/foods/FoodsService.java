@@ -1,12 +1,14 @@
 package com.example.backend.api.service.foods;
 
+import com.example.backend.api.dto.foods.response.ResponseFavorFood;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import com.example.backend.api.entity.favorites.Favorites;
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.repository.favorites.FavoritesRepository;
 import com.example.backend.api.repository.foods.FoodsRepository;
-import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,5 +49,14 @@ public class FoodsService {
     public void unregistFavorFood(Long no, Long id) throws RuntimeException{
         UsersFoodsID favoritesId = new UsersFoodsID(no, id);
         favoritesRepository.deleteById(favoritesId);
+    }
+
+    public List<ResponseFavorFood> getFavorFoodList(long no) {
+        List<ResponseFavorFood> responseFavorFoodList = null;
+
+        List<Favorites> favoritesList = favoritesRepository.findByNo(no);
+        return favoritesList.stream()
+            .map(favorites -> favorites.toDTO())
+            .collect(Collectors.toList());
     }
 }

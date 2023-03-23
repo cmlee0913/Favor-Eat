@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ResponseFavorFood {
-    private Long no;
-    private Long foodId;
+    private Long foodsId;
+    private String name;
+    private String image;
 
     @Builder
-    public ResponseFavorFood(Long no, Long foodId){
-        this.no = no;
-        this.foodId = foodId;
+    public ResponseFavorFood(Long foodsId, String name, String image){
+        this.foodsId = foodsId;
+        this.name = name;
+        this.image = image;
     }
 }

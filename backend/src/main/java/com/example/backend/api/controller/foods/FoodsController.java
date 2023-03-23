@@ -1,7 +1,9 @@
 package com.example.backend.api.controller.foods;
 
+import com.example.backend.api.dto.foods.response.ResponseFavorFood;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import com.example.backend.api.service.foods.FoodsService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,11 @@ public class FoodsController {
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/favor")
+    private ResponseEntity<List<ResponseFavorFood>> getFavorFoodList(@AuthenticationPrincipal User users){
+        return new ResponseEntity<>(foodsService.getFavorFoodList(Long.parseLong(users.getUsername())),HttpStatus.OK);
     }
 
     @PostMapping("/favor/{id}")
