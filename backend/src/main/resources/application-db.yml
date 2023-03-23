@@ -1,0 +1,36 @@
+#default 공통설정
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show-sql: true
+        format_sql: true
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: debug
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+--- # test 설정
+spring:
+  config:
+    activate:
+      on-profile: "db-test"
+
+  datasource:
+    url: jdbc:mysql://j8d108.p.ssafy.io:3306/Favoreat?serverTimezone=Asia/Seoul
+    username: ${mysql-test-username}
+    password: ${mysql-test-password}
+
+--- # prod 설정
+spring:
+  config:
+    activate:
+      on-profile: "db-prod"
+
+  datasource:
+    url: jdbc:mysql://j8d108.p.ssafy.io:3307/Favoreat?serverTimezone=Asia/Seoul
+    username: ${mysql-prod-username}
+    password: ${mysql-prod-password}
