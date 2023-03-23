@@ -75,4 +75,16 @@ public class UsersService{
             evaluationsRepository.save(evaluations.toEntity(usersNo));
         }
     }
+
+    /**
+     * remove refresh token
+     *
+     * @param usersNo must not be null
+     * @param evaluations must not be null
+     * @throws RuntimeException failed to save evaluation
+     */
+    @Transactional
+    public void registEvaluations(long usersNo, RequestTasteEvaluations evaluations) throws RuntimeException {
+        evaluationsRepository.save(evaluations.toEntity(usersNo));
+    }
 }
