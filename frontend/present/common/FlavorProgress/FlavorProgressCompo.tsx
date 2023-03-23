@@ -1,4 +1,4 @@
-import { FlavorInfo } from "@/types/FlavorProgress/FlavorSummaryTypes";
+import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
 import * as style from "./FlavorProgressCompo.style";
 
 export default ({ value, type }: FlavorInfo) => {
@@ -13,6 +13,9 @@ export default ({ value, type }: FlavorInfo) => {
       break;
     case "salty":
       flavorTypeString = "짜기";
+      break;
+    case "oily":
+      flavorTypeString = "기름기";
       break;
   }
 

@@ -11,21 +11,22 @@ import ReceipeTab from "@/present/layout/Receipe/ReceipeTab/ReceipeTab";
 
 import * as style from "@/present/layout/Receipe/pageStyle";
 
-import FlavorProgressListCompo from "@/present/common/FlavorProgress/FlavorProgressListCompo";
-import { FlavorInfo } from "@/types/FlavorProgress/FlavorSummaryTypes";
+import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
+import RecipeFlavorLayout from "@/present/layout/Receipe/RecipeFlavor/RecipeFlavorLayout";
 
 export default function Receipe() {
   const flavorList: Array<FlavorInfo> = [
     { type: "spicy", value: 4 },
     { type: "sweet", value: 2.5 },
     { type: "salty", value: 3 },
+    { type: "oily", value: 1.4 },
   ];
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
   const [receipeArr, setReceipeArr] = useState<Array<ReceipeNavType>>([
     {
       category: "맛",
-      content: <FlavorProgressListCompo flavors={flavorList} image={Test} />,
+      content: <RecipeFlavorLayout values={flavorList} recipeImage={Test} />,
       isOpen: true,
     },
     {
