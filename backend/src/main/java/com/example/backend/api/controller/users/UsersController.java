@@ -53,4 +53,14 @@ public class UsersController {
         }
     }
 
+    @PostMapping("/taste")
+    public ResponseEntity<?> registEvaluations(@AuthenticationPrincipal User users, @RequestBody RequestTasteEvaluations request) {
+        try {
+            usersService.registEvaluations(Long.parseLong(users.getUsername()), request);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
