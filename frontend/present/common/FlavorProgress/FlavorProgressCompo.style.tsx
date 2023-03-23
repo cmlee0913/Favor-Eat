@@ -62,7 +62,7 @@ export const Progress = styled.div<{ flavor: string }>`
 `;
 
 export const ProgressIndicator = styled(ProgressIndicatorSvg)`
-  left: ${({ left }) => left}%;
+  left: ${({ left }) => (left ? left : 0)}%;
   transform: translateX(-50%);
   text-align: center;
   position: relative;
