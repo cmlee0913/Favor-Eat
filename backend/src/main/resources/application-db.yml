@@ -31,6 +31,6 @@ spring:
       on-profile: "db-prod"
 
   datasource:
-    url: jdbc:mysql://j8d108.p.ssafy.io:3307/Favoreat?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://j8d108.p.ssafy.io:3306/Favoreat?serverTimezone=Asia/Seoul
     username: ${mysql-prod-username}
     password: ${mysql-prod-password}
