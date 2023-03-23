@@ -50,7 +50,7 @@ public class OAuth2LoginSuccessTestHandler implements AuthenticationSuccessHandl
             response.sendRedirect(returnURL() + accessToken + "&refresh=" + refreshToken);
 
         } catch (Exception e) {
-            throw e;
+            throw new IOException(e.getMessage());
         }
     }
 
