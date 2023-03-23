@@ -23,23 +23,21 @@ spring:
   config:
     activate:
       on-profile: "oauth-test"
-
-security:
-  oauth2:
-    client:
-      registration:
-        kakao:
-          redirect-uri: http://j8d108.p.ssafy.io:8000/login/oauth2/code/kakao
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            redirect-uri: http://j8d108.p.ssafy.io:8000/login/oauth2/code/kakao
 
 --- # dev 설정
 spring:
   config:
     activate:
       on-profile: "oauth-prod"
-
-security:
-  oauth2:
-    client:
-      registration:
-        kakao:
-          redirect-uri: http://j8d108.p.ssafy.io:8080/login/oauth2/code/kakao
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            redirect-uri: http://j8d108.p.ssafy.io:8080/login/oauth2/code/kakao
