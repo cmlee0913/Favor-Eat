@@ -66,4 +66,13 @@ public class Users {
         log.info("this.token : " + this.token);
         // TODO : 업데이트된 값을 DB에 저장하는 로직 추가
     }
+
+    /**
+     * update user's role
+     *
+     * @param userRole must not be null
+     */
+    public void updateRole(Role userRole) {
+        this.role = userRole;
+    }
 }

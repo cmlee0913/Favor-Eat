@@ -1,5 +1,6 @@
 package com.example.backend.api.service.users;
 
+import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
@@ -63,7 +64,7 @@ public class UsersService{
     }
 
     /**
-     * remove refresh token
+     * save evaluations and change user's role
      *
      * @param usersNo must not be null
      * @param request must not be null
@@ -74,6 +75,11 @@ public class UsersService{
         for(RequestTasteEvaluations evaluations : request) {
             evaluationsRepository.save(evaluations.toEntity(usersNo));
         }
+
+        usersRepository.findByNo(usersNo).ifPresent(users -> {
+            users.updateRole(Role.USER);
+            usersRepository.save(users);
+        });
     }
 
     /**
