@@ -4,21 +4,22 @@ import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.entity.users.oauth2.CustomOAuth2User;
 import com.example.backend.api.repository.users.UsersRepository;
 import com.example.backend.api.service.jwt.JwtService;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
+@Profile("prod")
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
+public class OAuth2LoginSuccessProdHandler implements AuthenticationSuccessHandler {
 
     private final JwtService jwtService;
     private final UsersRepository usersRepository;
@@ -45,11 +46,14 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             log.info("findUser.getEmail() : " + findUser.getEmail());
             log.info("findUser.getToken() : " + findUser.getToken());
             findUser.authorizeUser();// TODO : 취향분석 페이지 리다이렉트 받기
-            // response.sendRedirect("http://localhost:3000/auth/kakao?token=" + accessToken + "&refresh=" + refreshToken);
-            response.sendRedirect("http://j8d108.p.ssafy.io:3000/auth/kakao?access=" + accessToken + "&refresh=" + refreshToken);
+            response.sendRedirect(returnURL() + accessToken + "&refresh=" + refreshToken);
 
         } catch (Exception e) {
             throw new IOException(e.getMessage());
         }
+    }
+
+    public String returnURL() {
+        return "http://j8d108.p.ssafy.io:3000/auth/kakao?access=";
     }
 }

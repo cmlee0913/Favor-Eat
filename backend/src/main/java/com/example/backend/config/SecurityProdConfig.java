@@ -1,16 +1,17 @@
 package com.example.backend.config;
 
-import com.example.backend.api.service.oauth2.CustomOAuth2UserService;
-import com.example.backend.api.service.jwt.JwtService;
 import com.example.backend.api.repository.users.UsersRepository;
+import com.example.backend.api.service.jwt.JwtService;
+import com.example.backend.api.service.oauth2.CustomOAuth2UserService;
 import com.example.backend.filter.JwtAuthenticationProcessingFilter;
 import com.example.backend.handler.oauth2.OAuth2LoginFailureHandler;
-import com.example.backend.handler.oauth2.OAuth2LoginSuccessHandler;
+import com.example.backend.handler.oauth2.OAuth2LoginSuccessProdHandler;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -27,14 +28,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  * 인증은 CustomJsonUsernamePasswordAuthenticationFilter에서 authenticate()로 인증된 사용자로 처리
  * JwtAuthenticationProcessingFilter는 AccessToken, RefreshToken 재발급
  */
+@Profile("prod")
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityProdConfig {
 
     private final JwtService jwtService;
     private final UsersRepository usersRepository;
-    private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+    private final OAuth2LoginSuccessProdHandler oAuth2LoginSuccessProdHandler;
     private final OAuth2LoginFailureHandler oAuth2LoginFailureHandler;
     private final CustomOAuth2UserService customOAuth2UserService;
 
@@ -88,7 +90,7 @@ public class SecurityConfig {
         http
             //== 소셜 로그인 설정 ==//
             .oauth2Login()
-            .successHandler(oAuth2LoginSuccessHandler) // 동의하고 계속하기를 눌렀을 때 Handler 설정
+            .successHandler(oAuth2LoginSuccessProdHandler) // 동의하고 계속하기를 눌렀을 때 Handler 설정
             .failureHandler(oAuth2LoginFailureHandler) // 소셜 로그인 실패 시 핸들러 설정
             .userInfoEndpoint().userService(customOAuth2UserService); // customUserService 설정
         http.
@@ -103,7 +105,6 @@ public class SecurityConfig {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-//    TODO : 로그인 성공, 실패 시 핸들러 구현하기
 //    /**
 //     * 로그인 성공 시 호출되는 LoginSuccessJWTProviderHandler 빈 등록
 //     */
