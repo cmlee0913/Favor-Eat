@@ -1,12 +1,21 @@
-import HambugerBar from '@/present/component/HambugerBar/HambugerBar'
-import React, {memo} from 'react'
-import * as style from "./Header.style"
+import HambugerBar from "@/present/component/HambugerBar/HambugerBar";
+import React, { memo, useState } from "react";
+import HambugerInner from "../HambugerInner/HambugerInner";
+import * as style from "./Header.style";
 
 function Header() {
-    return <style.Container>
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <style.Container>
+      <style.HeaderContainer>
         <div></div>
-        <HambugerBar />
+        <HambugerBar isOpen={isOpen} setIsOpen={setIsOpen} />
+      </style.HeaderContainer>
+
+      {isOpen && <HambugerInner />}
     </style.Container>
+  );
 }
 
-export default memo(Header)
+export default memo(Header);
