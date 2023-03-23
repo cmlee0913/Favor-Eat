@@ -24,9 +24,9 @@ public class RequestTasteEvaluations {
         this.fatness = fatness;
     }
 
-    public Evaluations toEntity(Long usersNo) {
+    public Evaluations toEntity(Long no) {
         return Evaluations.builder()
-            .no(usersNo)
+            .no(no)
             .fatness(this.getFatness())
             .saltiness(this.getSaltiness())
             .spiciness(this.getSpiciness())

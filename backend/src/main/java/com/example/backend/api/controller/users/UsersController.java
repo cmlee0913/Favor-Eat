@@ -1,6 +1,5 @@
 package com.example.backend.api.controller.users;
 
-import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
 import com.example.backend.api.service.users.UsersService;
 import java.util.List;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UsersController {
+
     private final UsersService usersService;
 
     // TODO : 취향 분석 정보 다 받아온 후 DB에 업데이트
@@ -35,18 +35,21 @@ public class UsersController {
 //        }
 //    }
 
-    @PutMapping("/signout/{userNo}")
-    public ResponseEntity<String> signOutUser(@PathVariable Long userNo) {
-        if (usersService.signOutUser(userNo).getToken() == null)
+    @PutMapping("/signout/{no}")
+    public ResponseEntity<String> signOutUser(@PathVariable Long no) {
+        if (usersService.signOutUser(no).getToken() == null) {
             return new ResponseEntity<>("signOut 성공", HttpStatus.valueOf(200));
-        else
+        } else {
             return new ResponseEntity<>("signOut 실패", HttpStatus.valueOf(400));
+        }
     }
 
     @PostMapping()
-    public ResponseEntity<?> registInitialEvaluations(@AuthenticationPrincipal User users, @RequestBody List<RequestTasteEvaluations> request) {
+    public ResponseEntity<?> registInitialEvaluations(@AuthenticationPrincipal User users,
+        @RequestBody List<RequestTasteEvaluations> requestTasteEvaluations) {
         try {
-            usersService.registInitialEvaluations(Long.parseLong(users.getUsername()), request);
+            usersService.registInitialEvaluations(Long.parseLong(users.getUsername()),
+                requestTasteEvaluations);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,9 +57,11 @@ public class UsersController {
     }
 
     @PostMapping("/taste")
-    public ResponseEntity<?> registEvaluations(@AuthenticationPrincipal User users, @RequestBody RequestTasteEvaluations request) {
+    public ResponseEntity<?> registEvaluations(@AuthenticationPrincipal User users,
+        @RequestBody RequestTasteEvaluations requestTasteEvaluations) {
         try {
-            usersService.registEvaluations(Long.parseLong(users.getUsername()), request);
+            usersService.registEvaluations(Long.parseLong(users.getUsername()),
+                requestTasteEvaluations);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
