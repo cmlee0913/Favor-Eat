@@ -9,9 +9,9 @@ export const IngredientCompo = styled.div`
   margin: 2rem 0 !important;
 `;
 
-export const ReceipeProcessCompo = styled.div``;
+export const RecipeProcessCompo = styled.div``;
 
-export const ReceipeTabBody = styled.div`
+export const RecipeTabBody = styled.div`
   & h2 {
     display: none;
   }
@@ -21,7 +21,7 @@ export const ReceipeTabBody = styled.div`
   }
 `;
 
-export const ReceipeTabHeader = styled.div`
+export const RecipeTabHeader = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;

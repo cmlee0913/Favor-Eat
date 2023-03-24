@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import GridLayout from "@/present/layout/GridLayout/GridLayout";
-import ReceipeImg from "@/present/layout/Receipe/ReceipeImg/ReceipeImg";
+import RecipeImg from "@/present/layout/Recipe/RecipeImg/RecipeImg";
 
 import Test from "@/assets/image/test.jpg";
-import ReceipeNav from "@/present/layout/Receipe/ReceipeNav/ReceipeNav";
-import ReceipeContent from "@/present/layout/Receipe/ReceipeContent/ReceipeContent";
+import RecipeNav from "@/present/layout/Recipe/RecipeNav/RecipeNav";
+import RecipeContent from "@/present/layout/Recipe/RecipeContent/RecipeContent";
 import Piechart from "@/present/component/PieChart/PieChart";
-import { ReceipeNavType } from "@/types/Receipe/dummy";
-import ReceipeTab from "@/present/layout/Receipe/ReceipeTab/ReceipeTab";
+import { RecipeNavType } from "@/types/Recipe/dummy";
+import RecipeTab from "@/present/layout/Recipe/RecipeTab/RecipeTab";
 
-import * as style from "@/present/layout/Receipe/pageStyle";
+import * as style from "@/present/layout/Recipe/pageStyle";
 
 import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
-import RecipeFlavorLayout from "@/present/layout/Receipe/RecipeFlavor/RecipeFlavorLayout";
+import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
 
-export default function Receipe() {
+export default function Recipe() {
   const flavorList: Array<FlavorInfo> = [
     { type: "spicy", value: 4 },
     { type: "sweet", value: 2.5 },
@@ -23,7 +23,7 @@ export default function Receipe() {
   ];
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
-  const [receipeArr, setReceipeArr] = useState<Array<ReceipeNavType>>([
+  const [RecipeArr, setRecipeArr] = useState<Array<RecipeNavType>>([
     {
       category: "맛",
       content: <RecipeFlavorLayout values={flavorList} recipeImage={Test} />,
@@ -36,13 +36,13 @@ export default function Receipe() {
     },
     {
       category: "레시피",
-      content: <ReceipeTab />,
+      content: <RecipeTab />,
       isOpen: false,
     },
   ]);
 
   useEffect(() => {
-    const tmp = receipeArr.map((elem, idx) => {
+    const tmp = RecipeArr.map((elem, idx) => {
       if (idx === selectIdx) {
         elem.isOpen = true;
       } else {
@@ -52,7 +52,7 @@ export default function Receipe() {
       return elem;
     });
 
-    setReceipeArr([...tmp]);
+    setRecipeArr([...tmp]);
   }, [selectIdx]);
 
   //TestImg
@@ -64,17 +64,17 @@ export default function Receipe() {
       {/* PC ver */}
       <GridLayout>
         {/* 음식 이미지 */}
-        <ReceipeImg mainImg={mainImg} subImg={subImg} />
+        <RecipeImg mainImg={mainImg} subImg={subImg} />
 
         {/* 음식 상세 정보 */}
         <div>
-          <ReceipeNav
-            receipeArr={receipeArr}
+          <RecipeNav
+            RecipeArr={RecipeArr}
             selectIdx={selectIdx}
             setSelectedIdx={setSelectedIdx}
           />
-          <ReceipeContent
-            receipeArr={receipeArr}
+          <RecipeContent
+            RecipeArr={RecipeArr}
             selectIdx={selectIdx}
             setSelectedIdx={setSelectedIdx}
           />
@@ -84,13 +84,13 @@ export default function Receipe() {
       {/* Mobile ver */}
       <GridLayout>
         {/* 음식 상세 정보 */}
-        <ReceipeNav
-          receipeArr={receipeArr}
+        <RecipeNav
+          RecipeArr={RecipeArr}
           selectIdx={selectIdx}
           setSelectedIdx={setSelectedIdx}
         />
-        <ReceipeContent
-          receipeArr={receipeArr}
+        <RecipeContent
+          RecipeArr={RecipeArr}
           selectIdx={selectIdx}
           setSelectedIdx={setSelectedIdx}
         />

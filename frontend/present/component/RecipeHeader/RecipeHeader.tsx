@@ -1,19 +1,19 @@
 import Image from "next/image";
 import React from "react";
-import * as style from "./ReceipeHeader.style";
+import * as style from "./RecipeHeader.style";
 
 import Thumb from "@/assets/icon/Thumb.png"
-import ThumbFill from "@/assets/icon/ThumbFill.png"
-import { ReceipeHeaderProps } from "@/types/Receipe/dummy";
+import { RecipeHeaderProps } from "@/types/Recipe/dummy";
+import Bookmark from "@/present/common/Bookmark/Bookmark";
 
-export default function ReceipeHeader({selectIdx}:ReceipeHeaderProps) {
+export default function RecipeHeader({selectIdx}:RecipeHeaderProps) {
   return <style.Container selectIdx={selectIdx}>
     <h2>
       <span>음식 이름</span>
 
       {/* 음식 호불호 */}
       <span>
-        <Image src={Thumb} alt={"bookmark"} />
+        <Bookmark />
         <Image src={Thumb} alt={"nosuggestion"} />
       </span>
     </h2>

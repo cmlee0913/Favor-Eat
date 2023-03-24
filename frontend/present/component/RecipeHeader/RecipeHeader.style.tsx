@@ -82,10 +82,6 @@ export const Container = styled.div<{ selectIdx: number }>`
     & img:nth-child(1) {
       margin-right: 0.5rem;
     }
-
-    & img:nth-child(2) {
-      transform: scaleY(-1);
-    }
   }
 
   ${theme.devices.tablet} {

@@ -1,4 +1,4 @@
-import { ReceipeNavType } from "../Receipe/dummy";
+import { RecipeNavType } from "../Recipe/dummy";
 
 export interface AccordianCompoTypes {
     category:string;
@@ -6,7 +6,7 @@ export interface AccordianCompoTypes {
 }
 
 export interface AccordianProps {
-    elem: ReceipeNavType;
+    elem: RecipeNavType;
     idx:number;
     accordianHandler: Function;
 }

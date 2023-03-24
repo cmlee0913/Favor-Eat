@@ -1,3 +1,5 @@
+import localFont from "next/font/local";
+
 const colors = {
   main: {
     pink: "#f9afc7",
@@ -15,8 +17,8 @@ const colors = {
   },
   background: {
     pink: "#FFF3F5",
-    violet: "#EBEBFF"
-  }
+    violet: "#EBEBFF",
+  },
 };
 
 const trans = "all 0.2s ease-out";
@@ -33,9 +35,11 @@ const accordianColor = [
   colors.main.red,
 ];
 
+const fontPretendard = localFont({ src: [{ path: "" }] });
+
 export const theme = {
   colors,
   devices,
   trans,
-  accordianColor
+  accordianColor,
 };

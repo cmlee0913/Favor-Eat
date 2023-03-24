@@ -1,10 +1,10 @@
 import React from "react";
-import * as style from "./ReceipeImg.style";
+import * as style from "./RecipeImg.style";
 import Image from "next/image";
 
-import { ReceipeImgProps } from "@/types/Receipe/dummy";
+import { RecipeImgProps } from "@/types/Recipe/dummy";
 
-export default function ReceipeImg({ mainImg, subImg }: ReceipeImgProps) {
+export default function RecipeImg({ mainImg, subImg }: RecipeImgProps) {
   const subImgArr = subImg.map((elem: any, idx: number) => {
     return <Image className="subImg" src={elem} alt="subImage" key={idx} />;
   });
