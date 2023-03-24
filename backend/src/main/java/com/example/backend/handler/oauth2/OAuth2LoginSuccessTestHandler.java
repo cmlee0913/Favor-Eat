@@ -55,6 +55,6 @@ public class OAuth2LoginSuccessTestHandler implements AuthenticationSuccessHandl
     }
 
     public String returnURL() {
-        return "http://localhost:3000/auth/kakao?token=";
+        return "http://localhost:3000/auth/kakao?access=";
     }
 }
