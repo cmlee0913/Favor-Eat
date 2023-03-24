@@ -2,17 +2,18 @@ import { theme } from "@/action/theme";
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 15rem;
+  width: 15vw;
   height: 50vh;
   object-fit: cover;
+  min-width: 200px;
 
   ${theme.devices.tablet} {
-    width: 13rem;
     height: 17rem;
   }
   ${theme.devices.mobile} {
     width: 10rem;
     height: 14rem;
+    min-width: 120px;
   }
 
   img {
