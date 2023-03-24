@@ -15,7 +15,7 @@ export const Compo = styled.li<{ open: boolean; idx: number }>`
     color: ${(props) =>
       props.open ? theme.colors.mono.light_1 : theme.colors.mono.dark_1};
     position: relative;
-    z-index: 6;
+    z-index: 10;
   }
 `;
 
@@ -28,7 +28,6 @@ export const Indicator = styled.div<{ selectIdx: number }>`
   transition: ${theme.trans};
   position: absolute;
   top: -1rem;
-  z-index: -1;
   left: calc(100% / 3 * ${(props) => props.selectIdx});
 
   & * {
@@ -57,6 +56,7 @@ export const ContainerNav = styled.ul<{ selectIdx: number }>`
   position: relative;
   top: -2px;
   overflow: hidden;
+  background-color: ${theme.colors.mono.light_1};
 
   ${theme.devices.tablet} {
     display: flex;
