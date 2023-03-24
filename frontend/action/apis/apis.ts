@@ -31,7 +31,7 @@ export async function getAsync(url: string, config?: AxiosRequestConfig) {
 */
 export async function postAsync<D>(
   url: string,
-  data: D,
+  data?: D,
   config?: AxiosRequestConfig
 ) {
   try {
@@ -39,6 +39,8 @@ export async function postAsync<D>(
       responseType: "json",
       ...config,
     });
+
+    console.log(response.data)
 
     return { isSuccess: true, result: response.data };
   } catch (err) {
