@@ -3,9 +3,11 @@ package com.example.backend.api.service.foods;
 import com.example.backend.api.dto.foods.response.ResponseFavorFood;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import com.example.backend.api.entity.favorites.Favorites;
+import com.example.backend.api.entity.favorites.NonFavorites;
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.repository.favorites.FavoritesRepository;
+import com.example.backend.api.repository.favorites.NonFavoritesRepository;
 import com.example.backend.api.repository.foods.FoodsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +21,7 @@ public class FoodsService {
 
     private final FoodsRepository foodsRepository;
     private final FavoritesRepository favoritesRepository;
+    private final NonFavoritesRepository nonFavoritesRepository;
 
     /**
      * @param id must not be null
@@ -32,7 +35,6 @@ public class FoodsService {
     }
 
     /**
-     *
      * @param no must not be null
      * @param id must not be null
      * @return true if the given values saved, otherwise false
@@ -46,7 +48,7 @@ public class FoodsService {
     }
 
     @Transactional
-    public void unregistFavorFood(Long no, Long id) throws RuntimeException{
+    public void unregistFavorFood(Long no, Long id) throws RuntimeException {
         UsersFoodsID favoritesId = new UsersFoodsID(no, id);
         favoritesRepository.deleteById(favoritesId);
     }
@@ -58,5 +60,14 @@ public class FoodsService {
         return favoritesList.stream()
             .map(favorites -> favorites.toDTO())
             .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public boolean registNonFavorFood(Long no, Long id) {
+        NonFavorites nonFavorites = nonFavoritesRepository.save(
+            NonFavorites.builder().no(no).foodsId(id).build()
+        );
+
+        return nonFavorites.getNo() > 0;
     }
 }
