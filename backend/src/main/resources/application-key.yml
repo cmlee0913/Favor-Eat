@@ -18,4 +18,4 @@ spring:
       on-profile: "key-prod"
 
 mysql-prod-username : ssafy
-mysql-prod-password : ssafy
+mysql-prod-password : "qX&=Kg5,efRFSTQ7o"
