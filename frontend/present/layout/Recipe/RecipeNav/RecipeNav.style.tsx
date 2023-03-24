@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const NavCompo = styled.div`
   ${theme.devices.tablet} {
     position: fixed;
-    top: 0;
+    top: 4.5rem;
     width: 100%;
   }
 `;

@@ -9,6 +9,7 @@ export const HeaderContainer = styled.div<{ isOpen: boolean }>`
   align-items: center;
   justify-content: space-between;
   position: fixed;
+  top: 0;
   background-color: ${(props) =>
     props.isOpen ? "transparent" : theme.colors.mono.light_1};
   z-index: 50;
@@ -26,6 +27,16 @@ export const HeaderContainer = styled.div<{ isOpen: boolean }>`
       path {
         fill: ${theme.colors.main.blue};
       }
+    }
+  }
+
+  ${theme.devices.tablet} {
+    padding: 1rem 1rem;
+    width: calc(100vw - 2rem);
+    height: 2.5rem;
+
+    & svg.Arrow {
+      width: 25px;
     }
   }
 `;
