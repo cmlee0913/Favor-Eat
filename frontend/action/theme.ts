@@ -15,8 +15,8 @@ const colors = {
   },
   background: {
     pink: "#FFF3F5",
-    violet: "#EBEBFF"
-  }
+    violet: "#EBEBFF",
+  },
 };
 
 const trans = "all 0.2s ease-out";
@@ -37,5 +37,5 @@ export const theme = {
   colors,
   devices,
   trans,
-  accordianColor
+  accordianColor,
 };

@@ -1,20 +1,20 @@
 import React from "react";
-import * as style from "./ReceipeMobileHeader.style";
+import * as style from "./RecipeMobileHeader.style";
 
-import { ReceipeContentProps } from "@/types/Receipe/dummy";
+import { RecipeContentProps } from "@/types/Recipe/dummy";
 import NavCompoSide from "@/assets/image/navCompoSide.svg"
 
-export default function ReceipeMobileHeader({
-  receipeArr,
+export default function RecipeMobileHeader({
+  RecipeArr,
   selectIdx,
   setSelectedIdx,
-}: ReceipeContentProps) {
+}: RecipeContentProps) {
   
   const navHandler = (idx: number) => {
     setSelectedIdx(idx);
   };
 
-  const NavArr = receipeArr.map((elem, idx) => {
+  const NavArr = RecipeArr.map((elem, idx) => {
     if (selectIdx === idx) {
       return (
         <style.Compo

@@ -1,7 +1,7 @@
 import React from "react";
-import * as style from "./ReceipeTab.style";
+import * as style from "./RecipeTab.style";
 
-export default function ReceipeTab() {
+export default function RecipeTab() {
   const test = [
     {
       content: "step 1",
@@ -17,27 +17,27 @@ export default function ReceipeTab() {
     },
   ];
 
-  const receipeProcess = test.map((elem, idx) => {
+  const recipeProcess = test.map((elem, idx) => {
     return (
-      <style.ReceipeProcessCompo key={idx}>
+      <style.RecipeProcessCompo key={idx}>
         {elem.content}
-      </style.ReceipeProcessCompo>
+      </style.RecipeProcessCompo>
     );
   });
 
   return (
     <style.Container>
-      <style.ReceipeTabHeader>
+      <style.RecipeTabHeader>
         <h2>대충 어떤 음식 이름</h2>
         <p>몇인분 기준</p>
-      </style.ReceipeTabHeader>
+      </style.RecipeTabHeader>
       <style.IngredientCompo>
         뭐가 있겟죠
       </style.IngredientCompo>
-      <style.ReceipeTabBody>
+      <style.RecipeTabBody>
         <h2>레시피</h2>
-        {receipeProcess}
-      </style.ReceipeTabBody>
+        {recipeProcess}
+      </style.RecipeTabBody>
     </style.Container>
   );
 }
