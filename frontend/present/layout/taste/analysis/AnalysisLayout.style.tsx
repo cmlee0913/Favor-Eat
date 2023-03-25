@@ -48,6 +48,8 @@ export const Count = styled.div`
 //middle
 export const MiddleContainer = styled.div`
   width: 100%;
+  flex-direction: row;
+  ${FlexCenter}
   background-color: ${theme.colors.main.purple.light_1};
 
   & > div {
@@ -62,26 +64,18 @@ export const CardContainer = styled.div<{ editable: boolean }>`
   flex-direction: row;
   ${FlexCenter}
   justify-content: center;
-  gap: 9vw;
+  gap: ${({ editable }) => (editable ? "9vw" : "")};
   width: 100%;
   height: 100%;
+  flex-grow: 1;
   position: relative;
+  transform: ${({ editable }) => (editable ? "translateX(-50%)" : "reset")};
 
-  left: ${({ editable }) => (editable ? "50%" : "35vw")};
-  transition: ${({ editable }) => (editable ? "reset" : "all 0.4s linear")};
-  transform: translateX(-50%);
-
-  ${theme.devices.tablet} {
-    left: ${({ editable }) => (editable ? "50vw" : "20%")};
-  }
-  ${theme.devices.mobile} {
-    left: ${({ editable }) => (editable ? "50vw" : "30%")};
-  }
+  left: ${({ editable }) => (editable ? "50%" : "0%")};
 
   /* left, top 위치만  */
-
   & .card {
-    margin-left: ${({ editable }) => (editable ? "0" : "6vw")};
+    margin: ${({ editable }) => (editable ? "0 0" : "0 6vw")};
     & > img {
       box-shadow: ${({ editable }) => {
         if (editable === false) {
@@ -91,6 +85,17 @@ export const CardContainer = styled.div<{ editable: boolean }>`
       }};
     }
   }
+`;
+
+export const EvaluateBoxWrapper = styled.div<{ editable: boolean }>`
+  position: ${({ editable }) => (editable ? "absolute" : "relative")};
+  /* position: relative; */
+  right: ${({ editable }) => (editable ? "-1000px" : "0")};
+  height: 100%;
+  flex-grow: 2;
+  margin: 0 5% 0 2%;
+  transition: all 0.5s linear;
+  /* display: ${({ editable }) => (editable ? "none" : "block")}; */
 `;
 
 export const Button = styled.button<{ show: boolean }>`

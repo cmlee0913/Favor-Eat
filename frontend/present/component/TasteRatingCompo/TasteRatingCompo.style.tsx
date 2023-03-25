@@ -20,7 +20,7 @@ export const Rating = styled.span<{
   characterType: string;
   active: boolean;
 }>`
-  width: 1.3vw;
+  width: 1.1vw;
   height: 100%;
   display: inline-block;
   & > svg {

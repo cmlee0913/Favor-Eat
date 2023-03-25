@@ -8,11 +8,7 @@ export const Container = styled.div`
   border-radius: ${borderRadiusStyle}px;
 
   height: 100%;
-  width: 70%;
-
-  ${theme.devices.tablet} {
-    width: 50%;
-  }
+  width: 100%;
 `;
 
 export const Header = styled.div`
@@ -59,7 +55,7 @@ export const FlavorWrapper = styled.div`
 `;
 
 export const RatingWrapper = styled.div`
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   width: 100%;
   display: flex;
@@ -73,6 +69,7 @@ export const ValueText = styled.span<{ type: string }>`
   font-weight: inherit;
 
   span {
+    width: 0.1rem;
     color: ${({ type }) => theme.colors.character[type]};
   }
 `;

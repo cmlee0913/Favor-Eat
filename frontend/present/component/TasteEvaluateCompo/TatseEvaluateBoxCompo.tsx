@@ -113,7 +113,7 @@ export default function TasteEvaluateBoxCompo() {
                 <FlavorCharacterCompo
                   type={item.type}
                   title={""}
-                  value={ratingValues[index]}
+                  value={Math.floor(ratingValues[index])}
                   img={theme.characterImg[item.type]}
                   hoverActive={onActive}
                   hoverInactive={onInactive}
@@ -141,7 +141,7 @@ export default function TasteEvaluateBoxCompo() {
                 <FlavorCharacterCompo
                   type={item.type}
                   title={""}
-                  value={ratingValues[index + 2]}
+                  value={Math.floor(ratingValues[index + 2])}
                   img={theme.characterImg[item.type]}
                   hoverActive={onActive}
                   hoverInactive={onInactive}

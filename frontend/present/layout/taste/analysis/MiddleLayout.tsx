@@ -19,8 +19,12 @@ export default function MiddleLayout({
           <LikeButton />
           <div>좋아요</div>
         </style.Button>
+        {/* 음식 사진 */}
         <TasteFoodCardCompo />
-        {buttonShow ? null : <TasteEvaluateBoxCompo />}
+        {/* rating */}
+        <style.EvaluateBoxWrapper editable={buttonShow}>
+          <TasteEvaluateBoxCompo />
+        </style.EvaluateBoxWrapper>
         <style.Button show={buttonShow}>
           <HateButton />
           <div>싫어요</div>
