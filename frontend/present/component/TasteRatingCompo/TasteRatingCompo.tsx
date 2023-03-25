@@ -10,7 +10,7 @@ import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 import { useEffect, useState } from "react";
 
-export default function TasteRatingCompo({ type, setRatingValue }) {
+export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,
@@ -98,11 +98,21 @@ export default function TasteRatingCompo({ type, setRatingValue }) {
   useEffect(() => {
     if (clicked) {
       const { index, side } = getIndexByRatingValue();
-      console.log(index, side);
       setRatingActive(index, side);
       setRatingValue(value, type);
     }
   }, [value]);
+
+  //내부 요소 reset
+  useEffect(() => {
+    const { index, side } = getIndexByRatingValue();
+    setRatingActive(index - 1, side);
+    setRatingValue(value, type);
+    setClicked(false);
+    setValue(0);
+    const newList = Array(5).fill({ left: false, right: false });
+    setRatingList(newList);
+  }, [foodIndex]);
 
   return (
     <style.Container onMouseOut={onResetRating}>

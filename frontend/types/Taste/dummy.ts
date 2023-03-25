@@ -8,6 +8,8 @@ export interface TopLayoutProps {
 export interface MiddleLayoutProps {
   buttonShow: boolean;
   changeShowMode: React.Dispatch<React.SetStateAction<boolean>>;
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface RatingShape {

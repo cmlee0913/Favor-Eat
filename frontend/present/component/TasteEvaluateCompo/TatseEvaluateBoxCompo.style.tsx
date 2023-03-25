@@ -31,6 +31,29 @@ export const Header = styled.div`
   }
 `;
 
+export const NextButton = styled.div`
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: ${theme.colors.mono.light_1};
+  position: relative;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  svg {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: inherit;
+    path {
+      fill: ${theme.colors.main.purple.dark_1};
+    }
+  }
+`;
+
 export const InfoBox = styled.div`
   width: 100%;
   height: 100%;

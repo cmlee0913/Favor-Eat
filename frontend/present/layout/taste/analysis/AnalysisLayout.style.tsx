@@ -88,14 +88,14 @@ export const CardContainer = styled.div<{ editable: boolean }>`
 `;
 
 export const EvaluateBoxWrapper = styled.div<{ editable: boolean }>`
-  position: ${({ editable }) => (editable ? "absolute" : "relative")};
-  transition: all 0.4s linear;
-  right: ${({ editable }) => (editable ? "-1000px" : "0")};
+  /* position: ${({ editable }) => (editable ? "absolute" : "relative")}; */
+  /* transition: all 0.4s linear; */
+  /* right: ${({ editable }) => (editable ? "-1000px" : "0")}; */
   height: 100%;
   flex-grow: 2;
   margin: 0 5% 0 2%;
-  /* position: relative; */
-  /* display: ${({ editable }) => (editable ? "none" : "block")}; */
+  position: relative;
+  display: ${({ editable }) => (editable ? "none" : "block")};
 `;
 
 export const Button = styled.button<{ show: boolean }>`

@@ -13,7 +13,12 @@ export default function Analysis() {
   return (
     <style.Container>
       <TopLayout count={count} max={MAX_COUNT} />
-      <MiddleLayout buttonShow={buttonShow} changeShowMode={setButtonShow} />
+      <MiddleLayout
+        count={count}
+        setCount={setCount}
+        buttonShow={buttonShow}
+        changeShowMode={setButtonShow}
+      />
       <BottomLayout />
     </style.Container>
   );

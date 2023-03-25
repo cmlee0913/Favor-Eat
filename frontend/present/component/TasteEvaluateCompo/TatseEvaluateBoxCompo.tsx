@@ -11,12 +11,14 @@ import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
 import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
 import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
 
-import { useState } from "react";
+import NextIcon from "@/assets/icon/Next.svg";
+
+import { useEffect, useState } from "react";
 import { HoverBoxImageType } from "@/types/RecipeFlavor/dummy";
 import { FlavorObject } from "@/types/Taste/dummy";
 import Image from "next/image";
 
-export default function TasteEvaluateBoxCompo() {
+export default function TasteEvaluateBoxCompo({ foodIndex, resetButtonShow }) {
   const hoverBoxValue = {
     spicy: {
       pcImage: SpicyHoverBoxPc,
@@ -40,6 +42,7 @@ export default function TasteEvaluateBoxCompo() {
     },
   };
 
+  //hover box 활성화
   const onActive = (type: string, isLeft: boolean) => {
     setHoverBoxImage(hoverBoxValue[type]);
 
@@ -53,21 +56,27 @@ export default function TasteEvaluateBoxCompo() {
     setRightInfoShow(true);
   };
 
+  // 비활성화
   const onInactive = () => {
     setLeftInfoShow(false);
     setRightInfoShow(false);
   };
 
+  //hover info box
   const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
     hoverBoxValue.spicy,
   );
   const [leftInfoShow, setLeftInfoShow] = useState(false);
   const [rightInfoShow, setRightInfoShow] = useState(false);
+
+  //각 맛 별 점수
   const [ratingValues, setRatingValues] = useState<Array<number>>(
     Array(4).fill(0),
   );
-
   const setRatingValue = (value: number, type: string) => {
+    //이미지 평가 완료 버튼 활성화
+    setCanMoveToNext(true);
+
     let index = 0;
 
     switch (type) {
@@ -86,6 +95,7 @@ export default function TasteEvaluateBoxCompo() {
     setRatingValues(valueList);
   };
 
+  //rendering object
   const ratingObjList: Array<Array<FlavorObject>> = [
     [
       {
@@ -113,10 +123,26 @@ export default function TasteEvaluateBoxCompo() {
     ],
   ];
 
+  const [canMoveToNext, setCanMoveToNext] = useState(false);
+  const onClickNext = () => {
+    setRatingValues([0, 0, 0, 0]);
+    resetButtonShow();
+  };
+
+  useEffect(() => {
+    setCanMoveToNext(false);
+  }, [foodIndex]);
+
   return (
     <style.Container>
       <style.Header>
         <div>맛 평가하기</div>
+        {/* 버튼 */}
+        {canMoveToNext ? (
+          <style.NextButton onClick={onClickNext}>
+            <NextIcon />
+          </style.NextButton>
+        ) : null}
       </style.Header>
       <style.Body>
         <style.InfoBox>
@@ -146,6 +172,7 @@ export default function TasteEvaluateBoxCompo() {
                     &nbsp;입니다
                   </style.ValueText>
                   <TasteRatingCompo
+                    foodIndex={foodIndex}
                     type={item.type}
                     setRatingValue={setRatingValue}
                   />
@@ -183,6 +210,7 @@ export default function TasteEvaluateBoxCompo() {
                   <TasteRatingCompo
                     type={item.type}
                     setRatingValue={setRatingValue}
+                    foodIndex={foodIndex}
                   />
                 </style.RatingWrapper>
               </style.FlavorWrapper>

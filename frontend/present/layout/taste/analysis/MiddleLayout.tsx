@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import * as style from "./AnalysisLayout.style";
 import LikeButton from "@/assets/icon/LikeButton.svg";
 import HateButton from "@/assets/icon/HateButton.svg";
@@ -8,10 +10,19 @@ import TasteEvaluateBoxCompo from "@/present/component/TasteEvaluateCompo/TatseE
 export default function MiddleLayout({
   buttonShow,
   changeShowMode,
+  count,
+  setCount,
 }: MiddleLayoutProps) {
   const onClickButton = () => {
     changeShowMode(false);
   };
+  const showNextFood = () => {
+    changeShowMode(true);
+    setFoodIndex((current) => current + 1);
+    setCount((current) => current + 1);
+  };
+  const [foodIndex, setFoodIndex] = useState(0);
+
   return (
     <style.MiddleContainer>
       <style.CardContainer editable={buttonShow}>
@@ -23,7 +34,10 @@ export default function MiddleLayout({
         <TasteFoodCardCompo />
         {/* rating */}
         <style.EvaluateBoxWrapper editable={buttonShow}>
-          <TasteEvaluateBoxCompo />
+          <TasteEvaluateBoxCompo
+            foodIndex={foodIndex}
+            resetButtonShow={showNextFood}
+          />
         </style.EvaluateBoxWrapper>
         <style.Button show={buttonShow}>
           <HateButton />
