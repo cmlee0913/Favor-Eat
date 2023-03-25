@@ -18,4 +18,5 @@ export interface RatingShape {
 export interface FlavorObject {
   type: FlavorType;
   typeToString: string;
+  characterTitle: string;
 }

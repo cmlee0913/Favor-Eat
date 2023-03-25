@@ -89,12 +89,12 @@ export const CardContainer = styled.div<{ editable: boolean }>`
 
 export const EvaluateBoxWrapper = styled.div<{ editable: boolean }>`
   position: ${({ editable }) => (editable ? "absolute" : "relative")};
-  /* position: relative; */
+  transition: all 0.4s linear;
   right: ${({ editable }) => (editable ? "-1000px" : "0")};
   height: 100%;
   flex-grow: 2;
   margin: 0 5% 0 2%;
-  transition: all 0.5s linear;
+  /* position: relative; */
   /* display: ${({ editable }) => (editable ? "none" : "block")}; */
 `;
 

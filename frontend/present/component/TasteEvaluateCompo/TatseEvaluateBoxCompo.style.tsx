@@ -31,12 +31,28 @@ export const Header = styled.div`
   }
 `;
 
+export const InfoBox = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 10px 0;
+  box-sizing: border-box;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    width: inherit;
+    height: calc(100% - 20px);
+    position: absolute;
+    border-radius: ${borderRadiusStyle}px;
+  }
+`;
+
 export const Body = styled.div`
   height: 75%;
   width: 100%;
   box-sizing: border-box;
   display: grid;
-  padding: 0 2vw;
+  padding: 0 1vw;
   grid-template-columns: 1fr 3fr 1fr 3fr;
 
   & > .row {
@@ -44,6 +60,7 @@ export const Body = styled.div`
     grid-template-rows: 1fr 1fr;
     justify-content: stretch;
     align-items: center;
+    margin-right: 5px;
   }
 `;
 
@@ -51,7 +68,11 @@ export const FlavorWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   width: 100%;
-  gap: 5%;
+  gap: 3%;
+
+  .characterTitle {
+    text-align: center;
+  }
 `;
 
 export const RatingWrapper = styled.div`
