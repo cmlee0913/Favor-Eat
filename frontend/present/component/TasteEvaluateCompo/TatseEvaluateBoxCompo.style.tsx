@@ -8,7 +8,7 @@ export const Container = styled.div`
   border-radius: ${borderRadiusStyle}px;
 
   height: 100%;
-  width: 60%;
+  width: 70%;
 
   ${theme.devices.tablet} {
     width: 50%;
@@ -32,5 +32,47 @@ export const Header = styled.div`
     font-size: 1.3rem;
     font-weight: 700;
     color: ${theme.colors.mono.light_1};
+  }
+`;
+
+export const Body = styled.div`
+  height: 75%;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  padding: 0 2vw;
+  grid-template-columns: 1fr 3fr 1fr 3fr;
+
+  & > .row {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: stretch;
+    align-items: center;
+  }
+`;
+
+export const FlavorWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  gap: 5%;
+`;
+
+export const RatingWrapper = styled.div`
+  font-size: 1rem;
+  font-weight: 700;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+`;
+
+export const ValueText = styled.span<{ type: string }>`
+  font-size: inherit;
+  font-weight: inherit;
+
+  span {
+    color: ${({ type }) => theme.colors.character[type]};
   }
 `;

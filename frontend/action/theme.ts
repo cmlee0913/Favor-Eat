@@ -1,3 +1,8 @@
+import SpicyCharacter from "@/assets/image/Character/Spicy.png";
+import SweetCharacter from "@/assets/image/Character/Sweet.png";
+import SaltyCharacter from "@/assets/image/Character/Salty.png";
+import OilyCharacter from "@/assets/image/Character/Oily.png";
+
 const colors = {
   main: {
     pink: "#f9afc7",
@@ -77,9 +82,17 @@ const accordianColor = [
   colors.main.red,
 ];
 
+const characterImg = {
+  spicy: SpicyCharacter,
+  sweet: SweetCharacter,
+  salty: SaltyCharacter,
+  oily: OilyCharacter,
+};
+
 export const theme = {
   colors,
   devices,
   trans,
   accordianColor,
+  characterImg,
 };

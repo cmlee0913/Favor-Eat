@@ -5,19 +5,23 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
 `;
 
 export const RatingShapeStyle = css`
-  width: 20px;
-  height: 35px;
-
+  width: 100%;
+  height: 100%;
   background-color: transparent;
 `;
 
-export const Rating = styled.div<{
+export const Rating = styled.span<{
   characterType: string;
   active: boolean;
 }>`
+  width: 1.3vw;
+  height: 100%;
   display: inline-block;
   & > svg {
     ${RatingShapeStyle}
@@ -27,11 +31,4 @@ export const Rating = styled.div<{
         active ? theme.colors.character[characterType] : ""};
     }
   }
-`;
-
-export const SpicyLeft = styled.div`
-  width: 20px;
-  height: 35px;
-
-  background-color: ${theme.colors.mono.light_2};
 `;
