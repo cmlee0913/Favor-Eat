@@ -8,11 +8,12 @@ import BottomLayout from "@/present/layout/taste/analysis/BottomLayout";
 export default function Analysis() {
   const MAX_COUNT = 5;
   const [count, setCount] = useState(0);
+  const [buttonShow, setButtonShow] = useState(true);
 
   return (
     <style.Container>
       <TopLayout count={count} max={MAX_COUNT} />
-      <MiddleLayout />
+      <MiddleLayout buttonShow={buttonShow} changeShowMode={setButtonShow} />
       <BottomLayout />
     </style.Container>
   );
