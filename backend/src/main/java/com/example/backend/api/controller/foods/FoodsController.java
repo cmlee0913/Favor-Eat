@@ -66,4 +66,15 @@ public class FoodsController {
             return new ResponseEntity<>(id + " : 즐겨찾기 해제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/nonfavor/{id}")
+    @Operation(summary = "음식 관심없음 등록", description = "음식 id를 <strong>관심없음 목록에 등록</strong>합니다.")
+    private ResponseEntity<?> registNonFavorFood(@AuthenticationPrincipal User users,
+        @PathVariable Long id) {
+        if (foodsService.registNonFavorFood(Long.parseLong(users.getUsername()), id)) {
+            return new ResponseEntity<>(id + " : 관심없음 등록 성공", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(id + " : 관심없음 등록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

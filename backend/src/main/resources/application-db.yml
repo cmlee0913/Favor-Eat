@@ -20,7 +20,7 @@ spring:
       on-profile: "db-test"
 
   datasource:
-    url: jdbc:mysql://j8d108.p.ssafy.io:3306/Favoreat?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/Favoreat?serverTimezone=Asia/Seoul
     username: ${mysql-test-username}
     password: ${mysql-test-password}
 
