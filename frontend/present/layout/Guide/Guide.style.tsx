@@ -1,7 +1,7 @@
 import { theme } from "@/action/theme";
 import styled, { keyframes } from "styled-components";
 
-const fadeInUp = keyframes`
+export const fadeInUp = keyframes`
   from {
       -webkit-transform: translate(0px, 30px);
       -ms-transform: translate(0px, 30px);

@@ -9,7 +9,7 @@ export const Container = styled.div<{ isOpen: boolean }>`
 
   & svg {
     display: inline-block;
-    width: 40px;
+    width: 30px;
     height: auto;
     object-fit: cover;
 
@@ -17,20 +17,20 @@ export const Container = styled.div<{ isOpen: boolean }>`
       position: relative;
 
       transition: all 0.1s ease;
-      transform: translate(${(props) => (props.isOpen ? "-40px" : 0)}, 0);
-      -webkit-transform: translate(${(props) => (props.isOpen ? "-40px" : 0)}, 0); /** Safari & Chrome **/
-      -o-transform: translate(${(props) => (props.isOpen ? "-40px" : 0)}, 0); /** Opera **/
-      -moz-transform: translate(${(props) => (props.isOpen ? "-40px" : 0)}, 0); /** Firefox **/
+      transform: translate(${(props) => (props.isOpen ? "-30px" : 0)}, 0);
+      -webkit-transform: translate(${(props) => (props.isOpen ? "-30px" : 0)}, 0); /** Safari & Chrome **/
+      -o-transform: translate(${(props) => (props.isOpen ? "-30px" : 0)}, 0); /** Opera **/
+      -moz-transform: translate(${(props) => (props.isOpen ? "-30px" : 0)}, 0); /** Firefox **/
     }
 
     &:nth-child(2) {
       position: relative;
 
       transition: all 0.1s ease;
-      transform: translate(${(props) => (props.isOpen ? "-20px" : 0)}, 0);
-      -webkit-transform: translate(${(props) => (props.isOpen ? "-20px" : 0)}, 0); /** Safari & Chrome **/
-      -o-transform: translate(${(props) => (props.isOpen ? "-20px" : 0)}, 0); /** Opera **/
-      -moz-transform: translate(${(props) => (props.isOpen ? "-20px" : 0)}, 0); /** Firefox **/
+      transform: translate(${(props) => (props.isOpen ? "-10px" : 0)}, 0);
+      -webkit-transform: translate(${(props) => (props.isOpen ? "-10px" : 0)}, 0); /** Safari & Chrome **/
+      -o-transform: translate(${(props) => (props.isOpen ? "-10px" : 0)}, 0); /** Opera **/
+      -moz-transform: translate(${(props) => (props.isOpen ? "-10px" : 0)}, 0); /** Firefox **/
     }
   }
 
