@@ -46,7 +46,7 @@ export const HoverIconWrapper = styled.div`
   border-radius: 100%;
   width: 18px;
   height: 18px;
-  background-color: ${theme.colors.mono.dark_1};
+  background-color: ${theme.colors.characterLevel.spicy.level_1};
   display: inline-block;
   text-align: center;
   position: relative;

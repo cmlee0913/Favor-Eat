@@ -53,7 +53,7 @@ export default function SocialLogin() {
       if (role === "USER") {
         router.replace("/main");
       } else if (role === "GUEST") {
-        router.replace("/taste");
+        router.replace("/taste/choose");
       }
     }
   }, [router.isReady]);

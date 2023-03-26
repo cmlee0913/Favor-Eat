@@ -73,7 +73,6 @@ export default function Home() {
   return (
     <div>
       <GlobalStyle />
-      <Header />
       <MainLayout foods={foodList} />
     </div>
   );

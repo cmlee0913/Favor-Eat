@@ -8,6 +8,7 @@ export default function AccordianCompo({
   idx,
   accordianHandler,
 }: AccordianProps) {
+  
   const openSub = () => {
     accordianHandler();
   };
