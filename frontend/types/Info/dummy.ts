@@ -1,6 +1,6 @@
 export interface InfoTypes {
   category: string;
-  content: JSX.Element;
+  content: any;
   isOpen: boolean;
 }
 
