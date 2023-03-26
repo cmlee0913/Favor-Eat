@@ -6,6 +6,7 @@ export const Card = styled.div`
   height: 50vh;
   object-fit: cover;
   min-width: 200px;
+  border-radius: 15px;
 
   ${theme.devices.tablet} {
     height: 17rem;
@@ -19,7 +20,7 @@ export const Card = styled.div`
   img {
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+    border-radius: inherit;
     box-shadow: 2rem 1.3rem 0px ${theme.colors.main.purple.dark_1};
 
     ${theme.devices.tablet} {
@@ -27,6 +28,49 @@ export const Card = styled.div`
     }
     ${theme.devices.mobile} {
       box-shadow: 1.2rem 1rem 0px ${theme.colors.main.purple.dark_1};
+    }
+  }
+
+  div {
+    width: 100%;
+    height: 100%;
+    background-color: ${theme.colors.main.purple.dark_1};
+    overflow: hidden;
+    position: relative;
+    border-radius: inherit;
+
+    ::after {
+      display: block;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: translateX(-100%);
+      animation: 2s loading linear 0.5s infinite;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        ${theme.colors.main.purple.dark_2},
+        transparent
+      );
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      transform: translateX(-100%);
+      z-index: 1;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: translateX(-100%);
+      }
+      60% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
     }
   }
 `;
