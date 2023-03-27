@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
+
 import { logoutAsync } from "@/action/apis/auth";
 import { useRouter } from "next/router";
 import { userDataSave, userTokenSave } from "@/store/userStore";
 import { useAtom } from "jotai";
 import { RESET } from "jotai/utils";
-import { GlobalStyle } from "@/action/GlobalStyle";
-import MainLayout from "@/present/layout/Main/MainLayout";
-import Header from "@/present/layout/Header/Header";
+
+import * as style from "@/present/layout/Main/MainLayout.style";
+import LeftLayout from "@/present/layout/Main/LeftLayout";
+import CharactersImage from "@/assets/image/Character/MainPage.png";
 
 export default function Home() {
   const router = useRouter();
@@ -37,9 +40,9 @@ export default function Home() {
       ],
     },
     {
-      foodName: "달걀조림",
+      foodName: "스테이크",
       imgSrc:
-        "https://recipe1.ezmember.co.kr/cache/recipe/2019/07/01/097a119634a9657ee34d81b011a97b131.jpg",
+        "https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_960_720.jpg",
       flavor: { type: "spicy", value: 2.1 },
       contents: [
         { key: "레시피 난이도", value: "아무나" },
@@ -68,10 +71,29 @@ export default function Home() {
     },
   ];
 
+  const [isMainMode, setIsMainMode] = useState<boolean>(true);
+
   return (
-    <div>
-      <GlobalStyle />
-      <MainLayout foods={foodList} />
-    </div>
+    <style.Container>
+      <style.RefreshButton />
+      <LeftLayout foods={foodList}></LeftLayout>
+      <style.Right>
+        <style.Slogan>
+          Life is short,
+          <br /> Eat this first.
+        </style.Slogan>
+        <style.CharacterImage>
+          <Image
+            src={CharactersImage}
+            width={400}
+            alt="characters search for food"
+          />
+        </style.CharacterImage>
+        <style.RecommendIcons>
+          <style.MainRecommendActive />
+          <style.AnotherRecommendInactive />
+        </style.RecommendIcons>
+      </style.Right>
+    </style.Container>
   );
 }
