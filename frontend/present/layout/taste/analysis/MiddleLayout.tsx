@@ -8,38 +8,35 @@ import { MiddleLayoutProps } from "@/types/Taste/dummy";
 import TasteEvaluateBoxCompo from "@/present/component/TasteEvaluateCompo/TatseEvaluateBoxCompo";
 
 export default function MiddleLayout({
-  buttonShow,
-  changeShowMode,
+  recipeData,
   count,
-  setCount,
+  clickHate,
+  clickNext,
 }: MiddleLayoutProps) {
-  const onClickButton = () => {
-    changeShowMode(false);
+  const [buttonShow, setButtonShow] = useState(true);
+
+  const onClickNext = () => {
+    clickNext();
+    setButtonShow(true);
   };
-  const showNextFood = () => {
-    changeShowMode(true);
-    setFoodIndex((current) => current + 1);
-    setCount((current) => current + 1);
-  };
-  const [foodIndex, setFoodIndex] = useState(0);
 
   return (
     <style.MiddleContainer>
       <style.CardContainer editable={buttonShow}>
-        <style.Button show={buttonShow} onClick={onClickButton}>
+        <style.Button show={buttonShow} onClick={() => setButtonShow(false)}>
           <LikeButton />
           <div>좋아요</div>
         </style.Button>
         {/* 음식 사진 */}
-        <TasteFoodCardCompo />
+        <TasteFoodCardCompo recipeData={recipeData} />
         {/* rating */}
         <style.EvaluateBoxWrapper editable={buttonShow}>
           <TasteEvaluateBoxCompo
-            foodIndex={foodIndex}
-            resetButtonShow={showNextFood}
+            recipeId={recipeData?.recipeId ?? -1}
+            resetButtonShow={onClickNext}
           />
         </style.EvaluateBoxWrapper>
-        <style.Button show={buttonShow}>
+        <style.Button show={buttonShow} onClick={() => clickHate()}>
           <HateButton />
           <div>싫어요</div>
         </style.Button>

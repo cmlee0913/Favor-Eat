@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 export default function Taste() {
   const router = useRouter();
-  const [selectedCharacter, setSelectedCharacter] = useState<string>();
+  const [selectedCharacter, setSelectedCharacter] = useState<string>("sweet");
 
   const movePage = (character: string) => {
     router?.replace({

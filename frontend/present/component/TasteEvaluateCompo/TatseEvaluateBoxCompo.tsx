@@ -18,7 +18,7 @@ import { HoverBoxImageType } from "@/types/RecipeFlavor/dummy";
 import { FlavorObject } from "@/types/Taste/dummy";
 import Image from "next/image";
 
-export default function TasteEvaluateBoxCompo({ foodIndex, resetButtonShow }) {
+export default function TasteEvaluateBoxCompo({ recipeId, resetButtonShow }) {
   const hoverBoxValue = {
     spicy: {
       pcImage: SpicyHoverBoxPc,
@@ -131,7 +131,7 @@ export default function TasteEvaluateBoxCompo({ foodIndex, resetButtonShow }) {
 
   useEffect(() => {
     setCanMoveToNext(false);
-  }, [foodIndex]);
+  }, [recipeId]);
 
   return (
     <style.Container>
@@ -172,7 +172,7 @@ export default function TasteEvaluateBoxCompo({ foodIndex, resetButtonShow }) {
                     &nbsp;입니다
                   </style.ValueText>
                   <TasteRatingCompo
-                    foodIndex={foodIndex}
+                    recipeId={recipeId}
                     type={item.type}
                     setRatingValue={setRatingValue}
                   />
@@ -210,7 +210,7 @@ export default function TasteEvaluateBoxCompo({ foodIndex, resetButtonShow }) {
                   <TasteRatingCompo
                     type={item.type}
                     setRatingValue={setRatingValue}
-                    foodIndex={foodIndex}
+                    recipeId={recipeId}
                   />
                 </style.RatingWrapper>
               </style.FlavorWrapper>
