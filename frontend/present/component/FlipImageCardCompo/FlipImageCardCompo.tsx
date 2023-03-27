@@ -7,6 +7,7 @@ import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
 import Salty from "@/assets/image/Character/Salty.png";
 import Oily from "@/assets/image/Character/Oily.png";
+import { useRouter } from "next/router";
 
 export default function FilpImageCardCompo({
   imgSrc,
@@ -14,6 +15,7 @@ export default function FilpImageCardCompo({
   flavor,
   contents,
 }) {
+  const router = useRouter()
   const windowSize = useWindowDimensions();
   const { width, height } = useImageRatioSize(
     imgSrc,
@@ -34,8 +36,13 @@ export default function FilpImageCardCompo({
     }
   };
 
+  const moveHandler = () => {
+    const tmpIdx = 1
+    router.push(`/recipe/${tmpIdx}`)
+  }
+
   return (
-    <style.Container>
+    <style.Container onClick={moveHandler}>
       <style.CardWrapper width={width} height={height}>
         <style.Card className="card">
           <style.Front className="front">

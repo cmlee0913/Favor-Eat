@@ -1,9 +1,9 @@
 import React from "react";
 import * as style from "./Info.style";
 
-export default function Information() {
+export default function InfoMember() {
   return (
-    <style.Information>
+    <style.InfoMember>
       <div className="title">팀원</div>
       <div></div>
       <div></div>
@@ -22,6 +22,6 @@ export default function Information() {
 
       <div>장예은</div>
       <div>이효진</div>
-    </style.Information>
+    </style.InfoMember>
   );
 }
