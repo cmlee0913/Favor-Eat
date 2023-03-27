@@ -31,3 +31,13 @@ export const Container404 = styled.div`
     }
   }
 `;
+
+export const ContainerLoading = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+`;
