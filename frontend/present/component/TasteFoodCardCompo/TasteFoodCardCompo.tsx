@@ -1,13 +1,22 @@
 import Image from "next/image";
 import * as style from "./TasteFoodCardCompo.style";
+import { TasteFoodCardCompoProps } from "@/types/TasteFoodCard/dummy";
+import defaultImage from "@/assets/image/default-image.png";
 
-import Food1 from "@/assets/image/FoodPhoto/Food1.jpg";
-
-export default function TasteFoodCardCompo() {
+export default function TasteFoodCardCompo({
+  recipeData,
+}: TasteFoodCardCompoProps) {
   return (
     <>
       <style.Card className="card">
-        <Image src={Food1} width={500} height={700} alt="음식 사진" />
+        <div className="recipeName">{recipeData?.recipeName}</div>
+        <Image
+          src={recipeData ? recipeData.imageSrc : defaultImage}
+          width={1000}
+          height={1000}
+          loading="lazy"
+          alt="음식 사진"
+        />
       </style.Card>
     </>
   );

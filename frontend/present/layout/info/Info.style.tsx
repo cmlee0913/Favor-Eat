@@ -1,72 +1,73 @@
 import styled from "styled-components";
 import { theme } from "@/action/theme";
 
-export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: ${theme.colors.background.pink};
-
-  ${theme.devices.tablet} {
-    height: auto;
-    background-size: "auto";
-  }
-`;
-
-export const Information = styled.div`
+export const InfoMember = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.5fr 0.8fr 0.8fr 0.8fr;
+  place-items: center;
+
+  height: 300px;
+
+  padding-top: 30px;
 
   & div {
-    height: 50px;
+    height: 25px;
   }
 
   & div.title {
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px;
+    place-items: start;
+
+    display: grid;
   }
 
   & div.job {
-    /* font-size: 20px; */
+    display: grid;
+    text-align: center;
+    align-items: center;
     font-weight: bold;
+    background-color: ${theme.colors.background.violet};
+    height: 50px;
+    border-radius: 10px;
+    width: 80%;
   }
 
   ${theme.devices.desktop} {
-    padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    margin-left: 40px;
   }
 
   ${theme.devices.tablet} {
-    padding-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   ${theme.devices.mobile} {
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* margin-bottom: 30px; */
   }
 `;
 
 export const Accordians = styled.div`
+  & div.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
   ${theme.devices.desktop} {
-    padding-top: 20px;
-    padding-bottom: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-top: 30px;
+    margin-right: 40px;
   }
 
   ${theme.devices.tablet} {
-    padding-bottom: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
+    margin-left: 40px;
   }
 
   ${theme.devices.mobile} {
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 `;

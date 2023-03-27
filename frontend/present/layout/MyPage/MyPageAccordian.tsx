@@ -1,19 +1,19 @@
 import React from "react";
 
 import AccordianCompo from "@/present/component/AccordianCompo/AccordianCompo";
-import { InfoContentProps } from "@/types/Info/dummy";
-import * as style from "./Info.style";
+import { MyPageContentProps } from "@/types/MyPage/dummy";
+import * as style from "./MyPage.style";
 
-export default function InfoAccordian({
-  infoArr,
+export default function MyPageAccordian({
+  myPageArr,
   selectIdx,
   setSelectedIdx,
-}: InfoContentProps) {
+}: MyPageContentProps) {
   const accordianHandler = (idx: number) => {
     setSelectedIdx(idx);
   };
 
-  const accordians = infoArr.map((elem, idx) => {
+  const accordians = myPageArr.map((elem, idx) => {
     return (
       <AccordianCompo
         key={idx}
@@ -24,12 +24,5 @@ export default function InfoAccordian({
     );
   });
 
-  return (
-    <div>
-      <style.Accordians>
-        <div className="title">출처</div>
-        {accordians}
-      </style.Accordians>
-    </div>
-  );
+  return <style.MyPageAccordian> {accordians} </style.MyPageAccordian>;
 }

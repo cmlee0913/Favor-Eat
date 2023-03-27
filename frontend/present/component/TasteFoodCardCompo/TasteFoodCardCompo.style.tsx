@@ -6,6 +6,9 @@ export const Card = styled.div`
   height: 50vh;
   object-fit: cover;
   min-width: 200px;
+  border-radius: 15px;
+
+  position: relative;
 
   ${theme.devices.tablet} {
     height: 17rem;
@@ -17,9 +20,11 @@ export const Card = styled.div`
   }
 
   img {
+    border-left: 1px solid ${theme.colors.mono.light_1};
+    border-top: 1px solid ${theme.colors.mono.light_1};
     width: 100%;
-    height: 100%;
-    border-radius: 15px;
+    height: 90%;
+    border-radius: inherit;
     box-shadow: 2rem 1.3rem 0px ${theme.colors.main.purple.dark_1};
 
     ${theme.devices.tablet} {
@@ -29,4 +34,13 @@ export const Card = styled.div`
       box-shadow: 1.2rem 1rem 0px ${theme.colors.main.purple.dark_1};
     }
   }
+
+  .recipeName {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
 `;
+
+export const RecipeName = styled.div``;

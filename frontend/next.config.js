@@ -7,7 +7,7 @@ const withPWA = require("next-pwa")({
 module.exports = withPWA({
   reactStrictMode: false,
   images: {
-    domains: ["naver.github.io"],
+    domains: ["naver.github.io", "cdn.pixabay.com"],
   },
   webpack(config) {
     config.module.rules.push({
