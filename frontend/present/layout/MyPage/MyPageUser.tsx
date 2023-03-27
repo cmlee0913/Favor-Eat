@@ -11,6 +11,8 @@ import Oily from "@/assets/image/Character/Oily.png";
 import MyPageFlavorData from "./MyPageFlavorData";
 import { FlavorStaticData } from "@/types/MyPage/dummy";
 
+import LeftTitleBox from "@/present/common/TitleBox/LeftTitleBox/LeftTitleBox";
+
 export default function MyPageUser() {
   const user = { username: "뭐뭐" };
 
@@ -45,12 +47,14 @@ export default function MyPageUser() {
     },
   ];
 
-  const flavorList = [];
+  // const flavorList = [];
 
   return (
     <style.MyPageUser>
-      <div style={{ fontSize: "40px" }}>안녕하세요. {user.username} 님 </div>
-      <div style={{ fontSize: "20px" }}> 이런 맛을 좋아하셨어요!</div>
+      <LeftTitleBox
+        title={`안녕하세요. ${user.username}님`}
+        subtitle="이런 맛을 좋아하셨어요"
+      />
 
       {flavorStaticData.map((item, index) => (
         <MyPageFlavorData key={index} {...item} />

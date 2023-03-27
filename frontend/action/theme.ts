@@ -61,6 +61,7 @@ const colors = {
     light_3: "#767676",
     dark_1: "#3b3b3b",
     dark_2: "#33314a",
+    dark_3: "#34314C",
   },
   background: {
     pink: "#FFF3F5",
