@@ -66,6 +66,9 @@ export default function Analysis() {
       recipeId: 8,
     },
   ];
+
+  const [recipeList, setRecipeList] =
+    useState<Array<RecipeData>>(recipeDataList);
   const [currentIndex, setCurrentIndex] = useState(-1);
 
   const onClickHate = () => {
@@ -79,16 +82,49 @@ export default function Analysis() {
   };
 
   useEffect(() => {
-    if (recipeDataList.length > 0) {
+    if (recipeList.length > 0) {
       setCurrentIndex(0);
     }
-  }, [recipeDataList.length]);
+  }, [recipeList.length]);
+
+  useEffect(() => {
+    //TODO : t서버에서 새로운 데이터 받아오기
+    if (currentIndex === recipeDataList.length - 1) {
+      const newList: Array<RecipeData> = [
+        {
+          imageSrc:
+            "https://cdn.pixabay.com/photo/2015/04/06/16/21/korean-food-709606_960_720.jpg",
+          recipeName: "비빔국수",
+          recipeId: 9,
+        },
+        {
+          imageSrc:
+            "https://cdn.pixabay.com/photo/2018/12/03/01/04/mandu-3852527_960_720.jpg",
+          recipeName: "만두전골",
+          recipeId: 10,
+        },
+        {
+          imageSrc:
+            "https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_960_720.jpg",
+          recipeName: "김치 볶음밥",
+          recipeId: 11,
+        },
+        {
+          imageSrc:
+            "https://cdn.pixabay.com/photo/2017/07/19/03/14/lures-and-buy-new-desktop-2517767_960_720.jpg",
+          recipeName: "쏘가리 매운탕",
+          recipeId: 11,
+        },
+      ];
+      setRecipeList(newList);
+    }
+  }, [currentIndex]);
 
   return (
     <style.Container>
       <TopLayout count={count} max={MAX_COUNT} />
       <MiddleLayout
-        recipeData={currentIndex > -1 ? recipeDataList[currentIndex] : null}
+        recipeData={currentIndex > -1 ? recipeList[currentIndex] : null}
         count={count}
         clickHate={onClickHate}
         clickNext={onClickNext}
