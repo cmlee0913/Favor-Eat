@@ -9,6 +9,7 @@ import { RecipeData } from "@/types/Taste/dummy";
 export default function Analysis() {
   const MAX_COUNT = 5;
   const [count, setCount] = useState(0);
+  const [canStop, setCanStop] = useState(false);
 
   const recipeDataList: Array<RecipeData> = [
     {
@@ -120,19 +121,25 @@ export default function Analysis() {
     }
   }, [currentIndex]);
 
+  useEffect(() => {
+    if (!canStop) {
+      if (count >= MAX_COUNT) {
+        setCanStop(true);
+      }
+    }
+  }, [count]);
+
   return (
     <style.Container>
       <TopLayout count={count} max={MAX_COUNT} />
       <MiddleLayout
+        canGoMain={canStop}
         recipeData={currentIndex > -1 ? recipeList[currentIndex] : null}
         count={count}
         clickHate={onClickHate}
         clickNext={onClickNext}
       />
-      <BottomLayout
-        canGoMain={count >= MAX_COUNT}
-        evaluatedCount={currentIndex + 1}
-      />
+      <BottomLayout canGoMain={canStop} evaluatedCount={currentIndex + 1} />
     </style.Container>
   );
 }
