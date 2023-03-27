@@ -8,6 +8,11 @@ export const Container = styled.div`
   align-items: center;
   height: fit-content;
   width: 100%;
+
+  ${theme.devices.tablet} {
+    justify-content: center;
+    gap: 2vw;
+  }
 `;
 
 export const RatingShapeStyle = css`
@@ -30,5 +35,10 @@ export const Rating = styled.span<{
       fill: ${({ characterType, active }) =>
         active ? theme.colors.character[characterType] : ""};
     }
+  }
+
+  ${theme.devices.tablet} {
+    width: 1rem;
+    height: 100%;
   }
 `;

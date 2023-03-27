@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const borderRadiusStyle = 20;
 
-export const Container = styled.div`
+//PC
+export const PcContainer = styled.div`
   background-color: ${theme.colors.mono.light_1};
   border-radius: ${borderRadiusStyle}px;
 
@@ -22,6 +23,12 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 1.2rem;
+
+  ${theme.devices.tablet} {
+    border-radius: 0 0 0 0;
+    height: 10%;
+    top: 0;
+  }
 
   /* title */
   & div:first-child {
@@ -52,6 +59,11 @@ export const NextButton = styled.div`
       fill: ${theme.colors.main.purple.dark_1};
     }
   }
+
+  ${theme.devices.tablet} {
+    width: 2rem;
+    height: 2rem;
+  }
 `;
 
 export const InfoBox = styled.div`
@@ -70,7 +82,7 @@ export const InfoBox = styled.div`
   }
 `;
 
-export const Body = styled.div`
+export const PcBody = styled.div`
   height: 75%;
   width: 100%;
   box-sizing: border-box;
@@ -102,18 +114,178 @@ export const RatingWrapper = styled.div`
   font-size: 0.85rem;
   font-weight: 700;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  align-items: center;
   gap: 10px;
+
+  ${theme.devices.tablet} {
+    font-size: 1.1rem;
+    font-weight: 600;
+    gap: 3%;
+  }
+
+  .rating {
+  }
 `;
 
 export const ValueText = styled.span<{ type: string }>`
   font-size: inherit;
   font-weight: inherit;
+  text-align: center;
 
   span {
     width: 0.1rem;
     color: ${({ type }) => theme.colors.character[type]};
   }
+`;
+
+//Mobile
+export const MobileContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  background-color: ${theme.colors.main.purple.light_1};
+`;
+
+export const ChracterContainer = styled.div`
+  height: fit-content;
+  min-height: 33%;
+  width: 100%;
+  display: grid;
+  box-sizing: border-box;
+  padding: 1%;
+  grid-template-columns: 1.5fr 2fr;
+  background-color: ${theme.colors.mono.light_1};
+
+  & > .characters {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+export const Character = styled.div`
+  display: grid;
+  height: 100%;
+  /* grid-template-columns: 0.5fr 3fr; */
+  align-content: stretch;
+  position: relative;
+
+  /* character title*/
+  .title {
+    font-size: 1.2rem;
+
+    ${theme.devices.mobile} {
+      font-size: 1rem;
+    }
+  }
+
+  img {
+    width: 2.5rem;
+    height: auto;
+
+    ${theme.devices.mobile} {
+      width: 30%;
+    }
+  }
+
+  .value {
+    font-size: 1.2rem;
+
+    ${theme.devices.mobile} {
+      font-size: 0.9rem;
+    }
+
+    /* 단계 */
+    span {
+      margin: 0 2px;
+    }
+  }
+
+  .hover {
+    border-radius: 100%;
+    box-sizing: border-box;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: ${theme.colors.characterLevel.spicy.level_1};
+    color: ${theme.colors.mono.light_1};
+    position: absolute;
+    left: 0;
+    ${theme.devices.mobile} {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+    /* ? */
+    div {
+      position: relative;
+      top: 0;
+      text-align: center;
+      font-size: 0.85rem;
+
+      ${theme.devices.tablet} {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .character {
+    gap: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  height: 90%;
+  width: 90%;
+  min-width: 200px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 1%;
+
+  ${theme.devices.mobile} {
+    min-width: 150px;
+  }
+
+  div {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+
+    ${theme.devices.mobile} {
+      font-size: 0.9rem;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+  }
+`;
+
+export const RatingContainer = styled.div`
+  margin-top: 5%;
+  height: 55%;
+  background-color: ${theme.colors.mono.light_1};
+  display: grid;
+  gap: 5%;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const Button = styled.div`
+  background-color: inherit;
+  justify-self: center;
+  background-color: ${theme.colors.mono.light_1};
+  display: inline-block;
 `;
