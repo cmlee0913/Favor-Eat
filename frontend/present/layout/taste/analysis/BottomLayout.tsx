@@ -20,7 +20,7 @@ export default function BottomLayout({
     <>
       {canGoMain ? (
         <>
-          <Button context="그만하기" handler={onClickStop} />
+          <Button context="맛 평가 종료하기" handler={onClickStop} />
         </>
       ) : (
         <style.BottomContainer>
