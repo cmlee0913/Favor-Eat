@@ -7,12 +7,11 @@ import SpicyHoverBoxPc from "@/assets/image/HoverInfo/SpicyHoverBoxPCSmall.png";
 import SweetHoverBoxPC from "@/assets/image/HoverInfo/SweetHoverBoxPCSmall.png";
 import SaltyHoverBoxPC from "@/assets/image/HoverInfo/SaltyHoverBoxPCSmall.png";
 
-import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
-import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
-import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
+import SpicyHoverBoxMobile from "@/assets/image/HoverInfo/SpicyTasteHoverBoxMobile.png";
+import SweetHoverBoxMobile from "@/assets/image/HoverInfo/SweetTasteHoverBoxMobile.png";
+import SaltyHoverBoxMobile from "@/assets/image/HoverInfo/SaltyTasteHoverBoxMobile.png";
 
 import defaultImage from "@/assets/image/default-image.png";
-
 import NextIcon from "@/assets/icon/Next.svg";
 
 import { useEffect, useState } from "react";
@@ -25,6 +24,7 @@ import { useRouter } from "next/router";
 import { TasteEvaluateBoxCompoProps } from "@/types/TasteEvaluateBoxCompo/dummy";
 
 export default function TasteEvaluateBoxCompo({
+  canGoMain,
   recipeId,
   recipeName,
   resetButtonShow,
@@ -171,18 +171,28 @@ export default function TasteEvaluateBoxCompo({
           <style.ChracterContainer>
             <style.ImageContainer>
               <div>{recipeName}</div>
-              <Image
-                src={imgSrc ? imgSrc : defaultImage}
-                width={1000}
-                height={1000}
-                loading="lazy"
-                alt="음식 사진"
-              />
+              {leftInfoShow ? (
+                <Image
+                  className="hoverInfo"
+                  src={hoverBoxImage.mobileImage}
+                  width={1000}
+                  height={1000}
+                  alt="맛 레벨 정보"
+                />
+              ) : (
+                <Image
+                  src={imgSrc ? imgSrc : defaultImage}
+                  width={1000}
+                  height={1000}
+                  loading="lazy"
+                  alt="음식 사진"
+                />
+              )}
             </style.ImageContainer>
             <div className="characters">
               {[...ratingObjList[0], ...ratingObjList[1]].map((item, index) => {
                 return (
-                  <style.Character>
+                  <style.Character key={index}>
                     <div className="character">
                       <div className="title">{item.characterTitle}</div>
                       <Image
@@ -192,7 +202,14 @@ export default function TasteEvaluateBoxCompo({
                         alt="맛 캐릭터"
                       />
                       <div className="value">
-                        <div className="hover">
+                        <div
+                          className="hover"
+                          onMouseOver={() => {
+                            setHoverBoxImage(hoverBoxValue[item.type]);
+                            setLeftInfoShow(true);
+                          }}
+                          onMouseOut={() => setLeftInfoShow(false)}
+                        >
                           <div>?</div>
                         </div>
                         <span>{ratingValues[index]}</span>단계
@@ -205,7 +222,7 @@ export default function TasteEvaluateBoxCompo({
           </style.ChracterContainer>
           <style.RatingContainer>
             {[...ratingObjList[0], ...ratingObjList[1]].map((item, index) => (
-              <style.RatingWrapper>
+              <style.RatingWrapper key={index}>
                 <style.ValueText type={item.type}>
                   이 음식의 {item.typeToString}는&nbsp;
                   <span>{ratingValues[index]}</span>
@@ -219,9 +236,11 @@ export default function TasteEvaluateBoxCompo({
                 />
               </style.RatingWrapper>
             ))}
-            <style.Button>
-              <Button context="맛 평가 종료하기" handler={onClickStop} />
-            </style.Button>
+            {canGoMain ? (
+              <style.Button>
+                <Button context="맛 평가 종료하기" handler={onClickStop} />
+              </style.Button>
+            ) : null}
           </style.RatingContainer>
         </style.MobileContainer>
       ) : (

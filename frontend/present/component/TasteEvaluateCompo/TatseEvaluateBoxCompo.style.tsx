@@ -221,6 +221,10 @@ export const Character = styled.div`
       width: 1.1rem;
       height: 1.1rem;
     }
+    :hover {
+      cursor: pointer;
+    }
+
     /* ? */
     div {
       position: relative;
@@ -250,6 +254,7 @@ export const ImageContainer = styled.div`
   border-radius: 15px;
   box-sizing: border-box;
   padding: 1%;
+  position: relative;
 
   ${theme.devices.mobile} {
     min-width: 150px;
@@ -269,6 +274,13 @@ export const ImageContainer = styled.div`
     height: 100%;
     width: 100%;
     border-radius: inherit;
+  }
+
+  .hoverInfo {
+    object-fit: cover;
+    height: 110%;
+    position: absolute;
+    top: 0;
   }
 `;
 

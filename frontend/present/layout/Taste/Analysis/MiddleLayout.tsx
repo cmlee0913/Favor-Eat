@@ -10,6 +10,7 @@ import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 export default function MiddleLayout({
   recipeData,
+  canGoMain,
   count,
   clickHate,
   clickNext,
@@ -35,7 +36,8 @@ export default function MiddleLayout({
         {/* rating */}
         <style.EvaluateBoxWrapper editable={buttonShow}>
           <TasteEvaluateBoxCompo
-            recipeName={recipeData.recipeName ?? ""}
+            canGoMain={canGoMain}
+            recipeName={recipeData?.recipeName ?? ""}
             recipeId={recipeData?.recipeId ?? -1}
             resetButtonShow={onClickNext}
             imgSrc={recipeData?.imageSrc ?? ""}
