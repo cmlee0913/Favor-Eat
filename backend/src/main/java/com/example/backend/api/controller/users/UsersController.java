@@ -1,6 +1,7 @@
 package com.example.backend.api.controller.users;
 
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.service.redis.RedisService;
 import com.example.backend.api.service.users.UsersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 
     private final UsersService usersService;
+    private final RedisService redisService;
 
     // TODO : 취향 분석 정보 다 받아온 후 DB에 업데이트
 //    @PostMapping("/signup")
@@ -72,5 +74,10 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+//    @GetMapping("/{index}")
+//    public ResponseEntity<?> getSampleFoodsList(@AuthenticationPrincipal User user, @PathVariable Integer index){
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
 }
