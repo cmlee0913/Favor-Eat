@@ -20,7 +20,8 @@ export const Card = styled.div`
   }
 
   img {
-    border: 1px solid white;
+    border-left: 1px solid ${theme.colors.mono.light_1};
+    border-top: 1px solid ${theme.colors.mono.light_1};
     width: 100%;
     height: 90%;
     border-radius: inherit;
