@@ -40,8 +40,6 @@ export async function postAsync<D>(
       ...config,
     });
 
-    console.log(response.data)
-
     return { isSuccess: true, result: response.data };
   } catch (err) {
     return { isSuccess: false, result: err };
@@ -109,6 +107,8 @@ export async function deleteAsync<D>(url: string, config?: AxiosRequestConfig) {
       responseType: "json",
       ...config,
     });
+    
+    console.log(response.data)
 
     return { isSuccess: true, result: response.data };
   } catch (err) {

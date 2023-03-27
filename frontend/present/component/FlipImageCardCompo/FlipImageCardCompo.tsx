@@ -37,7 +37,7 @@ export default function FilpImageCardCompo({
   };
 
   const moveHandler = () => {
-    const tmpIdx = 1
+    const tmpIdx = 6998483
     router.push(`/recipe/${tmpIdx}`)
   }
 
