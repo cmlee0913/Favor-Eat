@@ -4,6 +4,7 @@ import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.entity.users.oauth2.CustomOAuth2User;
 import com.example.backend.api.repository.users.UsersRepository;
 import com.example.backend.api.service.jwt.JwtService;
+import com.example.backend.api.service.redis.RedisService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ public class OAuth2LoginSuccessProdHandler implements AuthenticationSuccessHandl
 
     private final JwtService jwtService;
     private final UsersRepository usersRepository;
+    private final RedisService redisService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -39,12 +41,13 @@ public class OAuth2LoginSuccessProdHandler implements AuthenticationSuccessHandl
             // 헤더에 담아서 두개 다 던진다.
 //            jwtService.sendAccessAndRefreshToken(response, accessToken, refreshToken);
             jwtService.updateRefreshToken(oAuth2User.getEmail(), refreshToken);
-
+            redisService.saveFoodsList(findUser.getNo());
             jwtService.sendAccessAndRefreshToken(response, accessToken, null);
             log.info("여기 들어와?");
             log.info("oAuth2User.getEmail() : " + oAuth2User.getEmail());
             log.info("findUser.getEmail() : " + findUser.getEmail());
             log.info("findUser.getToken() : " + findUser.getToken());
+
             findUser.authorizeUser();// TODO : 취향분석 페이지 리다이렉트 받기
             response.sendRedirect(returnURL() + accessToken + "&refresh=" + refreshToken);
 
