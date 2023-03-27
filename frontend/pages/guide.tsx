@@ -9,7 +9,7 @@ import StartLayout from "@/present/layout/Guide/StartLayout";
 import SuggestLayout from "@/present/layout/Guide/SuggestLayout";
 
 import { Character } from "@/present/layout/Guide/Guide.style";
-import { PageContainer } from "@/present/layout/Guide/pageStyle";
+import { PageContainer } from "@/present/layout/pageStyle";
 import GuideCharacter from "@/assets/image/Guide.png";
 
 export default function Guide() {
