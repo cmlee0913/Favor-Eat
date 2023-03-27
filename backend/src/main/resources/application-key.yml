@@ -19,3 +19,5 @@ spring:
 
 mysql-prod-username : ssafy
 mysql-prod-password : "qX&=Kg5,efRFSTQ7o"
+
+redis-password : "vo2+09ckj#Bj!Vlk"
