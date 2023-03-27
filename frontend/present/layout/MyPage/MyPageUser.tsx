@@ -1,12 +1,18 @@
 import React from "react";
 import * as style from "./MyPage.style";
 
-import Image from "next/image";
-
 import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
 import Salty from "@/assets/image/Character/Salty.png";
 import Oily from "@/assets/image/Character/Oily.png";
+
+import SpicyHoverBoxPc from "@/assets/image/HoverInfo/SpicyHoverBoxPCSmall.png";
+import SweetHoverBoxPC from "@/assets/image/HoverInfo/SweetHoverBoxPCSmall.png";
+import SaltyHoverBoxPC from "@/assets/image/HoverInfo/SaltyHoverBoxPCSmall.png";
+
+import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
+import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
+import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
 
 import MyPageFlavorData from "./MyPageFlavorData";
 import { FlavorStaticData } from "@/types/MyPage/dummy";
@@ -16,12 +22,14 @@ import LeftTitleBox from "@/present/common/TitleBox/LeftTitleBox/LeftTitleBox";
 export default function MyPageUser() {
   const user = { username: "뭐뭐" };
 
-  const flavorStaticData: Array<FlavorStaticData> = [
+  const flavorData: Array<FlavorStaticData> = [
     {
       type: "spicy",
       title: "매워요",
       subtitle: "맵기",
       img: Spicy,
+      pcHover: SpicyHoverBoxPc,
+      mobileHover: SpicyHoverBoxMobile,
       value: 1,
     },
     {
@@ -29,6 +37,8 @@ export default function MyPageUser() {
       title: "달아요",
       subtitle: "달기",
       img: Sweet,
+      pcHover: SweetHoverBoxPC,
+      mobileHover: SweetHoverBoxMobile,
       value: 2,
     },
     {
@@ -36,6 +46,8 @@ export default function MyPageUser() {
       title: "짜요",
       subtitle: "짜기",
       img: Salty,
+      pcHover: SaltyHoverBoxPC,
+      mobileHover: SaltyHoverBoxMobile,
       value: 3,
     },
     {
@@ -43,6 +55,8 @@ export default function MyPageUser() {
       title: "기름져요",
       subtitle: "기름지기",
       img: Oily,
+      pcHover: SaltyHoverBoxPC,
+      mobileHover: SaltyHoverBoxMobile,
       value: 4,
     },
   ];
@@ -56,7 +70,7 @@ export default function MyPageUser() {
         subtitle="이런 맛을 좋아하셨어요"
       />
 
-      {flavorStaticData.map((item, index) => (
+      {flavorData.map((item, index) => (
         <MyPageFlavorData key={index} {...item} />
       ))}
     </style.MyPageUser>

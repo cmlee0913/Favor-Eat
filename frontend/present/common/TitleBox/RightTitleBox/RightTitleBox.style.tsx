@@ -21,11 +21,11 @@ export const RightTitleBox = styled.div`
   div {
     :nth-child(1) {
       margin-left: 20px;
-      font-size: 36px;
+      font-size: 30px;
     }
     :nth-child(2) {
       margin-left: 20px;
-      font-size: 23px;
+      font-size: 18px;
     }
   }
 `;

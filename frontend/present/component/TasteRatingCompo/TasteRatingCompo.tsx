@@ -11,6 +11,7 @@ import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 import { useEffect, useState } from "react";
 
 export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
+  console.log(type);
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,
@@ -30,7 +31,7 @@ export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
     },
   };
   const [ratingList, setRatingList] = useState(
-    Array(5).fill({ left: false, right: false }),
+    Array(5).fill({ left: false, right: false })
   );
   const [clicked, setClicked] = useState(false);
   const [value, setValue] = useState(0);

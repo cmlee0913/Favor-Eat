@@ -32,7 +32,7 @@ export const Container = styled.div<{ open: boolean; idx: number }>`
 
   & ${Title} {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     color: ${(props) =>
       props.open ? theme.colors.mono.dark_3 : theme.colors.mono.dark_3};
 

@@ -3,26 +3,26 @@ import { useState, useEffect } from "react";
 import InfoGridLayout from "@/present/layout/Info/InfoGridLayout";
 import InfoMember from "@/present/layout/Info/InfoMember";
 import InfoAccordian from "@/present/layout/Info/InfoAccordian";
+import InfoStaticData from "@/present/layout/info/InfoStaticData";
 
 import { InfoTypes } from "@/types/Info/dummy";
-import TestCompo from "@/present/component/TestCompo";
 
 export default function Info() {
   const [selectIdx, setSelectedIdx] = useState(0);
   const [infoArr, setInfoArr] = useState<Array<InfoTypes>>([
     {
       category: "자료 출처 1번",
-      content: <TestCompo />,
+      content: <InfoStaticData />,
       isOpen: true,
     },
     {
       category: "자료 출처 2번",
-      content: <TestCompo />,
+      content: <InfoStaticData />,
       isOpen: false,
     },
     {
       category: "자료 출처 3번",
-      content: <TestCompo />,
+      content: <InfoStaticData />,
       isOpen: false,
     },
   ]);

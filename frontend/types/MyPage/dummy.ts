@@ -7,6 +7,8 @@ export interface FlavorStaticData {
   title: string;
   subtitle: string;
   img: StaticImageData;
+  pcHover: StaticImageData;
+  mobileHover: StaticImageData;
   value: number;
 }
 

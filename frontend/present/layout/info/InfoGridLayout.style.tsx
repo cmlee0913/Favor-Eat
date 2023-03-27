@@ -14,9 +14,9 @@ export const Container = styled.div`
   }
 
   ${theme.devices.tablet} {
-    display: block;
-    padding: 0px;
-    gap: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 5.5rem 1rem 1rem 1rem;
     width: 100%;
   }
 `;
