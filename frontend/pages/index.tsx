@@ -3,6 +3,7 @@ import { apiURL } from "@/store/constants";
 import { userDataSave, userTokenSave } from "@/store/userStore";
 import { ApiStateRes } from "@/types/Common/dummy";
 import { useAtom } from "jotai";
+import { ApiStateRes } from "@/types/Common/dummy";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
