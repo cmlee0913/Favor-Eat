@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import * as style from "@/present/layout/taste/analysis/AnalysisLayout.style";
+import * as style from "@/present/layout/Taste/Analysis/AnalysisLayout.style";
 
-import TopLayout from "@/present/layout/taste/analysis/TopLayout";
-import MiddleLayout from "@/present/layout/taste/analysis/MiddleLayout";
-import BottomLayout from "@/present/layout/taste/analysis/BottomLayout";
+import TopLayout from "@/present/layout/Taste/Analysis/TopLayout";
+import MiddleLayout from "@/present/layout/Taste/Analysis/MiddleLayout";
+import BottomLayout from "@/present/layout/Taste/Analysis/BottomLayout";
 import { RecipeData } from "@/types/Taste/dummy";
 
 export default function Analysis() {
