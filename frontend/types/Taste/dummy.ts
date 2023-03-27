@@ -13,6 +13,7 @@ export interface TopLayoutProps {
 
 export interface MiddleLayoutProps {
   recipeData: RecipeData;
+  canGoMain: boolean;
   count: number;
   clickHate: () => void;
   clickNext: () => void;

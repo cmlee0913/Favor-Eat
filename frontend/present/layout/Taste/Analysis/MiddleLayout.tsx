@@ -6,14 +6,18 @@ import HateButton from "@/assets/icon/HateButton.svg";
 import TasteFoodCardCompo from "@/present/component/TasteFoodCardCompo/TasteFoodCardCompo";
 import { MiddleLayoutProps } from "@/types/Taste/dummy";
 import TasteEvaluateBoxCompo from "@/present/component/TasteEvaluateCompo/TatseEvaluateBoxCompo";
+import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 export default function MiddleLayout({
   recipeData,
+  canGoMain,
   count,
   clickHate,
   clickNext,
 }: MiddleLayoutProps) {
   const [buttonShow, setButtonShow] = useState(true);
+  const isTablet = useMediaQuery("(min-width: 769px)");
+  const isMobile = useMediaQuery("(min-width: 426px)");
 
   const onClickNext = () => {
     clickNext();
@@ -32,8 +36,11 @@ export default function MiddleLayout({
         {/* rating */}
         <style.EvaluateBoxWrapper editable={buttonShow}>
           <TasteEvaluateBoxCompo
+            canGoMain={canGoMain}
+            recipeName={recipeData?.recipeName ?? ""}
             recipeId={recipeData?.recipeId ?? -1}
             resetButtonShow={onClickNext}
+            imgSrc={recipeData?.imageSrc ?? ""}
           />
         </style.EvaluateBoxWrapper>
         <style.Button show={buttonShow} onClick={() => clickHate()}>

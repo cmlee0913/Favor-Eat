@@ -76,6 +76,12 @@ export const CardContainer = styled.div<{ editable: boolean }>`
   /* left, top 위치만  */
   & .card {
     margin: ${({ editable }) => (editable ? "0 0" : "0 6vw")};
+
+    /* tablet부터는 맛 평가시 이미지 안보이도록*/
+    ${theme.devices.tablet} {
+      display: ${({ editable }) => (editable ? "flex" : "none")};
+    }
+
     & > img {
       box-shadow: ${({ editable }) => {
         if (editable === false) {
@@ -94,6 +100,7 @@ export const EvaluateBoxWrapper = styled.div<{ editable: boolean }>`
   height: 100%;
   flex-grow: 2;
   margin: 0 5% 0 2%;
+
   position: relative;
   display: ${({ editable }) => (editable ? "none" : "block")};
 `;
