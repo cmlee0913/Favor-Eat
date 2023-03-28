@@ -1,11 +1,12 @@
-import GridLayout from "@/present/layout/GridLayout/GridLayout";
 import { useState, useEffect } from "react";
-import * as style from "@/present/layout/MyPage/pageStyle";
 import MyPageUser from "@/present/layout/MyPage/MyPageUser";
 import MyPageAccordian from "@/present/layout/MyPage/MyPageAccordian";
+import MyPageGridLayout from "@/present/layout/MyPage/MyPageGridLayout";
 
 import { MyPageTypes } from "@/types/MyPage/dummy";
+
 import TestCompo from "@/present/component/TestCompo";
+import Ingredient from "@/present/layout/MyPage/Ingredient";
 
 export default function MyPage() {
   const [selectIdx, setSelectedIdx] = useState(0);
@@ -17,7 +18,7 @@ export default function MyPage() {
     },
     {
       category: "못 먹는 재료",
-      content: <TestCompo />,
+      content: <Ingredient />,
       isOpen: false,
     },
   ]);
@@ -35,15 +36,13 @@ export default function MyPage() {
   }, [selectIdx]);
 
   return (
-    <style.Container>
-      <GridLayout>
-        <MyPageUser />
-        <MyPageAccordian
-          myPageArr={myPageArr}
-          selectIdx={selectIdx}
-          setSelectedIdx={setSelectedIdx}
-        />
-      </GridLayout>
-    </style.Container>
+    <MyPageGridLayout>
+      <MyPageUser />
+      <MyPageAccordian
+        myPageArr={myPageArr}
+        selectIdx={selectIdx}
+        setSelectedIdx={setSelectedIdx}
+      />
+    </MyPageGridLayout>
   );
 }

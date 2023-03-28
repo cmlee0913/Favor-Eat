@@ -1,20 +1,20 @@
 import React from "react";
 
 import AccordianPurpleCompo from "@/present/component/AccordianPurpleCompo/AccordianPurpleCompo";
-import { MyPageContentProps } from "@/types/MyPage/dummy";
+import { InfoContentProps } from "@/types/Info/dummy";
 
 import RightTitleBox from "@/present/common/TitleBox/RightTitleBox/RightTitleBox";
 
-export default function MyPageAccordian({
-  myPageArr,
+export default function AlarmAccordian({
+  alarmArr,
   selectIdx,
   setSelectedIdx,
-}: MyPageContentProps) {
+}: InfoContentProps) {
   const accordianHandler = (idx: number) => {
     setSelectedIdx(idx);
   };
 
-  const accordians = myPageArr.map((elem, idx) => {
+  const accordians = alarmArr.map((elem, idx) => {
     return (
       <AccordianPurpleCompo
         key={idx}
@@ -27,7 +27,7 @@ export default function MyPageAccordian({
 
   return (
     <div>
-      <RightTitleBox title="마이페이지" />
+      <RightTitleBox title="알림 설정" />
       {accordians}
     </div>
   );

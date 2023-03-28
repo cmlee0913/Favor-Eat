@@ -4,9 +4,9 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  height: fit-content;
+  /* height: fit-content; */
   width: 100%;
 
   ${theme.devices.tablet} {

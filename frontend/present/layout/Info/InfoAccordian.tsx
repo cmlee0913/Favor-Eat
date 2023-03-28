@@ -1,8 +1,10 @@
 import React from "react";
-
-import AccordianCompo from "@/present/component/AccordianCompo/AccordianCompo";
-import { InfoContentProps } from "@/types/Info/dummy";
 import * as style from "./Info.style";
+
+import AccordianPurpleCompo from "@/present/component/AccordianPurpleCompo/AccordianPurpleCompo";
+import { InfoContentProps } from "@/types/Info/dummy";
+
+import RightTitleBox from "@/present/common/TitleBox/RightTitleBox/RightTitleBox";
 
 export default function InfoAccordian({
   infoArr,
@@ -15,7 +17,7 @@ export default function InfoAccordian({
 
   const accordians = infoArr.map((elem, idx) => {
     return (
-      <AccordianCompo
+      <AccordianPurpleCompo
         key={idx}
         elem={elem}
         idx={idx}
@@ -25,11 +27,9 @@ export default function InfoAccordian({
   });
 
   return (
-    <div>
-      <style.Accordians>
-        <div className="title">출처</div>
-        {accordians}
-      </style.Accordians>
-    </div>
+    <style.InfoAccodian>
+      <RightTitleBox title="출처" />
+      {accordians}
+    </style.InfoAccodian>
   );
 }
