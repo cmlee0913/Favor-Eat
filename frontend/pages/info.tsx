@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import InfoGridLayout from "@/present/layout/Info/InfoGridLayout";
 import InfoMember from "@/present/layout/Info/InfoMember";
 import InfoAccordian from "@/present/layout/Info/InfoAccordian";
-import InfoStaticData from "@/present/layout/info/InfoStaticData";
+import InfoStaticData from "@/present/layout/Info/InfoStaticData";
 
 import { InfoTypes } from "@/types/Info/dummy";
 

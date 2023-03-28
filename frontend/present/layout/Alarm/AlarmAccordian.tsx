@@ -4,12 +4,13 @@ import AccordianPurpleCompo from "@/present/component/AccordianPurpleCompo/Accor
 import { InfoContentProps } from "@/types/Info/dummy";
 
 import RightTitleBox from "@/present/common/TitleBox/RightTitleBox/RightTitleBox";
+import { AlarmContentProps } from "@/types/Alarm/dummy";
 
 export default function AlarmAccordian({
   alarmArr,
   selectIdx,
   setSelectedIdx,
-}: InfoContentProps) {
+}: AlarmContentProps) {
   const accordianHandler = (idx: number) => {
     setSelectedIdx(idx);
   };

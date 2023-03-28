@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import * as style from "./MyPage.style";
 
 import Spicy from "@/assets/image/Character/Spicy.png";
@@ -18,9 +18,13 @@ import MyPageFlavorData from "./MyPageFlavorData";
 import { FlavorStaticData } from "@/types/MyPage/dummy";
 
 import LeftTitleBox from "@/present/common/TitleBox/LeftTitleBox/LeftTitleBox";
+import Image from "next/image";
 
 export default function MyPageUser() {
   const user = { username: "뭐뭐" };
+  const [selectedFlavorType, setSelectedFlavorType] = useState("spicy");
+  const [hoverImage, setHoverImage] = useState(SpicyHoverBoxPc);
+  const [isHover, setIsHover] = useState(false);
 
   const flavorData: Array<FlavorStaticData> = [
     {
@@ -61,7 +65,13 @@ export default function MyPageUser() {
     },
   ];
 
-  // const flavorList = [];
+  useEffect(() => {
+    flavorData.forEach((item, index) => {
+      if (item.type === selectedFlavorType) {
+        setHoverImage(flavorData[index].pcHover);
+      }
+    });
+  }, [selectedFlavorType]);
 
   return (
     <style.MyPageUser>
@@ -69,10 +79,25 @@ export default function MyPageUser() {
         title={`안녕하세요. ${user.username}님`}
         subtitle="이런 맛을 좋아하셨어요"
       />
-
-      {flavorData.map((item, index) => (
-        <MyPageFlavorData key={index} {...item} />
-      ))}
+      <style.HoverGrid>
+        <div style={{ width: "1fr" }}>
+          {isHover ? (
+            <style.HoverImageWrapper>
+              <Image src={hoverImage} alt="item.type" />
+            </style.HoverImageWrapper>
+          ) : null}
+        </div>
+        <div>
+          {flavorData.map((item, index) => (
+            <MyPageFlavorData
+              key={index}
+              setHoverType={setSelectedFlavorType}
+              setIsHover={setIsHover}
+              item={item}
+            />
+          ))}
+        </div>
+      </style.HoverGrid>
     </style.MyPageUser>
   );
 }
