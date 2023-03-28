@@ -1,7 +1,7 @@
 export const apiURL =
   process.env.NODE_ENV === "production"
-    ? "http://j8d108.p.ssafy.io:8080"
-    : "http://j8d108.p.ssafy.io:8000";
+    ? "https://j8d108.p.ssafy.io/api"
+    : "https://j8d108.p.ssafy.io/api-test";
 
 export const kakaoLoginUrl = `${apiURL}/oauth2/authorization/kakao`;
 
