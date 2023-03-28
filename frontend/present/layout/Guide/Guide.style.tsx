@@ -68,31 +68,65 @@ export const Bottom = styled.div`
   background-color: #34314c;
 `;
 
-export const SampleImg = styled.div<{ picPos: number }>`
+export const SampleImg = styled.div`
   & img.SampleImg {
-    width: 15%;
-    height: auto;
+    width: auto;
+    height: 54%;
     position: absolute;
     z-index: 6;
 
     &:nth-child(1) {
-      right: ${(props) => props.picPos * 1.2 - 300}px;
-      top: ${(props) => props.picPos * 1.2}px;
+      top: 34.56%;
+      left: 0;
     }
 
     &:nth-child(2) {
-      right: ${(props) => props.picPos * 1.2 - 600}px;
-      top: ${(props) => props.picPos * 1.2 - 300}px;
+      right: 51.12%;
+      top: 53.23%;
     }
 
     &:nth-child(3) {
-      right: ${(props) => props.picPos * 1.2 - 830}px;
-      top: ${(props) => props.picPos * 1.2 + 150}px;
+      right: 24.6%;
+      top: 34.56%;
     }
 
     &:nth-child(4) {
-      right: ${(props) => props.picPos * 1.2 - 1100}px;
-      top: ${(props) => props.picPos * 1.2 - 500}px;
+      right: 0;
+      top: 17.01%;
+    }
+  }
+`;
+
+export const FunctionImg = styled.div`
+  & img.SampleImg {
+    width: auto;
+    height: 48%;
+    position: absolute;
+    z-index: 6;
+
+    &:nth-child(1) {
+      top: 40.32%;
+      left: 0;
+    }
+
+    &:nth-child(2) {
+      right: 58.42%;
+      top: 23.59%;
+    }
+
+    &:nth-child(3) {
+      right: 35.16%;
+      top: 40.31%;
+    }
+
+    &:nth-child(4) {
+      right: 12.5%;
+      top: 58.04%;
+    }
+
+    &:nth-child(5) {
+      right: 0;
+      top: 40.58%;
     }
   }
 `;

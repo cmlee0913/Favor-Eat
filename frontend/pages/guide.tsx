@@ -14,14 +14,6 @@ import GuideCharacter from "@/assets/image/Guide.png";
 
 export default function Guide() {
   const [scrollY, viewHeight, eventHeight] = useScroll();
-  // const [picPos, setPicPos] = useState<number>(0);
-
-  //여기서 렌더링이 많이 발생할 듯?
-  // useEffect(() => {
-  //   const tmp = scrollY - viewHeight;
-  //   if (tmp > 0) setPicPos(tmp);
-  // }, [scrollY]);
-
   //새로고침 할 때마다 초점이 내려가는 현상 막기
   useEffect(() => {
     window.onbeforeunload = function pushRefresh() {
@@ -39,11 +31,7 @@ export default function Guide() {
 
       {/* 분기별 화면 */}
       <StartLayout />
-      <SuggestLayout picPos={eventHeight} viewHeight={viewHeight} />
-      <FunctionLayout />
-      <SuggestLayout picPos={eventHeight} viewHeight={viewHeight} />
-      <FunctionLayout />
-      <SuggestLayout picPos={eventHeight} viewHeight={viewHeight} />
+      <SuggestLayout />
       <FunctionLayout />
       <EndLayout />
     </PageContainer>

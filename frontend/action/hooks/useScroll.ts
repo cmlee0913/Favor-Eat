@@ -1,5 +1,5 @@
 import { useScrollState } from "@/types/Hooks/dummy";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 export function useScroll(): Array<number> {
   const [scroll, setScroll] = useState<useScrollState>({
@@ -37,7 +37,7 @@ export function useScroll(): Array<number> {
       handleScrollEvent(e);
     };
 
-    window.addEventListener("scroll", scrollListener);
+    window.addEventListener("scroll", scrollListener, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", scrollListener);
