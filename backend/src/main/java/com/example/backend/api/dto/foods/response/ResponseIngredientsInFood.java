@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseIngredientsInFood {
     private String unit;
-    private Float amount;
+    private String amount;
 
     @Builder
-    public ResponseIngredientsInFood(String unit, Float amount) {
+    public ResponseIngredientsInFood(String unit, String amount) {
         this.unit = unit;
         this.amount = amount;
     }
