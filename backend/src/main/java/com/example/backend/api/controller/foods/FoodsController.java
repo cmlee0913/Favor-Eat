@@ -36,6 +36,12 @@ public class FoodsController {
         }
     }
 
+    @GetMapping("/list/{index}")
+    @Operation(summary = "취향 분석 음식 목록 전송", description = "<strong>취향 분석</strong> 시 필요한 음식의 목록을 <strong>100개씩</strong> 전송한다.")
+    private ResponseEntity<List<ResponseBasicFoodInfo>> getSamplingFoodList(@PathVariable Long index) {
+        return new ResponseEntity<>(foodsService.getSamplingFoodList(index), HttpStatus.OK);
+    }
+
     @GetMapping("/favor")
     @Operation(summary = "음식 즐겨찾기 조회", description = "사용자의 <strong>즐겨찾기 목록을 조회</strong>합니다.")
     private ResponseEntity<List<ResponseBasicFoodInfo>> getFavorFoodList(
