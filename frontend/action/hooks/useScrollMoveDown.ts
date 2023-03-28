@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export default function useScrollMoveDown(duration = 1, delay = 0) {
   const dom = useRef() as any;

@@ -18,18 +18,33 @@ export default function FunctionLayout() {
   const foodArr = [Food1, Food2, Food3, Food4, Food5];
 
   const imgArr = foodArr.map((elem, idx) => {
-    const scrollAnimation = useScrollMoveDown(1, idx)
+    const scrollAnimation = useScrollMoveDown(1, idx);
     return (
-      <Image className="SampleImg" src={elem} key={idx} alt="SampleImage" {...scrollAnimation}  />
+      <Image
+        className="SampleImg"
+        src={elem}
+        key={idx}
+        alt="SampleImage"
+        {...scrollAnimation}
+      />
     );
   });
 
   return (
     <style.Container className="Pink">
-      <style.FunctionImg>
-        {imgArr}
-      </style.FunctionImg>
-        
+      {/* 텍스트 */}
+      <style.SampleTest className="Function">
+        <h1>
+          추천받은 음식의
+          <br />
+          정보를 확인하세요
+        </h1>
+        <p>맵기, 짜기, 영양소 등 다양한 정보를 확인할 수 있어요</p>
+      </style.SampleTest>
+
+      {/* 이미지 */}
+      <style.FunctionImg>{imgArr}</style.FunctionImg>
+
       {/* 구름 */}
       <style.Cloud>
         <Image className="Cloud Function" src={Pink1} alt="Cloud" />

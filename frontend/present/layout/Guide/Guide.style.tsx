@@ -71,9 +71,10 @@ export const Bottom = styled.div`
 export const SampleImg = styled.div`
   & img.SampleImg {
     width: auto;
-    height: 54%;
+    height: 37%;
     position: absolute;
     z-index: 6;
+    top: 5%;
 
     &:nth-child(1) {
       top: 34.56%;
@@ -100,7 +101,7 @@ export const SampleImg = styled.div`
 export const FunctionImg = styled.div`
   & img.SampleImg {
     width: auto;
-    height: 48%;
+    height: 32%;
     position: absolute;
     z-index: 6;
 
@@ -181,7 +182,7 @@ export const Cloud = styled.div`
       &:nth-child(1) {
         width: 70%;
         left: 2.48%;
-        top: 20%;
+        top: 0;
       }
 
       &:nth-child(2) {
@@ -359,10 +360,35 @@ export const Cloud = styled.div`
   }
 `;
 
+export const SampleTest = styled.div`
+  position: absolute;
+  z-index: 60;
+
+  &.Suggest {
+    left: 3%;
+    top: 13%;
+  }
+
+  &.Function {
+    text-align: right;
+    right: 3.63%;
+    top: 15.8%;
+  }
+
+  & > h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  & > p {
+    font-size: 20px;
+  }
+`;
+
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
 
   &.Violet {
     background-color: ${theme.colors.background.violet};
@@ -370,6 +396,11 @@ export const Container = styled.div`
 
   &.Pink {
     background-color: ${theme.colors.background.pink};
+
+    &.Suggest {
+      padding-top: 20rem;
+      height: calc(150vh - 20rem);
+    }
   }
 
   & img.EndPoint {
