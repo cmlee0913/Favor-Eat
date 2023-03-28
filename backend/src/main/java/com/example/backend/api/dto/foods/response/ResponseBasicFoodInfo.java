@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ResponseFavorFood {
+public class ResponseBasicFoodInfo {
     private Long foodsId;
     private String name;
     private String image;
 
     @Builder
-    public ResponseFavorFood(Long foodsId, String name, String image){
+    public ResponseBasicFoodInfo(Long foodsId, String name, String image){
         this.foodsId = foodsId;
         this.name = name;
         this.image = image;

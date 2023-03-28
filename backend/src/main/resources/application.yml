@@ -17,4 +17,3 @@ spring:
       - oauth
       - jwt
       - swagger
-      - redis

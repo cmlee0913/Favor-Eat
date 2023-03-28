@@ -1,7 +1,6 @@
 kakao-client-id: 3f660847d40155171d5d2300672e2f73
 kakao-client-secret: w50qQUwy9BMIeHyPMQ3WSORVTYivZU4S
 jwt-secret : dhsmfanjajrwl
-redis-password : vo2+09ckj#Bj!Vlk
 
 --- # test 설정
 spring:
