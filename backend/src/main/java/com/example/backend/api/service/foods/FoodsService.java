@@ -1,6 +1,6 @@
 package com.example.backend.api.service.foods;
 
-import com.example.backend.api.dto.foods.response.ResponseFavorFood;
+import com.example.backend.api.dto.foods.response.ResponseBasicFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import com.example.backend.api.entity.favorites.Favorites;
 import com.example.backend.api.entity.favorites.NonFavorites;
@@ -53,8 +53,8 @@ public class FoodsService {
         favoritesRepository.deleteById(favoritesId);
     }
 
-    public List<ResponseFavorFood> getFavorFoodList(long no) {
-        List<ResponseFavorFood> responseFavorFoodList = null;
+    public List<ResponseBasicFoodInfo> getFavorFoodList(long no) {
+        List<ResponseBasicFoodInfo> responseBasicFoodInfoList = null;
 
         List<Favorites> favoritesList = favoritesRepository.findByNo(no);
         return favoritesList.stream()

@@ -1,6 +1,6 @@
 package com.example.backend.api.entity.favorites;
 
-import com.example.backend.api.dto.foods.response.ResponseFavorFood;
+import com.example.backend.api.dto.foods.response.ResponseBasicFoodInfo;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.users.Users;
@@ -41,8 +41,8 @@ public class Favorites {
         this.foodsId = foodsId;
     }
 
-    public ResponseFavorFood toDTO() {
-        return ResponseFavorFood.builder()
+    public ResponseBasicFoodInfo toDTO() {
+        return ResponseBasicFoodInfo.builder()
             .foodsId(this.foodsId)
             .name(this.foods.getName())
             .image(this.foods.getImage())
