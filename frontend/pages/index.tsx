@@ -1,6 +1,6 @@
 import { deleteAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
-import { userTokenSave } from "@/store/userStore";
+import { userDataSave, userTokenSave } from "@/store/userStore";
 import { ApiStateRes } from "@/types/Common/dummy";
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
@@ -39,7 +39,7 @@ export default function Home() {
           console.log(currentToken);
         } else {
           console.log(
-            "No registration token available. Request permission to generate one."
+            "No registration token available. Request permission to generate one.",
           );
         }
       })
@@ -63,6 +63,7 @@ export default function Home() {
   });
   const router = useRouter();
   const [token] = useAtom(userTokenSave);
+  const [userData] = useAtom(userDataSave);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -70,10 +71,17 @@ export default function Home() {
 
   useEffect(() => {
     if (token.accessToken) {
-      router.replace("/main");
+      const { role } = userData;
+
+      if (role === "USER") {
+        router.push("/main");
+      }
+      if (role === "GUEST") {
+        router.push("/taste/choose");
+      }
       return;
-    } else router.replace("/guide");
-  }, [token]);
+    } else router.push("/guide");
+  }, [token, userData]);
 
   useEffect(() => {
     deleteAsync(apiURL + "posts/1").then((res) => {

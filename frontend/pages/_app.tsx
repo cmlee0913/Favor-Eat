@@ -10,7 +10,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider>
-      {router === "/guide" || router.includes("taste") ? null : <Header />}
+      {router == "/main" ||
+      router == "/myPage" ||
+      router == "/info" ||
+      router == "/alarm" ||
+      router.includes("recipe") ? (
+        <Header />
+      ) : null}
       <Component {...pageProps} />
     </Provider>
   );

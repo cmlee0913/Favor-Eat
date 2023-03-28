@@ -10,8 +10,12 @@ import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 import { useEffect, useState } from "react";
 
+<<<<<<< HEAD
 export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
   console.log(type);
+=======
+export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
+>>>>>>> 3b02c2edf86159cde5b3a8b3c1af1ad9d94dc253
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,
@@ -91,7 +95,6 @@ export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
     if (side === "left") {
       value -= 0.5;
     }
-
     setValue(value);
     setClicked(true);
   };
@@ -113,7 +116,7 @@ export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
     setValue(0);
     const newList = Array(5).fill({ left: false, right: false });
     setRatingList(newList);
-  }, [foodIndex]);
+  }, [recipeId]);
 
   return (
     <style.Container onMouseOut={onResetRating}>

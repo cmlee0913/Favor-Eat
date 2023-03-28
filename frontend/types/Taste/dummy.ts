@@ -1,15 +1,27 @@
 import { FlavorType } from "../RecipeFlavor/dummy";
 
+export interface RecipeData {
+  imageSrc: string;
+  recipeName: string;
+  recipeId: number;
+}
+
 export interface TopLayoutProps {
   count: number;
   max: number;
 }
 
 export interface MiddleLayoutProps {
-  buttonShow: boolean;
-  changeShowMode: React.Dispatch<React.SetStateAction<boolean>>;
+  recipeData: RecipeData;
+  canGoMain: boolean;
   count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  clickHate: () => void;
+  clickNext: () => void;
+}
+
+export interface BottomLayoutProps {
+  canGoMain: boolean;
+  evaluatedCount: number;
 }
 
 export interface RatingShape {

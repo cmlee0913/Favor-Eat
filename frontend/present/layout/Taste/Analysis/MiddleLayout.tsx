@@ -6,40 +6,44 @@ import HateButton from "@/assets/icon/HateButton.svg";
 import TasteFoodCardCompo from "@/present/component/TasteFoodCardCompo/TasteFoodCardCompo";
 import { MiddleLayoutProps } from "@/types/Taste/dummy";
 import TasteEvaluateBoxCompo from "@/present/component/TasteEvaluateCompo/TatseEvaluateBoxCompo";
+import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 export default function MiddleLayout({
-  buttonShow,
-  changeShowMode,
+  recipeData,
+  canGoMain,
   count,
-  setCount,
+  clickHate,
+  clickNext,
 }: MiddleLayoutProps) {
-  const onClickButton = () => {
-    changeShowMode(false);
+  const [buttonShow, setButtonShow] = useState(true);
+  const isTablet = useMediaQuery("(min-width: 769px)");
+  const isMobile = useMediaQuery("(min-width: 426px)");
+
+  const onClickNext = () => {
+    clickNext();
+    setButtonShow(true);
   };
-  const showNextFood = () => {
-    changeShowMode(true);
-    setFoodIndex((current) => current + 1);
-    setCount((current) => current + 1);
-  };
-  const [foodIndex, setFoodIndex] = useState(0);
 
   return (
     <style.MiddleContainer>
       <style.CardContainer editable={buttonShow}>
-        <style.Button show={buttonShow} onClick={onClickButton}>
+        <style.Button show={buttonShow} onClick={() => setButtonShow(false)}>
           <LikeButton />
           <div>좋아요</div>
         </style.Button>
         {/* 음식 사진 */}
-        <TasteFoodCardCompo />
+        <TasteFoodCardCompo recipeData={recipeData} />
         {/* rating */}
         <style.EvaluateBoxWrapper editable={buttonShow}>
           <TasteEvaluateBoxCompo
-            foodIndex={foodIndex}
-            resetButtonShow={showNextFood}
+            canGoMain={canGoMain}
+            recipeName={recipeData?.recipeName ?? ""}
+            recipeId={recipeData?.recipeId ?? -1}
+            resetButtonShow={onClickNext}
+            imgSrc={recipeData?.imageSrc ?? ""}
           />
         </style.EvaluateBoxWrapper>
-        <style.Button show={buttonShow}>
+        <style.Button show={buttonShow} onClick={() => clickHate()}>
           <HateButton />
           <div>싫어요</div>
         </style.Button>
