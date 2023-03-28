@@ -68,31 +68,66 @@ export const Bottom = styled.div`
   background-color: #34314c;
 `;
 
-export const SampleImg = styled.div<{ picPos: number }>`
+export const SampleImg = styled.div`
   & img.SampleImg {
-    width: 15%;
-    height: auto;
+    width: auto;
+    height: 37%;
+    position: absolute;
+    z-index: 6;
+    top: 5%;
+
+    &:nth-child(1) {
+      top: 34.56%;
+      left: 0;
+    }
+
+    &:nth-child(2) {
+      right: 51.12%;
+      top: 53.23%;
+    }
+
+    &:nth-child(3) {
+      right: 24.6%;
+      top: 34.56%;
+    }
+
+    &:nth-child(4) {
+      right: 0;
+      top: 17.01%;
+    }
+  }
+`;
+
+export const FunctionImg = styled.div`
+  & img.SampleImg {
+    width: auto;
+    height: 32%;
     position: absolute;
     z-index: 6;
 
     &:nth-child(1) {
-      right: ${(props) => props.picPos * 1.2 - 300}px;
-      top: ${(props) => props.picPos * 1.2}px;
+      top: 40.32%;
+      left: 0;
     }
 
     &:nth-child(2) {
-      right: ${(props) => props.picPos * 1.2 - 600}px;
-      top: ${(props) => props.picPos * 1.2 - 300}px;
+      right: 58.42%;
+      top: 23.59%;
     }
 
     &:nth-child(3) {
-      right: ${(props) => props.picPos * 1.2 - 830}px;
-      top: ${(props) => props.picPos * 1.2 + 150}px;
+      right: 35.16%;
+      top: 40.31%;
     }
 
     &:nth-child(4) {
-      right: ${(props) => props.picPos * 1.2 - 1100}px;
-      top: ${(props) => props.picPos * 1.2 - 500}px;
+      right: 12.5%;
+      top: 58.04%;
+    }
+
+    &:nth-child(5) {
+      right: 0;
+      top: 40.58%;
     }
   }
 `;
@@ -147,7 +182,7 @@ export const Cloud = styled.div`
       &:nth-child(1) {
         width: 70%;
         left: 2.48%;
-        top: 20%;
+        top: 0;
       }
 
       &:nth-child(2) {
@@ -325,10 +360,35 @@ export const Cloud = styled.div`
   }
 `;
 
+export const SampleTest = styled.div`
+  position: absolute;
+  z-index: 60;
+
+  &.Suggest {
+    left: 3%;
+    top: 13%;
+  }
+
+  &.Function {
+    text-align: right;
+    right: 3.63%;
+    top: 15.8%;
+  }
+
+  & > h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  & > p {
+    font-size: 20px;
+  }
+`;
+
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
 
   &.Violet {
     background-color: ${theme.colors.background.violet};
@@ -336,6 +396,11 @@ export const Container = styled.div`
 
   &.Pink {
     background-color: ${theme.colors.background.pink};
+
+    &.Suggest {
+      padding-top: 20rem;
+      height: calc(150vh - 20rem);
+    }
   }
 
   & img.EndPoint {
