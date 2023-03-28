@@ -24,7 +24,7 @@ public class IngredientsInFoods {
     private Long foodsId;
 
     private String unit;
-    private Float amount;
+    private String amount;
 
     @ManyToOne
     @JoinColumn(name = "foods_id", insertable = false, updatable = false)
