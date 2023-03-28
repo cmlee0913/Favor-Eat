@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 import { theme } from "@/action/theme";
 
+export const HoverGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1.5fr 5fr;
+`;
+
 export const MyPageUser = styled.div`
   ${theme.devices.desktop} {
     /* margin-left: 40px; */
@@ -38,7 +43,7 @@ export const MyPageUserMent = styled.div`
 
 export const FlavorDataContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr;
+  grid-template-columns: 1fr 3fr;
 `;
 
 export const FlavorDataImageContainer = styled.div`
@@ -101,9 +106,11 @@ export const RatingShapeStyle = css`
 
 export const HoverImageWrapper = styled.div`
   img {
-    position: absolute;
-    width: 9%;
+    display: block;
+    /* position: absolute; */
+    width: 100%;
     height: auto;
+    left: 1.5vw;
   }
 `;
 

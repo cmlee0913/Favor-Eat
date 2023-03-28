@@ -5,7 +5,6 @@ import MyPageGridLayout from "@/present/layout/MyPage/MyPageGridLayout";
 
 import { MyPageTypes } from "@/types/MyPage/dummy";
 
-import TestCompo from "@/present/component/TestCompo";
 import Ingredient from "@/present/layout/MyPage/Ingredient";
 
 export default function MyPage() {
@@ -13,7 +12,7 @@ export default function MyPage() {
   const [myPageArr, setMyPageArr] = useState<Array<MyPageTypes>>([
     {
       category: "즐겨찾기한 레시피",
-      content: <TestCompo />,
+      content: <Ingredient />,
       isOpen: true,
     },
     {

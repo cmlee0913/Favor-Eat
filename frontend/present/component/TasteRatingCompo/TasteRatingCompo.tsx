@@ -10,12 +10,7 @@ import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 import { useEffect, useState } from "react";
 
-<<<<<<< HEAD
-export default function TasteRatingCompo({ type, setRatingValue, foodIndex }) {
-  console.log(type);
-=======
 export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
->>>>>>> 3b02c2edf86159cde5b3a8b3c1af1ad9d94dc253
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,

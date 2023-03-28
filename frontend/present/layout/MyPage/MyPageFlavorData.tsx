@@ -13,8 +13,19 @@ import SaltyRight from "@/assets/icon/taste/rating/SaltyRight.svg";
 import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 
-export default function MyPageFlavorData(item: FlavorStaticData) {
-  console.log(item);
+interface MyPageFlavorDataProps {
+  item: FlavorStaticData;
+  setHoverType: React.Dispatch<React.SetStateAction<string>>;
+  setIsHover: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function MyPageFlavorData({
+  item,
+  setHoverType,
+  setIsHover,
+}: MyPageFlavorDataProps) {
+  // console.log(item);
+  // console.log(setIsHover);
 
   const ratingImg = {
     spicy: {
@@ -45,22 +56,18 @@ export default function MyPageFlavorData(item: FlavorStaticData) {
       }));
   });
 
-  const [isHover, setIsHover] = useState(false);
-
   return (
     <>
-      {isHover && (
-        <style.HoverImageWrapper>
-          <Image src={item.pcHover} alt="item.type" />
-        </style.HoverImageWrapper>
-      )}
-
       <style.FlavorDataContainer>
         {/* 맛 표현, 캐릭터, HoverIcon */}
-        <div></div>
         <style.FlavorDataImageContainer
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
+          onMouseEnter={() => {
+            setHoverType(item.type);
+            setIsHover(true);
+          }}
+          onMouseLeave={() => {
+            setIsHover(false);
+          }}
         >
           <div>{item.title}</div>
           <Image src={item.img} alt="item.type" />
