@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
 
 export default function useScrollMoveDown(duration = 1, delay = 0) {
-  const dom = useRef();
+  const dom = useRef() as any;
 
   const handleScroll = useCallback(([entry]) => {
     const { current } = dom;
 
-    if (entry.isIntersecting) {
+    if (entry.isIntersecting && current) {
       current.style.transitionProperty = "all";
       current.style.transitionDuration = `${duration}s`;
       current.style.transitionTimingFunction = "cubic-bezier(0, 0, 0.2, 1)";
