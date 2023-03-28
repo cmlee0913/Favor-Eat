@@ -15,6 +15,7 @@ export default function FilpImageCardCompo({
   foodName,
   flavor,
   contents,
+  recipeId,
 }) {
   const router = useRouter();
   const windowSize = useWindowDimensions();
