@@ -14,3 +14,8 @@ typing_extensions==4.5.0
 uvicorn==0.21.1
 wheel==0.38.4
 wincertstore==0.2
+
+joblib>=1.1.1
+scikit-learn>=1.2.1
+apscheduler>=3.9.0
+mysql-connector-python>=8.0.32
