@@ -1,10 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
 import AutoHeightImage from "./AutoHeightImage";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
-import { theme } from "@/constant/theme";
 import * as styles from "./MasonryLayout.styles";
+
+import { userTokenSave } from "@/store/userStore";
+import { useAtom } from "jotai";
+
+import { getFavoriteFoodList } from "@/action/apis/favorite";
+
+//
+
+const requestFavoriteFoodList = async (token: string) => {
+  const { isSuccess, result } = await getFavoriteFoodList(token);
+
+  console.log(isSuccess);
+  console.log(result);
+
+  if (isSuccess) {
+    const list = [];
+    result.forEach((item) => {
+      console.log("________________________________________");
+      console.log(item);
+      console.log("________________________________________");
+      list.push({
+        imageSrc: item.image,
+        recipeName: item.name,
+        recipeId: item.foodsId,
+      });
+    });
+    return list;
+  }
+  return null;
+};
+
+//
 
 function getItems(nextGroupKey: number, count: number) {
   const nextItems = [];
@@ -28,10 +59,25 @@ const Item = ({ num }: any) => (
 
 export default function MasonryLayout() {
   const [items, setItems] = useState(() => getItems(0, 10));
+  const [favoriteList, setFavoriteList] = useState([]);
+
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isPhone = useMediaQuery("(min-width: 426px)");
 
   let columnNumber = 6;
+
+  const [token] = useAtom(userTokenSave);
+
+  //
+  useEffect(() => {
+    if (token.accessToken) {
+      requestFavoriteFoodList(token.accessToken).then((list) => {
+        setFavoriteList(list);
+      });
+    }
+  }, [token.accessToken]);
+
+  //
 
   if (isTablet && isPhone) {
     columnNumber = 6;

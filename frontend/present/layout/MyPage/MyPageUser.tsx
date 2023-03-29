@@ -25,7 +25,6 @@ import Image from "next/image";
 
 export default function MyPageUser() {
   const [name, setName] = useState("로그인 해주세요!");
-  console.log(name);
   const [selectedFlavorType, setSelectedFlavorType] = useState("spicy");
   const [hoverImage, setHoverImage] = useState(SpicyHoverBoxPc);
   const [isHover, setIsHover] = useState(false);
