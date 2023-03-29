@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import styled, { keyframes } from "styled-components";
 
 export const fadeInUp = keyframes`
@@ -378,10 +378,12 @@ export const SampleTest = styled.div`
   & > h1 {
     font-size: 3rem;
     margin: 0;
+    font-family: "Pretendard-Bold";
   }
 
   & > p {
     font-size: 20px;
+    font-family: "Pretendard-Semibold";
   }
 `;
 

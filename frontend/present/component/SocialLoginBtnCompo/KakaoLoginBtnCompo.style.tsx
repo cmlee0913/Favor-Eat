@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 import kakaoLogoSvg from "@/assets/icon/kakao-logo.svg";
 

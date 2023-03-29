@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import styled from "styled-components";
 import ArrowIcon from "@/assets/icon/arrow.svg";
 

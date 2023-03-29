@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GlobalStyle } from "@/action/GlobalStyle";
+import { GlobalStyle } from "@/constant/GlobalStyle";
 import { useScroll } from "@/action/hooks/useScroll";
 import Image from "next/image";
 

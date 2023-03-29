@@ -1,0 +1,91 @@
+/* Pretendard */
+@font-face {
+  font-family: "Pretendard-Black";
+  src: url("../assets/font/Pretendard-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("../assets/font/Pretendard-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-ExtraBold";
+  src: url("../assets/font/Pretendard-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-ExtraLight";
+  src: url("../assets/font/Pretendard-ExtraLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Light";
+  src: url("../assets/font/Pretendard-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Medium";
+  src: url("../assets/font/Pretendard-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("../assets/font/Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  src: url("../assets/font/Pretendard-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Thin";
+  src: url("../assets/font/Pretendard-Thin.woff") format("woff");
+}
+
+/* Inter */
+@font-face {
+  font-family: "Inter-Black";
+  src: url("../assets/font/Inter-Black.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-Bold";
+  src: url("../assets/font/Inter-Bold.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-ExtraBold";
+  src: url("../assets/font/Inter-ExtraBold.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-ExtraLight";
+  src: url("../assets/font/Inter-ExtraLight.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-Light";
+  src: url("../assets/font/Inter-Light.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-Medium";
+  src: url("../assets/font/Inter-Medium.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-Regular";
+  src: url("../assets/font/Inter-Regular.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-SemiBold";
+  src: url("../assets/font/Inter-SemiBold.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "Inter-Thin";
+  src: url("../assets/font/Inter-Thin.ttf") format("tff");
+}

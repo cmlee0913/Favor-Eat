@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 export const Title = styled.div`
   width: calc(100%-2rem);

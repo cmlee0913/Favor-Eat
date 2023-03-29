@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 export const HoverGrid = styled.div`
   display: grid;
