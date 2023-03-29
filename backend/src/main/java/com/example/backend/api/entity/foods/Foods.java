@@ -100,10 +100,10 @@ public class Foods {
 
     private ResponseTasteInfo buildTasteInfoDTO() {
         return ResponseTasteInfo.builder()
-            .fatness(this.getFatness())
-            .saltiness(this.getSaltiness())
-            .spiciness(this.getSpiciness())
-            .sweetness(this.getSweetness())
+            .oily(this.getFatness())
+            .salty(this.getSaltiness())
+            .spicy(this.getSpiciness())
+            .sweet(this.getSweetness())
             .build();
     }
 
