@@ -1,6 +1,6 @@
 import { deleteAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
-import { userDataSave, userTokenSave } from "@/store/userStore";
+import { getUserDataByToken, userTokenSave } from "@/store/userStore";
 import { ApiStateRes } from "@/types/Common/dummy";
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
@@ -63,7 +63,6 @@ export default function Home() {
   });
   const router = useRouter();
   const [token] = useAtom(userTokenSave);
-  const [userData] = useAtom(userDataSave);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -71,7 +70,7 @@ export default function Home() {
 
   useEffect(() => {
     if (token.accessToken) {
-      const { role } = userData;
+      const { role } = getUserDataByToken(token.accessToken);
 
       if (role === "USER") {
         router.push("/main");
@@ -80,8 +79,9 @@ export default function Home() {
         router.push("/taste/choose");
       }
       return;
-    } else router.push("/guide");
-  }, [token, userData]);
+    }
+    router.push("/guide");
+  }, [token]);
 
   useEffect(() => {
     deleteAsync(apiURL + "posts/1").then((res) => {

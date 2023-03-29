@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { logoutAsync } from "@/action/apis/auth";
 import { useRouter } from "next/router";
-import { userDataSave, userTokenSave } from "@/store/userStore";
+import { userTokenSave } from "@/store/userStore";
 import { useAtom } from "jotai";
 import { RESET } from "jotai/utils";
 
@@ -14,22 +14,6 @@ import { MobileRecipeCompo } from "@/present/component/MobileRecipeCompo/MobileR
 import { MainFoodListType } from "@/types/Main/dummy";
 
 export default function Home() {
-  const router = useRouter();
-  const [, setUserData] = useAtom(userDataSave);
-  const [token, setUserToken] = useAtom(userTokenSave);
-
-  const logout = async () => {
-    if (!token.accessToken) return;
-
-    const logoutResult = await logoutAsync(token.accessToken);
-
-    if (logoutResult.isSuccess) {
-      setUserData(RESET);
-      setUserToken(RESET);
-      router.replace("/guide");
-    }
-  };
-
   const foodList: Array<MainFoodListType> = [
     {
       foodName: "떡볶이",
