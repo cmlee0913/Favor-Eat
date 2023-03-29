@@ -2,6 +2,7 @@ package com.example.backend.api.service.foods;
 
 import com.example.backend.api.dto.foods.response.ResponseBasicFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
+import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
 import com.example.backend.api.entity.favorites.Favorites;
 import com.example.backend.api.entity.favorites.NonFavorites;
 import com.example.backend.api.entity.foods.Foods;
@@ -10,6 +11,7 @@ import com.example.backend.api.repository.favorites.FavoritesRepository;
 import com.example.backend.api.repository.favorites.NonFavoritesRepository;
 import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.repository.foods.SamplingFoodsRepository;
+import com.example.backend.api.repository.recommends.RecommendsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -25,6 +27,7 @@ public class FoodsService {
     private final FavoritesRepository favoritesRepository;
     private final NonFavoritesRepository nonFavoritesRepository;
     private final SamplingFoodsRepository samplingFoodsRepository;
+    private final RecommendsRepository recommandsRepository;
 
     /**
      * @param id must not be null
@@ -77,5 +80,11 @@ public class FoodsService {
             NonFavorites.builder().no(no).foodsId(id).build());
 
         return nonFavorites.getNo() > 0;
+    }
+
+    public List<ResponseRecommendFood> getRecommendFoodList(Long no) {
+        return recommandsRepository.findByNo(no).stream()
+            .map(recommends -> recommends.toDTO())
+            .collect(Collectors.toList());
     }
 }

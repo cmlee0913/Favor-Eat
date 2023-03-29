@@ -2,6 +2,7 @@ package com.example.backend.api.controller.foods;
 
 import com.example.backend.api.dto.foods.response.ResponseBasicFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
+import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
 import com.example.backend.api.service.foods.FoodsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,7 +39,8 @@ public class FoodsController {
 
     @GetMapping("/list/{index}")
     @Operation(summary = "취향 분석 음식 목록 전송", description = "<strong>취향 분석</strong> 시 필요한 음식의 목록을 <strong>100개씩</strong> 전송한다.")
-    private ResponseEntity<List<ResponseBasicFoodInfo>> getSamplingFoodList(@PathVariable Long index) {
+    private ResponseEntity<List<ResponseBasicFoodInfo>> getSamplingFoodList(
+        @PathVariable Long index) {
         return new ResponseEntity<>(foodsService.getSamplingFoodList(index), HttpStatus.OK);
     }
 
@@ -83,4 +85,12 @@ public class FoodsController {
             return new ResponseEntity<>(id + " : 관심없음 등록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/recommend")
+    @Operation(summary = "추천 음식 목록 조회", description = "추천 음식 목록을 조회합니다.")
+    private ResponseEntity<List<ResponseRecommendFood>> getRecommandFoodList(
+        @AuthenticationPrincipal User users, Long no) {
+        return new ResponseEntity<>(foodsService.getRecommendFoodList(Long.parseLong(users.getUsername())), HttpStatus.OK);
+    }
+
 }
