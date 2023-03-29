@@ -5,5 +5,5 @@ export interface ButtonProps {
 
 export interface ApiStateRes {
   isSuccess: boolean;
-  result: any
+  result: any;
 }

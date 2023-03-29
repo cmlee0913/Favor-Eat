@@ -3,12 +3,12 @@ import { theme } from "@/action/theme";
 
 export const Item = styled.div`
   ${theme.devices.desktop} {
-    width: 16vw;
+    width: 15vw;
   }
   ${theme.devices.tablet} {
-    width: 25vw;
+    width: 23vw;
   }
   ${theme.devices.mobile} {
-    width: 33vw;
+    width: 31vw;
   }
 `;

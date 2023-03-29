@@ -6,6 +6,7 @@ export const userDataSave = atomWithStorage<UserDataType>("userData", {
   email: null,
   role: null,
 });
+
 export const userTokenSave = atomWithStorage<UserTokenType>("userToken", {
   accessToken: null,
   refreshToken: null,
