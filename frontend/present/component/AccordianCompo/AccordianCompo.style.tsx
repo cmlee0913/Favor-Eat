@@ -20,7 +20,7 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div<{ open: boolean; idx: number }>`
-  border-bottom: solid 2.2px
+  border-bottom: solid 3px
     ${(props) =>
       props.open ? theme.accordianColor[props.idx] : theme.colors.mono.dark_0};
   font-family: "Pretendard-Bold";

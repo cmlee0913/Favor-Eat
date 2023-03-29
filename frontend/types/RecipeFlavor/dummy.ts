@@ -29,6 +29,12 @@ export interface FlavorInfo {
 export interface RecipeFlavorProps {
   values: Array<FlavorInfo>;
   recipeImage: StaticImageData;
+  tasteInfo: {
+    spicy: number;
+    sweet: number;
+    salty: number;
+    oily: number;
+  };
 }
 
 export interface HoverBoxImageType {

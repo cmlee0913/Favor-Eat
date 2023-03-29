@@ -2,7 +2,7 @@ import Piechart from "@/present/component/PieChart/PieChart";
 import React from "react";
 import * as style from "./Ingrediant.style"
 
-function Ingrediant() {
+function Ingrediant({nutrientInfo}:{nutrientInfo:Object}) {
     return <style.Container>
         <Piechart />
 

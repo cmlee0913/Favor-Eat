@@ -8,7 +8,7 @@ module.exports = withPWA({
   reactStrictMode: false,
   cssModules: true,
   images: {
-    domains: ["naver.github.io", "cdn.pixabay.com"],
+    domains: ["naver.github.io", "cdn.pixabay.com", "recipe1.ezmember.co.kr"],
   },
   webpack(config) {
     config.module.rules.push({

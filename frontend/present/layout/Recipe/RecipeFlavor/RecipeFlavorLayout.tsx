@@ -25,6 +25,7 @@ import { useState } from "react";
 export default function RecipeFlavorLayout({
   values,
   recipeImage,
+  tasteInfo
 }: RecipeFlavorProps) {
   const flavorStaticData = {
     spicy: {
@@ -70,11 +71,11 @@ export default function RecipeFlavorLayout({
   };
 
   const flavorList: Array<FlavorCharacter> = [];
-  values.forEach((item) => {
+  Object.keys(values).forEach((item) => {
     const obj: any = {
-      ...flavorStaticData[item.type],
-      value: item.value,
-      type: item.type,
+      ...flavorStaticData[values[item].type],
+      value: values[item].value,
+      type: values[item].type,
     };
     flavorList.push(obj);
   });
@@ -90,7 +91,7 @@ export default function RecipeFlavorLayout({
   };
 
   const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy,
+    hoverBoxValue.spicy
   );
   const [infoShow, setInfoShow] = useState(false);
 
@@ -123,11 +124,11 @@ export default function RecipeFlavorLayout({
       </style.CharacterContainer>
 
       <style.ProgressContainer>
-        {values.map((item, index) => (
+        {Object.keys(tasteInfo).map((item, index) => (
           <FlavorProgressCompo
             key={index}
-            type={item.type}
-            value={item.value}
+            type={item}
+            value={tasteInfo[item]}
           />
         ))}
       </style.ProgressContainer>
