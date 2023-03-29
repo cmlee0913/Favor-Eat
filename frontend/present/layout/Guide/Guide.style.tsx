@@ -17,6 +17,7 @@ export const Slogan = styled.p`
     position: absolute;
     font-size: 400%;
     z-index: 3;
+    font-family: "Inter-Black";
 
     &:nth-child(1) {
       top: 14%;

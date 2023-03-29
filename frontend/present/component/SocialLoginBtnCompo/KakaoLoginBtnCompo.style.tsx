@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const LoginGuideText = styled.div`
   font-size: 24px;
   margin-bottom: 30px;
+  font-family: "Pretendard-SemiBold";
 
   ${theme.devices.tablet} {
     font-size: 20px;
@@ -61,6 +62,7 @@ export const KakaoLogo = styled(kakaoLogoSvg)`
 export const ButtonName = styled.span`
   font-size: 20px;
   margin-left: 15px;
+  font-family: "Pretendard-Bold";
   ${theme.devices.tablet} {
     font-size: 16px;
     margin-left: 7px;
