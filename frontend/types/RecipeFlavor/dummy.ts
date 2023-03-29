@@ -41,3 +41,24 @@ export interface HoverBoxImageType {
   mobileImage: StaticImageData;
   left: number;
 }
+
+export interface NutrientObject {
+  calorie: number;
+  moisture: number;
+  protein: number;
+  fat: number;
+  carbohydrate: number;
+  sugars: number;
+  fiber: number;
+  calcium: number;
+  iron: number;
+  phosphorus: number;
+  potassium: number;
+  salt: number;
+  vitaminA: number;
+  vitaminC: number;
+  vitaminD: number;
+  cholesterol: number;
+  saturatedfat: number;
+  transfat: number;
+}

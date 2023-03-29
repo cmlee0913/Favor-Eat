@@ -27,7 +27,7 @@ export const Container = styled.div<{ open: boolean; idx: number }>`
   font-size: 1.2rem;
 
   & ${Content} {
-    border-top: solid 2.2px ${(props) => theme.accordianColor[props.idx]};
+    border-top: solid 3px ${(props) => theme.accordianColor[props.idx]};
   }
 
   & ${Title} {
