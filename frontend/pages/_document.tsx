@@ -1,4 +1,4 @@
-import { GlobalStyle } from "@/action/GlobalStyle";
+import { GlobalStyle } from "@/constant/GlobalStyle";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {

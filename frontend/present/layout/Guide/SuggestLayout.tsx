@@ -27,6 +27,7 @@ export default function SuggestLayout() {
     );
   });
 
+
   return (
     <style.Container className="Pink Suggest">
       {/* 텍스트 */}

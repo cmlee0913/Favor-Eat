@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import ThumbSvg from "@/assets/icon/Thumb.svg";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 const color = {
   back: "#9494E0",

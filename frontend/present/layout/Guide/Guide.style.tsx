@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import styled, { keyframes } from "styled-components";
 
 export const fadeInUp = keyframes`
@@ -17,6 +17,7 @@ export const Slogan = styled.p`
     position: absolute;
     font-size: 400%;
     z-index: 3;
+    font-family: "Inter-Black";
 
     &:nth-child(1) {
       top: 14%;
@@ -378,10 +379,12 @@ export const SampleTest = styled.div`
   & > h1 {
     font-size: 3rem;
     margin: 0;
+    font-family: "Pretendard-Bold";
   }
 
   & > p {
     font-size: 20px;
+    font-family: "Pretendard-Semibold";
   }
 `;
 

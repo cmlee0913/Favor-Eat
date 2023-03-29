@@ -17,6 +17,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/assets/*": ["./assets/*"],
+      "@/constant/*": ["./constant/*"],
       "@/action/*": ["./action/*"],
       "@/pages/*": ["./pages/*"],
       "@/present/*": ["./present/*"],

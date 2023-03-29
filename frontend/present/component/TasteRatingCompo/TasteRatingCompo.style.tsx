@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`

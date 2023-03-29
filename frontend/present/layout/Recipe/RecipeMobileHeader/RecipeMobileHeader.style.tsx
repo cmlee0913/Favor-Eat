@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import styled from "styled-components";
 
 export const Compo = styled.li<{ open: boolean; idx: number }>`
