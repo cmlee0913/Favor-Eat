@@ -50,6 +50,12 @@ public class FoodsService {
             .collect(Collectors.toList());
     }
 
+    public List<ResponseBasicFoodInfo> getFavorFoodList(long no) {
+        return favoritesRepository.findByNo(no).stream()
+            .map(favorites -> favorites.toDTO())
+            .collect(Collectors.toList());
+    }
+
     /**
      * @param no must not be null
      * @param id must not be null
@@ -66,12 +72,6 @@ public class FoodsService {
     @Transactional
     public void unregistFavorFood(Long no, Long id) throws RuntimeException {
         favoritesRepository.deleteById(new UsersFoodsID(no, id));
-    }
-
-    public List<ResponseBasicFoodInfo> getFavorFoodList(long no) {
-        return favoritesRepository.findByNo(no).stream()
-            .map(favorites -> favorites.toDTO())
-            .collect(Collectors.toList());
     }
 
     @Transactional
