@@ -7,16 +7,11 @@ export interface RecipeData {
 }
 
 export interface TopLayoutProps {
-  count: number;
   max: number;
 }
 
 export interface MiddleLayoutProps {
-  recipeData: RecipeData;
   canGoMain: boolean;
-  count: number;
-  clickHate: () => void;
-  clickNext: () => void;
 }
 
 export interface BottomLayoutProps {

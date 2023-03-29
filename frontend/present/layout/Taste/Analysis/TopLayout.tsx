@@ -1,7 +1,11 @@
+import { RecipeRatingListAtom } from "@/store/tasteStore";
 import { TopLayoutProps } from "@/types/Taste/dummy";
+import { useAtom } from "jotai";
 import * as style from "./AnalysisLayout.style";
 
-export default function TopLayout({ count, max }: TopLayoutProps) {
+export default function TopLayout({ max }: TopLayoutProps) {
+  const [recipeRatingList] = useAtom(RecipeRatingListAtom);
+
   return (
     <style.TopContainer>
       <style.Title>
@@ -10,7 +14,7 @@ export default function TopLayout({ count, max }: TopLayoutProps) {
         음식을 평가해주세요
       </style.Title>
       <style.Count>
-        {count} / {max}
+        {recipeRatingList.length} / {max}
       </style.Count>
     </style.TopContainer>
   );

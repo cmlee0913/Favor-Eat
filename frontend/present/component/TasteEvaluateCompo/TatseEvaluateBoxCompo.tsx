@@ -22,42 +22,77 @@ import useMediaQuery from "@/action/hooks/useMediaQuery";
 import Button from "@/present/common/Button/Button";
 import { useRouter } from "next/router";
 import { TasteEvaluateBoxCompoProps } from "@/types/TasteEvaluateBoxCompo/dummy";
+import { CurrentIndexAtom, RecipeRatingListAtom } from "@/store/tasteStore";
+import { useAtom } from "jotai";
+import { RecipeRatingType } from "@/types/store/tasteStoreTypes";
+
+const hoverBoxValue = {
+  spicy: {
+    pcImage: SpicyHoverBoxPc,
+    mobileImage: SpicyHoverBoxMobile,
+    left: 7,
+  },
+  sweet: {
+    pcImage: SweetHoverBoxPC,
+    mobileImage: SweetHoverBoxMobile,
+    left: 20,
+  },
+  salty: {
+    pcImage: SaltyHoverBoxPC,
+    mobileImage: SaltyHoverBoxMobile,
+    left: 30,
+  },
+  oily: {
+    pcImage: SaltyHoverBoxPC,
+    mobileImage: SaltyHoverBoxMobile,
+    left: 30,
+  },
+};
+
+//rendering object
+const ratingObjList: Array<Array<FlavorObject>> = [
+  [
+    {
+      type: "spicy",
+      typeToString: "맵기",
+      characterTitle: "매워요",
+    },
+    {
+      type: "sweet",
+      typeToString: "달기",
+      characterTitle: "달아요",
+    },
+  ],
+  [
+    {
+      type: "salty",
+      typeToString: "짜기",
+      characterTitle: "짜요",
+    },
+    {
+      type: "oily",
+      typeToString: "기름기",
+      characterTitle: "기름져요",
+    },
+  ],
+];
 
 export default function TasteEvaluateBoxCompo({
   canGoMain,
-  recipeId,
-  recipeName,
-  resetButtonShow,
-  imgSrc,
+  recipeData,
+  buttonActive,
 }: TasteEvaluateBoxCompoProps) {
-  const hoverBoxValue = {
-    spicy: {
-      pcImage: SpicyHoverBoxPc,
-      mobileImage: SpicyHoverBoxMobile,
-      left: 7,
-    },
-    sweet: {
-      pcImage: SweetHoverBoxPC,
-      mobileImage: SweetHoverBoxMobile,
-      left: 20,
-    },
-    salty: {
-      pcImage: SaltyHoverBoxPC,
-      mobileImage: SaltyHoverBoxMobile,
-      left: 30,
-    },
-    oily: {
-      pcImage: SaltyHoverBoxPC,
-      mobileImage: SaltyHoverBoxMobile,
-      left: 30,
-    },
-  };
-  // const isTablet = useMediaQuery(`(${theme.devices.tablet})`);
-  // const isMobile = useMediaQuery(`(${theme.devices.mobile})`);
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isMobile = useMediaQuery("(min-width: 426px)");
+  const { recipeId, recipeName, imageSrc } = recipeData;
+  const router = useRouter();
 
-  //hover box 활성화
+  //hover info box
+  const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
+    hoverBoxValue.spicy,
+  );
+  const [leftInfoShow, setLeftInfoShow] = useState(false);
+  const [rightInfoShow, setRightInfoShow] = useState(false);
   const onActive = (type: string, isLeft: boolean) => {
     setHoverBoxImage(hoverBoxValue[type]);
 
@@ -70,19 +105,10 @@ export default function TasteEvaluateBoxCompo({
     setRightInfoShow(false);
     setRightInfoShow(true);
   };
-
-  // 비활성화
   const onInactive = () => {
     setLeftInfoShow(false);
     setRightInfoShow(false);
   };
-
-  //hover info box
-  const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy,
-  );
-  const [leftInfoShow, setLeftInfoShow] = useState(false);
-  const [rightInfoShow, setRightInfoShow] = useState(false);
 
   //각 맛 별 점수
   const [ratingValues, setRatingValues] = useState<Array<number>>(
@@ -110,49 +136,47 @@ export default function TasteEvaluateBoxCompo({
     setRatingValues(valueList);
   };
 
-  //rendering object
-  const ratingObjList: Array<Array<FlavorObject>> = [
-    [
-      {
-        type: "spicy",
-        typeToString: "맵기",
-        characterTitle: "매워요",
-      },
-      {
-        type: "sweet",
-        typeToString: "달기",
-        characterTitle: "달아요",
-      },
-    ],
-    [
-      {
-        type: "salty",
-        typeToString: "짜기",
-        characterTitle: "짜요",
-      },
-      {
-        type: "oily",
-        typeToString: "기름기",
-        characterTitle: "기름져요",
-      },
-    ],
-  ];
-
+  const [currentIndex, setCurrentIndex] = useAtom(CurrentIndexAtom);
+  const [recipeRatingList, setRecipeRatingList] = useAtom(RecipeRatingListAtom);
   const [canMoveToNext, setCanMoveToNext] = useState(false);
+
   const onClickNext = () => {
+    buttonActive(true);
+    const newRatingValue: RecipeRatingType = {
+      recipeId: recipeData.recipeId,
+      ratingValueList: [],
+    };
+    newRatingValue.ratingValueList.push({
+      type: "spicy",
+      value: ratingValues[0],
+    });
+    newRatingValue.ratingValueList.push({
+      type: "sweet",
+      value: ratingValues[1],
+    });
+    newRatingValue.ratingValueList.push({
+      type: "salty",
+      value: ratingValues[2],
+    });
+    newRatingValue.ratingValueList.push({
+      type: "oily",
+      value: ratingValues[3],
+    });
+
+    const oldRatingList = [...recipeRatingList];
+    oldRatingList.push(newRatingValue);
+    setRecipeRatingList(oldRatingList);
     setRatingValues([0, 0, 0, 0]);
-    resetButtonShow();
+    setCurrentIndex(currentIndex + 1);
+  };
+
+  const onClickStop = () => {
+    router.push("/main");
   };
 
   useEffect(() => {
     setCanMoveToNext(false);
   }, [recipeId]);
-
-  const router = useRouter();
-
-  const onClickStop = () => {
-    router.push("/main");
-  };
 
   return (
     <>
@@ -181,7 +205,7 @@ export default function TasteEvaluateBoxCompo({
                 />
               ) : (
                 <Image
-                  src={imgSrc ? imgSrc : defaultImage}
+                  src={imageSrc ? imageSrc : defaultImage}
                   width={1000}
                   height={1000}
                   loading="lazy"

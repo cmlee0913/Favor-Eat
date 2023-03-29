@@ -6,22 +6,17 @@ import HateButton from "@/assets/icon/HateButton.svg";
 import TasteFoodCardCompo from "@/present/component/TasteFoodCardCompo/TasteFoodCardCompo";
 import { MiddleLayoutProps } from "@/types/Taste/dummy";
 import TasteEvaluateBoxCompo from "@/present/component/TasteEvaluateCompo/TatseEvaluateBoxCompo";
-import useMediaQuery from "@/action/hooks/useMediaQuery";
+import { CurrentIndexAtom, CurrentRecipeDataAtom } from "@/store/tasteStore";
+import { useAtom } from "jotai";
 
-export default function MiddleLayout({
-  recipeData,
-  canGoMain,
-  count,
-  clickHate,
-  clickNext,
-}: MiddleLayoutProps) {
+export default function MiddleLayout({ canGoMain }: MiddleLayoutProps) {
   const [buttonShow, setButtonShow] = useState(true);
-  const isTablet = useMediaQuery("(min-width: 769px)");
-  const isMobile = useMediaQuery("(min-width: 426px)");
 
-  const onClickNext = () => {
-    clickNext();
-    setButtonShow(true);
+  const [currentRecipeData] = useAtom(CurrentRecipeDataAtom);
+  const [, setCurrentIndex] = useAtom(CurrentIndexAtom);
+
+  const onClickHate = () => {
+    setCurrentIndex((current) => current + 1);
   };
 
   return (
@@ -32,18 +27,16 @@ export default function MiddleLayout({
           <div>좋아요</div>
         </style.Button>
         {/* 음식 사진 */}
-        <TasteFoodCardCompo recipeData={recipeData} />
+        <TasteFoodCardCompo recipeData={currentRecipeData} />
         {/* rating */}
         <style.EvaluateBoxWrapper editable={buttonShow}>
           <TasteEvaluateBoxCompo
             canGoMain={canGoMain}
-            recipeName={recipeData?.recipeName ?? ""}
-            recipeId={recipeData?.recipeId ?? -1}
-            resetButtonShow={onClickNext}
-            imgSrc={recipeData?.imageSrc ?? ""}
+            recipeData={currentRecipeData}
+            buttonActive={setButtonShow}
           />
         </style.EvaluateBoxWrapper>
-        <style.Button show={buttonShow} onClick={() => clickHate()}>
+        <style.Button show={buttonShow} onClick={() => onClickHate()}>
           <HateButton />
           <div>싫어요</div>
         </style.Button>
