@@ -13,8 +13,8 @@ export interface FlavorStaticData {
 }
 
 export interface MyPageTypes {
-  category: string;
-  content: JSX.Element;
+  category: any;
+  content: any;
   isOpen: boolean;
 }
 

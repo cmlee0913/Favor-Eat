@@ -18,6 +18,7 @@ function getItems(nextGroupKey: number, count: number) {
 
 const Item = ({ num }: any) => (
   <AutoHeightImage
+    style={{ borderRadius: "20px" }}
     src={`https://naver.github.io/egjs-infinitegrid/assets/image/${
       (num % 33) + 1
     }.jpg`}
@@ -25,19 +26,20 @@ const Item = ({ num }: any) => (
   />
 );
 
-export default function App() {
+export default function MasonryLayout() {
   const [items, setItems] = useState(() => getItems(0, 10));
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isPhone = useMediaQuery("(min-width: 426px)");
 
   let columnNumber = 6;
-  
-  // 삼항연산자 사용
-  `${
-    isTablet && isPhone
-      ? (columnNumber = 6)
-      : `${!isTablet && isPhone ? (columnNumber = 4) : (columnNumber = 3)}`
-  }`;
+
+  if (isTablet && isPhone) {
+    columnNumber = 6;
+  } else if (!isTablet && isPhone) {
+    columnNumber = 4;
+  } else {
+    columnNumber = 3;
+  }
 
   return (
     <div>
@@ -60,7 +62,7 @@ export default function App() {
               data-grid-groupkey={item.groupKey}
               key={item.key}
               num={item.key}
-            />{" "}
+            />
           </styles.Item>
         ))}
       </MasonryInfiniteGrid>

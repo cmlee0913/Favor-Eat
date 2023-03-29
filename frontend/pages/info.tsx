@@ -1,27 +1,28 @@
 import { useState, useEffect } from "react";
 
-import InfoGridLayout from "@/present/layout/Info/InfoGridLayout";
 import InfoMember from "@/present/layout/Info/InfoMember";
 import InfoAccordian from "@/present/layout/Info/InfoAccordian";
 import InfoStaticData from "@/present/layout/Info/InfoStaticData";
 
 import { InfoTypes } from "@/types/Info/dummy";
 
+import GridReverseLayout from "@/present/layout/GridLayout/GridReverseLayout";
+
 export default function Info() {
   const [selectIdx, setSelectedIdx] = useState(0);
   const [infoArr, setInfoArr] = useState<Array<InfoTypes>>([
     {
-      category: "자료 출처 1번",
+      category: "만개의 레시피/식품 영양 크롤링",
       content: <InfoStaticData />,
       isOpen: true,
     },
     {
-      category: "자료 출처 2번",
+      category: "백/프론트 래퍼런스 넣기",
       content: <InfoStaticData />,
       isOpen: false,
     },
     {
-      category: "자료 출처 3번",
+      category: "노션/피그마 etc",
       content: <InfoStaticData />,
       isOpen: false,
     },
@@ -40,13 +41,13 @@ export default function Info() {
   }, [selectIdx]);
 
   return (
-    <InfoGridLayout>
+    <GridReverseLayout>
       <InfoMember />
       <InfoAccordian
         infoArr={infoArr}
         selectIdx={selectIdx}
         setSelectedIdx={setSelectedIdx}
       />
-    </InfoGridLayout>
+    </GridReverseLayout>
   );
 }

@@ -39,7 +39,7 @@ export default function Background({ movePage, selectedChracter }) {
         <style.Ground>
           <Image className="Ground" src={Ground} alt="Ground" />
         </style.Ground>
-
+``
         <style.Bush>
           <Image className="Bush Responsive" src={Bush1} alt="Bush" />
           <Image className="Bush Responsive" src={Bush2} alt="Bush" />

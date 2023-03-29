@@ -80,13 +80,13 @@ export default function MyPageUser() {
         subtitle="이런 맛을 좋아하셨어요"
       />
       <style.HoverGrid>
-        <div style={{ width: "1fr" }}>
+        <style.HoverImageContainer>
           {isHover ? (
             <style.HoverImageWrapper>
               <Image src={hoverImage} alt="item.type" />
             </style.HoverImageWrapper>
           ) : null}
-        </div>
+        </style.HoverImageContainer>
         <div>
           {flavorData.map((item, index) => (
             <MyPageFlavorData

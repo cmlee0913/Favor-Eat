@@ -13,8 +13,8 @@ const config = {
   projectId: "test-pwa-7907d",
   storageBucket: "test-pwa-7907d.appspot.com",
   messagingSenderId: "11003173258",
-  appId: "1:11003173258:web:37c0e0df16029a29141073",
-  measurementId: "G-3R50DR5Y5E",
+  appId: "1:11003173258:web:c4468671141151e5141073",
+  measurementId: "G-H66VD1BMY3",
 };
 
 // Initialize Firebase
@@ -25,3 +25,19 @@ if (!firebase.apps.length) {
 }
 
 const messaging = firebase.messaging();
+
+// 백그라운드 상태에서 알림 수신 시 호출되는 이벤트 리스너
+messaging.onBackgroundMessage((payload) => {
+  console.log(
+    "[firebase-messaging-sw.js] Received background message ",
+    payload
+  );
+
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: payload.notification.icon,
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});

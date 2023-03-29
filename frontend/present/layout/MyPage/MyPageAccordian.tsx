@@ -1,5 +1,7 @@
 import React from "react";
 
+import * as style from "./MyPage.style";
+
 import AccordianPurpleCompo from "@/present/component/AccordianPurpleCompo/AccordianPurpleCompo";
 import { MyPageContentProps } from "@/types/MyPage/dummy";
 
@@ -26,9 +28,9 @@ export default function MyPageAccordian({
   });
 
   return (
-    <div>
+    <style.MyPageAccordian>
       <RightTitleBox title="마이페이지" />
       {accordians}
-    </div>
+    </style.MyPageAccordian>
   );
 }

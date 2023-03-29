@@ -24,9 +24,6 @@ export default function MyPageFlavorData({
   setHoverType,
   setIsHover,
 }: MyPageFlavorDataProps) {
-  // console.log(item);
-  // console.log(setIsHover);
-
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,
@@ -60,18 +57,18 @@ export default function MyPageFlavorData({
     <>
       <style.FlavorDataContainer>
         {/* 맛 표현, 캐릭터, HoverIcon */}
-        <style.FlavorDataImageContainer
-          onMouseEnter={() => {
-            setHoverType(item.type);
-            setIsHover(true);
-          }}
-          onMouseLeave={() => {
-            setIsHover(false);
-          }}
-        >
+        <style.FlavorDataImageContainer>
           <div>{item.title}</div>
           <Image src={item.img} alt="item.type" />
-          <style.HoverIconWrapper>
+          <style.HoverIconWrapper
+            onMouseEnter={() => {
+              setHoverType(item.type);
+              setIsHover(true);
+            }}
+            onMouseLeave={() => {
+              setIsHover(false);
+            }}
+          >
             <style.HoverIconText>?</style.HoverIconText>
           </style.HoverIconWrapper>
         </style.FlavorDataImageContainer>
@@ -80,7 +77,7 @@ export default function MyPageFlavorData({
         <style.FlavorDataValueContainer>
           {/* 평균 맛 정보 */}
           <div>
-            나의 평균 {item.subtitle}는 {item.value} 입니다.
+            나의 평균 {item.subtitle}는 {item.value}단계 입니다.
           </div>
           {/* 평균 맛 정보 시각화 */}
           <style.Container>

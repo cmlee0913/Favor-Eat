@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-import InfoGridLayout from "@/present/layout/Info/InfoGridLayout";
+import GridDisappearLayout from "@/present/layout/GridLayout/GridDisappearLayout";
+
 import AlarmAdvise from "@/present/layout/Alarm/AlarmAdvise";
 import AlarmSetting from "@/present/layout/Alarm/AlarmSetting";
 import AlarmAccordian from "@/present/layout/Alarm/AlarmAccordian";
@@ -40,13 +41,13 @@ export default function Alarm() {
   }, [selectIdx]);
 
   return (
-    <InfoGridLayout>
+    <GridDisappearLayout>
       <AlarmAdvise />
       <AlarmAccordian
         alarmArr={alarmArr}
         selectIdx={selectIdx}
         setSelectedIdx={setSelectedIdx}
       />
-    </InfoGridLayout>
+    </GridDisappearLayout>
   );
 }
