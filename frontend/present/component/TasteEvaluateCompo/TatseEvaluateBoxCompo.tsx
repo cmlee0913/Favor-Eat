@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import FlavorCharacterCompo from "../FlavorCharacterCompo/FlavorCharacterCompo";
 import TasteRatingCompo from "../TasteRatingCompo/TasteRatingCompo";
 import * as style from "./TatseEvaluateBoxCompo.style";
@@ -89,7 +89,7 @@ export default function TasteEvaluateBoxCompo({
 
   //hover info box
   const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy,
+    hoverBoxValue.spicy
   );
   const [leftInfoShow, setLeftInfoShow] = useState(false);
   const [rightInfoShow, setRightInfoShow] = useState(false);
@@ -112,7 +112,7 @@ export default function TasteEvaluateBoxCompo({
 
   //각 맛 별 점수
   const [ratingValues, setRatingValues] = useState<Array<number>>(
-    Array(4).fill(0),
+    Array(4).fill(0)
   );
   const setRatingValue = (value: number, type: string) => {
     //이미지 평가 완료 버튼 활성화

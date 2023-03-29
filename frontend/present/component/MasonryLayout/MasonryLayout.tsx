@@ -3,7 +3,7 @@ import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
 import AutoHeightImage from "./AutoHeightImage";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import * as styles from "./MasonryLayout.styles";
 
 function getItems(nextGroupKey: number, count: number) {

@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import { MobileRecipeCompoProps } from "@/types/MobileRecipeCompo/dummy";
 import Image from "next/image";
 import { useRouter } from "next/router";

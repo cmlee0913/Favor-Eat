@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 export const RightTitleBox = styled.div`
   background-color: ${theme.colors.main.purple.dark_1};

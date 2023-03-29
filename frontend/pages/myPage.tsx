@@ -35,6 +35,7 @@ export default function MyPage() {
     },
   ]);
 
+
   useEffect(() => {
     const tmp = myPageArr.map((elem, idx) => {
       if (idx === selectIdx) {
