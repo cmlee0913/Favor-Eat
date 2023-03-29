@@ -1,4 +1,4 @@
-package com.example.backend.api.entity.recommends;
+package com.example.backend.api.entity.foods.recommends;
 
 import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
 import com.example.backend.api.dto.foods.response.ResponseTasteInfo;

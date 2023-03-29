@@ -1,4 +1,4 @@
-package com.example.backend.api.entity.favorites;
+package com.example.backend.api.entity.foods.favorites;
 
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
