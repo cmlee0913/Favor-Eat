@@ -61,7 +61,7 @@ public class UsersService {
      * @throws RuntimeException failed to save evaluation
      */
     @Transactional
-    public void registEvaluations(long no, RequestTasteEvaluations requestTasteEvaluations)
+    public void registEvaluations(Long no, RequestTasteEvaluations requestTasteEvaluations)
         throws RuntimeException {
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
     }

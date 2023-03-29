@@ -50,7 +50,7 @@ public class FoodsService {
             .collect(Collectors.toList());
     }
 
-    public List<ResponseBasicFoodInfo> getFavorFoodList(long no) {
+    public List<ResponseBasicFoodInfo> getFavorFoodList(Long no) {
         return favoritesRepository.findByNo(no).stream()
             .map(favorites -> favorites.toDTO())
             .collect(Collectors.toList());
