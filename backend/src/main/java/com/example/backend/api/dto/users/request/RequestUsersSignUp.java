@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UsersSignUpRequest {
+public class RequestUsersSignUp {
     private Long no;
     private String nickname;
     
