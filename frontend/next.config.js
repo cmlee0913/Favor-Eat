@@ -6,6 +6,7 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   reactStrictMode: false,
+  cssModules: true,
   images: {
     domains: ["naver.github.io", "cdn.pixabay.com"],
   },

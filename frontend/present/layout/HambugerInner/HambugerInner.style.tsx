@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import { fadeInUp } from "../Guide/Guide.style";
 
 const ingArr = [249.85, 265.65, 210.22, 328, 187];

@@ -16,9 +16,25 @@ import Arrow3 from "@/assets/image/Hambuger/Arrow3.png";
 import Arrow4 from "@/assets/image/Hambuger/Arrow4.png";
 import Arrow5 from "@/assets/image/Hambuger/Arrow5.png";
 import { useRouter } from "next/router";
+import { useAtom } from "jotai";
+import { userTokenSave } from "@/store/userStore";
+import { logoutAsync } from "@/action/apis/auth";
+import { RESET } from "jotai/utils";
 
-function HambugerInner({setIsOpen}:{setIsOpen:Function}) {
+function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
   const router = useRouter();
+
+  const [token, setUserToken] = useAtom(userTokenSave);
+
+  const logout = async (accessToken: string) => {
+    if (!accessToken) return;
+
+    const logoutResult = await logoutAsync(accessToken);
+    if (logoutResult.isSuccess) {
+      setUserToken(RESET);
+      router.replace("/guide");
+    }
+  };
 
   const moveHandler = (path: string) => {
     router.push(path);
@@ -32,7 +48,7 @@ function HambugerInner({setIsOpen}:{setIsOpen:Function}) {
       alt: "Tomato",
       arrow: Arrow1,
       handler: () => {
-        moveHandler('/myPage');
+        moveHandler("/myPage");
       },
     },
     {
@@ -41,7 +57,7 @@ function HambugerInner({setIsOpen}:{setIsOpen:Function}) {
       alt: "Beef",
       arrow: Arrow2,
       handler: () => {
-        moveHandler('/info');
+        moveHandler("/info");
       },
     },
     {
@@ -50,7 +66,7 @@ function HambugerInner({setIsOpen}:{setIsOpen:Function}) {
       alt: "Cheese",
       arrow: Arrow3,
       handler: () => {
-        moveHandler('/alarm');
+        moveHandler("/alarm");
       },
     },
     {
@@ -58,7 +74,7 @@ function HambugerInner({setIsOpen}:{setIsOpen:Function}) {
       image: Lettuce,
       alt: "Lettuce",
       arrow: Arrow4,
-      handler: null,
+      handler: () => logout(token.accessToken),
     },
     {
       name: "메인화면으로",
@@ -66,7 +82,7 @@ function HambugerInner({setIsOpen}:{setIsOpen:Function}) {
       alt: "Bread",
       arrow: Arrow5,
       handler: () => {
-        moveHandler('/main');
+        moveHandler("/main");
       },
     },
   ];

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 // MyPageUser.tsx
 export const MyPageUser = styled.div`

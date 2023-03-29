@@ -2,6 +2,7 @@ import Header from "@/present/layout/Header/Header";
 import { Provider } from "jotai";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import '../constant/font.css'
 
 import { useEffect } from "react";
 

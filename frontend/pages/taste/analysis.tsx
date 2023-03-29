@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
-import * as style from "@/present/layout/Taste/Analysis/AnalysisLayout.style";
+import { useAtom } from "jotai";
 
 import TopLayout from "@/present/layout/Taste/Analysis/TopLayout";
 import MiddleLayout from "@/present/layout/Taste/Analysis/MiddleLayout";
 import BottomLayout from "@/present/layout/Taste/Analysis/BottomLayout";
 import { RecipeData } from "@/types/Taste/dummy";
 
+import {
+  CurrentIndexAtom,
+  CurrentRecipeDataAtom,
+  RecipeRatingListAtom,
+} from "@/store/tasteStore";
+import { userTokenSave } from "@/store/userStore";
+import { getTasteRecipeList } from "@/action/apis/taste";
+
+import * as style from "@/present/layout/Taste/Analysis/AnalysisLayout.style";
+
 export default function Analysis() {
   const MAX_COUNT = 5;
-  const [count, setCount] = useState(0);
   const [canStop, setCanStop] = useState(false);
 
+  //dummy data
   const recipeDataList: Array<RecipeData> = [
     {
       imageSrc:
@@ -67,20 +77,12 @@ export default function Analysis() {
       recipeId: 8,
     },
   ];
-
   const [recipeList, setRecipeList] =
     useState<Array<RecipeData>>(recipeDataList);
-  const [currentIndex, setCurrentIndex] = useState(-1);
 
-  const onClickHate = () => {
-    if (currentIndex < recipeDataList.length) {
-      setCurrentIndex((current) => current + 1);
-    }
-  };
-  const onClickNext = () => {
-    setCurrentIndex((current) => current + 1);
-    setCount((current) => current + 1);
-  };
+  const [currentIndex, setCurrentIndex] = useAtom(CurrentIndexAtom);
+  const [, setCurrentRecipeData] = useAtom(CurrentRecipeDataAtom);
+  const [recipeRatingList] = useAtom(RecipeRatingListAtom);
 
   useEffect(() => {
     if (recipeList.length > 0) {
@@ -90,7 +92,7 @@ export default function Analysis() {
 
   useEffect(() => {
     //TODO : t서버에서 새로운 데이터 받아오기
-    if (currentIndex === recipeDataList.length - 1) {
+    if (currentIndex >= recipeDataList.length) {
       const newList: Array<RecipeData> = [
         {
           imageSrc:
@@ -118,27 +120,23 @@ export default function Analysis() {
         },
       ];
       setRecipeList(newList);
+      return;
     }
+    setCurrentRecipeData(recipeList[currentIndex]);
   }, [currentIndex]);
 
   useEffect(() => {
     if (!canStop) {
-      if (count >= MAX_COUNT) {
+      if (recipeRatingList.length >= MAX_COUNT) {
         setCanStop(true);
       }
     }
-  }, [count]);
+  }, [recipeRatingList.length]);
 
   return (
     <style.Container>
-      <TopLayout count={count} max={MAX_COUNT} />
-      <MiddleLayout
-        canGoMain={canStop}
-        recipeData={currentIndex > -1 ? recipeList[currentIndex] : null}
-        count={count}
-        clickHate={onClickHate}
-        clickNext={onClickNext}
-      />
+      <TopLayout max={MAX_COUNT} />
+      <MiddleLayout canGoMain={canStop} />
       <BottomLayout canGoMain={canStop} evaluatedCount={currentIndex + 1} />
     </style.Container>
   );
