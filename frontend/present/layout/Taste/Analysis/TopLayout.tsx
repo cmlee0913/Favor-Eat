@@ -1,10 +1,10 @@
-import { RecipeRatingListAtom } from "@/store/tasteStore";
+import { recipeRatingListAtom } from "@/store/tasteStore";
 import { TopLayoutProps } from "@/types/Taste/dummy";
 import { useAtom } from "jotai";
 import * as style from "./AnalysisLayout.style";
 
 export default function TopLayout({ max }: TopLayoutProps) {
-  const [recipeRatingList] = useAtom(RecipeRatingListAtom);
+  const [recipeRatingList] = useAtom(recipeRatingListAtom);
 
   return (
     <style.TopContainer>

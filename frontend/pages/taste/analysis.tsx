@@ -7,121 +7,68 @@ import BottomLayout from "@/present/layout/Taste/Analysis/BottomLayout";
 import { RecipeData } from "@/types/Taste/dummy";
 
 import {
-  CurrentIndexAtom,
-  CurrentRecipeDataAtom,
-  RecipeRatingListAtom,
+  currentIndexAtom,
+  currentRecipeDataAtom,
+  recipeRatingListAtom,
 } from "@/store/tasteStore";
 import { userTokenSave } from "@/store/userStore";
 import { getTasteRecipeList } from "@/action/apis/taste";
 
 import * as style from "@/present/layout/Taste/Analysis/AnalysisLayout.style";
+import { FoodForTasteResponseType } from "@/types/api/tasteApiType";
+
+const requestRecipeList = async (requestCount: number, token: string) => {
+  const { isSuccess, result } = await getTasteRecipeList(requestCount, token);
+
+  if (isSuccess) {
+    const list: Array<RecipeData> = [];
+    result.forEach((item: FoodForTasteResponseType) => {
+      list.push({
+        imageSrc: item.image,
+        recipeName: item.name,
+        recipeId: item.foodsId,
+      });
+    });
+    return list;
+  }
+  return null;
+};
 
 export default function Analysis() {
   const MAX_COUNT = 5;
   const [canStop, setCanStop] = useState(false);
+  const [requestCount, setRequestCount] = useState(0);
+  const [recipeList, setRecipeList] = useState<Array<RecipeData>>([]);
 
-  //dummy data
-  const recipeDataList: Array<RecipeData> = [
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062_960_720.jpg",
-      recipeName: "피자",
-      recipeId: 0,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706_960_720.jpg",
-      recipeName: "햄버거",
-      recipeId: 1,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2016/11/23/18/31/pasta-1854245_960_720.jpg",
-      recipeName: "페스토 파스타",
-      recipeId: 2,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_960_720.jpg",
-      recipeName: "스테이크",
-      recipeId: 3,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2018/08/29/19/01/fig-3640553_960_720.jpg",
-      recipeName: "무화과 샌드위치",
-      recipeId: 4,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2019/09/05/01/08/food-4452837_960_720.jpg",
-      recipeName: "오리 불고기",
-      recipeId: 5,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2020/02/08/03/56/octopus-desktop-4829030_960_720.jpg",
-      recipeName: "낙지 전골",
-      recipeId: 6,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2016/04/22/18/52/chicken-soup-1346310_960_720.jpg",
-      recipeName: "닭백숙",
-      recipeId: 7,
-    },
-    {
-      imageSrc:
-        "https://cdn.pixabay.com/photo/2016/10/13/19/15/bibimbap-1738580_960_720.jpg",
-      recipeName: "닭백숙",
-      recipeId: 8,
-    },
-  ];
-  const [recipeList, setRecipeList] =
-    useState<Array<RecipeData>>(recipeDataList);
+  const [currentIndex, setCurrentIndex] = useAtom(currentIndexAtom);
+  const [recipeRatingList, setRecipeRatingList] = useAtom(recipeRatingListAtom);
+  const [, setCurrentRecipeData] = useAtom(currentRecipeDataAtom);
 
-  const [currentIndex, setCurrentIndex] = useAtom(CurrentIndexAtom);
-  const [, setCurrentRecipeData] = useAtom(CurrentRecipeDataAtom);
-  const [recipeRatingList] = useAtom(RecipeRatingListAtom);
+  const [token] = useAtom(userTokenSave);
 
   useEffect(() => {
-    if (recipeList.length > 0) {
-      setCurrentIndex(0);
+    if (currentIndex !== -1) return;
+    if (token.accessToken) {
+      requestRecipeList(requestCount, token.accessToken).then((list) => {
+        setRecipeList(list);
+        setCurrentIndex(0);
+      });
     }
-  }, [recipeList.length]);
+  }, [token.accessToken]);
 
   useEffect(() => {
-    //TODO : t서버에서 새로운 데이터 받아오기
-    if (currentIndex >= recipeDataList.length) {
-      const newList: Array<RecipeData> = [
-        {
-          imageSrc:
-            "https://cdn.pixabay.com/photo/2015/04/06/16/21/korean-food-709606_960_720.jpg",
-          recipeName: "비빔국수",
-          recipeId: 9,
-        },
-        {
-          imageSrc:
-            "https://cdn.pixabay.com/photo/2018/12/03/01/04/mandu-3852527_960_720.jpg",
-          recipeName: "만두전골",
-          recipeId: 10,
-        },
-        {
-          imageSrc:
-            "https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_960_720.jpg",
-          recipeName: "김치 볶음밥",
-          recipeId: 11,
-        },
-        {
-          imageSrc:
-            "https://cdn.pixabay.com/photo/2017/07/19/03/14/lures-and-buy-new-desktop-2517767_960_720.jpg",
-          recipeName: "쏘가리 매운탕",
-          recipeId: 11,
-        },
-      ];
-      setRecipeList(newList);
+    if (currentIndex === -1) return;
+    if (currentIndex >= recipeList.length) {
+      //TODO : 서버에서 새로운 데이터 받아오기
+      setRequestCount((current) => current + 1);
+      requestRecipeList(requestCount + 1, token.accessToken).then((list) => {
+        setRecipeList(list);
+        setCurrentIndex(0);
+      });
       return;
     }
+
+    //default value가 아닌 경우만 업데이트
     setCurrentRecipeData(recipeList[currentIndex]);
   }, [currentIndex]);
 
