@@ -3,15 +3,15 @@ package com.example.backend.api.service.foods;
 import com.example.backend.api.dto.foods.response.ResponseBasicFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
-import com.example.backend.api.entity.favorites.Favorites;
-import com.example.backend.api.entity.favorites.NonFavorites;
+import com.example.backend.api.entity.foods.Favorites;
+import com.example.backend.api.entity.foods.NonFavorites;
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
-import com.example.backend.api.repository.favorites.FavoritesRepository;
-import com.example.backend.api.repository.favorites.NonFavoritesRepository;
+import com.example.backend.api.repository.foods.FavoritesRepository;
+import com.example.backend.api.repository.foods.NonFavoritesRepository;
 import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.repository.foods.SamplingFoodsRepository;
-import com.example.backend.api.repository.recommends.RecommendsRepository;
+import com.example.backend.api.repository.foods.RecommendsRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -50,6 +50,12 @@ public class FoodsService {
             .collect(Collectors.toList());
     }
 
+    public List<ResponseBasicFoodInfo> getFavorFoodList(Long no) {
+        return favoritesRepository.findByNo(no).stream()
+            .map(favorites -> favorites.toDTO())
+            .collect(Collectors.toList());
+    }
+
     /**
      * @param no must not be null
      * @param id must not be null
@@ -66,12 +72,6 @@ public class FoodsService {
     @Transactional
     public void unregistFavorFood(Long no, Long id) throws RuntimeException {
         favoritesRepository.deleteById(new UsersFoodsID(no, id));
-    }
-
-    public List<ResponseBasicFoodInfo> getFavorFoodList(long no) {
-        return favoritesRepository.findByNo(no).stream()
-            .map(favorites -> favorites.toDTO())
-            .collect(Collectors.toList());
     }
 
     @Transactional

@@ -1,6 +1,6 @@
-package com.example.backend.api.repository.favorites;
+package com.example.backend.api.repository.foods;
 
-import com.example.backend.api.entity.favorites.Favorites;
+import com.example.backend.api.entity.foods.Favorites;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

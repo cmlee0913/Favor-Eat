@@ -27,16 +27,6 @@ public class UsersController {
 
     private final UsersService usersService;
 
-    // TODO : 취향 분석 정보 다 받아온 후 DB에 업데이트
-//    @PostMapping("/signup")
-//    public ResponseEntity<?> signUpUser(@RequestBody UsersSignUpRequest userSignUpRequest){
-//        if (usersService.checkNickname(userSignUpRequest.getNickname()) == 0){
-//            usersService.signUpUser(userSignUpRequest);
-//            return new ResponseEntity<>("회원 정보 등록 성공", HttpStatus.valueOf(200));
-//        } else {
-//            return new ResponseEntity<>("중복된 닉네임입니다.", HttpStatus.valueOf(400));
-//        }
-//    }
     @Operation(summary = "로그아웃", description = "사용자의 <strong>즐겨찾기 목록을 조회</strong>합니다.")
     @PutMapping("/signout/{no}")
     public ResponseEntity<String> signOutUser(@PathVariable Long no) {
@@ -72,10 +62,4 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @GetMapping("/{index}")
-//    public ResponseEntity<?> getSampleFoodsList(@AuthenticationPrincipal User user, @PathVariable Integer index){
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
 }
