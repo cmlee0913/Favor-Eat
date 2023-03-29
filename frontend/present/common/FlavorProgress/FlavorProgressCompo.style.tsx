@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import ProgressIndicatorSvg from "@/assets/icon/ProgressIndicator.svg";
 import LevelSvg from "@/assets/icon/ProgressLevel.svg";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 const spicyColors = ["#ABAFC4", "#C7959E", "#E37C79", "#E05D60", "#DC3C47"];
 const sweetColors = ["#ABAFC4", "#D6BE94", "#FFCC66", "#FFBB4C", "#FFAA33"];
