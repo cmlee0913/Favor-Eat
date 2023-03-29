@@ -22,9 +22,11 @@ import useMediaQuery from "@/action/hooks/useMediaQuery";
 import Button from "@/present/common/Button/Button";
 import { useRouter } from "next/router";
 import { TasteEvaluateBoxCompoProps } from "@/types/TasteEvaluateBoxCompo/dummy";
-import { CurrentIndexAtom, RecipeRatingListAtom } from "@/store/tasteStore";
+import { currentIndexAtom, recipeRatingListAtom } from "@/store/tasteStore";
 import { useAtom } from "jotai";
 import { RecipeRatingType } from "@/types/store/tasteStoreTypes";
+import { sendFirstRecipeTasteValue } from "@/action/apis/taste";
+import { userTokenSave } from "@/store/userStore";
 
 const hoverBoxValue = {
   spicy: {
@@ -136,9 +138,10 @@ export default function TasteEvaluateBoxCompo({
     setRatingValues(valueList);
   };
 
-  const [currentIndex, setCurrentIndex] = useAtom(CurrentIndexAtom);
-  const [recipeRatingList, setRecipeRatingList] = useAtom(RecipeRatingListAtom);
+  const [currentIndex, setCurrentIndex] = useAtom(currentIndexAtom);
+  const [recipeRatingList, setRecipeRatingList] = useAtom(recipeRatingListAtom);
   const [canMoveToNext, setCanMoveToNext] = useState(false);
+  const [token, setUserToken] = useAtom(userTokenSave);
 
   const onClickNext = () => {
     buttonActive(true);
@@ -170,8 +173,20 @@ export default function TasteEvaluateBoxCompo({
     setCurrentIndex(currentIndex + 1);
   };
 
-  const onClickStop = () => {
-    router.push("/main");
+  const onClickStop = async () => {
+    const { isSuccess, result } = await sendFirstRecipeTasteValue(
+      recipeRatingList,
+      token.accessToken,
+    );
+
+    if (isSuccess) {
+      // const { accesToken, refreshToken } = result;
+      // setUserToken({
+      //   accessToken: accesToken,
+      //   refreshToken: refreshToken,
+      // });
+      router.push("/main");
+    }
   };
 
   useEffect(() => {

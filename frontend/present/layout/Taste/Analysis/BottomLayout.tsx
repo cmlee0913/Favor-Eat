@@ -1,21 +1,36 @@
+import { sendFirstRecipeTasteValue } from "@/action/apis/taste";
 import Button from "@/present/common/Button/Button";
+import { recipeRatingListAtom } from "@/store/tasteStore";
+import { userTokenSave } from "@/store/userStore";
 import { BottomLayoutProps } from "@/types/Taste/dummy";
+import { useAtom } from "jotai";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import * as style from "./AnalysisLayout.style";
 
 export default function BottomLayout({
   canGoMain,
   evaluatedCount,
 }: BottomLayoutProps) {
-  //명언 바꾸기
-  useEffect(() => {}, [evaluatedCount]);
+  const [recipeRatingList] = useAtom(recipeRatingListAtom);
+  const [token, setUserToken] = useAtom(userTokenSave);
+
   const router = useRouter();
 
-  const onClickStop = () => {
-    router.push("/main");
-  };
+  const onClickStop = async () => {
+    const { isSuccess, result } = await sendFirstRecipeTasteValue(
+      recipeRatingList,
+      token.accessToken,
+    );
 
+    if (isSuccess) {
+      // const { accesToken, refreshToken } = result;
+      // setUserToken({
+      //   accessToken: accesToken,
+      //   refreshToken: refreshToken,
+      // });
+      router.push("/main");
+    }
+  };
   return (
     <>
       {canGoMain ? (
