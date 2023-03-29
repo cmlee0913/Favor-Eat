@@ -23,7 +23,6 @@ import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
 import { useState } from "react";
 
 export default function RecipeFlavorLayout({
-  values,
   recipeImage,
   tasteInfo
 }: RecipeFlavorProps) {
@@ -71,11 +70,11 @@ export default function RecipeFlavorLayout({
   };
 
   const flavorList: Array<FlavorCharacter> = [];
-  Object.keys(values).forEach((item) => {
+  Object.keys(tasteInfo).forEach((item) => {
     const obj: any = {
-      ...flavorStaticData[values[item].type],
-      value: values[item].value,
-      type: values[item].type,
+      ...flavorStaticData[item],
+      value: tasteInfo[item],
+      type: item,
     };
     flavorList.push(obj);
   });

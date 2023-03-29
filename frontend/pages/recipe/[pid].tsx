@@ -20,12 +20,6 @@ import { apiURL } from "@/store/constants";
 export default function Recipe() {
   const router = useRouter();
   const { pid } = router.query;
-  const flavorList: Array<FlavorInfo> = [
-    { type: "spicy", value: 4 },
-    { type: "sweet", value: 2.5 },
-    { type: "salty", value: 3 },
-    { type: "oily", value: 1.4 },
-  ];
   const [recipeData, setRecipeData] = useState<RecipeData>({
     name: "",
     quantity: "",
@@ -81,7 +75,7 @@ export default function Recipe() {
   const [RecipeArr, setRecipeArr] = useState<Array<RecipeNavType>>([
     {
       category: "맛",
-      content: <RecipeFlavorLayout values={flavorList} recipeImage={Test} tasteInfo={recipeData.tasteInfo}/>,
+      content: <RecipeFlavorLayout recipeImage={Test} tasteInfo={recipeData.tasteInfo}/>,
       isOpen: true,
     },
     {

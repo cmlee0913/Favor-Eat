@@ -22,12 +22,11 @@ export interface FlavorCharacterListProps {
 }
 
 export interface FlavorInfo {
-  type: FlavorType;
+  type: string;
   value: number;
 }
 
 export interface RecipeFlavorProps {
-  values: Array<FlavorInfo>;
   recipeImage: StaticImageData;
   tasteInfo: {
     spicy: number;
