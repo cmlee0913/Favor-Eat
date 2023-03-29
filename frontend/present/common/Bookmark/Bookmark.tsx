@@ -2,53 +2,42 @@ import React, { memo, useEffect, useState } from "react";
 import * as style from "./Bookmark.style";
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
-import { deleteAsync, postAsync } from "@/action/apis/apis";
-import { apiURL } from "@/store/constants";
 import { userTokenSave } from "@/store/userStore";
 import { useAtom } from "jotai";
 
 import Thumb from "@/assets/icon/Thumb.png";
 import ThumbFill from "@/assets/icon/ThumbFill.png";
+import { deleteFoodFavor, saveFoodFavor } from "@/action/apis/recipeFavor";
+import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
 
+//checked -> 이미 좋아요를 했는지
 function Bookmark() {
-  const [check, setCheck] = useState(false);
+  const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
+    recipeFavorCheckedAtom,
+  );
   const idx = useRouter().query.pid;
   const [token] = useAtom(userTokenSave);
 
   const bookMarkHandler = () => {
-    setCheck(!check);
+    setRecipeFavorChecked((current) => !current);
   };
 
   useEffect(() => {
-    const url = apiURL + `/foods/favor/${idx}`;
-    
+    if (!token.accessToken) return;
+
     // 토큰이 있다면
-    if (token.accessToken !== null) {
-      if (check) {
-        // 즐겨찾기 추가
-        postAsync(
-          url,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token.accessToken}`,
-            },
-          }
-        );
-      } else {
-        // 즐겨찾기 해제
-        deleteAsync(url, {
-          headers: {
-            Authorization: `Bearer ${token.accessToken}`,
-          },
-        });
-      }
+    if (recipeFavorChecked) {
+      // 즐겨찾기 추가
+      saveFoodFavor(token.accessToken, idx);
+      return;
     }
-  }, [check]);
+    // 즐겨찾기 해제
+    deleteFoodFavor(token.accessToken, idx);
+  }, [recipeFavorChecked]);
 
   return (
     <style.Container onClick={bookMarkHandler}>
-      {check ? (
+      {recipeFavorChecked ? (
         <Image src={ThumbFill} alt={"좋아요 한 레시피입니다"} />
       ) : (
         <Image src={Thumb} alt={"이 레시피 좋아요"} />
