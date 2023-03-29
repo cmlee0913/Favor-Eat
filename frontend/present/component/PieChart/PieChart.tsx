@@ -1,5 +1,5 @@
 import { ResponsivePie } from "@nivo/pie";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 import * as styles from "./PieChart.styles";

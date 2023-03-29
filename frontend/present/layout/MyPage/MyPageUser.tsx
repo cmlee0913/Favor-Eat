@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import * as style from "./MyPage.style";
 
+import { useAtom } from "jotai";
+import { getUserDataByToken, userTokenSave } from "@/store/userStore";
+
 import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
 import Salty from "@/assets/image/Character/Salty.png";
@@ -21,10 +24,20 @@ import LeftTitleBox from "@/present/common/TitleBox/LeftTitleBox/LeftTitleBox";
 import Image from "next/image";
 
 export default function MyPageUser() {
-  const user = { username: "뭐뭐" };
+  const [name, setName] = useState("로그인 해주세요!");
+  console.log(name);
   const [selectedFlavorType, setSelectedFlavorType] = useState("spicy");
   const [hoverImage, setHoverImage] = useState(SpicyHoverBoxPc);
   const [isHover, setIsHover] = useState(false);
+
+  const [token] = useAtom(userTokenSave);
+
+  useEffect(() => {
+    if (token.accessToken) {
+      const { nickname } = getUserDataByToken(token.accessToken);
+      setName(nickname);
+    }
+  }, [token]);
 
   const flavorData: Array<FlavorStaticData> = [
     {
@@ -76,7 +89,7 @@ export default function MyPageUser() {
   return (
     <style.MyPageUser>
       <LeftTitleBox
-        title={`안녕하세요. ${user.username}님`}
+        title={`안녕하세요. ${name}님`}
         subtitle="이런 맛을 좋아하셨어요"
       />
       <style.HoverGrid>

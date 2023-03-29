@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 
 import MainFoodActive from "@/assets/icon/Main/MainFoodActive.svg";
 import AnotherFoodActive from "@/assets/icon/Main/AnotherFoodActive.svg";
