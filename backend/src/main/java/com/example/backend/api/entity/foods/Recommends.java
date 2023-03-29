@@ -2,7 +2,6 @@ package com.example.backend.api.entity.foods;
 
 import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
 import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
-import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.entity.users.Users;
 import javax.persistence.Column;
@@ -57,10 +56,10 @@ public class Recommends {
 
     private ResponseTasteInfo buildTasteInfoDTO() {
         return ResponseTasteInfo.builder()
-            .fatness(this.foods.getFatness())
-            .saltiness(this.foods.getSaltiness())
-            .spiciness(this.foods.getSpiciness())
-            .sweetness(this.foods.getSweetness())
+            .oily(this.foods.getFatness())
+            .salty(this.foods.getSaltiness())
+            .spicy(this.foods.getSpiciness())
+            .sweet(this.foods.getSweetness())
             .build();
     }
 }

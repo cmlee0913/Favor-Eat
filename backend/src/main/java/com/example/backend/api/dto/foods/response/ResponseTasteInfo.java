@@ -7,16 +7,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ResponseTasteInfo {
-    Float spiciness;
-    Float sweetness;
-    Float saltiness;
-    Float fatness;
+    Float spicy;
+    Float sweet;
+    Float salty;
+    Float oily;
 
     @Builder
-    public ResponseTasteInfo(Float spiciness, Float sweetness, Float saltiness, Float fatness) {
-        this.spiciness = spiciness;
-        this.sweetness = sweetness;
-        this.saltiness = saltiness;
-        this.fatness = fatness;
+    public ResponseTasteInfo(Float spicy, Float sweet, Float salty, Float oily) {
+        this.spicy = spicy;
+        this.sweet = sweet;
+        this.salty = salty;
+        this.oily = oily;
     }
 }
