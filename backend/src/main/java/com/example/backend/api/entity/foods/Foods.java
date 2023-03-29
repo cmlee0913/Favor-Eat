@@ -20,6 +20,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity(name = "foods")
 public class Foods {
+
     @Id
     private Long id;
     private String name;
@@ -27,6 +28,7 @@ public class Foods {
     private String subName;
     private String quantity;
     private String time;
+    private Long counts;
     private String level;
     private String image;
     private Float spiciness;
@@ -109,13 +111,32 @@ public class Foods {
 
     private List<ResponseRecipe> recipesListEntityToDTO(List<Recipes> recipesList) {
         return recipesList.stream()
-            .map(recipe-> new ResponseRecipe(recipe.getContent(), recipe.getImage()))
+            .map(recipe -> new ResponseRecipe(recipe.getContent(), recipe.getImage()))
             .collect(Collectors.toList());
     }
 
-    private List<ResponseIngredientsInFood> ingredientsListEntityToDTO(List<IngredientsInFoods> ingredientsInFoodsList) {
+    private List<ResponseIngredientsInFood> ingredientsListEntityToDTO(
+        List<IngredientsInFoods> ingredientsInFoodsList) {
         return ingredientsInFoodsList.stream()
-            .map(ingredients-> new ResponseIngredientsInFood(ingredients.getUnit(), ingredients.getAmount()))
+            .map(ingredients -> new ResponseIngredientsInFood(ingredients.getUnit(),
+                ingredients.getAmount()))
             .collect(Collectors.toList());
+    }
+
+    public void updateCount() {
+        this.counts += 1;
+    }
+
+    public void updateSpiciness(Float spiciness){
+        this.spiciness = spiciness;
+    }
+    public void updateSweetness(Float sweetness){
+        this.sweetness = sweetness;
+    }
+    public void updateSaltiness(Float saltiness){
+        this.saltiness = saltiness;
+    }
+    public void updateFatness(Float fatness){
+        this.fatness = fatness;
     }
 }
