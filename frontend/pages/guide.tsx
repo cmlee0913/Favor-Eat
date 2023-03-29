@@ -13,8 +13,6 @@ import { PageContainer } from "@/present/layout/pageStyle";
 import GuideCharacter from "@/assets/image/Guide.png";
 
 export default function Guide() {
-  const [scrollY, viewHeight, eventHeight] = useScroll();
-  //새로고침 할 때마다 초점이 내려가는 현상 막기
   useEffect(() => {
     window.onbeforeunload = function pushRefresh() {
       window.scrollTo(0, 0);
