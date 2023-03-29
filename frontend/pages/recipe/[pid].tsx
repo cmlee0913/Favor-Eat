@@ -5,7 +5,6 @@ import RecipeImg from "@/present/layout/Recipe/RecipeImg/RecipeImg";
 import Test from "@/assets/image/test.jpg";
 import RecipeNav from "@/present/layout/Recipe/RecipeNav/RecipeNav";
 import RecipeContent from "@/present/layout/Recipe/RecipeContent/RecipeContent";
-import Piechart from "@/present/component/PieChart/PieChart";
 import { RecipeNavType } from "@/types/Recipe/dummy";
 import RecipeTab from "@/present/layout/Recipe/RecipeTab/RecipeTab";
 
@@ -13,6 +12,7 @@ import * as style from "@/present/layout/Recipe/pageStyle";
 
 import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
 import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
+import Ingrediant from "@/present/layout/Ingrediant/Ingrediant";
 
 export default function Recipe() {
   const flavorList: Array<FlavorInfo> = [
@@ -31,7 +31,7 @@ export default function Recipe() {
     },
     {
       category: "영양소",
-      content: <Piechart />,
+      content: <Ingrediant />,
       isOpen: false,
     },
     {
