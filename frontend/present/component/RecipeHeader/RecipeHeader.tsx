@@ -10,7 +10,7 @@ import { useAtom } from "jotai";
 import { userTokenSave } from "@/store/userStore";
 import { useRouter } from "next/router";
 
-export default function RecipeHeader({ selectIdx }: RecipeHeaderProps) {
+export default function RecipeHeader({ selectIdx, name, level,time }: RecipeHeaderProps) {
   const [token] = useAtom(userTokenSave);
   const router = useRouter();
   const idx = useRouter().query.pid;
@@ -22,7 +22,7 @@ export default function RecipeHeader({ selectIdx }: RecipeHeaderProps) {
   return (
     <style.Container selectIdx={selectIdx}>
       <h2>
-        <span>음식 이름</span>
+        <span>{name}</span>
 
         {/* 음식 호불호 */}
         <span>
@@ -40,12 +40,12 @@ export default function RecipeHeader({ selectIdx }: RecipeHeaderProps) {
       <style.Info>
         <div>
           <span>난이도</span>
-          <span>신의 경지</span>
+          <span>{level}</span>
         </div>
 
         <div>
           <span>소요시간</span>
-          <span>10분</span>
+          <span>{time}</span>
         </div>
       </style.Info>
     </style.Container>

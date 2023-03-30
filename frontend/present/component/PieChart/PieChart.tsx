@@ -3,10 +3,13 @@ import { theme } from "@/constant/theme";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 import * as styles from "./PieChart.styles";
+import { MainNutrient } from "@/types/Recipe/dummy";
 
 const CenteredMetric = ({
   centerX,
   centerY,
+  // calorie,
+  // moisture,
   //   radius,
   //   innerRadius,
   //   arcGenerator,
@@ -76,7 +79,7 @@ const CenteredMetric = ({
           fontWeight: 600,
         }}
       >
-        총 칼로리 : 500kcal
+        총 칼로리 : {500}kcal
       </text>
       <text
         x={centerX}
@@ -87,13 +90,19 @@ const CenteredMetric = ({
           fontWeight: 600,
         }}
       >
-        수분 : 20g
+        수분 : {500}g
       </text>
     </>
   );
 };
 
-const Piechart = () => {
+const Piechart = ({
+  calorie,
+  moisture,
+  protein,
+  fat,
+  carbohydrate,
+}: MainNutrient) => {
   const handle = {
     padClick: (data: any) => {
       console.log(data);
@@ -148,13 +157,13 @@ const Piechart = () => {
 
   return (
     // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
-    <styles.Wrapper>
+    <styles.Wrapper className="PieChart">
       <ResponsivePie
         // 더미 데이터 ( 반응형으로 변경 )
         data={[
-          { id: "탄수화물", value: 324 },
-          { id: "단백질", value: 88 },
-          { id: "지방", value: 221 },
+          { id: "탄수화물", value: carbohydrate },
+          { id: "단백질", value: protein },
+          { id: "지방", value: fat },
         ]}
         /*
          * BASE OPTION
