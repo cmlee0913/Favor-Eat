@@ -20,6 +20,7 @@ import { apiURL } from "@/store/constants";
 export default function Recipe() {
   const router = useRouter();
   const { pid } = router.query;
+
   const [recipeData, setRecipeData] = useState<RecipeData>({
     name: "",
     quantity: "",
@@ -55,32 +56,22 @@ export default function Recipe() {
     recipesList: [],
     ingredientsInFoodsList: [],
   });
-
-  console.log(recipeData);
-
-  useEffect(() => {
-    if (pid) {
-      getAsync(`https://j8d108.p.ssafy.io/api/foods/${pid}`).then((res) => {
-        if (res.isSuccess) {
-          setRecipeData({ ...res.result });
-        } else {
-          console.log(res);
-        }
-      });
-    }
-  }, [pid]);
-
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
   const [RecipeArr, setRecipeArr] = useState<Array<RecipeNavType>>([
     {
       category: "맛",
-      content: <RecipeFlavorLayout recipeImage={Test} tasteInfo={recipeData.tasteInfo}/>,
+      content: (
+        <RecipeFlavorLayout
+          recipeImage={Test}
+          tasteInfo={recipeData.tasteInfo}
+        />
+      ),
       isOpen: true,
     },
     {
       category: "영양소",
-      content: <Ingrediant nutrientInfo={recipeData.nutrientInfo}/>,
+      content: <Ingrediant nutrientInfo={recipeData.nutrientInfo} />,
       isOpen: false,
     },
     {
@@ -89,6 +80,42 @@ export default function Recipe() {
       isOpen: false,
     },
   ]);
+
+  console.log(recipeData);
+
+  useEffect(() => {
+    if (pid) {
+      getAsync(`https://j8d108.p.ssafy.io/api/foods/${pid}`).then((res) => {
+        if (res.isSuccess) {
+          setRecipeData({ ...res.result });
+          setRecipeArr([
+            {
+              category: "맛",
+              content: (
+                <RecipeFlavorLayout
+                  recipeImage={Test}
+                  tasteInfo={res.result.tasteInfo}
+                />
+              ),
+              isOpen: true,
+            },
+            {
+              category: "영양소",
+              content: <Ingrediant nutrientInfo={res.result.nutrientInfo} />,
+              isOpen: false,
+            },
+            {
+              category: "레시피",
+              content: <RecipeTab />,
+              isOpen: false,
+            },
+          ])
+        } else {
+          console.log(res);
+        }
+      });
+    }
+  }, [pid]);
 
   useEffect(() => {
     const tmp = RecipeArr.map((elem, idx) => {

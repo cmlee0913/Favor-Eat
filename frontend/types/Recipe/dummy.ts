@@ -72,34 +72,6 @@ export interface RecipeData {
   ingredientsInFoodsList: Array<ingredientsInFoods>;
 }
 
-interface Nutrient {
-  calorie: number;
-  moisture: number;
-  protein: number;
-  fat: number;
-  carbohydrate: number;
-  sugars: number;
-  fiber: number;
-  calcium: number;
-  iron: number;
-  phosphorus: number;
-  potassium: number;
-  salt: number;
-  vitaminA: number;
-  vitaminC: number;
-  vitaminD: number;
-  cholesterol: number;
-  saturatedfat: number;
-  transfat: number;
-}
-
-interface TasteInfo {
-  spiciness: number;
-  sweetness: number;
-  saltiness: number;
-  fatness: number;
-}
-
 interface RecipeList {
   content: string;
   image: string;
@@ -108,4 +80,12 @@ interface RecipeList {
 interface ingredientsInFoods {
   unit: string;
   amount: string;
+}
+
+export interface MainNutrient {
+  calorie: number;
+  moisture: number;
+  protein: number;
+  fat: number;
+  carbohydrate: number;
 }
