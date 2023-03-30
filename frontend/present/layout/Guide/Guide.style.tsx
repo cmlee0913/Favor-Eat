@@ -341,13 +341,13 @@ export const Cloud = styled.div`
     ${theme.devices.tablet} {
       &.Start {
         &:nth-child(1) {
-          width: 50%;
+          width: 60%;
           right: 30.47%;
           top: 5%;
         }
 
         &:nth-child(2) {
-          width: 45%;
+          width: 50%;
           left: 2.09%;
           top: 50%;
         }
@@ -389,20 +389,20 @@ export const Cloud = styled.div`
 
       &.End {
         &:nth-child(1) {
-          width: 20%;
-          left: 20.38%;
+          width: 80%;
+          left: 5%;
           top: 10%;
         }
 
         &:nth-child(2) {
-          width: 40%;
+          width: 60%;
           height: auto;
           right: -0.02%;
           top: 30%;
         }
 
         &:nth-child(3) {
-          width: 60%;
+          width: 80%;
           height: auto;
           left: 0;
           top: 50%;
@@ -413,15 +413,15 @@ export const Cloud = styled.div`
     ${theme.devices.mobile} {
       &.Start {
         &:nth-child(1) {
-          width: 50%;
-          right: 30.47%;
+          width: 80%;
+          right: 10%;
           top: 5%;
         }
 
         &:nth-child(2) {
-          width: 45%;
+          width: 60%;
           left: 2.09%;
-          top: 50%;
+          top: 30%;
         }
 
         &:nth-child(3) {
@@ -453,31 +453,31 @@ export const Cloud = styled.div`
         }
 
         &:nth-child(2) {
-          width: 40%;
-          left: 53.75%;
+          width: 60%;
+          left: 40%;
           top: 70%;
         }
       }
 
       &.End {
         &:nth-child(1) {
-          width: 20%;
+          width: 80%;
           left: 20.38%;
           top: 10%;
         }
 
         &:nth-child(2) {
-          width: 40%;
+          width: 70%;
           height: auto;
           right: -0.02%;
           top: 30%;
         }
 
         &:nth-child(3) {
-          width: 60%;
+          width: 100%;
           height: auto;
           left: 0;
-          top: 50%;
+          top: 70%;
         }
       }
     }
