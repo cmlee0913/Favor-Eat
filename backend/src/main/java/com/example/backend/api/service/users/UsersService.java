@@ -1,7 +1,6 @@
 package com.example.backend.api.service.users;
 
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
-import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.foods.FoodsRepository;
@@ -48,7 +47,6 @@ public class UsersService {
     public Users registInitialEvaluations(Long no,
         List<RequestTasteEvaluations> requestTasteEvaluations) throws RuntimeException {
         for (RequestTasteEvaluations tasteEvaluations : requestTasteEvaluations) {
-            updateFoodsFlavor(tasteEvaluations);
             evaluationsRepository.save(tasteEvaluations.toEntity(no));
         }
 
@@ -70,23 +68,7 @@ public class UsersService {
     @Transactional
     public void registEvaluations(Long no, RequestTasteEvaluations requestTasteEvaluations)
         throws RuntimeException {
-        updateFoodsFlavor(requestTasteEvaluations);
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
     }
 
-    private void updateFoodsFlavor(RequestTasteEvaluations tasteEvaluations) {
-        Foods foods = foodsRepository.findById(tasteEvaluations.getFoodsId())
-            .orElseThrow(NullPointerException::new);
-        Long count = foods.getCounts();
-        foods.updateCount();
-        foods.updateSaltiness(
-            (foods.getSaltiness() * count + tasteEvaluations.getSaltiness()) / foods.getCounts());
-        foods.updateSweetness(
-            (foods.getSweetness() * count + tasteEvaluations.getSweetness()) / foods.getCounts());
-        foods.updateSpiciness(
-            (foods.getSpiciness() * count + tasteEvaluations.getSpiciness()) / foods.getCounts());
-        foods.updateFatness(
-            (foods.getFatness() * count + tasteEvaluations.getFatness()) / foods.getCounts());
-        foodsRepository.save(foods);
-    }
 }

@@ -28,7 +28,6 @@ public class Foods {
     private String subName;
     private String quantity;
     private String time;
-    private Long counts;
     private String level;
     private String image;
     private Float spiciness;
@@ -121,10 +120,6 @@ public class Foods {
             .map(ingredients -> new ResponseIngredientsInFood(ingredients.getUnit(),
                 ingredients.getAmount()))
             .collect(Collectors.toList());
-    }
-
-    public void updateCount() {
-        this.counts += 1;
     }
 
     public void updateSpiciness(Float spiciness){
