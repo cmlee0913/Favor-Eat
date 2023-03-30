@@ -2,7 +2,7 @@ import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
 import * as style from "./FlavorProgressCompo.style";
 
 export default ({ value, type }: FlavorInfo) => {
-  const percentage = ((value - 1) / 4) * 100;
+  let percentage = value === 0 ? 0 : ((value - 1) / 4) * 100;
   let flavorTypeString = "";
   switch (type) {
     case "spicy":
