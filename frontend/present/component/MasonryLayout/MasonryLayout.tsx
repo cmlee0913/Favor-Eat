@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
-import Image from "next/image";
 import { getFavoriteFoodList } from "@/action/apis/favorite";
 import AutoHeightImage from "./AutoHeightImage";
 import { useAtom } from "jotai";
 import { userTokenSave } from "@/store/userStore";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
+import { useRouter } from "next/router";
 
 const requestFavoriteFoodList = async (token: string) => {
   const { isSuccess, result } = await getFavoriteFoodList(token);
@@ -34,12 +34,20 @@ function getItems(nextGroupKey: number, count: number) {
   return nextItems;
 }
 
-const Item = ({ src, num }: any) => (
-  <div>
-    <AutoHeightImage src={src} alt="egjs" />
-    {/* <div>{`${num}`}</div> */}
-  </div>
-);
+const Item = ({ src, num, recipeId }: any) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/recipe/${recipeId}`);
+  };
+
+  return (
+    <div onClick={handleClick}>
+      <AutoHeightImage src={src} alt="egjs" />
+      {/* <div>{`${num}`}</div> */}
+    </div>
+  );
+};
 
 export default function MasonryLayout() {
   const [items, setItems] = useState(() => getItems(0, 10));
@@ -95,6 +103,7 @@ export default function MasonryLayout() {
             key={item.key}
             num={item.key}
             src={item.src}
+            recipeId={item.recipeId} // pass the recipeId property
           />
         ))}
       </MasonryInfiniteGrid>
