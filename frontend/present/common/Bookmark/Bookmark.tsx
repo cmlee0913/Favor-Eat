@@ -10,8 +10,8 @@ import ThumbFill from "@/assets/icon/ThumbFill.png";
 import { deleteFoodFavor, saveFoodFavor } from "@/action/apis/recipeFavor";
 import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
 
-//checked -> 이미 좋아요를 했는지
 function Bookmark() {
+  //recipeFavorChecked -> 이미 좋아요를 했는지
   const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
     recipeFavorCheckedAtom,
   );
@@ -19,21 +19,14 @@ function Bookmark() {
   const [token] = useAtom(userTokenSave);
 
   const bookMarkHandler = () => {
+    if (!token.accessToken) return;
+    if (!recipeFavorChecked) {
+      saveFoodFavor(token.accessToken, idx);
+    } else {
+      deleteFoodFavor(token.accessToken, idx);
+    }
     setRecipeFavorChecked((current) => !current);
   };
-
-  useEffect(() => {
-    if (!token.accessToken) return;
-
-    // 토큰이 있다면
-    if (recipeFavorChecked) {
-      // 즐겨찾기 추가
-      saveFoodFavor(token.accessToken, idx);
-      return;
-    }
-    // 즐겨찾기 해제
-    deleteFoodFavor(token.accessToken, idx);
-  }, [recipeFavorChecked]);
 
   return (
     <style.Container onClick={bookMarkHandler}>

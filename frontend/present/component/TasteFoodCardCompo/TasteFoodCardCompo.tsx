@@ -11,11 +11,11 @@ export default function TasteFoodCardCompo({
       <style.Card className="card">
         <div className="recipeName">{recipeData?.recipeName}</div>
         <Image
-          src={recipeData ? recipeData.imageSrc : defaultImage}
+          src={recipeData.imageSrc ? recipeData.imageSrc : defaultImage}
           width={1000}
           height={1000}
           loading="lazy"
-          alt="음식 사진"
+          alt="PC 음식 사진"
         />
       </style.Card>
     </>

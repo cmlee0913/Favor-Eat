@@ -25,3 +25,15 @@ export const deleteFoodFavor = async (
 
   return response;
 };
+
+export const saveFoodNonFavor = async (
+  accessToken: string,
+  foodId: string | string[],
+) => {
+  const response = await postAsync(`/foods/nonfavor/${foodId}`, null, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return response;
+};

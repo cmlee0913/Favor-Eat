@@ -137,6 +137,7 @@ export const LikeHateBox = styled.div`
 export const FavorButtonStyle = css`
   width: 1.8rem;
   height: 1.8rem;
+  z-index: 2.5;
   path {
     fill: ${color.thumb};
   }
