@@ -32,7 +32,7 @@ function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
     const logoutResult = await logoutAsync(accessToken);
     if (logoutResult.isSuccess) {
       setUserToken(RESET);
-      router.replace("/guide");
+      router.push("/guide");
     }
   };
 

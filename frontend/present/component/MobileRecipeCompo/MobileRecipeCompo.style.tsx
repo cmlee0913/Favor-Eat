@@ -13,8 +13,8 @@ export const Container = styled.div`
   }
 
   ${theme.devices.mobile} {
-    width: 65%;
-    height: 65%;
+    width: 50vw;
+    height: 50vw;
   }
 `;
 
