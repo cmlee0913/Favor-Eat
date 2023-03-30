@@ -125,7 +125,7 @@ export const SampleImg = styled.div`
 export const FunctionImg = styled.div`
   & img.SampleImg {
     width: auto;
-    height: 32%;
+    height: 25vw;
     position: absolute;
     z-index: 6;
 
@@ -135,7 +135,7 @@ export const FunctionImg = styled.div`
     }
 
     &:nth-child(2) {
-      right: 58.42%;
+      right: 58.3%;
       top: 23.59%;
     }
 
@@ -145,13 +145,38 @@ export const FunctionImg = styled.div`
     }
 
     &:nth-child(4) {
-      right: 12.5%;
+      right: 12%;
       top: 58.04%;
     }
 
     &:nth-child(5) {
       right: 0;
       top: 40.58%;
+    }
+
+    ${theme.devices.tablet} {
+      height: 27vw;
+
+      &:nth-child(1) {
+        top: 50.32%;
+      }
+
+      &:nth-child(2) {
+        right: 57.3%;
+        top: 38%;
+      }
+
+      &:nth-child(3) {
+        top: 50.31%;
+      }
+
+      &:nth-child(4) {
+        top: 63.04%;
+      }
+
+      &:nth-child(5) {
+        top: 50.58%;
+      }
     }
   }
 `;
@@ -399,6 +424,10 @@ export const SampleTest = styled.div`
     top: 15.8%;
   }
 
+  & p.Mobile {
+    display: none;
+  }
+
   & > h1 {
     font-size: 3rem;
     margin: 0;
@@ -408,6 +437,51 @@ export const SampleTest = styled.div`
   & > p {
     font-size: 20px;
     font-family: "Pretendard-Semibold";
+  }
+
+  ${theme.devices.tablet} {
+    & p.PC {
+      display: none;
+    }
+
+    & p.Mobile {
+      display: block;
+    }
+
+    &.Suggest {
+      left: 3%;
+      top: 20%;
+    }
+
+    &.Function {
+      text-align: left;
+      left: 3%;
+      top: 15.8%;
+    }
+
+    & > h1 {
+      font-size: 2rem;
+    }
+
+    & > p {
+      font-size: 20px;
+    }
+  }
+
+  ${theme.devices.mobile} {
+    &.Function {
+      text-align: left;
+      left: 3%;
+      top: 15.8%;
+    }
+
+    & > h1 {
+      font-size: 2rem;
+    }
+
+    & > p {
+      font-size: 15px;
+    }
   }
 `;
 

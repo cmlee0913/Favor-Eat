@@ -75,7 +75,7 @@ const trans = "all 0.2s ease-out";
 
 const devices = {
   mobile: `@media only screen and (max-width: 426px)`,
-  tablet: `@media only screen and (max-width: 769px)`,
+  tablet: `@media only screen and (max-width: 1000px)`,
   desktop: `@media only screen and (max-width: 2000px)`,
 };
 
