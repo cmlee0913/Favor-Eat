@@ -20,6 +20,10 @@ export const Container = styled.div`
     border-radius: 2rem;
   }
 
+  & h3 {
+    font-family: "Pretendard-Bold";
+  }
+
   & #mainImg {
     height: 60vh;
   }

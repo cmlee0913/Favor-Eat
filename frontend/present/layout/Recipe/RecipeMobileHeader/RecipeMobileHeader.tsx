@@ -1,14 +1,14 @@
 import React from "react";
 import * as style from "./RecipeMobileHeader.style";
 
-import { RecipeContentProps } from "@/types/Recipe/dummy";
+import { RecipeNavProps } from "@/types/Recipe/dummy";
 import NavCompoSide from "@/assets/image/navCompoSide.svg"
 
 export default function RecipeMobileHeader({
   RecipeArr,
   selectIdx,
   setSelectedIdx,
-}: RecipeContentProps) {
+}: RecipeNavProps) {
   
   const navHandler = (idx: number) => {
     setSelectedIdx(idx);

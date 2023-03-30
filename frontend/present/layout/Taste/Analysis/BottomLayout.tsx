@@ -23,11 +23,11 @@ export default function BottomLayout({
     );
 
     if (isSuccess) {
-      // const { accesToken, refreshToken } = result;
-      // setUserToken({
-      //   accessToken: accesToken,
-      //   refreshToken: refreshToken,
-      // });
+      const newAccessToken = result;
+      setUserToken({
+        accessToken: newAccessToken,
+        refreshToken: token.refreshToken,
+      });
       router.push("/main");
     }
   };
