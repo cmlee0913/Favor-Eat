@@ -57,6 +57,6 @@ public class OAuth2LoginSuccessProdHandler implements AuthenticationSuccessHandl
     }
 
     public String returnURL() {
-        return "http://j8d108.p.ssafy.io:3000/auth/kakao?access=";
+        return "https://j8d108.p.ssafy.io/auth/kakao?access=";
     }
 }
