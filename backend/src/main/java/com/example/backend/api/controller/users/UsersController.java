@@ -1,6 +1,8 @@
 package com.example.backend.api.controller.users;
 
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.service.jwt.JwtService;
 import com.example.backend.api.service.users.UsersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 
     private final UsersService usersService;
+    private final JwtService jwtService;
 
     @Operation(summary = "로그아웃", description = "사용자의 <strong>즐겨찾기 목록을 조회</strong>합니다.")
     @PutMapping("/signout/{no}")
@@ -42,9 +45,11 @@ public class UsersController {
     public ResponseEntity<?> registInitialEvaluations(@AuthenticationPrincipal User users,
         @RequestBody List<RequestTasteEvaluations> requestTasteEvaluations) {
         try {
-            usersService.registInitialEvaluations(Long.parseLong(users.getUsername()),
+            Users user = usersService.registInitialEvaluations(Long.parseLong(users.getUsername()),
                 requestTasteEvaluations);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(
+                jwtService.createAccessToken(user.getEmail(), user.getNickname(),
+                    String.valueOf(user.getRole())), HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -1,8 +1,10 @@
 package com.example.backend.api.service.users;
 
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
+import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
 import java.util.List;
@@ -18,6 +20,7 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
     private final EvaluationsRepository evaluationsRepository;
+    private final FoodsRepository foodsRepository;
 
     /**
      * remove refresh token
@@ -36,33 +39,54 @@ public class UsersService {
     /**
      * save evaluations and change user's role
      *
-     * @param no                 must not be null
+     * @param no                      must not be null
      * @param requestTasteEvaluations must not be null
+     * @return
      * @throws RuntimeException failed to save evaluations
      */
     @Transactional
-    public void registInitialEvaluations(Long no,
+    public Users registInitialEvaluations(Long no,
         List<RequestTasteEvaluations> requestTasteEvaluations) throws RuntimeException {
-        for (RequestTasteEvaluations evaluations : requestTasteEvaluations) {
-            evaluationsRepository.save(evaluations.toEntity(no));
+        for (RequestTasteEvaluations tasteEvaluations : requestTasteEvaluations) {
+            updateFoodsFlavor(tasteEvaluations);
+            evaluationsRepository.save(tasteEvaluations.toEntity(no));
         }
 
         usersRepository.findByNo(no).ifPresent(users -> {
             users.updateRole(Role.USER);
             usersRepository.save(users);
         });
+
+        return usersRepository.findByNo(no).orElseThrow(NullPointerException::new);
     }
 
     /**
      * remove refresh token
      *
-     * @param no                 must not be null
+     * @param no                      must not be null
      * @param requestTasteEvaluations must not be null
      * @throws RuntimeException failed to save evaluation
      */
     @Transactional
     public void registEvaluations(Long no, RequestTasteEvaluations requestTasteEvaluations)
         throws RuntimeException {
+        updateFoodsFlavor(requestTasteEvaluations);
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
+    }
+
+    private void updateFoodsFlavor(RequestTasteEvaluations tasteEvaluations) {
+        Foods foods = foodsRepository.findById(tasteEvaluations.getFoodsId())
+            .orElseThrow(NullPointerException::new);
+        Long count = foods.getCounts();
+        foods.updateCount();
+        foods.updateSaltiness(
+            (foods.getSaltiness() * count + tasteEvaluations.getSaltiness()) / foods.getCounts());
+        foods.updateSweetness(
+            (foods.getSweetness() * count + tasteEvaluations.getSweetness()) / foods.getCounts());
+        foods.updateSpiciness(
+            (foods.getSpiciness() * count + tasteEvaluations.getSpiciness()) / foods.getCounts());
+        foods.updateFatness(
+            (foods.getFatness() * count + tasteEvaluations.getFatness()) / foods.getCounts());
+        foodsRepository.save(foods);
     }
 }
