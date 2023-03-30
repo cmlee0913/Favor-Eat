@@ -160,12 +160,14 @@ export const MobileImageContainer = styled.div`
   position: absolute;
   bottom: 10%;
   height: fit-content;
+  width: 100vw;
 
   ${theme.devices.desktop} {
     display: none;
   }
 
   ${theme.devices.tablet} {
+    bottom: 10%;
     ::-webkit-scrollbar-track {
       border-radius: 10px;
       background-color: ${theme.colors.main.purple.light_1};
@@ -182,23 +184,12 @@ export const MobileImageContainer = styled.div`
   }
 
   ${theme.devices.mobile} {
-    ::-webkit-scrollbar-track {
-      all: initial;
-    }
-
-    ::-webkit-scrollbar {
-      all: initial;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      all: initial;
-    }
   }
 
   & > div {
     width: auto;
     white-space: nowrap;
-    margin-bottom: 2%;
+    margin: 3vh 0;
     height: fit-content;
   }
 

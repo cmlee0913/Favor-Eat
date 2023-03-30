@@ -3,14 +3,18 @@ import styled from "styled-components";
 import ArrowIcon from "@/assets/icon/arrow.svg";
 
 export const Container = styled.div`
-  width: 50%;
-  height: 50%;
   position: relative;
   display: inline-block;
   margin: 1vw;
 
+  ${theme.devices.tablet} {
+    width: 30vw;
+    height: 30vw;
+  }
+
   ${theme.devices.mobile} {
-    margin-bottom: 3vh;
+    width: 65%;
+    height: 65%;
   }
 `;
 
