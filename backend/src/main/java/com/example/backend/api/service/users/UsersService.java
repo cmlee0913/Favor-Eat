@@ -8,6 +8,7 @@ import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
 import java.util.List;
+import java.util.Map;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,13 +37,15 @@ public class UsersService {
     }
 
     public ResponseUserInfo getUserInfo(Long no) {
+        log.info("getUserInfo() 호출");
         Users users = usersRepository.findByNo(no).orElseThrow(NullPointerException::new);
 
+        Map<String, Float> averageFlavorValues = evaluationsRepository.getAverageByNo(no);
         ResponseTasteInfo userTasteInfo = ResponseTasteInfo.builder()
-            .salty(evaluationsRepository.getAverageSaltinessByNo(no))
-            .spicy(evaluationsRepository.getAverageSpicinessByNo(no))
-            .sweet(evaluationsRepository.getAverageSweetnessByNo(no))
-            .oily(evaluationsRepository.getAverageFatnessByNo(no)).build();
+            .salty(averageFlavorValues.get("saltiness"))
+            .spicy(averageFlavorValues.get("spiciness"))
+            .sweet(averageFlavorValues.get("sweetness"))
+            .oily(averageFlavorValues.get("fatness")).build();
 
         return ResponseUserInfo.builder()
             .alarm(users.isAlarm())
