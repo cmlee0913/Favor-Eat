@@ -15,8 +15,8 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   transition: all 0.2s ease;
-  width: calc(100%-2rem);
-  padding: 1.5rem 1rem 1.5rem 1rem;
+  width: 100%;
+  padding: 1.5rem 0;
 `;
 
 export const Container = styled.div<{ open: boolean; idx: number }>`

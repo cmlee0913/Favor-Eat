@@ -1,39 +1,41 @@
 import React from "react";
 import * as style from "./RecipeTab.style";
+import Image from "next/image";
+import { RecipeProcessProps } from "@/types/Recipe/dummy";
 
-export default function RecipeTab() {
-  const test = [
-    {
-      content: "step 1",
-      image: "{이미지 링크}",
-    },
-    {
-      content: "step 2",
-      image: "{이미지 링크}",
-    },
-    {
-      content: "step 3",
-      image: "{이미지 링크}",
-    },
-  ];
-
-  const recipeProcess = test.map((elem, idx) => {
+export default function RecipeTab({
+  quantity,
+  ingredientsInFoodList,
+  recipesList,
+}: RecipeProcessProps) {
+  const recipeProcess = recipesList.map((elem, idx) => {
     return (
       <style.RecipeProcessCompo key={idx}>
-        {elem.content}
+        <style.IngredientPhoto>
+          <p>{idx + 1}</p>
+          <Image src={elem.image} alt={elem.content} width={500} height={500} />
+        </style.IngredientPhoto>
+        <div>{elem.content}</div>
       </style.RecipeProcessCompo>
+    );
+  });
+
+  const Ingredients = ingredientsInFoodList.map((elem, idx) => {
+    return (
+      <style.Ingredient key={idx}>
+        {elem.amount}
+        {elem.unit}
+      </style.Ingredient>
     );
   });
 
   return (
     <style.Container>
       <style.RecipeTabHeader>
-        <h2>대충 어떤 음식 이름</h2>
-        <p>몇인분 기준</p>
+        <h2>재료</h2>
+        <p>{quantity}</p>
       </style.RecipeTabHeader>
-      <style.IngredientCompo>
-        뭐가 있겟죠
-      </style.IngredientCompo>
+      <style.IngredientCompo>{Ingredients}</style.IngredientCompo>
       <style.RecipeTabBody>
         <h2>레시피</h2>
         {recipeProcess}
