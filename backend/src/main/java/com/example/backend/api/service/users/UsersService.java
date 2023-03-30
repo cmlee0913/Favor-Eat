@@ -1,12 +1,14 @@
 package com.example.backend.api.service.users;
 
+import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.dto.users.response.ResponseUserInfo;
 import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
-import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
 import java.util.List;
+import java.util.Map;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +21,6 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
     private final EvaluationsRepository evaluationsRepository;
-    private final FoodsRepository foodsRepository;
 
     /**
      * remove refresh token
@@ -34,6 +35,24 @@ public class UsersService {
         users.updateRefreshToken(null);
         return usersRepository.save(users);
     }
+
+    public ResponseUserInfo getUserInfo(Long no) {
+        log.info("getUserInfo() 호출");
+        Users users = usersRepository.findByNo(no).orElseThrow(NullPointerException::new);
+
+        Map<String, Float> averageFlavorValues = evaluationsRepository.getAverageByNo(no);
+        ResponseTasteInfo userTasteInfo = ResponseTasteInfo.builder()
+            .salty(averageFlavorValues.get("saltiness"))
+            .spicy(averageFlavorValues.get("spiciness"))
+            .sweet(averageFlavorValues.get("sweetness"))
+            .oily(averageFlavorValues.get("fatness")).build();
+
+        return ResponseUserInfo.builder()
+            .alarm(users.isAlarm())
+            .responseTasteInfo(userTasteInfo)
+            .build();
+    }
+
 
     /**
      * save evaluations and change user's role
@@ -70,5 +89,4 @@ public class UsersService {
         throws RuntimeException {
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
     }
-
 }

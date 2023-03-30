@@ -89,7 +89,7 @@ public class FoodsController {
     @GetMapping("/recommend")
     @Operation(summary = "추천 음식 목록 조회", description = "추천 음식 목록을 조회합니다.")
     private ResponseEntity<List<ResponseRecommendFood>> getRecommandFoodList(
-        @AuthenticationPrincipal User users, Long no) {
+        @AuthenticationPrincipal User users) {
         return new ResponseEntity<>(foodsService.getRecommendFoodList(Long.parseLong(users.getUsername())), HttpStatus.OK);
     }
 
