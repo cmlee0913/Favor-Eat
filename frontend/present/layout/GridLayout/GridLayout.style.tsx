@@ -18,4 +18,13 @@ export const Container = styled.div`
     gap: 0;
     width: 100%;
   }
+
+  &.Reverse {
+    ${theme.devices.tablet} {
+      display: flex;
+      flex-direction: column-reverse;
+      padding: 5.5rem 1rem 1rem 1rem;
+      width: 100%;
+    }
+  }
 `;

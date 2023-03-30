@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { apiURL } from "@/store/constants";
+import { ApiResult } from "@/types/api/apiType";
 
 const API = axios.create({ baseURL: apiURL });
 
@@ -9,7 +10,10 @@ const API = axios.create({ baseURL: apiURL });
   @param config Axios 요청 관련 config(AxiosRequestConfig)
   @returns 요청 결과와 결과값 리턴
 */
-export async function getAsync(url: string, config?: AxiosRequestConfig) {
+export async function getAsync(
+  url: string,
+  config?: AxiosRequestConfig,
+): Promise<ApiResult> {
   try {
     const response = await API.get(url, {
       responseType: "json",
@@ -32,8 +36,8 @@ export async function getAsync(url: string, config?: AxiosRequestConfig) {
 export async function postAsync<D>(
   url: string,
   data?: D,
-  config?: AxiosRequestConfig
-) {
+  config?: AxiosRequestConfig,
+): Promise<ApiResult> {
   try {
     const response = await API.post(url, data, {
       responseType: "json",
@@ -56,8 +60,8 @@ export async function postAsync<D>(
 export async function patchAsync<D>(
   url: string,
   data: D,
-  config?: AxiosRequestConfig
-) {
+  config?: AxiosRequestConfig,
+): Promise<ApiResult> {
   try {
     const response = await API.patch(url, data, {
       responseType: "json",
@@ -80,8 +84,8 @@ export async function patchAsync<D>(
 export async function putAsync<D>(
   url: string,
   data: D,
-  config?: AxiosRequestConfig
-) {
+  config?: AxiosRequestConfig,
+): Promise<ApiResult> {
   try {
     const response = await API.put(url, data, {
       responseType: "json",
@@ -101,14 +105,17 @@ export async function putAsync<D>(
     @param config Axios 요청 관련 config(AxiosRequestConfig)
     @returns 요청 결과와 결과값 리턴
   */
-export async function deleteAsync<D>(url: string, config?: AxiosRequestConfig) {
+export async function deleteAsync<D>(
+  url: string,
+  config?: AxiosRequestConfig,
+): Promise<ApiResult> {
   try {
     const response = await API.delete(url, {
       responseType: "json",
       ...config,
     });
-    
-    console.log(response.data)
+
+    console.log(response.data);
 
     return { isSuccess: true, result: response.data };
   } catch (err) {

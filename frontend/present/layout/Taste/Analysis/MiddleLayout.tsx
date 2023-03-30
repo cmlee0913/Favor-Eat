@@ -6,14 +6,14 @@ import HateButton from "@/assets/icon/HateButton.svg";
 import TasteFoodCardCompo from "@/present/component/TasteFoodCardCompo/TasteFoodCardCompo";
 import { MiddleLayoutProps } from "@/types/Taste/dummy";
 import TasteEvaluateBoxCompo from "@/present/component/TasteEvaluateCompo/TatseEvaluateBoxCompo";
-import { CurrentIndexAtom, CurrentRecipeDataAtom } from "@/store/tasteStore";
+import { currentIndexAtom, currentRecipeDataAtom } from "@/store/tasteStore";
 import { useAtom } from "jotai";
 
 export default function MiddleLayout({ canGoMain }: MiddleLayoutProps) {
   const [buttonShow, setButtonShow] = useState(true);
 
-  const [currentRecipeData] = useAtom(CurrentRecipeDataAtom);
-  const [, setCurrentIndex] = useAtom(CurrentIndexAtom);
+  const [currentRecipeData] = useAtom(currentRecipeDataAtom);
+  const [, setCurrentIndex] = useAtom(currentIndexAtom);
 
   const onClickHate = () => {
     setCurrentIndex((current) => current + 1);

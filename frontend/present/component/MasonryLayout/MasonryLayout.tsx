@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
 import AutoHeightImage from "./AutoHeightImage";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
@@ -6,6 +6,34 @@ import useMediaQuery from "@/action/hooks/useMediaQuery";
 import { theme } from "@/constant/theme";
 import * as styles from "./MasonryLayout.styles";
 
+import { userTokenSave } from "@/store/userStore";
+import { useAtom } from "jotai";
+
+import { getFavoriteFoodList } from "@/action/apis/favorite";
+//
+const requestFavoriteFoodList = async (token: string) => {
+  const { isSuccess, result } = await getFavoriteFoodList(token);
+
+  console.log(isSuccess);
+  console.log(result);
+
+  if (isSuccess) {
+    const list = [];
+    result.forEach((item) => {
+      console.log("________________________________________");
+      console.log(item);
+      console.log("________________________________________");
+      list.push({
+        imageSrc: item.image,
+        recipeName: item.name,
+        recipeId: item.foodsId,
+      });
+    });
+    return list;
+  }
+  return null;
+};
+//
 function getItems(nextGroupKey: number, count: number) {
   const nextItems = [];
   const nextKey = nextGroupKey * count;
@@ -18,6 +46,7 @@ function getItems(nextGroupKey: number, count: number) {
 
 const Item = ({ num }: any) => (
   <AutoHeightImage
+    style={{ borderRadius: "20px" }}
     src={`https://naver.github.io/egjs-infinitegrid/assets/image/${
       (num % 33) + 1
     }.jpg`}
@@ -25,19 +54,34 @@ const Item = ({ num }: any) => (
   />
 );
 
-export default function App() {
+export default function MasonryLayout() {
   const [items, setItems] = useState(() => getItems(0, 10));
+  const [favoriteList, setFavoriteList] = useState([]);
+
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isPhone = useMediaQuery("(min-width: 426px)");
 
   let columnNumber = 6;
-  
-  // 삼항연산자 사용
-  `${
-    isTablet && isPhone
-      ? (columnNumber = 6)
-      : `${!isTablet && isPhone ? (columnNumber = 4) : (columnNumber = 3)}`
-  }`;
+
+  const [token] = useAtom(userTokenSave);
+
+  //
+  useEffect(() => {
+    if (token.accessToken) {
+      requestFavoriteFoodList(token.accessToken).then((list) => {
+        setFavoriteList(list);
+      });
+    }
+  }, [token.accessToken]);
+  //
+
+  if (isTablet && isPhone) {
+    columnNumber = 6;
+  } else if (!isTablet && isPhone) {
+    columnNumber = 4;
+  } else {
+    columnNumber = 3;
+  }
 
   return (
     <div>
@@ -60,7 +104,7 @@ export default function App() {
               data-grid-groupkey={item.groupKey}
               key={item.key}
               num={item.key}
-            />{" "}
+            />
           </styles.Item>
         ))}
       </MasonryInfiniteGrid>

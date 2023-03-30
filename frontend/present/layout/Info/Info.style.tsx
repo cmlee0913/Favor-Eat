@@ -2,14 +2,21 @@ import styled from "styled-components";
 import { theme } from "@/constant/theme";
 
 export const InfoMemberContainer = styled.div`
-  margin-left: 5%;
+  ${theme.devices.desktop} {
+    margin-left: 3rem;
+  }
+
+  ${theme.devices.tablet} {
+    margin-left: 0rem;
+  }
+
+  ${theme.devices.mobile} {
+  }
 
   & div.title {
     font-size: 30px;
     font-weight: bold;
     place-items: start;
-
-    display: grid;
   }
 `;
 
@@ -48,8 +55,14 @@ export const InfoMember = styled.div`
 
 export const InfoAccodian = styled.div`
   ${theme.devices.desktop} {
+    margin-right: 3rem;
   }
+
   ${theme.devices.tablet} {
-    margin-right: 0;
+    margin-right: 0rem;
+    margin-bottom: 3rem;
+  }
+
+  ${theme.devices.mobile} {
   }
 `;

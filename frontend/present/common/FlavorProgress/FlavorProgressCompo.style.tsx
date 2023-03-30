@@ -122,7 +122,7 @@ const makeLevelList = (colorList: string[]) => {
       <LevelWrapper key={index}>
         <LevelText>{index + 1}</LevelText>
         <LevelIcon color={color} />
-      </LevelWrapper>,
+      </LevelWrapper>
     );
   });
   return list;
