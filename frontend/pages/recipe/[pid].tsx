@@ -12,6 +12,8 @@ import * as style from "@/present/layout/Recipe/pageStyle";
 
 import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
 import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
+import { useAtom } from "jotai";
+import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
 import Ingrediant from "@/present/layout/Ingrediant/Ingrediant";
 import { useRouter } from "next/router";
 import { getAsync } from "@/action/apis/apis";
@@ -133,6 +135,12 @@ export default function Recipe() {
 
   //TestImg
   const subImg = [Test, Test, Test];
+
+  //레시피 즐겨찾기 여부
+  //레시피 데이터 들고올때 초기화 필요
+  const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
+    recipeFavorCheckedAtom,
+  );
 
   return (
     <style.PageContainer>

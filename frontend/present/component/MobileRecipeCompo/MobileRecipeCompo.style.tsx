@@ -3,8 +3,8 @@ import styled from "styled-components";
 import ArrowIcon from "@/assets/icon/arrow.svg";
 
 export const Container = styled.div`
-  width: 35vw;
-  height: 35vw;
+  width: 50%;
+  height: 50%;
   position: relative;
   display: inline-block;
   margin: 1vw;
@@ -15,15 +15,16 @@ export const Container = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  width: inherit;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
 
   img {
     object-fit: cover;
     border-radius: inherit;
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
+    aspect-ratio: unset;
   }
 `;
 

@@ -87,6 +87,10 @@ export const Container = styled.div<{ selectIdx: number }>`
     & img:nth-child(1) {
       margin-right: 0.5rem;
     }
+
+    .no-suggest {
+      transform: scaleX(-1) scaleY(-1);
+    }
   }
 
   ${theme.devices.tablet} {

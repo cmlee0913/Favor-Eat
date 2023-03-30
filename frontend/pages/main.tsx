@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import { logoutAsync } from "@/action/apis/auth";
-import { useRouter } from "next/router";
-import { userTokenSave } from "@/store/userStore";
-import { useAtom } from "jotai";
-import { RESET } from "jotai/utils";
-
 import * as style from "@/present/layout/Main/MainLayout.style";
 import LeftLayout from "@/present/layout/Main/LeftLayout";
 import CharactersImage from "@/assets/image/Character/MainPage.png";
@@ -63,6 +57,13 @@ export default function Home() {
 
   const [isMainMode, setIsMainMode] = useState<boolean>(true);
 
+  const activeMainMode = () => {
+    setIsMainMode(true);
+  };
+  const inactiveMainMode = () => {
+    setIsMainMode(false);
+  };
+
   return (
     <style.Container>
       <LeftLayout foods={foodList}></LeftLayout>
@@ -75,12 +76,22 @@ export default function Home() {
           <Image
             src={CharactersImage}
             width={400}
+            height={400}
             alt="characters search for food"
           />
         </style.CharacterImage>
         <style.RecommendIcons>
-          <style.MainRecommendActive />
-          <style.AnotherRecommendInactive />
+          {isMainMode ? (
+            <>
+              <style.MainRecommendActive onClick={inactiveMainMode} />
+              <style.AnotherRecommendInactive onClick={inactiveMainMode} />
+            </>
+          ) : (
+            <>
+              <style.MainRecommendInactive onClick={activeMainMode} />
+              <style.AnotherRecommendActive onClick={activeMainMode} />
+            </>
+          )}
         </style.RecommendIcons>
       </style.Right>
       <style.MobileImageContainer>
