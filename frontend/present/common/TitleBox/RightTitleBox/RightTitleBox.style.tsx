@@ -7,8 +7,6 @@ export const RightTitleBox = styled.div`
   color: white;
   font-weight: bold;
 
-  border: 1px solid ${theme.colors.mono.dark_3};
-
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 
