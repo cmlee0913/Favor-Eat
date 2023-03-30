@@ -1,9 +1,10 @@
 package com.example.backend.api.service.users;
 
+import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.dto.users.response.ResponseUserInfo;
 import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
-import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
 import java.util.List;
@@ -19,7 +20,6 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
     private final EvaluationsRepository evaluationsRepository;
-    private final FoodsRepository foodsRepository;
 
     /**
      * remove refresh token
@@ -34,6 +34,22 @@ public class UsersService {
         users.updateRefreshToken(null);
         return usersRepository.save(users);
     }
+
+    public ResponseUserInfo getUserInfo(Long no) {
+        Users users = usersRepository.findByNo(no).orElseThrow(NullPointerException::new);
+
+        ResponseTasteInfo userTasteInfo = ResponseTasteInfo.builder()
+            .salty(evaluationsRepository.getAverageSaltinessByNo(no))
+            .spicy(evaluationsRepository.getAverageSpicinessByNo(no))
+            .sweet(evaluationsRepository.getAverageSweetnessByNo(no))
+            .oily(evaluationsRepository.getAverageFatnessByNo(no)).build();
+
+        return ResponseUserInfo.builder()
+            .alarm(users.isAlarm())
+            .responseTasteInfo(userTasteInfo)
+            .build();
+    }
+
 
     /**
      * save evaluations and change user's role
@@ -70,5 +86,4 @@ public class UsersService {
         throws RuntimeException {
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
     }
-
 }

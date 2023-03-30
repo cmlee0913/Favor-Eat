@@ -1,6 +1,7 @@
 package com.example.backend.api.controller.users;
 
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
+import com.example.backend.api.dto.users.response.ResponseUserInfo;
 import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.service.jwt.JwtService;
 import com.example.backend.api.service.users.UsersService;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,6 +40,13 @@ public class UsersController {
         } else {
             return new ResponseEntity<>("signOut 실패", HttpStatus.valueOf(400));
         }
+    }
+
+    @Operation(summary = "사용자 정보 조회", description = "사용자의 평균 <strong>맛 정보</strong>(맵기, 달기, 짜기, 느끼)와 <strong>알람 설정 정보</strong>를 조회합니다.")
+    @GetMapping()
+    public ResponseEntity<ResponseUserInfo> getUserIno(@AuthenticationPrincipal User users) {
+        return new ResponseEntity<>(usersService.getUserInfo(Long.parseLong(users.getUsername())),
+            HttpStatus.OK);
     }
 
     @Operation(summary = "초기 맛 평가 등록", description = "최소 5개 이상 <strong>초기 맛 평가 정보</strong>(맵기, 달기, 짜기, 느끼)를 등록합니다. <strong>사용자 ROLE</strong>을 업데이트합니다.")
