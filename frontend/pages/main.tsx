@@ -10,7 +10,7 @@ import { userTokenSave } from "@/store/userStore";
 import { useAtom } from "jotai";
 import { getRecommendFoodList } from "@/action/apis/main";
 import { FlavorType } from "@/types/RecipeFlavor/dummy";
-import Loading from "@/present/common/Loading/loading";
+import Loading from "@/present/common/Loading/Loading";
 
 export default function main() {
   const [loading, setLoading] = useState(true);

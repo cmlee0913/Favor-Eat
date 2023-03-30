@@ -162,7 +162,7 @@ export const RefreshButton = styled(RefreshIcon)`
 `;
 
 export const MobileImageContainer = styled.div`
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
   position: absolute;
