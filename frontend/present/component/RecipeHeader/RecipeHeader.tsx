@@ -17,7 +17,6 @@ export default function RecipeHeader({ selectIdx }: RecipeHeaderProps) {
 
   const onClickNoFavor = async () => {
     if (!token || !router.isReady) return;
-    console.log(token.accessToken);
     saveFoodNonFavor(token.accessToken, idx);
   };
   return (
