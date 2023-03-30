@@ -102,7 +102,7 @@ export const CharacterImage = styled.div`
   }
 
   img {
-    width: auto;
+    width: 100%;
     height: 100%;
   }
 `;
@@ -133,8 +133,14 @@ export const RecommendIcons = styled.div`
 export const MainRecommendActive = styled(MainFoodActive)`
   ${RecommendIconStyle}
 `;
+export const MainRecommendInactive = styled(MainFoodInactive)`
+  ${RecommendIconStyle}
+`;
 
 export const AnotherRecommendInactive = styled(AnotherFoodInactive)`
+  ${RecommendIconStyle}
+`;
+export const AnotherRecommendActive = styled(AnotherFoodActive)`
   ${RecommendIconStyle}
 `;
 
@@ -151,11 +157,15 @@ export const MobileImageContainer = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
-  position: relative;
-  top: 10%;
+  position: absolute;
+  bottom: 10%;
+  height: fit-content;
 
   ${theme.devices.desktop} {
     display: none;
+  }
+
+  ${theme.devices.tablet} {
     ::-webkit-scrollbar-track {
       border-radius: 10px;
       background-color: ${theme.colors.main.purple.light_1};
@@ -171,11 +181,7 @@ export const MobileImageContainer = styled.div`
     }
   }
 
-  ${theme.devices.tablet} {
-    display: block;
-  }
-
-  ${theme.devices.tablet} {
+  ${theme.devices.mobile} {
     ::-webkit-scrollbar-track {
       all: initial;
     }
@@ -193,6 +199,7 @@ export const MobileImageContainer = styled.div`
     width: auto;
     white-space: nowrap;
     margin-bottom: 2%;
+    height: fit-content;
   }
 
   ${theme.devices.tablet} {
