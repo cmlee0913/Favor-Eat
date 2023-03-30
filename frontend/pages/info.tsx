@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 
 import InfoMember from "@/present/layout/Info/InfoMember";
 import InfoAccordian from "@/present/layout/Info/InfoAccordian";
-import InfoStaticData from "@/present/layout/Info/InfoStaticData";
+
+import InfoDataSource from "@/present/layout/Info/InfoDataSource";
+import InfoTechStack from "@/present/layout/Info/InfoTechStack";
+import InfoArchive from "@/present/layout/Info/InfoArchive";
 
 import { InfoTypes } from "@/types/Info/dummy";
 
@@ -13,17 +16,17 @@ export default function Info() {
   const [infoArr, setInfoArr] = useState<Array<InfoTypes>>([
     {
       category: "만개의 레시피/식품 영양 크롤링",
-      content: <InfoStaticData />,
+      content: <InfoDataSource />,
       isOpen: true,
     },
     {
-      category: "백/프론트 래퍼런스 넣기",
-      content: <InfoStaticData />,
+      category: "기술 스택 아이콘/이름 넣기 백/프",
+      content: <InfoTechStack />,
       isOpen: false,
     },
     {
       category: "노션/피그마 etc",
-      content: <InfoStaticData />,
+      content: <InfoArchive />,
       isOpen: false,
     },
   ]);

@@ -66,3 +66,9 @@ export const InfoAccodian = styled.div`
   ${theme.devices.mobile} {
   }
 `;
+
+export const InfoDataSource = styled.div``;
+
+export const InfoTechStack = styled.div``;
+
+export const InfoArchive = styled.div``;
