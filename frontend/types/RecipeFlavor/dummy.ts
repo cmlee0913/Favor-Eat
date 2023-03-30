@@ -22,17 +22,43 @@ export interface FlavorCharacterListProps {
 }
 
 export interface FlavorInfo {
-  type: FlavorType;
+  type: string;
   value: number;
 }
 
 export interface RecipeFlavorProps {
-  values: Array<FlavorInfo>;
   recipeImage: StaticImageData;
+  tasteInfo: {
+    spicy: number;
+    sweet: number;
+    salty: number;
+    oily: number;
+  };
 }
 
 export interface HoverBoxImageType {
   pcImage: StaticImageData;
   mobileImage: StaticImageData;
   left: number;
+}
+
+export interface NutrientObject {
+  calorie: number;
+  moisture: number;
+  protein: number;
+  fat: number;
+  carbohydrate: number;
+  sugars: number;
+  fiber: number;
+  calcium: number;
+  iron: number;
+  phosphorus: number;
+  potassium: number;
+  salt: number;
+  vitaminA: number;
+  vitaminC: number;
+  vitaminD: number;
+  cholesterol: number;
+  saturatedfat: number;
+  transfat: number;
 }

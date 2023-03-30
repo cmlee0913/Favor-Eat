@@ -1,4 +1,4 @@
-import { theme } from "@/action/theme";
+import { theme } from "@/constant/theme";
 import FlavorCharacterCompo from "../FlavorCharacterCompo/FlavorCharacterCompo";
 import TasteRatingCompo from "../TasteRatingCompo/TasteRatingCompo";
 import * as style from "./TatseEvaluateBoxCompo.style";
