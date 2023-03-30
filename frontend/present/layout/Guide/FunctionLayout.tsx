@@ -39,7 +39,8 @@ export default function FunctionLayout() {
           <br />
           정보를 확인하세요
         </h1>
-        <p>맵기, 짜기, 영양소 등 다양한 정보를 확인할 수 있어요</p>
+        <p className="PC">맵기, 짜기, 영양소 등 다양한 정보를 확인할 수 있어요</p>
+        <p className="Mobile">맵기, 짜기, 영양소 등<br />다양한 정보를 확인할 수 있어요</p>
       </style.SampleTest>
 
       {/* 이미지 */}

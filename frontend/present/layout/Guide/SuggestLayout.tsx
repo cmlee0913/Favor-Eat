@@ -33,7 +33,8 @@ export default function SuggestLayout() {
       {/* 텍스트 */}
       <style.SampleTest className="Suggest">
         <h1>오늘의 음식을<br />추천받아보세요</h1>
-        <p>당신의 입맛에 맞는 음식을 추천해드려요</p>
+        <p className="PC">당신의 입맛에 맞는 음식을 추천해드려요</p>
+        <p className="Mobile">당신의 입맛에 맞는<br />음식을 추천해드려요</p>
       </style.SampleTest>
 
       {/* 이미지 */}

@@ -17,6 +17,10 @@ export default function StartLayout() {
         <style.Slogan className="Main">Favor is certain</style.Slogan>
       </div>
 
+      <div>
+        <style.Slogan className="Mobile">Life is<br />uncertain, <br />Favor eat is <br />certain</style.Slogan>
+      </div>
+
       {/* 구름 */}
       <style.Cloud>
         <Image className="Cloud Start" src={Violet1} alt="Cloud" />
