@@ -95,7 +95,7 @@ export const Bottom = styled.div`
 export const SampleImg = styled.div`
   & img.SampleImg {
     width: auto;
-    height: 37%;
+    height: 27vw;
     position: absolute;
     z-index: 6;
     top: 5%;
@@ -118,6 +118,52 @@ export const SampleImg = styled.div`
     &:nth-child(4) {
       right: 0;
       top: 17.01%;
+    }
+
+    ${theme.devices.tablet} {
+      height: 30vw;
+
+      &:nth-child(1) {
+        top: 34.56%;
+      }
+
+      &:nth-child(2) {
+        right: 50%;
+        top: 53.23%;
+      }
+
+      &:nth-child(3) {
+        right: 24.6%;
+        top: 34.56%;
+      }
+
+      &:nth-child(4) {
+        right: 0;
+        top: 17.01%;
+      }
+    }
+
+    ${theme.devices.mobile} {
+      height: 40vw;
+
+      &:nth-child(1) {
+        top: 50%;
+      }
+
+      &:nth-child(2) {
+        right: 30%;
+        top: 58.23%;
+      }
+
+      &:nth-child(3) {
+        right: 24.6%;
+        top: 39.56%;
+      }
+
+      &:nth-child(4) {
+        right: 0;
+        top: 22.01%;
+      }
     }
   }
 `;
@@ -176,6 +222,35 @@ export const FunctionImg = styled.div`
 
       &:nth-child(5) {
         top: 50.58%;
+      }
+    }
+
+    ${theme.devices.mobile} {
+      height: 35vw;
+
+      &:nth-child(1) {
+        top: 40.32%;
+        left: 0;
+      }
+
+      &:nth-child(2) {
+        right: 50.3%;
+        top: 30%;
+      }
+
+      &:nth-child(3) {
+        right: 42%;
+        top: 46%;
+      }
+
+      &:nth-child(4) {
+        right: 12%;
+        top: 53%;
+      }
+
+      &:nth-child(5) {
+        right: 0;
+        top: 45%;
       }
     }
   }
