@@ -132,7 +132,6 @@ export default function Recipe() {
   }, [selectIdx]);
 
   //TestImg
-  const mainImg = Test;
   const subImg = [Test, Test, Test];
 
   return (

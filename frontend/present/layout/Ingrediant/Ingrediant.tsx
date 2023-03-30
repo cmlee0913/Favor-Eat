@@ -119,7 +119,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "vitaminA",
       value: vitaminA,
       color: "#FFE54D",
-      width: 0,
+      width: (vitaminA / 800) * 100,
       unit: "㎍",
     },
     {
@@ -127,7 +127,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "vitaminC",
       value: vitaminC,
       color: "#FFFB66",
-      width: 0,
+      width: vitaminC,
       unit: "㎍",
     },
     {
@@ -135,7 +135,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "vitaminD",
       value: vitaminD,
       color: "#E9FF66",
-      width: 0,
+      width: (vitaminD / 10) * 100,
       unit: "㎍",
     },
   ];
