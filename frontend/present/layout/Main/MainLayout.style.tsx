@@ -118,6 +118,9 @@ const RecommendIconStyle = css`
     width: 13vw;
     height: auto;
   }
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const RecommendIcons = styled.div`
@@ -151,6 +154,11 @@ export const RefreshButton = styled(RefreshIcon)`
   top: 5vh;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 90;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const MobileImageContainer = styled.div`
@@ -160,12 +168,14 @@ export const MobileImageContainer = styled.div`
   position: absolute;
   bottom: 10%;
   height: fit-content;
+  width: 100vw;
 
   ${theme.devices.desktop} {
     display: none;
   }
 
   ${theme.devices.tablet} {
+    bottom: 10%;
     ::-webkit-scrollbar-track {
       border-radius: 10px;
       background-color: ${theme.colors.main.purple.light_1};
@@ -182,23 +192,12 @@ export const MobileImageContainer = styled.div`
   }
 
   ${theme.devices.mobile} {
-    ::-webkit-scrollbar-track {
-      all: initial;
-    }
-
-    ::-webkit-scrollbar {
-      all: initial;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      all: initial;
-    }
   }
 
   & > div {
     width: auto;
     white-space: nowrap;
-    margin-bottom: 2%;
+    margin: 3vh 0;
     height: fit-content;
   }
 
@@ -208,5 +207,28 @@ export const MobileImageContainer = styled.div`
 
   ${theme.devices.mobile} {
     border-radius: 10px;
+  }
+`;
+
+export const MobileRefreshButton = styled(RefreshIcon)`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: none;
+  z-index: 90;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  ${theme.devices.tablet} {
+    display: block;
+  }
+
+  ${theme.devices.mobile} {
+    top: 48%;
   }
 `;
