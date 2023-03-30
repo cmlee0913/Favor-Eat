@@ -1,22 +1,63 @@
 import { theme } from "@/constant/theme";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const Contentbar = styled.div<{ color: string; width: number }>`
-  width: ${(props) => props.width}%;
+const openProgressbar = (width) => keyframes`
+    0% {
+        width: 0;
+        opacity: 0;
+        color: transparent;
+    }
+    
+    100% {
+        width: ${width};
+        opacity: 1;
+    }
+`;
+
+export const Contentbar = styled.div<{
+  color: string;
+  width: number;
+  idx: number;
+}>`
+  width: 0;
   height: inherit;
   background-color: ${(props) => props.color};
   border-radius: 1rem;
+  animation: ${openProgressbar} 2s forwards;
+  animation-delay: ${(props) => `0.${props.idx}s`};
+
+  &.Vitamin {
+    height: 18px;
+    width: ${(props) => props.width}px;
+    text-align: center;
+
+    p {
+      position: relative;
+      padding: 0;
+      margin: 0 !important;
+      font-size: 0.8rem !important;
+    }
+  }
 `;
 
 export const Progressbar = styled.div`
   width: 100%;
   height: 18px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 1rem;
 
   & p {
     font-family: "Inter-Medium" !important;
+  }
+
+  &.Vitamin {
+    height: fit-content;
+    flex-direction: column;
+    gap: 0;
+    justify-content: flex-start;
+    width: fit-content;
   }
 `;
 
@@ -30,6 +71,26 @@ export const EctNutrientCompo = styled.div`
     margin-block: 0.5rem;
     font-family: "Pretendard-Light";
     font-size: 1rem;
+  }
+
+  &.Vitamin {
+    display: grid;
+    grid-template-columns: 1fr 5fr 20px;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    & p {
+      margin-block: 0;
+      font-family: "Pretendard-Light";
+      font-size: 1rem;
+    }
+
+    & > div {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 0.5rem;
+    }
   }
 `;
 

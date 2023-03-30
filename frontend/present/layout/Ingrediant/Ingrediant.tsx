@@ -44,7 +44,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "fiber",
       value: fiber,
       color: "#F47676",
-      width: (fiber / 25) * 100,
+      width: (fiber / 25) * 300,
       unit: "g",
     },
     {
@@ -52,7 +52,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "calcium",
       value: calcium,
       color: "#D1D5E0",
-      width: (calcium / 800) * 100,
+      width: (calcium / 800) * 300,
       unit: "mg",
     },
     {
@@ -60,7 +60,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "iron",
       value: iron,
       color: "#9B82A5",
-      width: (iron / 500) * 100,
+      width: (iron / 100) * 300,
       unit: "㎍",
     },
     {
@@ -68,7 +68,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "phosphorus",
       value: phosphorus,
       color: "#87827B",
-      width: (phosphorus / 700) * 100,
+      width: (phosphorus / 700) * 300,
       unit: "mg",
     },
     {
@@ -76,7 +76,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "potassium",
       value: potassium,
       color: "#FFDCE1",
-      width: (potassium / 3500) * 100,
+      width: (potassium / 3500) * 300,
       unit: "mg",
     },
     {
@@ -84,7 +84,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "salt",
       value: salt,
       color: "#47B8E0",
-      width: (salt / 1500) * 100,
+      width: (salt / 1500) * 300,
       unit: "mg",
     },
     {
@@ -92,7 +92,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       type: "transfat",
       value: transfat,
       color: "#9494E0",
-      width: transfat * 100,
+      width: transfat * 300,
       unit: "g",
     },
     {
@@ -115,7 +115,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
 
   const vitaminNutrient = [
     {
-      name: "비타민A",
+      name: "A",
       type: "vitaminA",
       value: vitaminA,
       color: "#FFE54D",
@@ -123,22 +123,43 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       unit: "㎍",
     },
     {
-      name: "비타민C",
+      name: "C",
       type: "vitaminC",
       value: vitaminC,
       color: "#FFFB66",
-      width: vitaminC,
+      width: vitaminC * 300,
       unit: "㎍",
     },
     {
-      name: "비타민D",
+      name: "D",
       type: "vitaminD",
       value: vitaminD,
       color: "#E9FF66",
-      width: (vitaminD / 10) * 100,
+      width: (vitaminD / 10) * 300,
       unit: "㎍",
     },
   ];
+
+  const vitaminCompo = vitaminNutrient.map((elem, idx) => {
+    if (elem.value !== 0) {
+      return (
+        <style.Progressbar className="Vitamin">
+          <p>{elem.name}</p>
+          <style.Contentbar
+            color={elem.color}
+            width={elem.width}
+            idx={idx}
+            className="Vitamin"
+          >
+            <p>
+              {elem.value}
+              {elem.unit}
+            </p>
+          </style.Contentbar>
+        </style.Progressbar>
+      );
+    }
+  });
 
   const nutrientCompo = etcNutrient.map((elem, idx) => {
     if (elem.value !== 0) {
@@ -146,9 +167,9 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
         <style.EctNutrientCompo key={idx}>
           <p>{elem.name}</p>
           <style.Progressbar>
-            <style.Contentbar color={elem.color} width={elem.width} />
+            <style.Contentbar color={elem.color} width={elem.width} idx={idx} />
             <p>
-              {elem.value}
+              {elem.value} &nbsp;
               {elem.unit}
             </p>
           </style.Progressbar>
@@ -168,6 +189,11 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
       />
 
       <p>그 외 영양소</p>
+      <style.EctNutrientCompo className="Vitamin">
+        <p>비타민</p>
+        <div>{vitaminCompo}</div>
+      </style.EctNutrientCompo>
+
       {nutrientCompo}
     </style.Container>
   );
@@ -176,8 +202,8 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
     <style.NullContainer>
       <Image
         src={ShutDownService}
-        width={"1000"}
-        height={"1000"}
+        width={"3000"}
+        height={"3000"}
         alt="점검중입니다"
       />
       <Image

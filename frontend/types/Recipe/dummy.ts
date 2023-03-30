@@ -69,7 +69,7 @@ export interface RecipeData {
     oily: number;
   };
   recipesList: Array<RecipeList>;
-  ingredientsInFoodsList: Array<ingredientsInFoods>;
+  ingredientsInFoodList: Array<ingredientsInFoods>;
 }
 
 interface RecipeList {
@@ -88,4 +88,10 @@ export interface MainNutrient {
   protein: number;
   fat: number;
   carbohydrate: number;
+}
+
+export interface RecipeProcessProps {
+  quantity: string;
+  ingredientsInFoodList: Array<ingredientsInFoods>;
+  recipesList: Array<RecipeList>;
 }

@@ -56,7 +56,7 @@ export default function Recipe() {
       oily: 0,
     },
     recipesList: [],
-    ingredientsInFoodsList: [],
+    ingredientsInFoodList: [],
   });
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
@@ -78,7 +78,13 @@ export default function Recipe() {
     },
     {
       category: "레시피",
-      content: <RecipeTab />,
+      content: (
+        <RecipeTab
+          quantity={recipeData.quantity}
+          ingredientsInFoodList={recipeData.ingredientsInFoodList}
+          recipesList={recipeData.recipesList}
+        />
+      ),
       isOpen: false,
     },
   ]);
@@ -108,10 +114,16 @@ export default function Recipe() {
             },
             {
               category: "레시피",
-              content: <RecipeTab />,
+              content: (
+                <RecipeTab
+                  quantity={res.result.quantity}
+                  ingredientsInFoodList={res.result.ingredientsInFoodsList}
+                  recipesList={res.result.recipesList}
+                />
+              ),
               isOpen: false,
             },
-          ])
+          ]);
         } else {
           console.log(res);
         }
@@ -139,7 +151,7 @@ export default function Recipe() {
   //레시피 즐겨찾기 여부
   //레시피 데이터 들고올때 초기화 필요
   const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
-    recipeFavorCheckedAtom,
+    recipeFavorCheckedAtom
   );
 
   return (
