@@ -28,6 +28,29 @@ export const Slogan = styled.p`
       top: 37%;
       right: 7%;
     }
+
+    ${theme.devices.tablet} {
+      display: none;
+    }
+  }
+
+  &.Mobile {
+    display: none;
+    position: absolute;
+    font-family: "Inter-Black";
+    font-size: 300%;
+    z-index: 15;
+
+    ${theme.devices.tablet} {
+      display: block;
+      left: 11.78%;
+      top: 15%;
+    }
+
+    ${theme.devices.mobile} {
+      top: 35%;
+      left: 5%;
+    }
   }
 `;
 
