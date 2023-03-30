@@ -5,7 +5,8 @@ import { kakaoLoginUrl } from "@/store/constants";
 export default function KakaoLoginCompo() {
   return (
     <style.Container>
-      <style.LoginGuideText>지금 바로 시작하세요</style.LoginGuideText>
+      <style.LoginGuideText className="PC">지금 바로 시작하세요</style.LoginGuideText>
+      <style.LoginGuideText className="Mobile">지금 바로<br />시작하세요</style.LoginGuideText>
       <style.BtnContainer>
         <style.StyledLink href={kakaoLoginUrl}>
           <style.KakaoLogo />

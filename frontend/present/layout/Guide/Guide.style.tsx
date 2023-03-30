@@ -521,16 +521,17 @@ export const SampleTest = styled.div`
 
     & p.Mobile {
       display: block;
+      font-size: 1.2rem;
     }
 
     &.Suggest {
-      left: 3%;
+      left: 8%;
       top: 20%;
     }
 
     &.Function {
       text-align: left;
-      left: 3%;
+      left: 8%;
       top: 15.8%;
     }
 
@@ -555,7 +556,7 @@ export const SampleTest = styled.div`
     }
 
     & > p {
-      font-size: 15px;
+      font-size: 1.2rem;
     }
   }
 `;
