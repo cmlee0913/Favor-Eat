@@ -29,9 +29,9 @@ public class FoodsController {
 
     @GetMapping("/{id}")
     @Operation(summary = "음식 정보 조회", description = "음식 id로 <strong>기본정보</strong>(이름, 양, 사진, 난이도), <strong>맛 정보</strong>(맵기, 달기, 짜기, 느끼), <strong>레시피 정보</strong>, <strong>재료 정보</strong>를 조회합니다.")
-    private ResponseEntity<ResponseFoodInfo> getFoodInfo(@PathVariable Long id) {
+    private ResponseEntity<ResponseFoodInfo> getFoodInfo(@AuthenticationPrincipal User users, @PathVariable Long id) {
         try {
-            return new ResponseEntity<>(foodsService.getFoodInfo(id), HttpStatus.OK);
+            return new ResponseEntity<>(foodsService.getFoodInfo(Long.parseLong(users.getUsername()), id), HttpStatus.OK);
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -1,5 +1,6 @@
 package com.example.backend.api.entity.foods;
 
+import com.example.backend.api.dto.foods.response.ResponseIngredientsInFood;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,4 +30,15 @@ public class IngredientsInFoods {
     @ManyToOne
     @JoinColumn(name = "foods_id", insertable = false, updatable = false)
     private Foods foods;
+
+    @ManyToOne
+    @JoinColumn(name = "ingredients_id", insertable = false, updatable = false)
+    private Ingredients ingredients;
+
+    public ResponseIngredientsInFood toDTO(){
+        return ResponseIngredientsInFood.builder()
+            .name(ingredients.getName())
+            .amount(this.amount)
+            .unit(this.unit).build();
+    }
 }

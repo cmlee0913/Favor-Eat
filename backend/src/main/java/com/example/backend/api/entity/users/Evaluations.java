@@ -1,5 +1,6 @@
 package com.example.backend.api.entity.users;
 
+import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,5 +37,13 @@ public class Evaluations {
         this.sweetness = sweetness;
         this.saltiness = saltiness;
         this.fatness = fatness;
+    }
+
+    public ResponseTasteInfo toDTO(){
+        return ResponseTasteInfo.builder()
+            .spicy(this.spiciness)
+            .sweet(this.sweetness)
+            .salty(this.saltiness)
+            .oily(this.fatness).build();
     }
 }

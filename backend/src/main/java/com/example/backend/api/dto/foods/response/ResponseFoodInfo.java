@@ -13,6 +13,7 @@ public class ResponseFoodInfo {
     private String time;
     private String level;
     private String image;
+    private Boolean isFavorites;
 
     private ResponseNutrientInfo nutrientInfo;
     private ResponseTasteInfo tasteInfo;
@@ -21,7 +22,7 @@ public class ResponseFoodInfo {
 
     @Builder
     public ResponseFoodInfo(String name, String quantity, String time, String level, String image,
-        ResponseNutrientInfo nutrientInfo,
+        Boolean isFavorites, ResponseNutrientInfo nutrientInfo,
         ResponseTasteInfo tasteInfo,
         List<ResponseRecipe> recipesList,
         List<ResponseIngredientsInFood> ingredientsInFoodsList) {
@@ -34,5 +35,6 @@ public class ResponseFoodInfo {
         this.tasteInfo = tasteInfo;
         this.recipesList = recipesList;
         this.ingredientsInFoodsList = ingredientsInFoodsList;
+        this.isFavorites = isFavorites;
     }
 }

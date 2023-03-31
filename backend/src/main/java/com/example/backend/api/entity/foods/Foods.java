@@ -61,16 +61,17 @@ public class Foods {
     @JsonIgnoreProperties({"foods"})
     List<IngredientsInFoods> ingredientsInFoodsList;
 
-    public ResponseFoodInfo toDTO() {
+    public ResponseFoodInfo toDTO(Boolean isFavorites, ResponseTasteInfo responseTasteInfo) {
         return ResponseFoodInfo.builder()
             .name(this.getName())
             .level(this.getLevel())
             .quantity(this.getQuantity())
             .time(this.getTime())
             .image(this.getImage())
+            .isFavorites(isFavorites)
+            .tasteInfo(responseTasteInfo)
             .recipesList(recipesListEntityToDTO(this.recipesList))
             .nutrientInfo(buildNutrientInfoDTO())
-            .tasteInfo(buildTasteInfoDTO())
             .ingredientsInFoodsList(ingredientsListEntityToDTO(this.ingredientsInFoodsList))
             .build();
     }
@@ -98,7 +99,6 @@ public class Foods {
             .build();
     }
 
-
     private ResponseTasteInfo buildTasteInfoDTO() {
         return ResponseTasteInfo.builder()
             .oily(this.getFatness())
@@ -117,21 +117,8 @@ public class Foods {
     private List<ResponseIngredientsInFood> ingredientsListEntityToDTO(
         List<IngredientsInFoods> ingredientsInFoodsList) {
         return ingredientsInFoodsList.stream()
-            .map(ingredients -> new ResponseIngredientsInFood(ingredients.getUnit(),
-                ingredients.getAmount()))
+            .map(IngredientsInFoods::toDTO)
             .collect(Collectors.toList());
     }
 
-    public void updateSpiciness(Float spiciness){
-        this.spiciness = spiciness;
-    }
-    public void updateSweetness(Float sweetness){
-        this.sweetness = sweetness;
-    }
-    public void updateSaltiness(Float saltiness){
-        this.saltiness = saltiness;
-    }
-    public void updateFatness(Float fatness){
-        this.fatness = fatness;
-    }
 }
