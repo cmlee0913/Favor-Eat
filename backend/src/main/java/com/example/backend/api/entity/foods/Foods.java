@@ -117,8 +117,7 @@ public class Foods {
     private List<ResponseIngredientsInFood> ingredientsListEntityToDTO(
         List<IngredientsInFoods> ingredientsInFoodsList) {
         return ingredientsInFoodsList.stream()
-            .map(ingredients -> new ResponseIngredientsInFood(name, ingredients.getUnit(),
-                ingredients.getAmount()))
+            .map(IngredientsInFoods::toDTO)
             .collect(Collectors.toList());
     }
 
