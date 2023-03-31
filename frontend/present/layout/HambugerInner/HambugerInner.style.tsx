@@ -2,25 +2,11 @@ import styled from "styled-components";
 import { theme } from "@/constant/theme";
 import { fadeInUp } from "../Guide/Guide.style";
 
-const ingArr = [249.85, 265.65, 210.22, 328, 187];
-const arrPos = [
-  [-48, 80],
-  [90, -55],
-  [-85, 75],
-  [90, -90],
-  [-125, 30],
-];
-const fontPos = [
-  [-76, 125],
-  [167, -50],
-  [-115, 112],
-  [200, -84],
-  [-155, 47],
-];
+const align = ['right', 'left', 'right', 'left', 'right']
 
 export const IngreContainer = styled.div<{ idx: number }>`
   width: 15.5vw;
-  height: calc((70vh - 4rem) / 5 - 1rem);
+  height: fit-content;
   position: absolute;
   top: calc((15.5vw - 4rem) * ${(props) => props.idx} / 2 + 12rem);
   left: calc(17vw * ${(props) => props.idx} + 8vw);
@@ -39,22 +25,20 @@ export const IngreContainer = styled.div<{ idx: number }>`
     }
 
     &:nth-child(2) {
-      width: calc(${(props) => ingArr[props.idx]}px * 0.8);
       animation: ${fadeInUp} 1.5s;
       position: absolute;
       z-index: 6;
-      top: ${(props) => arrPos[props.idx][0]}%;
-      left: ${(props) => arrPos[props.idx][1]}%;
     }
   }
 
   & div {
     position: absolute;
     width: 100%;
-    top: ${(props) => fontPos[props.idx][0]}%;
-    left: ${(props) => fontPos[props.idx][1]}%;
+    font-size: 120%;
     color: ${theme.colors.main.blue};
+    font-family: "Pretendard-Bold";
     animation: ${fadeInUp} 1.5s;
+    text-align: ${props => align[props.idx]};
   }
 
   &:hover {
@@ -80,7 +64,7 @@ export const InnerContainer = styled.div`
   width: 90vw;
   height: 80vh;
   background-color: ${theme.colors.background.pink};
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 49;

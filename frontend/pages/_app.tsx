@@ -12,8 +12,6 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname;
 
-  console.log(router);
-
   const firebaseConfig = {
     apiKey: "AIzaSyBkvLz36_zD93UwXx4wf8P101EeX1pDLyQ",
     authDomain: "test-pwa-7907d.firebaseapp.com",

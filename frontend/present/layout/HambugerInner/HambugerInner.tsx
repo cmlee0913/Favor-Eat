@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef, useEffect } from "react";
 import Image from "next/image";
 import * as style from "./HambugerInner.style";
 
@@ -20,11 +20,23 @@ import { useAtom } from "jotai";
 import { userTokenSave } from "@/store/userStore";
 import { logoutAsync } from "@/action/apis/auth";
 import { RESET } from "jotai/utils";
+import { getCenterCoordinates } from "@/action/apis/getCenterCoordinates";
 
 function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
   const router = useRouter();
-
+  const hambugerRef = useRef([]);
   const [token, setUserToken] = useAtom(userTokenSave);
+
+  useEffect(() => {
+    const { current } = hambugerRef;
+
+    window.addEventListener('resize', () => (getCenterCoordinates(current)))
+    getCenterCoordinates(current)
+
+    return () => {
+      window.removeEventListener('resize', () => (getCenterCoordinates(current)))
+    }
+  }, []);
 
   const logout = async (accessToken: string) => {
     if (!accessToken) return;
@@ -89,13 +101,19 @@ function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
 
   const menuInner = menu.map((elem, idx) => {
     return (
-      <style.IngreContainer idx={idx} key={idx} onClick={elem.handler}>
-        <Image src={elem.image} alt={elem.alt} />
+      <style.IngreContainer
+        ref={(el) => (hambugerRef.current[idx] = el)}
+        idx={idx}
+        key={idx}
+        onClick={elem.handler}
+      >
+        <Image src={elem.image} alt={elem.alt}/>
         <Image src={elem.arrow} alt={elem.name} />
         <div>{elem.name}</div>
       </style.IngreContainer>
     );
   });
+
   return (
     <style.InnerContainer>
       {/* Profile */}

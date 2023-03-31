@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import Arrow from "@/assets/icon/arrow.svg";
@@ -16,6 +16,12 @@ function Header() {
     router.back();
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+  }, [isOpen]);
+
   return (
     <style.Container>
       <style.HeaderContainer isOpen={isOpen || isMain}>
@@ -28,7 +34,7 @@ function Header() {
         <HambugerBar isOpen={isOpen} setIsOpen={setIsOpen} />
       </style.HeaderContainer>
 
-      {isOpen && <HambugerInner setIsOpen={setIsOpen}/>}
+      {isOpen && <HambugerInner setIsOpen={setIsOpen} />}
     </style.Container>
   );
 }
