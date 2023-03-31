@@ -89,8 +89,6 @@ export default function Recipe() {
     },
   ]);
 
-  console.log(recipeData);
-
   useEffect(() => {
     if (pid) {
       getAsync(`https://j8d108.p.ssafy.io/api/foods/${pid}`).then((res) => {
