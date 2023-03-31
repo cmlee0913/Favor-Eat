@@ -1,5 +1,6 @@
 package com.example.backend.api.controller.users;
 
+import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
 import com.example.backend.api.dto.users.response.ResponseUserInfo;
 import com.example.backend.api.entity.users.Users;
@@ -74,6 +75,17 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/taste/{id}")
+    @Operation(summary = "맛 평가 조회", description = "사용자의 <strong>맛 평가 정보(맵기, 달기, 짜기, 느끼)</strong>를 조회합니다.")
+    public ResponseEntity<?> getEvaluations(@AuthenticationPrincipal User users, @PathVariable Long id) {
+        try{
+            ResponseTasteInfo responseTasteInfo = usersService.getEvaluations(Long.parseLong(users.getUsername()), id);
+            return new ResponseEntity<>(responseTasteInfo, HttpStatus.OK);
+        }catch (NullPointerException e){
+            return new ResponseEntity<>(null, HttpStatus.OK);
         }
     }
 }

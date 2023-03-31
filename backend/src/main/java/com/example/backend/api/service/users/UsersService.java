@@ -3,6 +3,7 @@ package com.example.backend.api.service.users;
 import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.dto.users.request.RequestTasteEvaluations;
 import com.example.backend.api.dto.users.response.ResponseUserInfo;
+import com.example.backend.api.entity.users.Evaluations;
 import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.users.EvaluationsRepository;
@@ -88,5 +89,10 @@ public class UsersService {
     public void registEvaluations(Long no, RequestTasteEvaluations requestTasteEvaluations)
         throws RuntimeException {
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
+    }
+
+    public ResponseTasteInfo getEvaluations(Long no, Long foodsId) {
+        return evaluationsRepository.findByNoAndFoodsId(no, foodsId)
+            .map(Evaluations::toDTO).orElseThrow(NullPointerException::new);
     }
 }
