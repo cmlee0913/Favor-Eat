@@ -2,12 +2,13 @@ import Header from "@/present/layout/Header/Header";
 import { Provider } from "jotai";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import '../constant/font.css'
+import "../constant/font.css";
 
 import { useEffect } from "react";
 
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import CustomCursor from "@/present/common/CustomCursor/CustomCursor";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname;
@@ -48,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
             console.log(currentToken);
           } else {
             console.log(
-              "No registration token available. Request permission to generate one."
+              "No registration token available. Request permission to generate one.",
             );
           }
         })
@@ -74,6 +75,7 @@ export default function App({ Component, pageProps }: AppProps) {
       router.includes("recipe") ? (
         <Header />
       ) : null}
+      <CustomCursor />
       <Component {...pageProps} />
     </Provider>
   );
