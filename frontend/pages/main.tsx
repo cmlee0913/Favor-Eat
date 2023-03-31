@@ -12,6 +12,9 @@ import { getRecommendFoodList } from "@/action/apis/main";
 import { FlavorType } from "@/types/RecipeFlavor/dummy";
 import Loading from "@/present/common/Loading/Loading";
 
+import forkCursor from "@/assets/image/fork.png";
+import { cursorImageAtom, cursorIsShowAtom } from "@/store/cursorStore";
+
 export default function main() {
   const [loading, setLoading] = useState(true);
   const [isMainMode, setIsMainMode] = useState<boolean>(true);
@@ -19,6 +22,8 @@ export default function main() {
   const [refreshCount, setRefreshCount] = useState(-1);
   const [allFoodList, setAllFoodList] = useState<Array<MainFood>>([]);
   const [nowFoodList, setNowFoodList] = useState<Array<MainFood>>([]);
+  const [, setCursorShow] = useAtom(cursorIsShowAtom);
+  const [, setCursorImage] = useAtom(cursorImageAtom);
 
   const activeMainMode = () => {
     setIsMainMode(true);
@@ -31,9 +36,16 @@ export default function main() {
   };
 
   useEffect(() => {
+    setCursorImage(forkCursor);
+    setCursorShow(true);
+
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+
+    return () => {
+      setCursorShow(false);
+    };
   }, []);
 
   //새로고침시 전체 배열에서 다음 index값 설정
