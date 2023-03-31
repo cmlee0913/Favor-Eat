@@ -3,6 +3,7 @@ package com.example.backend.api.service.foods;
 import com.example.backend.api.dto.foods.response.ResponseBasicFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseFoodInfo;
 import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
+import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.entity.foods.Favorites;
 import com.example.backend.api.entity.foods.Foods;
 import com.example.backend.api.entity.foods.NonFavorites;
@@ -12,7 +13,9 @@ import com.example.backend.api.repository.foods.FoodsRepository;
 import com.example.backend.api.repository.foods.NonFavoritesRepository;
 import com.example.backend.api.repository.foods.RecommendsRepository;
 import com.example.backend.api.repository.foods.SamplingFoodsRepository;
+import com.example.backend.api.repository.users.EvaluationsRepository;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -28,15 +31,23 @@ public class FoodsService {
     private final NonFavoritesRepository nonFavoritesRepository;
     private final SamplingFoodsRepository samplingFoodsRepository;
     private final RecommendsRepository recommendsRepository;
-
+    private final EvaluationsRepository evaluationsRepository;
     /**
      * @param id must not be null
      * @return food info dto, never return null
      * @throws NullPointerException if it can't find entity
      */
-    public ResponseFoodInfo getFoodInfo(Long id) throws NullPointerException {
-        return foodsRepository.findById(id)
-            .map(Foods::toDTO).orElseThrow(NullPointerException::new);
+    public ResponseFoodInfo getFoodInfo(Long no, Long id) throws NullPointerException {
+            Map<String, Float> averageFlavorValues = evaluationsRepository.getAverageById(id);
+            ResponseTasteInfo foodsTasteInfo = ResponseTasteInfo.builder()
+                .salty(averageFlavorValues.get("saltiness"))
+                .spicy(averageFlavorValues.get("spiciness"))
+                .sweet(averageFlavorValues.get("sweetness"))
+                .oily(averageFlavorValues.get("fatness")).build();
+
+            Foods foods = foodsRepository.findById(id).orElseThrow(NullPointerException::new);
+
+            return foods.toDTO(evaluationsRepository.findByNoAndFoodsId(no, id).isPresent(), foodsTasteInfo);
     }
 
     /**
