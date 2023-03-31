@@ -6,7 +6,7 @@ export const Cursorwrapper = styled.div<{ x: number; y: number }>`
   top: ${({ y }) => y}px;
   z-index: 100;
   img {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: auto;
   }
 `;

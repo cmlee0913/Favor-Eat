@@ -36,10 +36,11 @@ export default function main() {
   };
 
   useEffect(() => {
+    setCursorImage(forkCursor);
+    setCursorShow(true);
+
     setTimeout(() => {
       setLoading(false);
-      setCursorImage(forkCursor);
-      setCursorShow(true);
     }, 2000);
 
     return () => {
