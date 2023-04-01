@@ -1,18 +1,15 @@
 import useModal from "@/action/hooks/useModal";
-import { modalIsShowAtom } from "@/store/modalStore";
+import { modalContentAtom, modalIsShowAtom } from "@/store/modalStore";
 import { useAtom, useAtomValue } from "jotai";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import * as style from "./ModalCompo.style";
 
-interface ModalCompoProps {
-  context?: ReactNode;
-}
-
-export default function ModalCompo({ context }: ModalCompoProps) {
+export default function ModalCompo() {
   const { closeModal } = useModal();
   const [mounted, setMounted] = useState(false);
-  const [isShow, setIsShow] = useAtom(modalIsShowAtom);
+  const [isShow] = useAtom(modalIsShowAtom);
+  const context = useAtomValue(modalContentAtom);
 
   useEffect(() => {
     setMounted(true);
