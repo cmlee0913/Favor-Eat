@@ -95,3 +95,18 @@ export interface RecipeProcessProps {
   ingredientsInFoodList: Array<ingredientsInFoods>;
   recipesList: Array<RecipeList>;
 }
+
+export interface FlavorRatingObject {
+  spicy: number;
+  sweet: number;
+  salty: number;
+  oily: number;
+}
+
+export interface FlavorRatingValueRequest {
+  foodsId: number;
+  spiciness: number;
+  sweetness: number;
+  saltiness: number;
+  fatness: number;
+}
