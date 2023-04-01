@@ -13,6 +13,7 @@ export interface FlavorCharacterProps {
   title: string;
   value: number;
   img: StaticImageData;
+  onClick?: () => void;
   hoverActive: (type: string) => void;
   hoverInactive: () => void;
 }
