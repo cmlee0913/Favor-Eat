@@ -21,21 +21,24 @@ import { userTokenSave } from "@/store/userStore";
 import { logoutAsync } from "@/action/apis/auth";
 import { RESET } from "jotai/utils";
 import { getCenterCoordinates } from "@/action/apis/getCenterCoordinates";
+import useMediaQuery from "@/action/hooks/useMediaQuery";
+import { theme } from "@/constant/theme";
 
 function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
   const router = useRouter();
   const hambugerRef = useRef([]);
   const [token, setUserToken] = useAtom(userTokenSave);
+  const isTablet = useMediaQuery("(max-width: 1000px)")
+  const isMobile = useMediaQuery("(max-width: 426px)")
 
   useEffect(() => {
     const { current } = hambugerRef;
-
-    window.addEventListener('resize', () => (getCenterCoordinates(current)))
-    getCenterCoordinates(current)
+    getCenterCoordinates(current, isTablet, isMobile);
+    window.addEventListener("resize", () => getCenterCoordinates(current, isTablet, isMobile));
 
     return () => {
-      window.removeEventListener('resize', () => (getCenterCoordinates(current)))
-    }
+      window.removeEventListener("resize", () => getCenterCoordinates(current, isTablet, isMobile));
+    };
   }, []);
 
   const logout = async (accessToken: string) => {
@@ -107,7 +110,7 @@ function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
         key={idx}
         onClick={elem.handler}
       >
-        <Image src={elem.image} alt={elem.alt}/>
+        <Image src={elem.image} alt={elem.alt} />
         <Image src={elem.arrow} alt={elem.name} />
         <div>{elem.name}</div>
       </style.IngreContainer>

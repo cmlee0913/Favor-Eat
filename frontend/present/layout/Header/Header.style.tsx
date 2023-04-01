@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div<{ isOpen: boolean }>`
   top: 0;
   background-color: ${(props) =>
     props.isOpen ? "transparent" : theme.colors.mono.light_1};
-  z-index: 90;
+  z-index: 6000;
 
   & svg {
     width: 30px;

@@ -31,4 +31,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-family: "Pretendard-Medium";
+
+  ${theme.devices.tablet} {
+    position: absolute;
+    top: 9.95%;
+    left: 4.29%;
+  }
 `;
