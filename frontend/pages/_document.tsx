@@ -92,6 +92,7 @@ export default function Document() {
         content="mstile-310x310.png"
       />
       <body style={{ margin: "0" }}>
+        <div id="modal"></div>
         <Main />
         <NextScript />
       </body>
