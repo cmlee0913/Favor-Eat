@@ -273,6 +273,7 @@ export default function TasteEvaluateBoxCompo({
                 </style.ValueText>
                 <div className="rating"></div>
                 <TasteRatingCompo
+                  ratingValue={0}
                   type={item.type}
                   setRatingValue={setRatingValue}
                   recipeId={recipeId}
@@ -328,6 +329,7 @@ export default function TasteEvaluateBoxCompo({
                         &nbsp;입니다
                       </style.ValueText>
                       <TasteRatingCompo
+                        ratingValue={0}
                         recipeId={recipeId}
                         type={item.type}
                         setRatingValue={setRatingValue}
@@ -366,6 +368,7 @@ export default function TasteEvaluateBoxCompo({
                         &nbsp;입니다
                       </style.ValueText>
                       <TasteRatingCompo
+                        ratingValue={0}
                         type={item.type}
                         setRatingValue={setRatingValue}
                         recipeId={recipeId}

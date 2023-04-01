@@ -10,7 +10,12 @@ import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 import { useEffect, useState } from "react";
 
-export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
+export default function TasteRatingCompo({
+  type,
+  setRatingValue,
+  recipeId,
+  ratingValue,
+}) {
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,
@@ -61,7 +66,7 @@ export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
 
   const onResetRating = () => {
     //값을 활성화 한적이 없으면 reset
-    if (!clicked) {
+    if (!clicked && ratingValue === 0) {
       setRatingList(Array(5).fill({ left: false, right: false }));
       return;
     }
@@ -86,9 +91,13 @@ export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
   };
 
   useEffect(() => {
+    setValue(ratingValue);
+    setRatingActive(ratingValue - 1);
+  }, [ratingValue]);
+
+  useEffect(() => {
     if (clicked) {
       const { index } = getIndexByRatingValue();
-      console.log(index, index - 1);
       setRatingActive(index - 1);
       setRatingValue(value, type);
     }
