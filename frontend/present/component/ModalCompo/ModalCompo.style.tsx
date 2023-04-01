@@ -1,0 +1,27 @@
+import { theme } from "@/constant/theme";
+import styled from "styled-components";
+
+export const Background = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+`;
+
+export const Container = styled.div`
+  width: fit-content;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 25px;
+  background-color: ${theme.colors.mono.light_1};
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

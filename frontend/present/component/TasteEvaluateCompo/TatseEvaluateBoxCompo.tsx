@@ -118,8 +118,6 @@ export default function TasteEvaluateBoxCompo({
   );
   const setRatingValue = (value: number, type: string) => {
     //이미지 평가 완료 버튼 활성화
-    setCanMoveToNext(true);
-
     let index = 0;
 
     switch (type) {
@@ -136,6 +134,12 @@ export default function TasteEvaluateBoxCompo({
     const valueList = [...ratingValues];
     valueList[index] = value;
     setRatingValues(valueList);
+
+    let isNotZero = true;
+    valueList.forEach((value) => {
+      if (value === 0) isNotZero = false;
+    });
+    setCanMoveToNext(isNotZero);
   };
 
   const [currentIndex, setCurrentIndex] = useAtom(currentIndexAtom);

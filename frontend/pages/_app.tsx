@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import CustomCursor from "@/present/common/CustomCursor/CustomCursor";
+import ModalCompo from "@/present/component/ModalCompo/ModalCompo";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname;
@@ -77,6 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : null}
       <CustomCursor />
       <Component {...pageProps} />
+      <ModalCompo />
     </Provider>
   );
 }

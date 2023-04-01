@@ -21,10 +21,14 @@ import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
 import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
 import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
 import { useState } from "react";
+import useModal from "@/action/hooks/useModal";
+import { useAtom, useSetAtom } from "jotai";
+import { modalContentAtom } from "@/store/modalStore";
+import RecipeEvaluateContentCompo from "@/present/component/RecipeEvaluateContentCompo/RecipeEvaluateContentCompo";
 
 export default function RecipeFlavorLayout({
   recipeImage,
-  tasteInfo
+  tasteInfo,
 }: RecipeFlavorProps) {
   const flavorStaticData = {
     spicy: {
@@ -90,9 +94,16 @@ export default function RecipeFlavorLayout({
   };
 
   const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy
+    hoverBoxValue.spicy,
   );
   const [infoShow, setInfoShow] = useState(false);
+
+  const { openModal } = useModal();
+  const [, setModalContext] = useAtom(modalContentAtom);
+  const onClickCharacter = () => {
+    setModalContext(<RecipeEvaluateContentCompo />);
+    openModal();
+  };
 
   return (
     <style.Container>
@@ -113,6 +124,7 @@ export default function RecipeFlavorLayout({
         </style.MobileHover>
         {flavorList.map((item, index) => (
           <FlavorCharacterCompo
+            onClick={onClickCharacter}
             key={index}
             {...item}
             value={Math.floor(item.value)}
