@@ -6,11 +6,13 @@ export const Background = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
+  top: 0;
+  z-index: 1000;
 `;
 
 export const Container = styled.div`
   width: fit-content;
-  position: relative;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);

@@ -6,6 +6,10 @@ export const Container = styled.div`
   height: 100%;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
+
+  ${theme.devices.mobile} {
+    width: 85vw;
+  }
 `;
 
 export const Header = styled.div`
@@ -30,7 +34,7 @@ export const Body = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 1.7rem;
+  gap: 1rem;
 
   ${theme.devices.tablet} {
     grid-template-columns: none;
@@ -53,6 +57,7 @@ export const Text = styled.div<{ type: string }>`
 
   ${theme.devices.tablet} {
     grid-template-columns: 1fr 2fr;
+    gap: 1rem;
   }
 
   /* character sub title */
