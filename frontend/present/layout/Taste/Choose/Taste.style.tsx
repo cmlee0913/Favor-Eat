@@ -194,6 +194,18 @@ export const Glass = styled.p`
         right: 5.02%;
       }
       ${theme.devices.tablet} {
+        &:nth-child(1) {
+          top: 47%;
+          left: 7.8%;
+        }
+        &:nth-child(2) {
+          top: 43%;
+          right: 35%;
+        }
+        &:nth-child(3) {
+          top: 47%;
+          right: 5.02%;
+        }
       }
 
       ${theme.devices.mobile} {
@@ -243,12 +255,23 @@ export const Hill = styled.p`
 
       ${theme.devices.tablet} {
         &:nth-child(1) {
+          height: 12.67%;
+          top: 35%;
         }
         &:nth-child(2) {
+          width: 77%;
+          height: 10.78%;
+          top: 40%;
         }
         &:nth-child(3) {
+          width: 64%;
+          height: 7.9%;
+          top: 45%;
         }
         &:nth-child(4) {
+          width: 76%;
+          height: 12.48%;
+          top: 45%;
         }
       }
 
