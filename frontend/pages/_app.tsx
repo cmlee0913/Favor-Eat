@@ -73,6 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
       router == "/myPage" ||
       router == "/info" ||
       router == "/alarm" ||
+      router.includes("diary") ||
       router.includes("recipe") ? (
         <Header />
       ) : null}
