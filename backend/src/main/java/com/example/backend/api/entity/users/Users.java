@@ -1,5 +1,8 @@
 package com.example.backend.api.entity.users;
 
+import com.example.backend.api.entity.diary.Diary;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -37,9 +41,11 @@ public class Users {
     private boolean alarm; // 알람 설정 유무
     @Column(name="nickname")
     private String nickname; // 닉네임
-
     @Enumerated(EnumType.STRING)
     private Role role; // 유저가 가입했는지 유무
+
+    @OneToMany(mappedBy = "users")
+    private List<Diary> diaries = new ArrayList<>();
 
     @Builder
     public Users(String userNickname, String userEmail, String userRefreshToken, Role userRole) {
