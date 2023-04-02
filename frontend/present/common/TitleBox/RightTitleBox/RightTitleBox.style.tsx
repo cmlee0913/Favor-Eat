@@ -5,7 +5,6 @@ export const RightTitleBox = styled.div`
   background-color: ${theme.colors.main.purple.dark_1};
 
   color: white;
-  font-weight: bold;
 
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -20,6 +19,7 @@ export const RightTitleBox = styled.div`
     :nth-child(1) {
       margin-left: 20px;
       font-size: 30px;
+      font-family: "Inter-Bold";
     }
     :nth-child(2) {
       margin-left: 20px;

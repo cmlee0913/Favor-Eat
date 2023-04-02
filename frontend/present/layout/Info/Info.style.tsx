@@ -14,33 +14,42 @@ export const InfoMemberContainer = styled.div`
   }
 
   & div.title {
-    font-size: 30px;
-    font-weight: bold;
-    place-items: start;
+    font-family: "Pretendard-Bold";
+    font-size: 1.8rem;
   }
 `;
 
 export const InfoMember = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1.5fr 0.8fr 0.8fr 0.8fr;
+  grid-template-rows: 1.2fr 0.8fr 0.8fr 0.8fr;
   place-items: center;
 
   height: 40vh;
 
   & div {
     height: 25px;
+
+    &.job {
+      display: grid;
+      text-align: center;
+      align-items: center;
+
+      width: 80%;
+      height: 50px;
+
+      background-color: ${theme.colors.background.violet};
+      border-radius: 10px;
+
+      font-family: "Pretendard-SemiBold";
+    }
+
+    &.name {
+      font-family: "Pretendard-Medium";
+    }
   }
 
-  & div.job {
-    display: grid;
-    text-align: center;
-    align-items: center;
-    font-weight: bold;
-    background-color: ${theme.colors.background.violet};
-    height: 50px;
-    border-radius: 10px;
-    width: 80%;
+  & div.name {
   }
 
   ${theme.devices.desktop} {

@@ -244,9 +244,9 @@ const Piechart = ({
             itemHeight: legendHeight, // item height
             itemsSpacing: 0, // item간 간격
             symbolSize: symbolSize, // symbol (색상 표기) 크기
-            itemDirection: "left-to-right", // item 내부에 그려지는 방향
+            itemDirection: "right-to-left", // item 내부에 그려지는 방향
             itemOpacity: 1, // item opacity
-            symbolShape: "circle", // symbol (색상 표기) 모양
+            symbolShape: "square", // symbol (색상 표기) 모양
 
             effects: [
               {
