@@ -352,32 +352,24 @@ export const Character = styled.div`
   }
 `;
 
-export const Introduction = styled.p`
-  & p.Introduction {
-    z-index: 9999;
-    position: absolute;
-    margin: 0;
+export const Introduction = styled.div`
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: Pretendard-Medium;
+  z-index: 999;
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  letter-spacing: 0.2rem;
+  & > div {
+    margin: 0.1rem;
+    word-break: keep-all;
+  }
 
-    /* introduction text */
-    :nth-child(1) {
-      font-size: 1.8rem;
-      font-weight: 600;
-      text-align: center;
-      width: 100%;
-      left: 50%;
-      top: 15%;
-      transform: translateX(-50%) translateY(-50%);
-      line-height: 2.8rem;
-      letter-spacing: 0.1px;
-
-      ${theme.devices.tablet} {
-        font-size: 1.5rem;
-      }
-      ${theme.devices.mobile} {
-        font-size: 1.5rem;
-        top: 20%;
-      }
-    }
+  ${theme.devices.mobile} {
+    font-size: 1.2rem;
   }
 `;
 
@@ -393,6 +385,8 @@ export const ChooseButton = styled.div`
   bottom: 15vh;
   left: 50%;
   transform: translateX(-50%);
+  word-break: keep-all;
+  text-align: center;
 
   :hover {
     cursor: pointer;

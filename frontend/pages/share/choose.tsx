@@ -1,35 +1,32 @@
-import React, { useState } from "react";
-
 import Background from "@/present/layout/Taste/Choose/Background";
 import Character from "@/present/layout/Taste/Choose/Character";
-import Introduction from "@/present/layout/Taste/Choose/Introduction";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import * as style from "@/present/layout/Taste/Choose/Taste.style";
 
-export default function Taste() {
+export default function Choose() {
   const router = useRouter();
   const [selectedCharacter, setSelectedCharacter] = useState<string>("sweet");
 
   const movePage = (character: string) => {
-    router?.replace({
-      pathname: "/taste/analysis",
+    router?.push({
+      pathname: "/share/test",
       query: {
         character: character,
       },
     });
   };
 
-  const onClickButton = () => {
-    movePage(selectedCharacter);
-  };
-
   return (
     <>
-      <Introduction />
+      <style.Introduction>
+        <div>나는 으른 입맛일까?</div>
+        <div>당신의 입맛을 테스트 해보세요</div>
+      </style.Introduction>
       <Background />
       <Character changeCharacter={setSelectedCharacter} />
-      <style.ChooseButton onClick={onClickButton}>
-        모험 떠나기
+      <style.ChooseButton onClick={() => movePage(selectedCharacter)}>
+        내 입맛 연령 알아보기
       </style.ChooseButton>
     </>
   );
