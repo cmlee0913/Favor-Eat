@@ -37,6 +37,10 @@ export const ButtonWrapper = styled.div`
   flex-direction: row;
   align-items: center;
 
+  :hover {
+    cursor: pointer;
+  }
+
   ${theme.devices.tablet} {
     padding: 15px 25px;
   }
