@@ -1,13 +1,36 @@
 import { theme } from "@/constant/theme";
+import { HambugerFont } from "@/types/Hambuger/dummy";
 import styled from "styled-components";
 import { fadeInUp } from "../Guide/Guide.style";
 
 export const PC = [472.75, 452.9, 488.6, 630, 365.73];
 export const PCblank = [0, 121.12, 0, 186.4, 0];
+const PCfont: Array<HambugerFont> = [
+  { top: "-1.4rem", bottom: "auto", left: "auto", right: "4%" },
+  { top: "auto", bottom: "1rem", left: "0.5rem", right: "auto" },
+  { top: "-1.4rem", bottom: "auto", left: "auto", right: "4%" },
+  { top: "auto", bottom: "1rem", left: "0.7rem", right: "auto" },
+  { top: "-1.4rem", bottom: "auto", left: "auto", right: "25%" },
+];
 
 const calPosVal = (num: number) => {
   return num / PC[0];
 };
+
+export const Name = styled.div<{ idx: number }>`
+  position: absolute;
+  bottom: 0;
+  color: ${theme.colors.main.blue};
+  font-size: 1.2rem;
+  font-family: "Pretendard-Bold";
+
+  ${theme.devices.desktop} {
+    top: ${(props) => PCfont[props.idx].top};
+    bottom: ${(props) => PCfont[props.idx].bottom};
+    left: ${(props) => PCfont[props.idx].left};
+    right: ${(props) => PCfont[props.idx].right};
+  }
+`;
 
 export const Menu = styled.div<{ idx: number }>`
   --width: calc((100vw - 5rem) / 5);

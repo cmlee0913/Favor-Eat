@@ -49,12 +49,8 @@ function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
   const menuArr = menu(router, setIsOpen, BurgerElem);
   const menuInner = menuArr.map((elem, idx) => {
     return (
-      <style.Menu
-        idx={idx}
-        key={idx}
-        onClick={elem.handler}
-        title={elem.alt}
-      >
+      <style.Menu idx={idx} key={idx} onClick={elem.handler} title={elem.alt}>
+        <style.Name idx={idx}>{elem.name}</style.Name>
         {elem.image}
       </style.Menu>
     );
