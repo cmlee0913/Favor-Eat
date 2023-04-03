@@ -178,7 +178,7 @@ export const MobileImageContainer = styled.div`
     bottom: 10%;
     ::-webkit-scrollbar-track {
       border-radius: 10px;
-      background-color: ${theme.colors.main.purple.light_1};
+      background-color: ${theme.colors.background.violet};
     }
 
     ::-webkit-scrollbar {
@@ -187,7 +187,7 @@ export const MobileImageContainer = styled.div`
 
     ::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: ${theme.colors.main.purple.dark_1};
+      background-color: #b7b7ed;
     }
   }
 
