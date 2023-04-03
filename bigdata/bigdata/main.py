@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
-import mysql_conn
+from bigdata import mysql_conn
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
