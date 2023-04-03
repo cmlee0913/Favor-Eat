@@ -43,22 +43,22 @@ public class DiaryController {
 
     @PostMapping
     @Operation(summary = "새로운 식단 일기 등록", description = "유저 id로 <strong>기본정보</strong>(이름, 양, 사진, 난이도), <strong>맛 정보</strong>(맵기, 달기, 짜기, 느끼), <strong>레시피 정보</strong>, <strong>재료 정보</strong>를 조회합니다.")
-    private ResponseEntity<String> registDiary(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user,  @RequestBody RequestDiaryAttribute requestDiaryAttribute) {
+    private ResponseEntity<String> registDiary(@AuthenticationPrincipal User user,  @RequestBody RequestDiaryAttribute requestDiaryAttribute) {
         diaryService.registDiary(Long.parseLong(user.getUsername()), requestDiaryAttribute);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("일기 등록이 완료되었습니다.", HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "해당 식단 일기 수정", description = "유저 no로 <strong>기본정보</strong>(이름, 양, 사진, 난이도), <strong>맛 정보</strong>(맵기, 달기, 짜기, 느끼), <strong>레시피 정보</strong>, <strong>재료 정보</strong>를 조회합니다.")
-    private ResponseEntity<?> updateDiary(@AuthenticationPrincipal User user, @PathVariable Long id, @RequestBody RequestDiaryAttribute requestDiaryAttribute) {
+    private ResponseEntity<String> updateDiary(@AuthenticationPrincipal User user, @PathVariable Long id, @RequestBody RequestDiaryAttribute requestDiaryAttribute) {
         diaryService.updateDiary(Long.parseLong(user.getUsername()), id, requestDiaryAttribute);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("일기 수정이 완료되었습니다.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "해당 식단 일기 삭제", description = "유저 id로 <strong>기본정보</strong>(이름, 양, 사진, 난이도), <strong>맛 정보</strong>(맵기, 달기, 짜기, 느끼), <strong>레시피 정보</strong>, <strong>재료 정보</strong>를 조회합니다.")
-    private ResponseEntity<?> unregistDiary(@AuthenticationPrincipal User user, @PathVariable Long id) {
+    private ResponseEntity<String> unregistDiary(@AuthenticationPrincipal User user, @PathVariable Long id) {
         diaryService.unregistDiary(Long.parseLong(user.getUsername()), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("일기 삭제가 완료되었습니다.", HttpStatus.OK);
     }
 }

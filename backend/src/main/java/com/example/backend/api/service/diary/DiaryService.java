@@ -1,6 +1,7 @@
 package com.example.backend.api.service.diary;
 
 import com.example.backend.api.dto.diary.request.RequestDiaryAttribute;
+import com.example.backend.api.dto.diary.request.RequestPhotosAttribute;
 import com.example.backend.api.dto.diary.response.ResponseDiaryAttribute;
 import com.example.backend.api.entity.diary.Diary;
 
@@ -34,13 +35,15 @@ public class DiaryService {
     @Transactional
     public void registDiary(Long no, RequestDiaryAttribute requestDiaryAttribute) {
         Long savedDiaryId = diaryRepository.save(requestDiaryAttribute.toEntity(no)).getId();
+        List<RequestPhotosAttribute> requestPhotosAttribute = requestDiaryAttribute.getRequestPhotosAttributeList();
 
-        requestDiaryAttribute.getRequestPhotosAttributeList()
-            .forEach(requestPhotos -> {
+        if (requestPhotosAttribute != null) {
+            requestPhotosAttribute.forEach(requestPhotos -> {
                 log.info("" + savedDiaryId);
                 log.info(requestPhotos.getOriginal_name());
                 photosRepository.save(requestPhotos.toEntity(savedDiaryId));
             });
+        }
     }
 
     @Transactional
@@ -51,7 +54,6 @@ public class DiaryService {
     @Transactional
     public void unregistDiary(Long no, Long id) {
         diaryRepository.delete(getDiaryEntity(no, id));
-        // photosRepository.deleteById(id);
     }
 
     private Diary getDiaryEntity(Long no, Long id) {
