@@ -17,6 +17,7 @@ import { cursorImageAtom, cursorIsShowAtom } from "@/store/cursorStore";
 
 export default function main() {
   const [loading, setLoading] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
   const [token] = useAtom(userTokenSave);
   const [refreshCount, setRefreshCount] = useState(-1);
   const [allFoodList, setAllFoodList] = useState<Array<MainFood>>([]);
@@ -61,9 +62,12 @@ export default function main() {
 
   useEffect(() => {
     if (token.accessToken) {
+      setIsFetching(true);
+
       getRecommendFoodList(token.accessToken).then((response) => {
         const { isSuccess, result } = response;
         if (isSuccess) {
+          setIsFetching(false);
           const list = [];
           result.forEach((item: MainFoodResponse) => {
             const maxValueFlavor: Flavor = {
@@ -100,7 +104,8 @@ export default function main() {
 
   return (
     <>
-      {loading ? <Loading /> : null}
+      {/* 강제 로딩 시간 + 데이터 가져오는 시간이 모두 끝나야 페이지 렌더링 */}
+      {loading && isFetching ? <Loading /> : null}
       <style.Container>
         <LeftLayout
           foods={nowFoodList}
