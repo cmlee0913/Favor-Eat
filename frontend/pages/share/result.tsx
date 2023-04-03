@@ -8,6 +8,7 @@ import { ResultObject } from "@/types/Share/Result/dummy";
 import { useAtomValue } from "jotai";
 import { likedCountAtom } from "@/store/shareTasteStore";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const resultContents: ResultObject = {
   baby: {
@@ -28,20 +29,31 @@ const resultContents: ResultObject = {
 };
 
 export default function () {
-  const likedCount = useAtomValue(likedCountAtom);
   const [tasteType, setTasteType] = useState("baby");
+  const [likedCnt, setLikedCnt] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
+    if (!router.isReady) return;
+    let likedCount = parseInt(router.query.like as string);
+
+    let type = "baby";
     if (likedCount > 2 && likedCount <= 7) {
-      setTasteType("middle");
+      type = "middle";
     } else if (likedCount > 7) {
-      setTasteType("adult");
+      type = "adult";
     }
-  }, []);
+    setLikedCnt(likedCount);
+    setTasteType(type);
+  }, [router.isReady]);
 
   return (
     <>
-      <ResultLayout maxCount={10} resultContents={resultContents[tasteType]} />
+      <ResultLayout
+        maxCount={10}
+        likedCount={likedCnt}
+        resultContents={resultContents[tasteType]}
+      />
       <Background />
     </>
   );

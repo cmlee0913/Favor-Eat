@@ -121,7 +121,7 @@ export default function Test() {
 
   useEffect(() => {
     if (foodIndex < foodDataList.length) return;
-    router.push("/share/result");
+    router.push(`/share/result?like=${likedCount}`);
   }, [foodIndex]);
 
   return (
