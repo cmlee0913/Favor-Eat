@@ -19,11 +19,12 @@ import { useRouter } from "next/router";
 import { getAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
 import { toInteger } from "lodash";
-import { type } from "os";
+import { userTokenSave } from "@/store/userStore";
 
 export default function Recipe() {
   const router = useRouter();
   const { pid } = router.query;
+  const [token, setUserToken] = useAtom(userTokenSave);
 
   const [recipeData, setRecipeData] = useState<RecipeData>({
     name: "",
@@ -96,8 +97,7 @@ export default function Recipe() {
     if (pid) {
       getAsync(`${apiURL}/foods/${pid}`, {
         headers: {
-          Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsInJvbGUiOiJHVUVTVCIsIm5pY2tuYW1lIjoi6rmA7Zi46regIiwiZXhwIjoxNjgwNDIzNjQ0LCJlbWFpbCI6InJsYWdocmJzMTYzM0BuYXZlci5jb20ifQ.1Id6fu4nQppXfxpDouu-ZoqVtmsNJFi9YgSRacc1iixpHcvt_J5jJ1OoWTWcbB52H_vfcizvdoGHq0xXKZrMWw",
+          Authorization: `Bearer ${token.accessToken}`,
         },
       }).then((res) => {
         if (res.isSuccess) {
