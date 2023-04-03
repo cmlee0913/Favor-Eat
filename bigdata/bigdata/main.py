@@ -104,7 +104,7 @@ async def predict(user_no: UserNo):
     cursor = cnx.cursor(dictionary=True)
 
     query = "DELETE FROM recommends WHERE no=%s"
-    cursor.execute(query, (target))
+    cursor.execute(query, ([target]))
     cnx.commit()
 
     query = "SELECT * FROM evaluations"
