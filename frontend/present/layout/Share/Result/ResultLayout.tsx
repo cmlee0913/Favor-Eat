@@ -8,7 +8,6 @@ import Router, { useRouter } from "next/router";
 export default function ResultLayout({
   resultContents,
   likedCount,
-  maxCount,
 }: // shareHandler,
 ResultLayoutProps) {
   const { resultIcon, title, text } = resultContents;
@@ -65,10 +64,7 @@ ResultLayoutProps) {
           <Image src={resultIcon} alt="테스트 결과" />
         </div>
         <span>{title}</span>
-        <div>
-          {maxCount}개 중 {likedCount ? likedCount : 0}
-          {text}
-        </div>
+        <div>{text}</div>
       </style.ContentBox>
       <style.ButtonBox>
         <div onClick={onClickShare}>

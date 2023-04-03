@@ -3,8 +3,6 @@ import { StaticImageData } from "next/image";
 export interface ResultLayoutProps {
   resultContents: ResultContents;
   likedCount: number;
-  maxCount: number;
-  // shareHandler: () => void;
 }
 
 export interface ResultContents {
