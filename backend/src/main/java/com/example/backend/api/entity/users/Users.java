@@ -64,13 +64,8 @@ public class Users {
         this.role = Role.USER;
     }
 
-    // 리프레쉬 토근 업데이트 메서드
     public void updateRefreshToken(String updateRefreshToken) {
-        log.info("updateRefreshToken : " + updateRefreshToken);
         this.token = updateRefreshToken;
-        log.info("토큰 업데이트 완료");
-        log.info("this.token : " + this.token);
-        // TODO : 업데이트된 값을 DB에 저장하는 로직 추가
     }
 
     /**
