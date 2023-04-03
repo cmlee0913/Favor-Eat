@@ -1,4 +1,4 @@
-import * as style from "./Test.style";
+import * as style from "./Background.style";
 
 import Clouds from "@/assets/image/SharePage/Test/Clouds.svg";
 import Mountains from "@/assets/image/SharePage/Test/Mountains.svg";
