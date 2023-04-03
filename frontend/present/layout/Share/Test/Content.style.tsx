@@ -8,6 +8,14 @@ export const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+
+  /* drag none */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export const Page = styled.span`
@@ -17,6 +25,11 @@ export const Page = styled.span`
   position: relative;
   top: 1.8rem;
   left: 5rem;
+
+  ${theme.devices.tablet} {
+    top: 1rem;
+    left: 1rem;
+  }
   span {
     color: ${theme.colors.main.purple.dark_2};
   }
@@ -32,6 +45,10 @@ export const FoodContainer = styled.div`
   transform: translateX(-50%);
   padding: 1rem;
   gap: 1.5rem;
+
+  ${theme.devices.tablet} {
+    top: 10%;
+  }
 `;
 
 export const FoodTitle = styled.div`
@@ -50,6 +67,11 @@ export const FoodImage = styled.div`
     object-fit: cover;
     width: 12rem;
     height: 12rem;
+
+    ${theme.devices.tablet} {
+      width: 10rem;
+      height: 10rem;
+    }
   }
 `;
 
@@ -59,6 +81,10 @@ export const ChooseBox = styled.div`
   gap: 1.2rem;
   width: 30%;
 
+  ${theme.devices.tablet} {
+    width: 80%;
+  }
+
   & > div {
     background-color: ${theme.colors.mono.light_1};
     color: ${theme.colors.main.purple.dark_4};
@@ -66,6 +92,7 @@ export const ChooseBox = styled.div`
     font-family: Pretendard-Bold;
     padding: 0.7rem;
     text-align: center;
+    word-break: keep-all;
 
     :hover {
       cursor: pointer;
@@ -82,6 +109,11 @@ export const BottomContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
+
+  ${theme.devices.tablet} {
+    gap: 1rem;
+    bottom: 12%;
+  }
 `;
 
 export const CharacterProgress = styled.div<{ percentage: number }>`
@@ -92,13 +124,31 @@ export const CharacterProgress = styled.div<{ percentage: number }>`
   img {
     position: absolute;
     top: -2rem;
+    width: 4.5rem;
+    /* pc */
     left: ${({ percentage }) => {
       if (percentage === undefined || percentage === null) return 0;
       if (percentage === 100) return percentage - 5;
-      return percentage ? percentage : 0;
-    }}%;
+      return percentage - 10;
+    }}vw;
+
+    /* table */
+    ${theme.devices.tablet} {
+      left: ${({ percentage }) => {
+        if (percentage === undefined || percentage === null) return 0;
+        if (percentage === 100) return percentage - 8;
+        return percentage - 10;
+      }}vw;
+    }
+    /* mobile */
+    ${theme.devices.tablet} {
+      left: ${({ percentage }) => {
+        if (percentage === undefined || percentage === null) return 0;
+        if (percentage === 100) return percentage - 15;
+        return percentage - 10;
+      }}vw;
+    }
     transition: all 0.3s linear;
-    width: 4.5rem;
     height: auto;
   }
 `;
