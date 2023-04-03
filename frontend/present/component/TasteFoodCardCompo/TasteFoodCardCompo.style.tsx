@@ -22,7 +22,7 @@ export const Card = styled.div`
   }
 
   img {
-    align-self: center;
+    /* align-self: center; */
     object-fit: contain;
     background-color: black;
     max-height: 19rem;

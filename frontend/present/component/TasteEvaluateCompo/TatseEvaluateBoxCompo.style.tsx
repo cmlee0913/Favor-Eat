@@ -33,7 +33,8 @@ export const Header = styled.div`
   /* title */
   & div:first-child {
     font-size: 1.3rem;
-    font-weight: 700;
+    font-family: Pretendard-Bold;
+
     color: ${theme.colors.mono.light_1};
   }
 `;
@@ -112,7 +113,7 @@ export const FlavorWrapper = styled.div`
 
 export const RatingWrapper = styled.div`
   font-size: 0.85rem;
-  font-weight: 700;
+  font-family: Pretendard-Bold;
   width: 100%;
   height: 100%;
   display: flex;
@@ -126,14 +127,12 @@ export const RatingWrapper = styled.div`
     font-weight: 600;
     gap: 3%;
   }
-
-  .rating {
-  }
 `;
 
 export const ValueText = styled.span<{ type: string }>`
   font-size: inherit;
-  font-weight: inherit;
+  font-family: Pretendard-Bold;
+  margin-bottom: 0.3rem;
   text-align: center;
 
   span {
@@ -155,11 +154,11 @@ export const MobileContainer = styled.div`
 
 export const ChracterContainer = styled.div`
   height: fit-content;
-  min-height: 33%;
+  min-height: 30%;
   width: 100%;
   display: grid;
   box-sizing: border-box;
-  padding: 1%;
+  padding: 0.5rem;
   grid-template-columns: 1.5fr 2fr;
   background-color: ${theme.colors.mono.light_1};
 
@@ -173,13 +172,13 @@ export const ChracterContainer = styled.div`
 export const Character = styled.div`
   display: grid;
   height: 100%;
-  /* grid-template-columns: 0.5fr 3fr; */
   align-content: stretch;
   position: relative;
 
   /* character title*/
   .title {
     font-size: 1.2rem;
+    font-family: Pretendard-Medium;
 
     ${theme.devices.mobile} {
       font-size: 1rem;
@@ -196,7 +195,8 @@ export const Character = styled.div`
   }
 
   .value {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-family: Pretendard-Mideum;
 
     ${theme.devices.mobile} {
       font-size: 0.9rem;
@@ -239,7 +239,7 @@ export const Character = styled.div`
   }
 
   .character {
-    gap: 3%;
+    gap: 1%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -249,21 +249,34 @@ export const Character = styled.div`
 
 export const ImageContainer = styled.div`
   height: 90%;
-  width: 90%;
+  width: 60%;
   min-width: 200px;
   border-radius: 15px;
   box-sizing: border-box;
   padding: 1%;
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ${theme.devices.tablet} {
+    height: 100%;
+    width: 60%;
+    max-height: 35vh;
+  }
+
   ${theme.devices.mobile} {
-    min-width: 150px;
+    min-width: 100px;
+    height: 100%;
+    width: 60%;
   }
 
   div {
     text-align: center;
     margin-bottom: 5px;
     font-size: 1.2rem;
+    font-family: Pretendard-Bold;
 
     ${theme.devices.mobile} {
       font-size: 0.9rem;
@@ -271,6 +284,8 @@ export const ImageContainer = styled.div`
   }
 
   img {
+    background-color: black;
+    object-fit: scale-down;
     height: 100%;
     width: 100%;
     border-radius: inherit;

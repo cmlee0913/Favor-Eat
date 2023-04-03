@@ -54,6 +54,11 @@ export const MiddleContainer = styled.div`
   ${FlexCenter}
   background-color: ${theme.colors.main.purple.light_1};
 
+  ${theme.devices.tablet} {
+    height: 30vh;
+    justify-content: flex-start;
+  }
+
   & > div {
     background-color: ${theme.colors.main.purple.light_1};
     position: relative;

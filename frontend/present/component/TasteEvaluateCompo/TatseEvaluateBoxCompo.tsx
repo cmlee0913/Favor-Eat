@@ -84,7 +84,7 @@ export default function TasteEvaluateBoxCompo({
   recipeData,
   buttonActive,
 }: TasteEvaluateBoxCompoProps) {
-  const isTablet = useMediaQuery("(min-width: 769px)");
+  const isTablet = useMediaQuery("(min-width: 1000px)");
   const isMobile = useMediaQuery("(min-width: 426px)");
   const { recipeId, recipeName, imageSrc } = recipeData;
   const router = useRouter();
