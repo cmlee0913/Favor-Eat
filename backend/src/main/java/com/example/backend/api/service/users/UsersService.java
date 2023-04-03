@@ -8,6 +8,7 @@ import com.example.backend.api.entity.users.Role;
 import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.users.EvaluationsRepository;
 import com.example.backend.api.repository.users.UsersRepository;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,8 +22,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
@@ -89,16 +88,15 @@ public class UsersService {
             user.updateRole(Role.USER);
             log.info("사용자 업데이트 완료, 빅데이터와 연결 시도");
             // 요청 보내기
-            MultiValueMap<String, Long> params = new LinkedMultiValueMap<>();
-            params.add("no", no);
+            Map<String, Long> params = new HashMap<>();
+            params.put("no", no);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
-            HttpEntity<MultiValueMap<String, Long>> entity = new HttpEntity<>(params, headers);
+            HttpEntity<Map<String, Long>> entity = new HttpEntity<>(params, headers);
 
             RestTemplate rt = new RestTemplate();
-
             ResponseEntity<Object> response = rt.exchange(
                 "http://j8d108.p.ssafy.io:6000/predict", //{요청할 서버 주소}
                 HttpMethod.POST, //{요청할 방식}
