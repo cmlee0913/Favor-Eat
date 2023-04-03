@@ -173,7 +173,6 @@ export default function TasteEvaluateBoxCompo({
     const oldRatingList = [...recipeRatingList];
     oldRatingList.push(newRatingValue);
     setRecipeRatingList(oldRatingList);
-    setRatingValues([0, 0, 0, 0]);
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -195,6 +194,7 @@ export default function TasteEvaluateBoxCompo({
 
   useEffect(() => {
     setCanMoveToNext(false);
+    setRatingValues([0, 0, 0, 0]);
   }, [recipeId]);
 
   return (
