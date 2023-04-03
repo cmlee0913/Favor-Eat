@@ -68,7 +68,7 @@ public class Diary {
             .content(this.content)
             .emotion(this.emotion)
             .registedDate(this.registedDate)
-            .responsePhotos(this.photos.stream()
+            .responsePhotoAttributes(this.photos.stream()
                 .map(Photos::toDTO)
                 .collect(Collectors.toList()))
             .build();
