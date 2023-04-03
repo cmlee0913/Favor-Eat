@@ -84,7 +84,7 @@ export default function TasteEvaluateBoxCompo({
   recipeData,
   buttonActive,
 }: TasteEvaluateBoxCompoProps) {
-  const isTablet = useMediaQuery("(min-width: 769px)");
+  const isTablet = useMediaQuery("(min-width: 1000px)");
   const isMobile = useMediaQuery("(min-width: 426px)");
   const { recipeId, recipeName, imageSrc } = recipeData;
   const router = useRouter();
@@ -173,7 +173,6 @@ export default function TasteEvaluateBoxCompo({
     const oldRatingList = [...recipeRatingList];
     oldRatingList.push(newRatingValue);
     setRecipeRatingList(oldRatingList);
-    setRatingValues([0, 0, 0, 0]);
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -195,6 +194,7 @@ export default function TasteEvaluateBoxCompo({
 
   useEffect(() => {
     setCanMoveToNext(false);
+    setRatingValues([0, 0, 0, 0]);
   }, [recipeId]);
 
   return (

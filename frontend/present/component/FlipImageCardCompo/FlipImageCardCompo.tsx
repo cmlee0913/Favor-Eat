@@ -42,8 +42,7 @@ export default function FilpImageCardCompo({
   };
 
   const moveHandler = () => {
-    const tmpIdx = 6998483;
-    router.push(`/recipe/${tmpIdx}`);
+    router.push(`/recipe/${recipeId}`);
   };
 
   const [token] = useAtom(userTokenSave);
@@ -79,7 +78,7 @@ export default function FilpImageCardCompo({
                     alt="flavor character"
                   />
                 </span>
-                <div className="flavorValue">{flavor.value}</div>
+                <div className="flavorValue">{flavor.value}점</div>
               </style.FlavorBox>
             </style.FlexItem>
             {contents.map((item) => (

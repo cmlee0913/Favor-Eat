@@ -1,4 +1,5 @@
 import { NextRouter } from "next/router";
+import { logoutAsync } from "./auth";
 
 export const moveHandler = (router, path, setIsOpen) => {
   router.push(path);
@@ -8,7 +9,7 @@ export const moveHandler = (router, path, setIsOpen) => {
 export const menu = (
   router: NextRouter,
   setIsOpen: Function,
-  images: Array<JSX.Element>
+  images: Array<JSX.Element>,
 ) => {
   return [
     {
@@ -39,9 +40,10 @@ export const menu = (
       name: "로그아웃",
       image: images[3],
       alt: "Lettuce",
-      //   handler: () => logoutFunction,
       handler: () => {
-        console.log("로그아웃!");
+        localStorage.clear();
+        logoutAsync(localStorage.getItem("accessToken"));
+        moveHandler(router, "/guide", setIsOpen);
       },
     },
     {
