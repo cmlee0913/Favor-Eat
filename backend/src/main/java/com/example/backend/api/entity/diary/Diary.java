@@ -1,7 +1,7 @@
 package com.example.backend.api.entity.diary;
 
-import com.example.backend.api.dto.diary.request.RequestDiary;
-import com.example.backend.api.dto.diary.response.ResponseDiary;
+import com.example.backend.api.dto.diary.request.RequestDiaryAttribute;
+import com.example.backend.api.dto.diary.response.ResponseDiaryAttribute;
 import com.example.backend.api.entity.users.Users;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,8 +61,8 @@ public class Diary {
         this.photos = photos;
     }
 
-    public ResponseDiary toDTO() {
-        return ResponseDiary.builder()
+    public ResponseDiaryAttribute toDTO() {
+        return ResponseDiaryAttribute.builder()
             .id(this.id)
             .title(this.title)
             .content(this.content)
@@ -74,9 +74,9 @@ public class Diary {
             .build();
     }
 
-    public void updateDiary(RequestDiary requestDiary) {
-        this.title = requestDiary.getTitle();
-        this.content = requestDiary.getContent();
-        this.emotion = requestDiary.getEmotion();
+    public void updateDiary(RequestDiaryAttribute requestDiaryAttribute) {
+        this.title = requestDiaryAttribute.getTitle();
+        this.content = requestDiaryAttribute.getContent();
+        this.emotion = requestDiaryAttribute.getEmotion();
     }
 }

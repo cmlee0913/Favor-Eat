@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class RequestDiary {
+public class RequestDiaryAttribute {
     private String title;
     private String content;
     private String emotion;
-    private List<RequestPhotos> requestPhotosList;
+    private List<RequestPhotosAttribute> requestPhotosAttributeList;
 
     @Builder
     public Diary toEntity(Long userNo) {

@@ -45,7 +45,7 @@ public class Users {
     private Role role; // 유저가 가입했는지 유무
 
     @OneToMany(mappedBy = "users")
-    private List<Diary> diaries = new ArrayList<>();
+    private List<Diary> diaryList = new ArrayList<>();
 
     @Builder
     public Users(String userNickname, String userEmail, String userRefreshToken, Role userRole) {

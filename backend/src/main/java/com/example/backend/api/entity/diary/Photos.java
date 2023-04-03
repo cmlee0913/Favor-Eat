@@ -1,6 +1,6 @@
 package com.example.backend.api.entity.diary;
 
-import com.example.backend.api.dto.diary.response.ResponsePhotos;
+import com.example.backend.api.dto.diary.response.ResponsePhotosAttribute;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,8 +42,8 @@ public class Photos {
         this.saved_name = saved_name;
     }
 
-    public ResponsePhotos toDTO() {
-        return ResponsePhotos.builder()
+    public ResponsePhotosAttribute toDTO() {
+        return ResponsePhotosAttribute.builder()
             .original_name(this.original_name)
             .saved_name(this.saved_name)
             .build();

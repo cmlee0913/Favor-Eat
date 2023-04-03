@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class RequestPhotos {
+public class RequestPhotosAttribute {
 
     private String original_name;
     private String saved_name;
