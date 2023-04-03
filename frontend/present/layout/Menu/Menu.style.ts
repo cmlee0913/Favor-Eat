@@ -7,9 +7,9 @@ export const PC = [472.75, 452.9, 488.6, 630, 365.73];
 export const PCblank = [0, 121.12, 0, 186.4, 0];
 const PCfont: Array<HambugerFont> = [
   { top: "-1.4rem", bottom: "auto", left: "auto", right: "4%" },
-  { top: "auto", bottom: "1rem", left: "0.5rem", right: "auto" },
+  { top: "auto", bottom: "1rem", left: "1%", right: "auto" },
   { top: "-1.4rem", bottom: "auto", left: "auto", right: "4%" },
-  { top: "auto", bottom: "1rem", left: "0.7rem", right: "auto" },
+  { top: "auto", bottom: "1rem", left: "2%", right: "auto" },
   { top: "-1.4rem", bottom: "auto", left: "auto", right: "25%" },
 ];
 
