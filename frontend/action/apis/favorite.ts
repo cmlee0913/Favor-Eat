@@ -1,5 +1,6 @@
 import { ApiResult } from "@/types/api/apiType";
 import { getAsync } from "./apis";
+// import { getRecommendFoodList } from '@/action/apis/main';
 
 export const getFavoriteFoodList = async (
   accessToken: string
@@ -12,3 +13,6 @@ export const getFavoriteFoodList = async (
 
   return { isSuccess, result };
 };
+
+
+// export const getRecommendFoodList

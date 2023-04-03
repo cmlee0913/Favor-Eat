@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 
+import * as style from "@/present/layout/MyPage/pageStyle";
+import { useAtom } from "jotai";
+import { userTokenSave } from "@/store/userStore";
+
 import GridReverseLayout from "@/present/layout/GridLayout/GridReverseLayout";
 import MyPageUser from "@/present/layout/MyPage/MyPageUser";
 import MyPageAccordian from "@/present/layout/MyPage/MyPageAccordian";
-
 import MyPageButton from "@/present/layout/MyPage/MyPageButton";
 
 import { MyPageTypes } from "@/types/MyPage/dummy";
 import { useRouter } from "next/router";
 
 import Ingredient from "@/present/layout/MyPage/Ingredient";
+import Thumbnail from "@/present/layout/MyPage/Thumbnail";
 
 export default function MyPage() {
   const router = useRouter();
+  const [token] = useAtom(userTokenSave);
 
   const goFavorite = () => router.push("/favorite");
 
@@ -20,12 +25,12 @@ export default function MyPage() {
   const [myPageArr, setMyPageArr] = useState<Array<MyPageTypes>>([
     {
       category: (
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <style.CategoryContainer>
           <div>즐겨찾기한 레시피</div>
           <MyPageButton context="더보기" handler={goFavorite} />
-        </div>
+        </style.CategoryContainer>
       ),
-      content: "즐겨찾기한 레시피 사진 나와야합니다.",
+      content: <Thumbnail />,
       isOpen: true,
     },
     {
@@ -34,7 +39,6 @@ export default function MyPage() {
       isOpen: false,
     },
   ]);
-
 
   useEffect(() => {
     const tmp = myPageArr.map((elem, idx) => {

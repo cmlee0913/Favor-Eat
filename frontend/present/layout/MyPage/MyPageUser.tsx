@@ -3,6 +3,7 @@ import * as style from "./MyPage.style";
 
 import { useAtom } from "jotai";
 import { getUserDataByToken, userTokenSave } from "@/store/userStore";
+import { getMyTaste } from "@/action/apis/myPage";
 
 import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
@@ -25,12 +26,36 @@ import Image from "next/image";
 
 export default function MyPageUser() {
   const [name, setName] = useState("로그인 해주세요!");
-  console.log(name);
   const [selectedFlavorType, setSelectedFlavorType] = useState("spicy");
   const [hoverImage, setHoverImage] = useState(SpicyHoverBoxPc);
   const [isHover, setIsHover] = useState(false);
+  const [flavors, setFlavors] = useState({
+    oily: 0,
+    salty: 0,
+    spicy: 0,
+    sweet: 0,
+  });
 
   const [token] = useAtom(userTokenSave);
+
+  const requestMyTaste = async (token: string) => {
+    const { isSuccess, result } = await getMyTaste(token);
+    if (isSuccess) {
+      const { spicy, sweet, salty, oily } = result.responseTasteInfo;
+      setFlavors({
+        spicy: Math.round(spicy * 2) / 2,
+        sweet: Math.round(sweet * 2) / 2,
+        salty: Math.round(salty * 2) / 2,
+        oily: Math.round(oily * 2) / 2,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (token.accessToken) {
+      requestMyTaste(token.accessToken);
+    }
+  }, [token]);
 
   useEffect(() => {
     if (token.accessToken) {
@@ -47,7 +72,7 @@ export default function MyPageUser() {
       img: Spicy,
       pcHover: SpicyHoverBoxPc,
       mobileHover: SpicyHoverBoxMobile,
-      value: 1,
+      value: flavors.spicy,
     },
     {
       type: "sweet",
@@ -56,7 +81,7 @@ export default function MyPageUser() {
       img: Sweet,
       pcHover: SweetHoverBoxPC,
       mobileHover: SweetHoverBoxMobile,
-      value: 2,
+      value: flavors.sweet,
     },
     {
       type: "salty",
@@ -65,7 +90,7 @@ export default function MyPageUser() {
       img: Salty,
       pcHover: SaltyHoverBoxPC,
       mobileHover: SaltyHoverBoxMobile,
-      value: 3,
+      value: flavors.salty,
     },
     {
       type: "oily",
@@ -74,7 +99,7 @@ export default function MyPageUser() {
       img: Oily,
       pcHover: SaltyHoverBoxPC,
       mobileHover: SaltyHoverBoxMobile,
-      value: 4,
+      value: flavors.oily,
     },
   ];
 

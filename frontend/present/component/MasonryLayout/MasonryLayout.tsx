@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { userTokenSave } from "@/store/userStore";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const requestFavoriteFoodList = async (token: string) => {
   const { isSuccess, result } = await getFavoriteFoodList(token);
@@ -42,9 +43,11 @@ const Item = ({ src, num, recipeId }: any) => {
   };
 
   return (
-    <div onClick={handleClick}>
-      <AutoHeightImage src={src} alt="egjs" />
-      {/* <div>{`${num}`}</div> */}
+    <div>
+      <Link href={`/recipe/${recipeId}`} prefetch={false}>
+        <AutoHeightImage src={src} alt="egjs" />
+        {/* <div>{`${num}`}</div> */}
+      </Link>
     </div>
   );
 };
@@ -79,22 +82,41 @@ export default function MasonryLayout() {
     columnNumber = 3;
   }
 
-  if (items === null) {
+  if (!items) {
     return null;
   }
 
   return (
     <>
-      {/* {items.length} */}
       <MasonryInfiniteGrid
         className="container"
         column={columnNumber}
         gap={10}
-        resizeDebounce={20} // 화면 크기가 바뀜에 따라 resize할 때 반응하는 시간 50 = 0.5s
-        onRequestAppend={(e) => {
+        resizeDebounce={20}
+        onRequestAppend={async (e) => {
           const nextGroupKey = (+e.groupKey! || 0) + 1;
+          console.log("append");
 
-          setItems([...items, ...getItems(nextGroupKey, 10)]);
+          const newList = await requestFavoriteFoodList(token.accessToken);
+          if (newList === null) {
+            return;
+          }
+
+          // 중복되지 않은 항목들만 추가
+          const filteredList = newList.filter((newItem) => {
+            return !items.some((item) => item.recipeId === newItem.recipeId);
+          });
+
+          setItems([
+            ...items,
+            ...filteredList.map((newItem) => {
+              return {
+                groupKey: nextGroupKey,
+                key: `${nextGroupKey}-${newItem.recipeId}`,
+                ...newItem,
+              };
+            }),
+          ]);
         }}
       >
         {items.map((item) => (
@@ -103,7 +125,7 @@ export default function MasonryLayout() {
             key={item.key}
             num={item.key}
             src={item.src}
-            recipeId={item.recipeId} // pass the recipeId property
+            recipeId={item.recipeId}
           />
         ))}
       </MasonryInfiniteGrid>

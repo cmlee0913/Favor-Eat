@@ -1,6 +1,20 @@
 import styled, { css } from "styled-components";
 import { theme } from "@/constant/theme";
 
+// Ingredient.tsx
+export const ShutDownImageWrapper = styled.div`
+  img {
+    width: 75%;
+    height: auto;
+    margin-left: 6vw;
+
+    ${theme.devices.tablet} {
+      width: 70vw;
+      margin-left: 10vw;
+    }
+  }
+`;
+
 // MyPageUser.tsx
 export const MyPageUser = styled.div`
   ${theme.devices.desktop} {
@@ -57,7 +71,10 @@ export const FlavorDataContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
 
-  margin-top: 5px;
+  gap: 5px;
+  margin-top: 8px;
+
+  font-family: "Pretendard-Medium";
 
   ${theme.devices.tablet} {
     grid-template-columns: 1fr 4fr;
@@ -100,6 +117,14 @@ export const HoverIconWrapper = styled.div`
 export const HoverIconText = styled.div`
   font-size: 14px;
   color: ${theme.colors.mono.light_1};
+`;
+
+export const MyAverageTasteContainer = styled.div`
+  font-family: "Pretendard-Medium";
+`;
+
+export const ItemTitleContainer = styled.div`
+  font-family: "Pretendard-Medium";
 `;
 
 // MyPageFlavorData.tsx의 Data 부분 css
@@ -149,9 +174,12 @@ export const ButtonContainer = styled.button`
   border: none;
   background-color: ${theme.colors.main.blue};
   /* font-size: 1.5rem; */
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   min-width: 5rem;
   border-radius: 2rem;
+
+  font-size: 1.1rem;
+  font-family: "Pretendard-Medium";
 
   &:hover {
     cursor: pointer;
