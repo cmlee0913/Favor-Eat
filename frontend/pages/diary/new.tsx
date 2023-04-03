@@ -9,11 +9,7 @@ const New = () => {
   //   titleElement.innerHTML = `감정 일기장 - 새 일기 쓰기`;
   // }, []);
 
-  return (
-    <div>
-      <DiaryEditor />
-    </div>
-  );
+  return <div>{/* <DiaryEditor /> */}</div>;
 };
 
 export default New;

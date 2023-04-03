@@ -25,7 +25,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      onRemove(originData.id);
       router.back();
     }
   };
