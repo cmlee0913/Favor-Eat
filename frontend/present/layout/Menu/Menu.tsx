@@ -48,7 +48,6 @@ function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
 
   const menuArr = menu(router, setIsOpen, BurgerElem);
   const menuInner = menuArr.map((elem, idx) => {
-
     return (
       <style.Menu
         idx={idx}

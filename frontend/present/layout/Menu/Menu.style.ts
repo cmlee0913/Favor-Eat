@@ -1,5 +1,6 @@
 import { theme } from "@/constant/theme";
 import styled from "styled-components";
+import { fadeInUp } from "../Guide/Guide.style";
 
 export const PC = [472.75, 452.9, 488.6, 630, 365.73];
 export const PCblank = [0, 121.12, 0, 186.4, 0];
@@ -10,17 +11,20 @@ const calPosVal = (num: number) => {
 
 export const Menu = styled.div<{ idx: number }>`
   --width: calc((100vw - 5rem) / 5);
+  --height: calc((100vh - 20rem) / 5);
   --mainWidth: ${(props) => calPosVal(PC[props.idx])};
   --subWidth: ${(props) => calPosVal(PCblank[props.idx])};
   --default: calc(var(--mainWidth) * var(--width));
   --position: calc(
-    ${(props) => props.idx} * var(--width) - var(--subWidth) * var(--default) + 4.5rem
+    ${(props) => props.idx} * var(--width) - var(--subWidth) * var(--default) +
+      4.5rem
   );
 
   ${theme.devices.desktop} {
     width: var(--default);
     position: absolute;
     left: var(--position);
+    top: calc(${(props) => props.idx} * var(--height) + 11rem);
   }
 
   ${theme.devices.tablet} {
@@ -28,6 +32,16 @@ export const Menu = styled.div<{ idx: number }>`
     position: relative;
     right: auto;
     left: auto;
+    top: auto;
+  }
+
+  & path:nth-last-child(2),
+  & path:nth-last-child(1) {
+    animation: ${fadeInUp} 1.8s;
+  }
+
+  & path {
+    animation: ${fadeInUp} 1s;
   }
 `;
 
