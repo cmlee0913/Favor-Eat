@@ -22,12 +22,8 @@ import { logoutAsync } from "@/action/apis/auth";
 import { RESET } from "jotai/utils";
 import {
   getCenterCoordinates,
-  ingArrMobile,
-  ingArrPC,
-  ingArrTablet,
 } from "@/action/apis/getCenterCoordinates";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
-import { theme } from "@/constant/theme";
 
 function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
   const router = useRouter();
@@ -37,20 +33,18 @@ function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
   const isMobile = useMediaQuery("(max-width: 426px)");
 
   useEffect(() => {
-    if (isMobile !== null && isTablet !== null) {
-      const { current } = hambugerRef;
-      window.addEventListener("resize", () =>
+    const { current } = hambugerRef;
+    window.addEventListener("resize", () =>
+      getCenterCoordinates(current, isTablet, isMobile)
+    );
+    getCenterCoordinates(current, isTablet, isMobile);
+
+    return () => {
+      window.removeEventListener("resize", () =>
         getCenterCoordinates(current, isTablet, isMobile)
       );
-      getCenterCoordinates(current, isTablet, isMobile);
-  
-      return () => {
-        window.removeEventListener("resize", () =>
-          getCenterCoordinates(current, isTablet, isMobile)
-        );
-      };
-    }
-  }, [isTablet, isMobile]);
+    };
+  }, []);
 
   const logout = async (accessToken: string) => {
     if (!accessToken) return;
@@ -114,18 +108,6 @@ function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
   ];
 
   const menuInner = menu.map((elem, idx) => {
-    let arrWidth = 0;
-
-    if (isMobile) {
-      arrWidth = ingArrMobile[idx];
-    } else if (isTablet) {
-      arrWidth = ingArrTablet[idx];
-    } else {
-      arrWidth = ingArrPC[idx];
-    }
-
-    console.log(isMobile, isTablet,arrWidth)
-
     return (
       <style.IngreContainer
         ref={(el) => (hambugerRef.current[idx] = el)}
@@ -134,7 +116,7 @@ function HambugerInner({ setIsOpen }: { setIsOpen: Function }) {
         onClick={elem.handler}
       >
         <Image src={elem.image} alt={elem.alt} />
-        <Image src={elem.arrow} alt={elem.name} width={arrWidth} />
+        <Image src={elem.arrow} alt={elem.name} />
         <div>{elem.name}</div>
       </style.IngreContainer>
     );

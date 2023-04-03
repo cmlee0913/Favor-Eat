@@ -14,12 +14,12 @@ const fontPos = [
   [-140, -187],
 ];
 
-const ingArr = [249.85, 265.65, 210.22, 328, 187];
+export const ingArrPC = [229.85, 245.65, 170.22, 308, 167];
+export const ingArrTablet = [246.85, 162.65, 207.22, 325, 184];
+export const ingArrMobile = [306.85, 312.65, 257.22, 375, 234];
 
 export function getCenterCoordinates(current, isTablet, isMobile) {
   current.map((elem, idx) => {
-    console.log(elem);
-
     if (elem !== null) {
       // 중앙값 계산
       const { offsetWidth, offsetHeight } = elem;
@@ -38,11 +38,11 @@ export function getCenterCoordinates(current, isTablet, isMobile) {
         elem.style.width = `auto`;
         elem.style.height = "5vh";
 
-        imageStyle.style.width = '105%'
+        imageStyle.style.width = 'inherit'
 
         //화살표
-        arrowStyle.width = `${ingArr[idx] * offsetY * 0.012}`;
-        arrowStyle.style.width = `${ingArr[idx] * offsetY * 0.012}px`;
+        // arrowStyle.width = `${ingArrTablet[idx] * offsetY * 0.01}`;
+        // arrowStyle.style.width = `${ingArrTablet[idx] * offsetY * 0.012}px`;
         arrowStyle.style.left = `${
           offsetX + arrPos[idx][0] * offsetX * 0.01
         }px`;
@@ -57,11 +57,11 @@ export function getCenterCoordinates(current, isTablet, isMobile) {
         elem.style.width = `auto`;
         elem.style.height = "10vh";
         
-        imageStyle.style.width = '110%'
+        imageStyle.style.width = 'inherit'
 
         //화살표
-        arrowStyle.width = `${ingArr[idx] * offsetY * 0.013}`;
-        arrowStyle.style.width = `${ingArr[idx] * offsetY * 0.013}px`;
+        // arrowStyle.width = `${ingArrTablet[idx] * offsetY * 0.01}`;
+        // arrowStyle.style.width = `${ingArrTablet[idx] * offsetY * 0.015}px`;
         arrowStyle.style.left = `${
           offsetX + arrPos[idx][0] * offsetX * 0.01
         }px`;
@@ -76,11 +76,11 @@ export function getCenterCoordinates(current, isTablet, isMobile) {
         elem.style.width = `15vw`;
         elem.style.height = "auto";
 
-        imageStyle.style.width = '100%'
+        imageStyle.style.width = 'inherit'
 
         //화살표
-        arrowStyle.width = `${ingArr[idx] * offsetY * 0.01}`;
-        arrowStyle.style.idth = `${ingArr[idx] * offsetY * 0.01}px`;
+        // arrowStyle.width = `${ingArrPC[idx] * offsetY * 0.01}`;
+        // arrowStyle.style.width = `${ingArrPC[idx] * offsetY * 0.01}px`;
         arrowStyle.style.left = `${
           offsetX + arrPos[idx][0] * offsetX * 0.01
         }px`;

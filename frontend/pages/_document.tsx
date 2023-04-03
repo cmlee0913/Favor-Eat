@@ -91,6 +91,7 @@ export default function Document() {
         name="msapplication-square310x310logo"
         content="mstile-310x310.png"
       />
+
       <body style={{ margin: "0" }}>
         <Main />
         <NextScript />

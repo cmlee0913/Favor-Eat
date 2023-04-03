@@ -18,6 +18,8 @@ import Ingrediant from "@/present/layout/Ingrediant/Ingrediant";
 import { useRouter } from "next/router";
 import { getAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
+import { toInteger } from "lodash";
+import { type } from "os";
 
 export default function Recipe() {
   const router = useRouter();
@@ -58,6 +60,7 @@ export default function Recipe() {
     recipesList: [],
     ingredientsInFoodList: [],
   });
+
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
   const [RecipeArr, setRecipeArr] = useState<Array<RecipeNavType>>([
@@ -91,7 +94,12 @@ export default function Recipe() {
 
   useEffect(() => {
     if (pid) {
-      getAsync(`https://j8d108.p.ssafy.io/api/foods/${pid}`).then((res) => {
+      getAsync(`${apiURL}/foods/${pid}`, {
+        headers: {
+          Authorization:
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsInJvbGUiOiJHVUVTVCIsIm5pY2tuYW1lIjoi6rmA7Zi46regIiwiZXhwIjoxNjgwNDIzNjQ0LCJlbWFpbCI6InJsYWdocmJzMTYzM0BuYXZlci5jb20ifQ.1Id6fu4nQppXfxpDouu-ZoqVtmsNJFi9YgSRacc1iixpHcvt_J5jJ1OoWTWcbB52H_vfcizvdoGHq0xXKZrMWw",
+        },
+      }).then((res) => {
         if (res.isSuccess) {
           setRecipeData({ ...res.result });
           setRecipeArr([

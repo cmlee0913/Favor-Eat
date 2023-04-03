@@ -19,7 +19,7 @@ export const IngreContainer = styled.div<{ idx: number }>`
 
     &:nth-child(1) {
       position: relative;
-      width: 100%;
+      width: 100% !important;
       animation: ${fadeInUp} 1s;
     }
 
@@ -46,7 +46,8 @@ export const IngreContainer = styled.div<{ idx: number }>`
 
       &:nth-child(1) {
         position: relative;
-        width: 110%;
+        height: inherit;
+        width: 110%  !important;
       }
     }
   }
@@ -55,20 +56,12 @@ export const IngreContainer = styled.div<{ idx: number }>`
     position: relative;
     top: 0;
     left: 0;
+  }
 
-    & img {
-      &:nth-child(1) {
-        width: 150%;
-      }
-    }
-
-    &:hover {
-      & img {
-        &:nth-child(1) {
-          width: 160%;
-        }
-      }
-    }
+  ${theme.devices.mobile} {
+    position: relative;
+    top: 0;
+    left: 0;
   }
 `;
 
@@ -83,24 +76,27 @@ export const InnerBody = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
 `;
 
 export const InnerContainer = styled.div`
   width: 90vw;
-  height: 80vh;
+  height: 100vh;
   background-color: ${theme.colors.background.pink};
   position: absolute;
-  top: 0;
   left: 0;
   z-index: 5000;
   display: flex;
   flex-direction: column;
-
-  padding: 10vh 5vw;
+  
+  ${theme.devices.desktop} {
+    padding: 20vh 5vw 10vh 5vw;
+    top: 0;
+  }
 
   ${theme.devices.tablet} {
-    height: 100vh;
+    padding: 4vh 5vw 10vh 5vw;
+    top: -12rem;
   }
 `;
