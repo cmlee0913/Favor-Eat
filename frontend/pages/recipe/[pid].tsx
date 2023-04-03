@@ -18,10 +18,13 @@ import Ingrediant from "@/present/layout/Ingrediant/Ingrediant";
 import { useRouter } from "next/router";
 import { getAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
+import { toInteger } from "lodash";
+import { userTokenSave } from "@/store/userStore";
 
 export default function Recipe() {
   const router = useRouter();
   const { pid } = router.query;
+  const [token, setUserToken] = useAtom(userTokenSave);
 
   const [recipeData, setRecipeData] = useState<RecipeData>({
     name: "",
@@ -58,6 +61,7 @@ export default function Recipe() {
     recipesList: [],
     ingredientsInFoodList: [],
   });
+
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
   const [RecipeArr, setRecipeArr] = useState<Array<RecipeNavType>>([
@@ -89,11 +93,13 @@ export default function Recipe() {
     },
   ]);
 
-  console.log(recipeData);
-
   useEffect(() => {
     if (pid) {
-      getAsync(`https://j8d108.p.ssafy.io/api/foods/${pid}`).then((res) => {
+      getAsync(`${apiURL}/foods/${pid}`, {
+        headers: {
+          Authorization: `Bearer ${token.accessToken}`,
+        },
+      }).then((res) => {
         if (res.isSuccess) {
           setRecipeData({ ...res.result });
           setRecipeArr([
