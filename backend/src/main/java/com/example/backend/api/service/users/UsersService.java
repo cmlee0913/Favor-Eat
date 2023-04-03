@@ -75,41 +75,13 @@ public class UsersService {
     @Transactional(rollbackOn = RuntimeException.class)
     public Users registInitialEvaluations(Long no,
         List<RequestTasteEvaluations> requestTasteEvaluations) throws RuntimeException {
-        log.info("registInitialEvaluations 호출");
-        log.info("no: " + no);
+
         for (RequestTasteEvaluations tasteEvaluations : requestTasteEvaluations) {
             evaluationsRepository.save(tasteEvaluations.toEntity(no));
         }
 
-        log.info("평가 저장 완료");
-
         Optional<Users> users = usersRepository.findByNo(no);
-        users.ifPresentOrElse(user -> {
-            user.updateRole(Role.USER);
-            log.info("사용자 업데이트 완료, 빅데이터와 연결 시도");
-            // 요청 보내기
-            Map<String, Long> params = new HashMap<>();
-            params.put("no", no);
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            HttpEntity<Map<String, Long>> entity = new HttpEntity<>(params, headers);
-
-            RestTemplate rt = new RestTemplate();
-            ResponseEntity<Object> response = rt.exchange(
-                "http://j8d108.p.ssafy.io:6000/predict", //{요청할 서버 주소}
-                HttpMethod.POST, //{요청할 방식}
-                entity, // {요청할 때 보낼 데이터}
-                Object.class
-            );
-            log.info("사용자 업데이트 완료, 빅데이터와 연결 종료");
-            if (response.getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
-                log.info("빅데이터 500에러 발생");
-                throw new RuntimeException();
-            }
-
-        }, () -> {
+        users.ifPresentOrElse(user -> user.updateRole(Role.USER), () -> {
             log.info("사용자 존재 X");
             throw new RuntimeException();
         });
