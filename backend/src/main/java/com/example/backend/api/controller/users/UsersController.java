@@ -74,6 +74,7 @@ public class UsersController {
                 requestTasteEvaluations);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
