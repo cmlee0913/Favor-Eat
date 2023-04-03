@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import * as style from "./Menu.style";
 
 import { useRouter } from "next/router";
@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { RESET } from "jotai/utils";
 import { logoutAsync } from "@/action/apis/auth";
 
-import { userTokenSave } from "@/store/userStore";
+import { getUserDataByToken, userTokenSave } from "@/store/userStore";
 import { menu } from "@/action/apis/menu";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
@@ -21,11 +21,13 @@ import BeefMobile from "@/assets/image/Menu/BeefMobile.svg";
 import CheeseMobile from "@/assets/image/Menu/CheeseMobile.svg";
 import LettuceMobile from "@/assets/image/Menu/LettuceMobile.svg";
 import BurnMobile from "@/assets/image/Menu/BurnMobile.svg";
+import Profile from "@/present/component/Profile/Profile";
 
 function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
   const router = useRouter();
   const isTablet = useMediaQuery("(max-width: 1000px)");
   const [token, setUserToken] = useAtom(userTokenSave);
+  const [name, setName] = useState("로그인 해주세요!");
 
   const Tomato = isTablet ? <TomatoMobile /> : <TomatoPC />;
   const Beef = isTablet ? <BeefMobile /> : <BeefPC />;
@@ -34,6 +36,13 @@ function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
   const Burn = isTablet ? <BurnMobile /> : <BurnPC />;
 
   const BurgerElem = [Tomato, Beef, Cheese, Lettuce, Burn];
+
+  useEffect(() => {
+    if (token.accessToken) {
+      const { nickname } = getUserDataByToken(token.accessToken);
+      setName(nickname);
+    }
+  }, [token]);
 
   // 로그아웃
   const logout = async (accessToken: string) => {
@@ -58,6 +67,7 @@ function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
 
   return (
     <style.Container>
+      <Profile name={name}/>
       {/* PC 버전 */}
       <style.Body className="PC">
         <style.InnerPC>{menuInner}</style.InnerPC>

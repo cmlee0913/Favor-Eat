@@ -34,7 +34,7 @@ export const Container = styled.div`
 
   ${theme.devices.tablet} {
     position: absolute;
-    top: 9.95%;
+    top: 7%;
     left: 4.29%;
   }
 `;
