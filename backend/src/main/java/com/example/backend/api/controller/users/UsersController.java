@@ -33,10 +33,10 @@ public class UsersController {
     private final UsersService usersService;
     private final JwtService jwtService;
 
-    @Operation(summary = "로그아웃", description = "사용자의 <strong>즐겨찾기 목록을 조회</strong>합니다.")
-    @PutMapping("/signout/{no}")
-    public ResponseEntity<String> signOutUser(@PathVariable Long no) {
-        if (usersService.signOutUser(no).getToken() == null) {
+    @Operation(summary = "로그아웃", description = "사용자의 <strong>refresh token을 삭제</strong>합니다.")
+    @PutMapping("/signout")
+    public ResponseEntity<String> signOutUser(@AuthenticationPrincipal User users) {
+        if (usersService.signOutUser(Long.parseLong(users.getUsername())).getToken() == null) {
             return new ResponseEntity<>("signOut 성공", HttpStatus.valueOf(200));
         } else {
             return new ResponseEntity<>("signOut 실패", HttpStatus.valueOf(400));
