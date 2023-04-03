@@ -103,6 +103,10 @@ async def predict(user_no: UserNo):
     cnx = mysql_conn.connect_mysql()
     cursor = cnx.cursor(dictionary=True)
 
+    query = "DELETE FROM recommends WHERE no=%s"
+    cursor.execute(query, (target))
+    cnx.commit()
+
     query = "SELECT * FROM evaluations"
     cursor.execute(query)
     # 데이터 가져오기
