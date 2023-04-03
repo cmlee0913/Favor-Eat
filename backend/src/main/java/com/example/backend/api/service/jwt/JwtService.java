@@ -4,16 +4,15 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.backend.api.entity.users.Users;
 import com.example.backend.api.repository.users.UsersRepository;
+import java.util.Date;
+import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -167,14 +166,10 @@ public class JwtService {
      * @throws Exception can't find user
      */
     public void updateRefreshToken(String email, String refreshToken) throws Exception{
-        log.info("refreshToken : " + refreshToken);
-        log.info("email : " + email);
-        usersRepository.findByEmail(email).orElseThrow(() -> new Exception("일치하는 회원이 없습니다."))
-            .updateRefreshToken(refreshToken);
-//            .ifPresentOrElse(
-//                user -> user.updateRefreshToken(refreshToken),
-//                () -> new Exception("일치하는 회원이 없습니다.")
-//            );
+        Users users = usersRepository.findByEmail(email).orElseThrow(() -> new Exception("일치하는 회원이 없습니다."));
+        users.updateRefreshToken(refreshToken);
+        log.info("refreshToken : " + users.getToken());
+        usersRepository.save(users);
     }
 
     /**
