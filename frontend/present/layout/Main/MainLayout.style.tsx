@@ -1,10 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { theme } from "@/constant/theme";
 
-import MainFoodActive from "@/assets/icon/Main/MainFoodActive.svg";
-import AnotherFoodActive from "@/assets/icon/Main/AnotherFoodActive.svg";
-import MainFoodInactive from "@/assets/icon/Main/MainFoodInactive.svg";
-import AnotherFoodInactive from "@/assets/icon/Main/AnotherFoodInactive.svg";
 import RefreshIcon from "@/assets/icon/Main/RefreshIcon.svg";
 
 const white = theme.colors.mono.light_1;
@@ -105,46 +101,6 @@ export const CharacterImage = styled.div`
     width: 100%;
     height: 100%;
   }
-`;
-
-const RecommendIconStyle = css`
-  width: 4.5rem;
-  height: 4.5rem;
-  :hover {
-    cursor: pointer;
-  }
-
-  ${theme.devices.tablet} {
-    width: 13vw;
-    height: auto;
-  }
-  :hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const RecommendIcons = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-
-  ${theme.devices.tablet} {
-    order: 3;
-  }
-`;
-
-export const MainRecommendActive = styled(MainFoodActive)`
-  ${RecommendIconStyle}
-`;
-export const MainRecommendInactive = styled(MainFoodInactive)`
-  ${RecommendIconStyle}
-`;
-
-export const AnotherRecommendInactive = styled(AnotherFoodInactive)`
-  ${RecommendIconStyle}
-`;
-export const AnotherRecommendActive = styled(AnotherFoodActive)`
-  ${RecommendIconStyle}
 `;
 
 export const RefreshButton = styled(RefreshIcon)`

@@ -17,7 +17,6 @@ import { cursorImageAtom, cursorIsShowAtom } from "@/store/cursorStore";
 
 export default function main() {
   const [loading, setLoading] = useState(true);
-  const [isMainMode, setIsMainMode] = useState<boolean>(true);
   const [token] = useAtom(userTokenSave);
   const [refreshCount, setRefreshCount] = useState(-1);
   const [allFoodList, setAllFoodList] = useState<Array<MainFood>>([]);
@@ -25,12 +24,6 @@ export default function main() {
   const [, setCursorShow] = useAtom(cursorIsShowAtom);
   const [, setCursorImage] = useAtom(cursorImageAtom);
 
-  const activeMainMode = () => {
-    setIsMainMode(true);
-  };
-  const inactiveMainMode = () => {
-    setIsMainMode(false);
-  };
   const onClickRefresh = () => {
     setRefreshCount((current) => current + 1);
   };
@@ -126,19 +119,6 @@ export default function main() {
               alt="characters search for food"
             />
           </style.CharacterImage>
-          <style.RecommendIcons>
-            {isMainMode ? (
-              <>
-                <style.MainRecommendActive onClick={inactiveMainMode} />
-                <style.AnotherRecommendInactive onClick={inactiveMainMode} />
-              </>
-            ) : (
-              <>
-                <style.MainRecommendInactive onClick={activeMainMode} />
-                <style.AnotherRecommendActive onClick={activeMainMode} />
-              </>
-            )}
-          </style.RecommendIcons>
         </style.Right>
         <style.MobileRefreshButton onClick={() => onClickRefresh()} />
         <style.MobileImageContainer>
