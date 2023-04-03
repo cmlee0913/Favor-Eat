@@ -111,6 +111,10 @@ export const ButtonBox = styled.div`
     padding: 1rem;
     border-radius: 25px;
     text-align: center;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 
   /* kakao share button */

@@ -11,6 +11,12 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import CustomCursor from "@/present/common/CustomCursor/CustomCursor";
 import ModalCompo from "@/present/component/ModalCompo/ModalCompo";
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname;
 
@@ -50,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
             console.log(currentToken);
           } else {
             console.log(
-              "No registration token available. Request permission to generate one."
+              "No registration token available. Request permission to generate one.",
             );
           }
         })
