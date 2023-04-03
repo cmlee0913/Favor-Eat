@@ -61,6 +61,7 @@ public class UsersController {
                 jwtService.createAccessToken(user.getEmail(), user.getNickname(),
                     String.valueOf(user.getRole())), HttpStatus.OK);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -74,7 +75,6 @@ public class UsersController {
                 requestTasteEvaluations);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
