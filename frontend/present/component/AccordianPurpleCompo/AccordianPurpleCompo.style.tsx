@@ -23,6 +23,7 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div<{ open: boolean; idx: number }>`
+  font-family: "Pretendard-Medium";
   border-bottom: solid 2.2px
     ${(props) => (props.open ? theme.colors.main.blue : theme.colors.main.blue)};
 
@@ -32,7 +33,7 @@ export const Container = styled.div<{ open: boolean; idx: number }>`
 
   & ${Title} {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
     color: ${(props) =>
       props.open ? theme.colors.mono.dark_3 : theme.colors.mono.dark_3};
 

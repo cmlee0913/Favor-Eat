@@ -18,12 +18,14 @@ export const RightTitleBox = styled.div`
   div {
     :nth-child(1) {
       margin-left: 20px;
-      font-size: 30px;
-      font-family: "Inter-Bold";
+      font-size: 34px;
+      font-family: "Pretendard-Bold";
     }
     :nth-child(2) {
       margin-left: 20px;
       font-size: 18px;
+      /* RightTitleBox "보험"입니다. */
+      /* 두번째 적을 글이 필요하면 이걸 사용하시오 */
     }
   }
 `;

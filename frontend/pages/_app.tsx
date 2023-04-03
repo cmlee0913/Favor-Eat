@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
             console.log(currentToken);
           } else {
             console.log(
-              "No registration token available. Request permission to generate one.",
+              "No registration token available. Request permission to generate one."
             );
           }
         })
@@ -73,6 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
       router == "/myPage" ||
       router == "/info" ||
       router == "/alarm" ||
+      router == "/favorite" ||
       router.includes("diary") ||
       router.includes("recipe") ? (
         <Header />
