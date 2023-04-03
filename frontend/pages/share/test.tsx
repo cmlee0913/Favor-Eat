@@ -1,7 +1,7 @@
 import Background from "@/present/layout/Share/Test/Background";
 import Content from "@/present/layout/Share/Test/Content";
 
-import FoodImage1 from "@/assets/image/SharePage/foods/순대.jpg";
+import FoodImage1 from "@/assets/image/SharePage/foods/순대.png";
 import FoodImage2 from "@/assets/image/SharePage/foods/닭발.jpg";
 import FoodImage3 from "@/assets/image/SharePage/foods/콩국수.jpg";
 import FoodImage4 from "@/assets/image/SharePage/foods/오메기떡.jpg";
