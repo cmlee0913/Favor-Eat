@@ -110,9 +110,8 @@ public class UsersService {
             throw new RuntimeException();
         });
 
-        return users.orElseThrow(RuntimeException::new);
+        return users.get();
 
-        //return usersRepository.findByNo(no).orElseThrow(NullPointerException::new);
     }
 
     /**
