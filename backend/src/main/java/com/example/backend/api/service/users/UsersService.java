@@ -100,7 +100,7 @@ public class UsersService {
             RestTemplate rt = new RestTemplate();
 
             ResponseEntity<Object> response = rt.exchange(
-                "http://localhost:6000/predict", //{요청할 서버 주소}
+                "http://j8d108.p.ssafy.io:6000/predict", //{요청할 서버 주소}
                 HttpMethod.POST, //{요청할 방식}
                 entity, // {요청할 때 보낼 데이터}
                 Object.class
