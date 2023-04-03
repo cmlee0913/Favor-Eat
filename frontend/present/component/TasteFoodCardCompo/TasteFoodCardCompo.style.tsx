@@ -22,8 +22,10 @@ export const Card = styled.div`
   }
 
   img {
-    object-fit: scale-down;
+    align-self: center;
+    object-fit: contain;
     background-color: black;
+    max-height: 19rem;
     width: 100%;
     height: 100%;
     border-radius: inherit;

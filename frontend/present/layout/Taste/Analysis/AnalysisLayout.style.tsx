@@ -49,6 +49,7 @@ export const Count = styled.div`
 export const MiddleContainer = styled.div`
   width: 100%;
   height: 50vh;
+  min-height: fit-content;
   flex-direction: row;
   ${FlexCenter}
   background-color: ${theme.colors.main.purple.light_1};
