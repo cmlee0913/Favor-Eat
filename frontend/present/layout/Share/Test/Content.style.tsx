@@ -112,7 +112,7 @@ export const BottomContainer = styled.div`
 
   ${theme.devices.tablet} {
     gap: 1rem;
-    bottom: 12%;
+    bottom: 6%;
   }
 `;
 
