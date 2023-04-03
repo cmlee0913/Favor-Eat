@@ -73,17 +73,15 @@ export const Right = styled.div`
 
 export const Slogan = styled.div`
   font-size: 3rem;
-  font-weight: 900;
+  font-family: Inter-Black;
 
-  ${theme.devices.tablet} {
+  font-weight: ${theme.devices.tablet} {
     order: 2;
     font-size: 2.5rem;
-    font-weight: 900;
   }
   ${theme.devices.mobile} {
     order: 2;
     font-size: 1.5rem;
-    font-weight: 900;
   }
 `;
 
@@ -104,10 +102,10 @@ export const CharacterImage = styled.div`
 `;
 
 export const RefreshButton = styled(RefreshIcon)`
-  width: 3rem;
-  height: 3rem;
+  width: 2.3rem;
+  height: 2.3rem;
   position: absolute;
-  top: 5vh;
+  top: 10vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 90;

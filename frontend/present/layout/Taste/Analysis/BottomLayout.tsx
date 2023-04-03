@@ -43,7 +43,7 @@ export default function BottomLayout({
           <br />
           하지만 음식을 고르는 것은 때로 용감함을 필요로 합니다."
           <br />
-          -CharGPT-
+          -ChatGPT-
         </style.BottomContainer>
       )}
     </>

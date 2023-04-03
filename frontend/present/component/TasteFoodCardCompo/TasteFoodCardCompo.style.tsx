@@ -2,13 +2,13 @@ import { theme } from "@/constant/theme";
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 15vw;
-  height: 50vh;
-  object-fit: cover;
+  width: 17vw;
+  height: 100%;
   min-width: 200px;
   border-radius: 15px;
 
   position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
 
@@ -22,10 +22,10 @@ export const Card = styled.div`
   }
 
   img {
-    border-left: 1px solid ${theme.colors.mono.light_1};
-    border-top: 1px solid ${theme.colors.mono.light_1};
+    object-fit: scale-down;
+    background-color: black;
     width: 100%;
-    height: 95%;
+    height: 100%;
     border-radius: inherit;
     box-shadow: 2rem 1.3rem 0px ${theme.colors.main.purple.dark_1};
 
@@ -39,9 +39,10 @@ export const Card = styled.div`
 
   .recipeName {
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 5px;
-    font-weight: 500;
+    font-family: Pretendard-Bold;
+    word-break: keep-all;
 
     ${theme.devices.mobile} {
       font-size: 1rem;
