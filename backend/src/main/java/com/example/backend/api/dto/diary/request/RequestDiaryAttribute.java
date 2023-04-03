@@ -1,7 +1,7 @@
 package com.example.backend.api.dto.diary.request;
 
 import com.example.backend.api.entity.diary.Diary;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,9 +22,7 @@ public class RequestDiaryAttribute {
             .title(this.title)
             .content(this.content)
             .emotion(this.emotion)
-            .registedDate(LocalDateTime.now().getYear() +
-                "-" + LocalDateTime.now().getMonth() +
-                "-" + LocalDateTime.now().getDayOfMonth())
+            .registedDate(Long.toString(Instant.now().toEpochMilli()))
             .build();
     }
 }
