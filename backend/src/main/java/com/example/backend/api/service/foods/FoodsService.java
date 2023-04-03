@@ -13,14 +13,24 @@ import com.example.backend.api.repository.foods.NonFavoritesRepository;
 import com.example.backend.api.repository.foods.RecommendsRepository;
 import com.example.backend.api.repository.foods.SamplingFoodsRepository;
 import com.example.backend.api.repository.users.EvaluationsRepository;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class FoodsService {
@@ -93,8 +103,35 @@ public class FoodsService {
     }
 
     public List<ResponseRecommendFood> getRecommendFoodList(Long no) {
+        this.requestRegistRecommends(no);
+
         return recommendsRepository.findByNo(no).stream()
             .map(recommends -> recommends.toDTO())
             .collect(Collectors.toList());
     }
+
+    private void requestRegistRecommends(Long no) {
+        log.info("사용자 업데이트 완료, 빅데이터와 연결 시도");
+        // 요청 보내기
+        Map<String, Long> params = new HashMap<>();
+        params.put("no", no);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map<String, Long>> entity = new HttpEntity<>(params, headers);
+
+        RestTemplate rt = new RestTemplate();
+        ResponseEntity<Object> response = rt.exchange(
+            "http://j8d108.p.ssafy.io:6000/predict", //{요청할 서버 주소}
+            HttpMethod.POST, //{요청할 방식}
+            entity, // {요청할 때 보낼 데이터}
+            Object.class
+        );
+        log.info("사용자 업데이트 완료, 빅데이터와 연결 종료");
+        if (response.getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
+            log.info("빅데이터 500에러 발생");
+        }
+    }
+
 }
