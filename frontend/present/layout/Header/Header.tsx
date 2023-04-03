@@ -4,9 +4,7 @@ import { useRouter } from "next/router";
 import Arrow from "@/assets/icon/arrow.svg";
 
 import HambugerBar from "@/present/component/HambugerBar/HambugerBar";
-import HambugerInner from "../HambugerInner/HambugerInner";
 import * as style from "./Header.style";
-import useMediaQuery from "@/action/hooks/useMediaQuery";
 import Menu from "../Menu/Menu";
 
 function Header() {
@@ -41,7 +39,6 @@ function Header() {
       {/* MenuInner */}
       {isOpen && <Menu setIsOpen={setIsOpen}/>}
 
-      {/* {isOpen && <HambugerInner setIsOpen={setIsOpen} />} */}
     </style.Container>
   );
 }

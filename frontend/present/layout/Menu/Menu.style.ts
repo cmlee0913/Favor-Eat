@@ -3,8 +3,18 @@ import { HambugerFont } from "@/types/Hambuger/dummy";
 import styled from "styled-components";
 import { fadeInUp } from "../Guide/Guide.style";
 
-export const PC = [472.75, 452.9, 488.6, 630, 365.73];
-export const PCblank = [0, 121.12, 0, 186.4, 0];
+// width ratio
+const PC = [472.75, 452.9, 488.6, 630, 365.73];
+const Mobile = [83.8, 94.61, 79.4, 106.1, 81.83];
+
+// balnk value
+const PCblank = [0, 121.12, 0, 156.4, 0];
+const MobileBlank = [-46.78, 46.24, -37.93, 41.8, -37.78];
+
+// balnk Position
+const MobileBlankPos = [0, "2rem", "-2rem", "4rem", "-4rem"];
+
+// font location
 const PCfont: Array<HambugerFont> = [
   { top: "-1.4rem", bottom: "auto", left: "auto", right: "4%" },
   { top: "auto", bottom: "1rem", left: "1%", right: "auto" },
@@ -12,17 +22,28 @@ const PCfont: Array<HambugerFont> = [
   { top: "auto", bottom: "1rem", left: "2%", right: "auto" },
   { top: "-1.4rem", bottom: "auto", left: "auto", right: "25%" },
 ];
+const Mobilefont: Array<HambugerFont> = [
+  { top: "-1.6rem", bottom: "auto", left: "auto", right: "4%" },
+  { top: "auto", bottom: "0.6rem", left: "5%", right: "auto" },
+  { top: "-1.2rem", bottom: "auto", left: "auto", right: "2%" },
+  { top: "auto", bottom: "0.6rem", left: "4%", right: "auto" },
+  { top: "auto", bottom: "0.6rem", left: "auto", right: "5%" },
+];
 
-const calPosVal = (num: number) => {
-  return num / PC[0];
+const calPosValPC = (num: number) => {
+  return num / 400;
+};
+
+const calPosValMobile = (num: number) => {
+  return num / 80;
 };
 
 export const Name = styled.div<{ idx: number }>`
   position: absolute;
   bottom: 0;
   color: ${theme.colors.main.blue};
-  font-size: 1.2rem;
   font-family: "Pretendard-Bold";
+  font-size: 1.2rem;
 
   ${theme.devices.desktop} {
     top: ${(props) => PCfont[props.idx].top};
@@ -30,32 +51,53 @@ export const Name = styled.div<{ idx: number }>`
     left: ${(props) => PCfont[props.idx].left};
     right: ${(props) => PCfont[props.idx].right};
   }
+
+  ${theme.devices.tablet} {
+    top: ${(props) => Mobilefont[props.idx].top};
+    bottom: ${(props) => Mobilefont[props.idx].bottom};
+    left: ${(props) => Mobilefont[props.idx].left};
+    right: ${(props) => Mobilefont[props.idx].right};
+  }
 `;
 
 export const Menu = styled.div<{ idx: number }>`
-  --width: calc((100vw - 5rem) / 5);
-  --height: calc((100vh - 20rem) / 5);
-  --mainWidth: ${(props) => calPosVal(PC[props.idx])};
-  --subWidth: ${(props) => calPosVal(PCblank[props.idx])};
-  --default: calc(var(--mainWidth) * var(--width));
-  --position: calc(
-    ${(props) => props.idx} * var(--width) - var(--subWidth) * var(--default) +
-      4.5rem
+  /* PC */
+  --widthPC: calc((100vw - 5rem) / 5);
+  --heightPC: calc((100vh - 20rem) / 5);
+  --mainWidth: ${(props) => calPosValPC(PC[props.idx])};
+  --subWidth: ${(props) => calPosValPC(PCblank[props.idx])};
+  --defaultPC: calc(var(--mainWidth) * var(--widthPC));
+  --positionPC: calc(
+    ${(props) => props.idx} * var(--widthPC) - var(--subWidth) *
+      var(--defaultPC) + 4.5rem
   );
 
+  /* Tablet */
+  --heightMobile: calc((100vh - 20rem) / 5);
+  --mainHeight: ${(props) => calPosValMobile(Mobile[props.idx])};
+  --subHeight: ${(props) => calPosValMobile(MobileBlank[props.idx] * 24)}vw;
+  --defaultMobile: calc(var(--mainHeight) * var(--heightMobile));
+
+  cursor: pointer;
+  &:hover {
+    width: calc(var(--defaultPC) + 2%);
+  }
+
   ${theme.devices.desktop} {
-    width: var(--default);
+    width: var(--defaultPC);
     position: absolute;
-    left: var(--position);
-    top: calc(${(props) => props.idx} * var(--height) + 11rem);
+    left: var(--positionPC);
+    top: calc(${(props) => props.idx} * var(--heightPC) + 11rem);
+    margin: 0;
   }
 
   ${theme.devices.tablet} {
-    height: 16vh;
+    height: var(--defaultMobile);
     position: relative;
-    right: auto;
+    right: var(--subHeight);
     left: auto;
     top: auto;
+    margin: ${(props) => MobileBlankPos[props.idx]};
   }
 
   & path:nth-last-child(2),
@@ -76,7 +118,6 @@ export const InnerMobile = styled.div`
 
   div {
     width: auto;
-    height: 15vh;
     object-fit: cover;
 
     svg {
