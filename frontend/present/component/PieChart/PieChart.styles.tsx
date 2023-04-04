@@ -17,4 +17,21 @@ export const Wrapper = styled.div`
     height: 150px;
     /* margin: "0 auto"; */
   }
+
+  & text {
+    font-family: "Pretendard-Medium";
+    color: #59577c;
+
+    &:nth-child(1) {
+      color: #000;
+    }
+  }
+
+  & rect {
+    font-family: "Pretendard-Light";
+  }
+
+  & strong {
+    font-family: "Pretendard-ExtraLight";
+  }
 `;

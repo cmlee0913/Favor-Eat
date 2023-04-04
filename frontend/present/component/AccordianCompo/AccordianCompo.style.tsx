@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "@/constant/theme";
 
 export const Title = styled.div`
-  width: calc(100%-2rem);
+  width: calc(100% - 2rem);
   padding: 1.5rem 1.6rem 1.5rem 0.4rem;
   display: flex;
   justify-content: space-between;
@@ -13,10 +13,11 @@ export const Title = styled.div`
   }
 `;
 
-export const Content = styled.div`
-  transition: all 0.2s ease;
-  width: 100%;
-  padding: 1.5rem 0;
+export const Content = styled.div<{ open: boolean }>`
+  width: ${(props) => (props.open ? "100%" : "0px")};
+  padding: ${(props) => (props.open ? "1.5rem 0" : "0px")};
+  height: ${(props) => (props.open ? "fit-content" : "0px")};
+  overflow: ${(props) => (props.open ? "visible" : "hidden")};
 `;
 
 export const Container = styled.div<{ open: boolean; idx: number }>`
@@ -28,6 +29,7 @@ export const Container = styled.div<{ open: boolean; idx: number }>`
 
   & ${Content} {
     border-top: solid 3px ${(props) => theme.accordianColor[props.idx]};
+    transition: ${theme.trans};
   }
 
   & ${Title} {
