@@ -98,6 +98,8 @@ export const FlexItem = styled.div`
   .foodName {
     font-size: 1.3rem;
     font-family: Pretendard-Mideum;
+    max-width: 1vw;
+    word-break: keep-all;
   }
   .flavorValue {
     font-size: 1.2rem;
