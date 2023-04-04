@@ -10,18 +10,10 @@ let moistureVal = 0
 
 const CenteredMetric = ({
   centerX,
-  centerY,
-  // calorie,
-  // moisture,
-  //   radius,
-  //   innerRadius,
-  //   arcGenerator,
+  centerY
 }) => {
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isPhone = useMediaQuery("(min-width: 426px)");
-
-  // console.log(`${isTablet}`);
-  // console.log(`${isPhone}`);
 
   let titleCoordinateY = centerY - 40;
   let subTitleCoordinateY = centerY + 40;
