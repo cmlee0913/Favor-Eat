@@ -46,6 +46,7 @@ ResultLayoutProps) {
             title: "웹으로 구경하기",
             link: {
               webUrl: `${url}/share/result?like=${likedCount}`,
+              mobileWebUrl: `${url}/share/result?like=${likedCount}`,
             },
           },
         ],
