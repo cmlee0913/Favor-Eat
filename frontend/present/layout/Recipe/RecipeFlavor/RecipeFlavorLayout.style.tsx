@@ -104,8 +104,7 @@ export const MobileHover = styled.div<{ left: number }>`
     position: absolute;
     text-align: center;
     border-radius: 10px;
-    top: 20vh;
-    /* left: 50%; */
+    top: 15vh;
     z-index: 2;
   }
 `;

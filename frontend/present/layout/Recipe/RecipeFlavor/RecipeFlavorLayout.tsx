@@ -44,9 +44,9 @@ export default function RecipeFlavorLayout({
   const [isHover, setIsHover] = useAtom(isHoverAtom);
   const [hoverType, setHoverType] = useAtom(hoverTypeAtom);
   const leftValue = {
-    spicy: 9,
-    sweet: 15,
-    salty: 40,
+    spicy: 5,
+    sweet: 25,
+    salty: 50,
     oily: 70,
   };
 
