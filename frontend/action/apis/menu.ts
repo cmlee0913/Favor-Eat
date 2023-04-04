@@ -1,3 +1,4 @@
+import { UserTokenType } from "@/types/store/userStoreTypes";
 import { NextRouter } from "next/router";
 import { logoutAsync } from "./auth";
 
@@ -41,8 +42,9 @@ export const menu = (
       image: images[3],
       alt: "Lettuce",
       handler: () => {
+        const userToken: any = JSON.parse(localStorage.getItem("userToken"));
+        logoutAsync(userToken.accessToken);
         localStorage.clear();
-        logoutAsync(localStorage.getItem("accessToken"));
         moveHandler(router, "/guide", setIsOpen);
       },
     },
