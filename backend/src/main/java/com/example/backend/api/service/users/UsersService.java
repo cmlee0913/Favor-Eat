@@ -107,4 +107,29 @@ public class UsersService {
         return evaluationsRepository.findByNoAndFoodsId(no, foodsId)
             .map(Evaluations::toDTO).orElseThrow(NullPointerException::new);
     }
+
+    public void requestRegistRecommends(Long no) {
+        log.info("사용자 업데이트 완료, 빅데이터와 연결 시도");
+        // 요청 보내기
+        Map<String, Long> params = new HashMap<>();
+        params.put("no", no);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map<String, Long>> entity = new HttpEntity<>(params, headers);
+
+        RestTemplate rt = new RestTemplate();
+        ResponseEntity<Object> response = rt.exchange(
+            "http://j8d108.p.ssafy.io:6000/predict", //{요청할 서버 주소}
+            HttpMethod.POST, //{요청할 방식}
+            entity, // {요청할 때 보낼 데이터}
+            Object.class
+        );
+
+        log.info("사용자 업데이트 완료, 빅데이터와 연결 종료");
+        if (response.getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
+            throw new RuntimeException("빅데이터 에러 발생");
+        }
+    }
 }
