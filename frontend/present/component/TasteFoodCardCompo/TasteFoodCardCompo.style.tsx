@@ -11,6 +11,7 @@ export const Card = styled.div`
   top: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   ${theme.devices.tablet} {
     height: 17rem;
@@ -32,6 +33,7 @@ export const Card = styled.div`
     box-shadow: 2rem 1.3rem 0px ${theme.colors.main.purple.dark_1};
 
     ${theme.devices.tablet} {
+      height: 50%;
       box-shadow: 1.6rem 1rem 0px ${theme.colors.main.purple.dark_1};
     }
     ${theme.devices.mobile} {
@@ -41,9 +43,15 @@ export const Card = styled.div`
 
   .recipeName {
     text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-self: flex-start;
     font-size: 1.5rem;
     margin-bottom: 5px;
-    font-family: Pretendard-Bold;
+    font-family: Pretendard-Regular;
     word-break: keep-all;
 
     ${theme.devices.mobile} {
