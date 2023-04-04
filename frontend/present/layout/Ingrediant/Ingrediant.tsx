@@ -143,7 +143,7 @@ function Ingrediant({ nutrientInfo }: { nutrientInfo: NutrientObject }) {
   const vitaminCompo = vitaminNutrient.map((elem, idx) => {
     if (elem.value !== 0) {
       return (
-        <style.Progressbar className="Vitamin">
+        <style.Progressbar key={idx} className="Vitamin">
           <p>{elem.name}</p>
           <style.Contentbar
             color={elem.color}
