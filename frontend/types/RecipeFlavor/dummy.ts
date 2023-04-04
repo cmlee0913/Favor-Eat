@@ -18,10 +18,6 @@ export interface FlavorCharacterProps {
   hoverInactive: () => void;
 }
 
-export interface FlavorCharacterListProps {
-  values: Array<FlavorCharacter>;
-}
-
 export interface FlavorInfo {
   type: string;
   value: number;

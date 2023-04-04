@@ -1,8 +1,8 @@
 import React, {useRef} from "react";
 import AccordianCompo from "@/present/component/AccordianCompo/AccordianCompo";
-import { RecipeContentProps } from "@/types/Recipe/dummy";
+import { RecipeAcordianProps } from "@/types/Recipe/dummy";
 
-export default function RecipeAccordian({RecipeArr, selectIdx, setSelectedIdx}:RecipeContentProps) {
+export default function RecipeAccordian({RecipeArr, setSelectedIdx}:RecipeAcordianProps) {
   const accordianHandler = (idx:number) => {
     setSelectedIdx(idx)
   }

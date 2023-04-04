@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import GridLayout from "@/present/layout/GridLayout/GridLayout";
 import RecipeImg from "@/present/layout/Recipe/RecipeImg/RecipeImg";
 
@@ -9,6 +9,7 @@ import RecipeTab from "@/present/layout/Recipe/RecipeTab/RecipeTab";
 
 import * as style from "@/present/layout/Recipe/pageStyle";
 
+import NoImg from "@/assets/image/NoImg.png"
 import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
 import { useAtom } from "jotai";
 import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
@@ -16,10 +17,9 @@ import Ingrediant from "@/present/layout/Ingrediant/Ingrediant";
 import { useRouter } from "next/router";
 import { getAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
-import { toInteger } from "lodash";
 import { userTokenSave } from "@/store/userStore";
 
-export default function Recipe() {
+function Recipe() {
   const router = useRouter();
   const { pid } = router.query;
   const [token, setUserToken] = useAtom(userTokenSave);
@@ -29,7 +29,7 @@ export default function Recipe() {
     quantity: "",
     time: "",
     level: "",
-    image: "",
+    image: NoImg,
     nutrientInfo: {
       calorie: 0,
       moisture: 0,
@@ -200,3 +200,6 @@ export default function Recipe() {
     </style.PageContainer>
   );
 }
+
+
+export default memo(Recipe)
