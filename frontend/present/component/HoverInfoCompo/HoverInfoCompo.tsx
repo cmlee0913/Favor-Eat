@@ -125,8 +125,8 @@ export default function HoverInfoCompo({ isColumn }: HoverInfoCompoProps) {
   return (
     <>
       <style.Container isColumn={isColumn}>
-        {hoverInfo[hoverType].map((level: LevelContent) => (
-          <div>
+        {hoverInfo[hoverType].map((level: LevelContent, index) => (
+          <div key={index}>
             <style.LevelCircle color={level.color}>
               <span>{level.level}</span>
             </style.LevelCircle>

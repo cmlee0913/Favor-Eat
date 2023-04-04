@@ -79,7 +79,12 @@ export default function RecipeFlavorLayout({
   return (
     <style.Container>
       <style.ImgForMobile>
-        <Image src={recipeImage ? recipeImage : defaultImage} alt="" />
+        <Image
+          src={recipeImage ? recipeImage : defaultImage}
+          alt=""
+          width={1000}
+          height={1000}
+        />
       </style.ImgForMobile>
       <style.PCHover>
         {isHover ? (

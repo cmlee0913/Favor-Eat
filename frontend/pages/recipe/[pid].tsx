@@ -105,7 +105,7 @@ export default function Recipe() {
               category: "맛",
               content: (
                 <RecipeFlavorLayout
-                  recipeImage={recipeData.image}
+                  recipeImage={res.result.image}
                   tasteInfo={res.result.tasteInfo}
                 />
               ),

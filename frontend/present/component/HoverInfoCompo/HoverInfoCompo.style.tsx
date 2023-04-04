@@ -27,9 +27,6 @@ export const Container = styled.div<{ isColumn: boolean }>`
     grid-template-columns: 1fr 2fr;
     width: 100%;
   }
-
-  & > div {
-  }
 `;
 
 export const LevelCircle = styled.div<{ color: string }>`
