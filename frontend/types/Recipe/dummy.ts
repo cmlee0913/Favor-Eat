@@ -14,6 +14,11 @@ export interface RecipeContentProps {
   setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
 }
 
+export interface RecipeAcordianProps {
+  RecipeArr: Array<RecipeNavType>;
+  setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
+}
+
 export interface RecipeNavProps {
   RecipeArr: Array<RecipeNavType>;
   selectIdx: number;
