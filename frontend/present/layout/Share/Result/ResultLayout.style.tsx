@@ -92,6 +92,7 @@ export const ContentBox = styled.div`
     ::-webkit-scrollbar-thumb {
       border-radius: 10px;
       background-color: #b7b7ed;
+      border: 3.5px solid ${theme.colors.background.violet};
     }
   }
 `;
