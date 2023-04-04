@@ -5,7 +5,12 @@ export default function Document() {
   return (
     <Html lang="en">
       <GlobalStyle />
-      <Head />
+      <Head>
+        <script
+          defer
+          src="https://developers.kakao.com/sdk/js/kakao.min.js"
+        ></script>
+      </Head>
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#000000" />
       <link

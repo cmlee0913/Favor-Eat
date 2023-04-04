@@ -81,7 +81,6 @@ export default function Analysis() {
   useEffect(() => {
     if (currentIndex === -1) return;
     if (currentIndex >= recipeList.length) {
-      //TODO : 서버에서 새로운 데이터 받아오기
       setRequestCount((current) => current + 1);
       requestRecipeList(requestCount + 1, token.accessToken).then((list) => {
         setRecipeList(list);

@@ -62,6 +62,8 @@ export const BottomContent = styled.div`
   .foodName {
     font-size: 1rem;
     width: 60%;
+    overflow-x: hidden;
+    font-family: Pretendard-Mideum;
     word-break: keep-all;
 
     ${theme.devices.mobile} {
@@ -71,6 +73,7 @@ export const BottomContent = styled.div`
 
   .flavorValue {
     font-size: 1rem;
+    font-family: Pretendard-Mideum;
   }
 
   .flavorCharacter {

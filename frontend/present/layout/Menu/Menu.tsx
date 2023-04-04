@@ -44,17 +44,6 @@ function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
     }
   }, [token]);
 
-  // 로그아웃
-  const logout = async (accessToken: string) => {
-    if (!accessToken) return;
-
-    const logoutResult = await logoutAsync(accessToken);
-    if (logoutResult.isSuccess) {
-      setUserToken(RESET);
-      router.push("/guide");
-    }
-  };
-
   const menuArr = menu(router, setIsOpen, BurgerElem);
   const menuInner = menuArr.map((elem, idx) => {
     return (
@@ -67,7 +56,7 @@ function MenuPC({ setIsOpen }: { setIsOpen: Function }) {
 
   return (
     <style.Container>
-      <Profile name={name}/>
+      <Profile name={name} />
       {/* PC 버전 */}
       <style.Body className="PC">
         <style.InnerPC>{menuInner}</style.InnerPC>

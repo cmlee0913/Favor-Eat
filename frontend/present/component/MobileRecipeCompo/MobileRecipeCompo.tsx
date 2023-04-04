@@ -32,7 +32,7 @@ export function MobileRecipeCompo({
                 src={theme.characterImg[flavorType]}
                 alt="맛 캐릭터"
               />
-              <div className="flavorValue">{flavorValue}</div>
+              <div className="flavorValue">{flavorValue}점</div>
             </div>
             <style.NextButton />
           </style.BottomContent>
