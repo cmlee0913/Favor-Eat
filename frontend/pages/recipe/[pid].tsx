@@ -151,9 +151,6 @@ export default function Recipe() {
     setRecipeArr([...tmp]);
   }, [selectIdx]);
 
-  //TestImg
-  const subImg = [Test, Test, Test];
-
   //레시피 즐겨찾기 여부
   //레시피 데이터 들고올때 초기화 필요
   const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
@@ -165,7 +162,7 @@ export default function Recipe() {
       {/* PC ver */}
       <GridLayout>
         {/* 음식 이미지 */}
-        <RecipeImg mainImg={recipeData.image} subImg={subImg} />
+        <RecipeImg mainImg={recipeData.image} />
 
         {/* 음식 상세 정보 */}
         <div>

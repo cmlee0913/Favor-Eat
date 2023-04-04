@@ -4,9 +4,10 @@ import styled from "styled-components";
 export const Ingredient = styled.div`
   display: flex;
   font-family: "Pretendard-Light";
-  width: 33%;
+  width: 25%;
   align-items: center;
-  font-size: 0.9rem;
+  justify-content: space-between;
+  font-size: 1rem;
 `;
 
 export const IngredientPhoto = styled.div`
@@ -27,13 +28,16 @@ export const IngredientCompo = styled.div`
   margin: 1rem 0 2rem 0 !important;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 `;
 
 export const RecipeProcessCompo = styled.div`
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr 3fr;
   align-items: center;
+  margin-bottom: 1rem !important;
 
   & img {
     width: 8rem;
@@ -46,6 +50,19 @@ export const RecipeProcessCompo = styled.div`
     font-family: "Pretendard-Light";
     font-size: 1rem;
     line-height: 1.3rem;
+  }
+
+  ${theme.devices.desktop} {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  ${theme.devices.tablet} {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  ${theme.devices.mobile} {
+    display: flex;
+    flex-direction: column;
   }
 `;
 

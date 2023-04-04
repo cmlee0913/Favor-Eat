@@ -23,8 +23,11 @@ export default function RecipeTab({
   const Ingredients = ingredientsInFoodList.map((elem, idx) => {
     return (
       <style.Ingredient key={idx}>
-        {elem.amount}
-        {elem.unit}
+        <div>{elem.name}</div>
+        <div>
+          {elem.amount}
+          {elem.unit}
+        </div>
       </style.Ingredient>
     );
   });

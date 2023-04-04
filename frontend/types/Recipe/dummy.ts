@@ -1,6 +1,5 @@
 export interface RecipeImgProps {
   mainImg: any;
-  subImg: any;
 }
 
 export interface RecipeNavType {
@@ -78,6 +77,7 @@ interface RecipeList {
 }
 
 interface ingredientsInFoods {
+  name: string;
   unit: string;
   amount: string;
 }
