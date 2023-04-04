@@ -22,7 +22,7 @@ export const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.2rem;
+  padding: 0 2rem;
 
   ${theme.devices.tablet} {
     border-radius: 0 0 0 0;
@@ -70,16 +70,17 @@ export const NextButton = styled.div`
 export const InfoBox = styled.div`
   width: 100%;
   height: 100%;
-  margin: 10px 0;
   box-sizing: border-box;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  img {
-    object-fit: cover;
-    width: inherit;
-    height: calc(100% - 20px);
-    position: absolute;
-    border-radius: ${borderRadiusStyle}px;
+  & > div {
+    height: 90%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 0.1rem;
   }
 `;
 
@@ -108,6 +109,7 @@ export const FlavorWrapper = styled.div`
 
   .characterTitle {
     text-align: center;
+    font-family: Pretendard-Medium;
   }
 `;
 
@@ -130,7 +132,7 @@ export const RatingWrapper = styled.div`
 `;
 
 export const ValueText = styled.span<{ type: string }>`
-  font-size: inherit;
+  font-size: 0.95rem;
   font-family: Pretendard-Bold;
   margin-bottom: 0.3rem;
   text-align: center;
@@ -161,6 +163,10 @@ export const ChracterContainer = styled.div`
   padding: 0.5rem;
   grid-template-columns: 1.5fr 2fr;
   background-color: ${theme.colors.mono.light_1};
+
+  & > div:first-child {
+    justify-self: center;
+  }
 
   & > .characters {
     display: grid;
@@ -227,10 +233,13 @@ export const Character = styled.div`
 
     /* ? */
     div {
-      position: relative;
-      top: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
       text-align: center;
       font-size: 0.85rem;
+      font-family: Pretendard-Bold;
 
       ${theme.devices.tablet} {
         font-size: 1rem;
@@ -258,6 +267,7 @@ export const ImageContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  flex: 1 0 auto;
   align-items: center;
 
   ${theme.devices.tablet} {
@@ -286,16 +296,13 @@ export const ImageContainer = styled.div`
   img {
     background-color: black;
     object-fit: scale-down;
-    height: 100%;
+    display: block;
     width: 100%;
     border-radius: inherit;
-  }
 
-  .hoverInfo {
-    object-fit: cover;
-    height: 110%;
-    position: absolute;
-    top: 0;
+    ${theme.devices.tablet} {
+      max-height: 19.5vh;
+    }
   }
 `;
 

@@ -4,27 +4,18 @@ import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
 import Salty from "@/assets/image/Character/Salty.png";
 import Oily from "@/assets/image/Character/Oily.png";
-import {
-  FlavorCharacter,
-  HoverBoxImageType,
-  RecipeFlavorProps,
-} from "@/types/RecipeFlavor/dummy";
+import { FlavorCharacter, RecipeFlavorProps } from "@/types/RecipeFlavor/dummy";
 import Image from "next/image";
 import FlavorCharacterCompo from "@/present/component/FlavorCharacterCompo/FlavorCharacterCompo";
 import FlavorProgressCompo from "@/present/common/FlavorProgress/FlavorProgressCompo";
-
-import SpicyHoverBoxPC from "@/assets/image/SpicyHoverBoxPC.png";
-import SweetHoverBoxPC from "@/assets/image/SweetHoverBoxPC.png";
-import SaltyHoverBoxPC from "@/assets/image/SaltyHoverBoxPC.png";
-
-import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
-import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
-import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
-import { useState } from "react";
 import useModal from "@/action/hooks/useModal";
 import { useAtom, useSetAtom } from "jotai";
 import { modalContentAtom } from "@/store/modalStore";
 import RecipeEvaluateContentCompo from "@/present/component/RecipeEvaluateContentCompo/RecipeEvaluateContentCompo";
+import HoverInfoCompo from "@/present/component/HoverInfoCompo/HoverInfoCompo";
+import { hoverTypeAtom, isHoverAtom } from "@/store/hoverStore";
+import { FlavorType } from "@/types/MyPage/dummy";
+import defaultImage from "@/assets/image/default-image.png";
 
 export default function RecipeFlavorLayout({
   recipeImage,
@@ -50,27 +41,13 @@ export default function RecipeFlavorLayout({
     },
   };
 
-  const hoverBoxValue = {
-    spicy: {
-      pcImage: SpicyHoverBoxPC,
-      mobileImage: SpicyHoverBoxMobile,
-      left: 7,
-    },
-    sweet: {
-      pcImage: SweetHoverBoxPC,
-      mobileImage: SweetHoverBoxMobile,
-      left: 20,
-    },
-    salty: {
-      pcImage: SaltyHoverBoxPC,
-      mobileImage: SaltyHoverBoxMobile,
-      left: 30,
-    },
-    oily: {
-      pcImage: SaltyHoverBoxPC,
-      mobileImage: SaltyHoverBoxMobile,
-      left: 30,
-    },
+  const [isHover, setIsHover] = useAtom(isHoverAtom);
+  const [hoverType, setHoverType] = useAtom(hoverTypeAtom);
+  const leftValue = {
+    spicy: 5,
+    sweet: 25,
+    salty: 50,
+    oily: 70,
   };
 
   const flavorList: Array<FlavorCharacter> = [];
@@ -83,20 +60,14 @@ export default function RecipeFlavorLayout({
     flavorList.push(obj);
   });
 
-  const onActive = (type: string) => {
-    setHoverBoxImage(hoverBoxValue[type]);
-    setInfoShow(false);
-    setInfoShow(true);
+  const onActive = (type: FlavorType) => {
+    setHoverType(type);
+    setIsHover(true);
   };
 
   const onInactive = () => {
-    setInfoShow(false);
+    setIsHover(false);
   };
-
-  const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy,
-  );
-  const [infoShow, setInfoShow] = useState(false);
 
   const { openModal } = useModal();
   const [, setModalContext] = useAtom(modalContentAtom);
@@ -108,20 +79,21 @@ export default function RecipeFlavorLayout({
   return (
     <style.Container>
       <style.ImgForMobile>
-        <Image src={recipeImage} alt="" />
+        <Image
+          src={recipeImage ? recipeImage : defaultImage}
+          alt=""
+          width={1000}
+          height={1000}
+        />
       </style.ImgForMobile>
-      <style.PCHover show={infoShow}>
-        <Image src={hoverBoxImage.pcImage} alt="" width={200} height={500} />
+      <style.PCHover>
+        {isHover ? (
+          <div>
+            <HoverInfoCompo />
+          </div>
+        ) : null}
       </style.PCHover>
       <style.CharacterContainer>
-        <style.MobileHover left={hoverBoxImage.left} show={infoShow}>
-          <Image
-            src={hoverBoxImage.mobileImage}
-            alt=""
-            width={800}
-            height={800}
-          />
-        </style.MobileHover>
         {flavorList.map((item, index) => (
           <FlavorCharacterCompo
             onClick={onClickCharacter}
@@ -132,6 +104,9 @@ export default function RecipeFlavorLayout({
             hoverInactive={onInactive}
           />
         ))}
+        <style.MobileHover left={leftValue[hoverType]}>
+          {isHover ? <HoverInfoCompo isColumn={false} /> : null}
+        </style.MobileHover>
       </style.CharacterContainer>
 
       <style.ProgressContainer>

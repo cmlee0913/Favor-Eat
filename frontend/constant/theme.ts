@@ -68,6 +68,7 @@ const colors = {
   background: {
     pink: "#FFF3F5",
     violet: "#EBEBFF",
+    gray: "#E8EAEF",
   },
 };
 

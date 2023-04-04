@@ -40,6 +40,7 @@ export const Character = styled.div`
 
 export const FlavorLevel = styled.span`
   font-size: 0.85rem;
+  font-family: Pretendard-Medium;
 `;
 
 export const HoverIconWrapper = styled.div`
@@ -72,4 +73,5 @@ export const HoverIconWrapper = styled.div`
 export const HoverIconText = styled.div`
   font-size: 14px;
   color: ${theme.colors.mono.light_1};
+  font-family: Pretendard-Medium;
 `;
