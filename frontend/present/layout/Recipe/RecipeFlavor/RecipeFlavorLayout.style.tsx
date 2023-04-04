@@ -99,12 +99,16 @@ export const MobileHover = styled.div<{ left: number }>`
   ${theme.devices.tablet} {
     display: block;
     width: 10rem;
-    height: 100%;
+    height: 130%;
     left: ${({ left }) => (left ? left : 0)}%;
     position: absolute;
     text-align: center;
     border-radius: 10px;
     top: 15vh;
-    z-index: 2;
+    z-index: 10;
+
+    & > div {
+      background-color: ${theme.colors.background.gray};
+    }
   }
 `;
