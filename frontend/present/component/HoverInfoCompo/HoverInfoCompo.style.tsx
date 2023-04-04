@@ -8,6 +8,7 @@ export const Container = styled.div<{ isColumn: boolean }>`
   width: 100%;
   height: 100%;
   padding-left: 5px;
+  padding-right: 2px;
   display: flex;
   flex-direction: ${({ isColumn }) => (isColumn ? "column" : "row")};
   flex-wrap: ${({ isColumn }) => (isColumn ? "nowrap" : "wrap")};
@@ -24,15 +25,16 @@ export const Container = styled.div<{ isColumn: boolean }>`
   & > div {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1.5fr;
     width: 100%;
   }
 `;
 
 export const LevelCircle = styled.div<{ color: string }>`
   border-radius: 100%;
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.5em;
+  height: 1.5em;
+  justify-self: center;
   background-color: ${({ color }) =>
     color ? color : theme.colors.characterLevel.spicy.level_1};
   position: relative;
@@ -50,7 +52,8 @@ export const LevelCircle = styled.div<{ color: string }>`
 `;
 
 export const LevelFood = styled.div`
-  font-size: 0.9rem;
+  font-size: 0.95em;
   font-family: Pretendard-Bold;
   word-break: keep-all;
+  justify-self: flex-start;
 `;
