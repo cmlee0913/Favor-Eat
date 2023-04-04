@@ -66,6 +66,18 @@ public class UsersController {
         }
     }
 
+    @Operation(summary = "초기 맛 평가 등록 후 recommends 생성", description = "bigdata 서버에 recommends를 테이블에 데이터를 담으라고 요청한다.")
+    @PostMapping("/recommends")
+    public ResponseEntity<?> requestRegistRecommends(@AuthenticationPrincipal User users) {
+        try {
+            usersService.requestRegistRecommends(Long.parseLong(users.getUsername()));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/taste")
     @Operation(summary = "맛 평가 등록", description = "<strong>맛 평가 정보(맵기, 달기, 짜기, 느끼)</strong>를 등록합니다.")
     public ResponseEntity<?> registEvaluations(@AuthenticationPrincipal User users,
