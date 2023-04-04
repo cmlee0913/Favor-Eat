@@ -1,6 +1,10 @@
 import { theme } from "@/constant/theme";
 import { hoverTypeAtom, isHoverAtom } from "@/store/hoverStore";
-import { HoverInfoObject, LevelContent } from "@/types/HoverInfoCompo/dummy";
+import {
+  HoverInfoCompoProps,
+  HoverInfoObject,
+  LevelContent,
+} from "@/types/HoverInfoCompo/dummy";
 import { useAtomValue } from "jotai";
 import * as style from "./HoverInfoCompo.style";
 
@@ -114,12 +118,13 @@ export const hoverInfo: HoverInfoObject = {
     },
   ],
 };
-export default function HoverInfoCompo() {
+
+export default function HoverInfoCompo({ isColumn }: HoverInfoCompoProps) {
   const hoverType = useAtomValue(hoverTypeAtom);
 
   return (
     <>
-      <style.Container>
+      <style.Container isColumn={isColumn}>
         {hoverInfo[hoverType].map((level: LevelContent) => (
           <div>
             <style.LevelCircle color={level.color}>

@@ -1,25 +1,34 @@
 import { theme } from "@/constant/theme";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ isColumn: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  padding-left: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ isColumn }) => (isColumn ? "column" : "row")};
+  flex-wrap: ${({ isColumn }) => (isColumn ? "nowrap" : "wrap")};
   justify-content: space-around;
   align-items: center;
   border-radius: 10px;
-
   background-color: ${theme.colors.background.gray};
+  z-index: inherit;
+
+  ${theme.devices.tablet} {
+    gap: 0.5rem;
+  }
 
   & > div {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 2fr;
     width: 100%;
+  }
+
+  & > div {
   }
 `;
 

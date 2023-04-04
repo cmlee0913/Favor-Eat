@@ -12,3 +12,7 @@ export interface HoverInfoObject {
   salty: Array<LevelContent>;
   oily: Array<LevelContent>;
 }
+
+export interface HoverInfoCompoProps {
+  isColumn?: boolean;
+}
