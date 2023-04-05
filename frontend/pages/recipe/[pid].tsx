@@ -9,7 +9,7 @@ import RecipeTab from "@/present/layout/Recipe/RecipeTab/RecipeTab";
 
 import * as style from "@/present/layout/Recipe/pageStyle";
 
-import NoImg from "@/assets/image/NoImg.png"
+import NoImg from "@/assets/image/NoImg.png";
 import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
 import { useAtom } from "jotai";
 import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
@@ -100,6 +100,7 @@ function Recipe() {
       }).then((res) => {
         if (res.isSuccess) {
           setRecipeData({ ...res.result });
+          setRecipeFavorChecked(res.result.isFavorites);
           setRecipeArr([
             {
               category: "맛",
@@ -201,5 +202,4 @@ function Recipe() {
   );
 }
 
-
-export default memo(Recipe)
+export default memo(Recipe);
