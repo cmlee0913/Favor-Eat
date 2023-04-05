@@ -7,7 +7,6 @@ import com.example.backend.api.entity.diary.Diary;
 
 import com.example.backend.api.repository.diary.DiaryRepository;
 import com.example.backend.api.repository.diary.PhotosRepository;
-import com.example.backend.exception.ResourceNotExistException;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -39,8 +38,6 @@ public class DiaryService {
 
         if (requestPhotosAttribute != null) {
             requestPhotosAttribute.forEach(requestPhotos -> {
-                log.info("" + savedDiaryId);
-                log.info(requestPhotos.getOriginal_name());
                 photosRepository.save(requestPhotos.toEntity(savedDiaryId));
             });
         }
@@ -58,6 +55,6 @@ public class DiaryService {
 
     private Diary getDiaryEntity(Long no, Long id) {
         return diaryRepository.findByNoAndId(no, id)
-            .orElseThrow(() -> new ResourceNotExistException("일기 목록에 존재하지 않는 일기입니다."));
+            .orElseThrow(RuntimeException::new);
     }
 }

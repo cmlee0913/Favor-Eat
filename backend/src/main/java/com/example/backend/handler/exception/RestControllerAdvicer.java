@@ -1,6 +1,5 @@
 package com.example.backend.handler.exception;
 
-import com.example.backend.exception.ResourceNotExistException;
 import java.sql.SQLException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,13 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class RestControllerAdvicer {
-    @ExceptionHandler(ResourceNotExistException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<?> handleResourceNotExistException(ResourceNotExistException e) {
-        log.error(e.getMessage());
-        e.printStackTrace();
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
