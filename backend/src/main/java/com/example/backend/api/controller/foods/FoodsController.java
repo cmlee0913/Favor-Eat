@@ -29,12 +29,12 @@ public class FoodsController {
 
     @GetMapping("/{id}")
     @Operation(summary = "음식 정보 조회", description = "음식 id로 <strong>기본정보</strong>(이름, 양, 사진, 난이도), <strong>맛 정보</strong>(맵기, 달기, 짜기, 느끼), <strong>레시피 정보</strong>, <strong>재료 정보</strong>를 조회합니다.")
-    private ResponseEntity<ResponseFoodInfo> getFoodInfo(@AuthenticationPrincipal User users, @PathVariable Long id) {
-        try {
-            return new ResponseEntity<>(foodsService.getFoodInfo(Long.parseLong(users.getUsername()), id), HttpStatus.OK);
-        } catch (NullPointerException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    private ResponseEntity<ResponseFoodInfo> getFoodInfo(@AuthenticationPrincipal User users,
+        @PathVariable Long id) {
+
+        return new ResponseEntity<>(
+            foodsService.getFoodInfo(Long.parseLong(users.getUsername()), id), HttpStatus.OK);
+
     }
 
     @GetMapping("/list/{index}")
@@ -67,12 +67,8 @@ public class FoodsController {
     @Operation(summary = "음식 즐겨찾기 해제", description = "음식 id를 <strong>즐겨찾기 목록에서 해제</strong>합니다.")
     private ResponseEntity<?> unregistFavorFood(@AuthenticationPrincipal User users,
         @PathVariable Long id) {
-        try {
-            foodsService.unregistFavorFood(Long.parseLong(users.getUsername()), id);
-            return new ResponseEntity<>(id + " : 즐겨찾기 해제 성공", HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(id + " : 즐겨찾기 해제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        foodsService.unregistFavorFood(Long.parseLong(users.getUsername()), id);
+        return new ResponseEntity<>(id + " : 즐겨찾기 해제 성공", HttpStatus.OK);
     }
 
     @PostMapping("/nonfavor/{id}")
@@ -90,7 +86,8 @@ public class FoodsController {
     @Operation(summary = "추천 음식 목록 조회", description = "추천 음식 목록을 조회합니다.")
     private ResponseEntity<List<ResponseRecommendFood>> getRecommandFoodList(
         @AuthenticationPrincipal User users) {
-        return new ResponseEntity<>(foodsService.getRecommendFoodList(Long.parseLong(users.getUsername())), HttpStatus.OK);
+        return new ResponseEntity<>(
+            foodsService.getRecommendFoodList(Long.parseLong(users.getUsername())), HttpStatus.OK);
     }
 
 }

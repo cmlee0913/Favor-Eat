@@ -15,6 +15,7 @@ import com.example.backend.api.repository.foods.NonFavoritesRepository;
 import com.example.backend.api.repository.foods.RecommendsRepository;
 import com.example.backend.api.repository.foods.SamplingFoodsRepository;
 import com.example.backend.api.repository.users.EvaluationsRepository;
+import com.example.backend.exception.ResourceNotExistException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,11 +46,14 @@ public class FoodsService {
     private final EvaluationsRepository evaluationsRepository;
 
     /**
+     * Given a user number and a food entree, return the entree's basic information, flavor, and
+     * whether it was liked or not.
+     *
      * @param id must not be null
      * @return food info dto, never return null
      * @throws NullPointerException if it can't find entity
      */
-    public ResponseFoodInfo getFoodInfo(Long no, Long id) throws NullPointerException {
+    public ResponseFoodInfo getFoodInfo(Long no, Long id) {
         Map<String, Float> averageFlavorValues = evaluationsRepository.getAverageById(id);
         ResponseTasteInfo foodsTasteInfo = ResponseTasteInfo.builder()
             .salty(averageFlavorValues.get("saltiness"))
@@ -62,6 +66,8 @@ public class FoodsService {
     }
 
     /**
+     * Returns the food sample data at the given index.
+     *
      * @param index must not be null
      * @return basic foods info list, list size is 100 always
      */
@@ -72,6 +78,12 @@ public class FoodsService {
             .collect(Collectors.toList());
     }
 
+    /**
+     * Returns a list of foods liked by a given number of users.
+     *
+     * @param no must not be null
+     * @return list of foods liked by user
+     */
     public List<ResponseBasicFoodInfo> getFavorFoodList(Long no) {
         return favoritesRepository.findByNo(no).stream()
             .map(Favorites::toDTO)
@@ -79,6 +91,8 @@ public class FoodsService {
     }
 
     /**
+     * Create and save a Favorties entity with the given values.
+     *
      * @param no must not be null
      * @param id must not be null
      * @return true if the given values saved, otherwise false
@@ -91,11 +105,25 @@ public class FoodsService {
         return favorites.getNo() > 0;
     }
 
+    /**
+     * Delete a Favorties entity with the given values.
+     *
+     * @param no must not be null
+     * @param id must not be null
+     * @throws RuntimeException when deletion failed
+     */
     @Transactional
-    public void unregistFavorFood(Long no, Long id) throws RuntimeException {
+    public void unregistFavorFood(Long no, Long id) {
         favoritesRepository.deleteById(new UsersFoodsID(no, id));
     }
 
+    /**
+     * Create and save a NonFavorties entity with the given values.
+     *
+     * @param no must not be null
+     * @param id must not be null
+     * @return true if the given values saved, otherwise false
+     */
     @Transactional
     public boolean registNonFavorFood(Long no, Long id) {
         NonFavorites nonFavorites = nonFavoritesRepository.save(
@@ -104,6 +132,13 @@ public class FoodsService {
         return nonFavorites.getNo() > 0;
     }
 
+    /**
+     * Returns a list of possible food recommendations.
+     *
+     * @param no must not be null
+     * @return a list of food recommendations
+     * @throws NullPointerException list is null
+     */
     public List<ResponseRecommendFood> getRecommendFoodList(Long no) {
         return recommendsRepository.findByNo(no).stream()
             .map(Recommends::toDTO)

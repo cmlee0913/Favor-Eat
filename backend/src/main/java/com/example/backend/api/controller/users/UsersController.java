@@ -37,9 +37,9 @@ public class UsersController {
     @PutMapping("/signout")
     public ResponseEntity<String> signOutUser(@AuthenticationPrincipal User users) {
         if (usersService.signOutUser(Long.parseLong(users.getUsername())).getToken() == null) {
-            return new ResponseEntity<>("signOut 성공", HttpStatus.valueOf(200));
+            return new ResponseEntity<>("signOut 성공", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("signOut 실패", HttpStatus.valueOf(400));
+            return new ResponseEntity<>("signOut 실패", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -54,50 +54,42 @@ public class UsersController {
     @PostMapping()
     public ResponseEntity<?> registInitialEvaluations(@AuthenticationPrincipal User users,
         @RequestBody List<RequestTasteEvaluations> requestTasteEvaluations) {
-        try {
-            Users user = usersService.registInitialEvaluations(Long.parseLong(users.getUsername()),
-                requestTasteEvaluations);
-            return new ResponseEntity<>(
-                jwtService.createAccessToken(user.getEmail(), user.getNickname(),
-                    String.valueOf(user.getRole())), HttpStatus.OK);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+
+        Users user = usersService.registInitialEvaluations(Long.parseLong(users.getUsername()),
+            requestTasteEvaluations);
+        return new ResponseEntity<>(
+            jwtService.createAccessToken(user.getEmail(), user.getNickname(),
+                String.valueOf(user.getRole())), HttpStatus.OK);
+
     }
 
     @Operation(summary = "초기 맛 평가 등록 후 recommends 생성", description = "bigdata 서버에 recommends를 테이블에 데이터를 담으라고 요청한다.")
     @PostMapping("/recommends")
     public ResponseEntity<?> requestRegistRecommends(@AuthenticationPrincipal User users) {
-        try {
-            usersService.requestRegistRecommends(Long.parseLong(users.getUsername()));
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+
+        usersService.requestRegistRecommends(Long.parseLong(users.getUsername()));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/taste")
     @Operation(summary = "맛 평가 등록", description = "<strong>맛 평가 정보(맵기, 달기, 짜기, 느끼)</strong>를 등록합니다.")
     public ResponseEntity<?> registEvaluations(@AuthenticationPrincipal User users,
         @RequestBody RequestTasteEvaluations requestTasteEvaluations) {
-        try {
+
             usersService.registEvaluations(Long.parseLong(users.getUsername()),
                 requestTasteEvaluations);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
     }
 
     @GetMapping("/taste/{id}")
     @Operation(summary = "맛 평가 조회", description = "사용자의 <strong>맛 평가 정보(맵기, 달기, 짜기, 느끼)</strong>를 조회합니다.")
-    public ResponseEntity<?> getEvaluations(@AuthenticationPrincipal User users, @PathVariable Long id) {
-        try{
-            ResponseTasteInfo responseTasteInfo = usersService.getEvaluations(Long.parseLong(users.getUsername()), id);
+    public ResponseEntity<?> getEvaluations(@AuthenticationPrincipal User users,
+        @PathVariable Long id) {
+        try {
+            ResponseTasteInfo responseTasteInfo = usersService.getEvaluations(
+                Long.parseLong(users.getUsername()), id);
             return new ResponseEntity<>(responseTasteInfo, HttpStatus.OK);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return new ResponseEntity<>(null, HttpStatus.OK);
         }
     }
