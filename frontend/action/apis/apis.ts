@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { apiURL } from "@/store/constants";
+import { apiURL, kakaoLoginUrl } from "@/store/constants";
 import { ApiResult } from "@/types/api/apiType";
 
 const API = axios.create({ baseURL: apiURL });
@@ -7,9 +7,9 @@ const API = axios.create({ baseURL: apiURL });
 API.interceptors.response.use(
   (res: AxiosResponse) => res,
   async (err: AxiosError) => {
-    if (err.response.status === 400) {
+    if (err.response.status === 401) {
       localStorage.clear();
-      window.location.href = "/guide";
+      window.location.href = kakaoLoginUrl;
       return Promise.reject(err);
     }
   },
