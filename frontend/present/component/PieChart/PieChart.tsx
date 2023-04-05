@@ -3,19 +3,17 @@ import { theme } from "@/constant/theme";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
 
 import * as styles from "./PieChart.styles";
+import { MainNutrient } from "@/types/Recipe/dummy";
+
+let calorieVal = 0
+let moistureVal = 0
 
 const CenteredMetric = ({
   centerX,
-  centerY,
-  //   radius,
-  //   innerRadius,
-  //   arcGenerator,
+  centerY
 }) => {
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isPhone = useMediaQuery("(min-width: 426px)");
-
-  // console.log(`${isTablet}`);
-  // console.log(`${isPhone}`);
 
   let titleCoordinateY = centerY - 40;
   let subTitleCoordinateY = centerY + 40;
@@ -62,21 +60,19 @@ const CenteredMetric = ({
         textAnchor="middle"
         style={{
           fontSize: `${titleFont}`,
-          fontWeight: 600,
         }}
       >
         총 영양 비율
       </text>
       <text
         x={centerX}
-        y={centerY}
+        y={centerY + 10}
         textAnchor="middle"
         style={{
           fontSize: `${subTitleFont}`,
-          fontWeight: 600,
         }}
       >
-        총 칼로리 : 500kcal
+        총 칼로리 : {calorieVal}kcal
       </text>
       <text
         x={centerX}
@@ -84,16 +80,21 @@ const CenteredMetric = ({
         textAnchor="middle"
         style={{
           fontSize: `${subTitleFont}`,
-          fontWeight: 600,
         }}
       >
-        수분 : 20g
+        수분 : {moistureVal}g
       </text>
     </>
   );
 };
 
-const Piechart = () => {
+const Piechart = ({
+  calorie,
+  moisture,
+  protein,
+  fat,
+  carbohydrate,
+}: MainNutrient) => {
   const handle = {
     padClick: (data: any) => {
       console.log(data);
@@ -146,15 +147,18 @@ const Piechart = () => {
       : `${!isTablet && isPhone ? (symbolSize = 10) : (symbolSize = 5)}`
   }`;
 
+  calorieVal = calorie
+  moistureVal = moisture
+
   return (
     // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
-    <styles.Wrapper>
+    <styles.Wrapper className="PieChart">
       <ResponsivePie
         // 더미 데이터 ( 반응형으로 변경 )
         data={[
-          { id: "탄수화물", value: 324 },
-          { id: "단백질", value: 88 },
-          { id: "지방", value: 221 },
+          { id: "탄수화물", value: carbohydrate },
+          { id: "단백질", value: protein },
+          { id: "지방", value: fat },
         ]}
         /*
          * BASE OPTION
@@ -235,16 +239,16 @@ const Piechart = () => {
             itemHeight: legendHeight, // item height
             itemsSpacing: 0, // item간 간격
             symbolSize: symbolSize, // symbol (색상 표기) 크기
-            itemDirection: "left-to-right", // item 내부에 그려지는 방향
+            itemDirection: "right-to-left", // item 내부에 그려지는 방향
             itemOpacity: 1, // item opacity
-            symbolShape: "circle", // symbol (색상 표기) 모양
+            symbolShape: "square", // symbol (색상 표기) 모양
 
             effects: [
               {
                 // 추가 효과 설정 (hover하면 textColor를 olive로 변경)
                 on: "hover",
                 style: {
-                  itemTextColor: "gray",
+                  itemTextColor: theme.colors.main.blue,
                 },
               },
             ],
@@ -258,7 +262,8 @@ const Piechart = () => {
           labels: {
             text: {
               fontSize: `${labelFontSize}`,
-              fill: "#000000",
+              fill: theme.colors.mono.light_1,
+              fontFamily: "Inter-ExtraBold",
             },
           },
           /**
@@ -268,6 +273,7 @@ const Piechart = () => {
             text: {
               fontSize: `${legendFontSize}`,
               fill: "#000000",
+              fontFamily: "Pretendard-Medium",
             },
           },
         }}

@@ -4,28 +4,44 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
   /* height: fit-content; */
   width: 100%;
 
   ${theme.devices.tablet} {
     justify-content: center;
-    gap: 2vw;
+  }
+
+  & > span {
+    width: 2.2rem;
+
+    ${theme.devices.tablet} {
+      width: 2rem;
+    }
+    ${theme.devices.mobile} {
+      width: 1.8rem;
+    }
   }
 `;
 
 export const RatingShapeStyle = css`
-  width: 100%;
+  width: 1.1rem;
   height: 100%;
   background-color: transparent;
+
+  ${theme.devices.tablet} {
+    width: 1rem;
+  }
+  ${theme.devices.mobile} {
+    width: 0.9rem;
+  }
 `;
 
 export const Rating = styled.span<{
   characterType: string;
   active: boolean;
 }>`
-  width: 1.1vw;
   height: 100%;
   display: inline-block;
   & > svg {
@@ -38,7 +54,6 @@ export const Rating = styled.span<{
   }
 
   ${theme.devices.tablet} {
-    width: 1rem;
     height: 100%;
   }
 `;

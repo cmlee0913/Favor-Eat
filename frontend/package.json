@@ -12,7 +12,8 @@
     "@egjs/react-infinitegrid": "^4.8.1",
     "@next/font": "^13.2.4",
     "@nivo/core": "^0.80.0",
-    "@nivo/pie": "^0.80.0",
+    "@nivo/pie": "^0.80.0",  "@ramonak/react-progress-bar": "^5.0.3",
+  
     "@swc-node/core": "^1.10.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "18.15.0",

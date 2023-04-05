@@ -19,7 +19,7 @@ export default function AccordianCompo({
         <div>{elem?.category}</div>
         <Arrow />
       </style.Title>
-      {elem?.isOpen && <style.Content>{elem?.content}</style.Content>}
+      <style.Content open={elem?.isOpen}>{elem?.content}</style.Content>
     </style.Container>
   );
 }

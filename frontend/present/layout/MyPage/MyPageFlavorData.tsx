@@ -43,15 +43,33 @@ export default function MyPageFlavorData({
     },
   };
 
-  const [ratingList, setRatingList] = useState(() => {
-    const initialValue = Math.round(item.value);
-    return Array(5)
-      .fill({ left: false, right: false })
-      .map((_, index) => ({
-        left: index < initialValue,
-        right: index < initialValue,
-      }));
-  });
+  // const [ratingList, setRatingList] = useState(() => {
+  //   const initialValue = Math.floor(item.value);
+  //   const remainder = item.value - initialValue;
+  //   const half = remainder >= 0.5;
+  //   const filled = Array(initialValue).fill({ left: true, right: true });
+  //   const partial = half ? [{ left: true, right: false }] : [];
+  //   const unfilled = Array(5 - filled.length - partial.length).fill({
+  //     left: false,
+  //     right: false,
+  //   });
+  //   return [...filled, ...partial, ...unfilled];
+  // });
+  const [ratingList, setRatingList] = useState([]);
+
+  useEffect(() => {
+    const initialValue = Math.floor(item.value);
+    const remainder = item.value - initialValue;
+    const half = remainder >= 0.5;
+    const filled = Array(initialValue).fill({ left: true, right: true });
+    const ratingTmp = [...ratingList];
+    const partial = half ? [{ left: true, right: false }] : [];
+    const unfilled = Array(5 - filled.length - partial.length).fill({
+      left: false,
+      right: false,
+    });
+    setRatingList([...filled, ...partial, ...unfilled]);
+  }, [item.value]);
 
   return (
     <>
@@ -76,9 +94,9 @@ export default function MyPageFlavorData({
         {/* 평균 맛 정보, 평균 맛 정보 시각화*/}
         <style.FlavorDataValueContainer>
           {/* 평균 맛 정보 */}
-          <div>
+          <style.MyAverageTasteContainer>
             나의 평균 {item.subtitle}는 {item.value}단계 입니다.
-          </div>
+          </style.MyAverageTasteContainer>
           {/* 평균 맛 정보 시각화 */}
           <style.Container>
             {ratingList.map((shape, index) => {

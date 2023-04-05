@@ -16,13 +16,14 @@ export const Info = styled.div`
 
   & div {
     display: flex;
+    font-family: "Pretendard-Light";
 
     span {
       line-height: 1rem;
     }
 
     span:first-child {
-      font-weight: bold;
+      font-family: "Pretendard-Medium";
     }
   }
 
@@ -68,6 +69,10 @@ export const Container = styled.div<{ selectIdx: number }>`
     justify-content: space-between;
     font-size: 1.8rem;
 
+    & span:nth-child(1) {
+      font-family: "Inter-Bold";
+    }
+
     & span:nth-child(2) {
       display: flex;
       align-items: center;
@@ -81,6 +86,10 @@ export const Container = styled.div<{ selectIdx: number }>`
 
     & img:nth-child(1) {
       margin-right: 0.5rem;
+    }
+
+    .no-suggest {
+      transform: scaleX(-1) scaleY(-1);
     }
   }
 

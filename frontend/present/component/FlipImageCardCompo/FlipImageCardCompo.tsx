@@ -9,6 +9,9 @@ import Spicy from "@/assets/image/Character/Spicy.png";
 import Sweet from "@/assets/image/Character/Sweet.png";
 import Salty from "@/assets/image/Character/Salty.png";
 import Oily from "@/assets/image/Character/Oily.png";
+import { saveFoodFavor, saveFoodNonFavor } from "@/action/apis/recipeFavor";
+import { userTokenSave } from "@/store/userStore";
+import { useAtom } from "jotai";
 
 export default function FilpImageCardCompo({
   imgSrc,
@@ -39,8 +42,17 @@ export default function FilpImageCardCompo({
   };
 
   const moveHandler = () => {
-    const tmpIdx = 6998483;
-    router.push(`/recipe/${tmpIdx}`);
+    router.push(`/recipe/${recipeId}`);
+  };
+
+  const [token] = useAtom(userTokenSave);
+  const onClickFavor = async (e) => {
+    saveFoodFavor(token.accessToken, recipeId);
+    e.stopPropagation();
+  };
+  const onClickNoFavor = async (e) => {
+    saveFoodNonFavor(token.accessToken, recipeId);
+    e.stopPropagation();
   };
 
   return (
@@ -52,8 +64,8 @@ export default function FilpImageCardCompo({
           </style.Front>
           <style.Back className="back">
             <style.LikeHateBox>
-              <style.LikeButton />
-              <style.HateButton />
+              <style.LikeButton onClick={onClickFavor} />
+              <style.HateButton onClick={onClickNoFavor} />
             </style.LikeHateBox>
             <style.FlexItem>
               <div className="foodName">{foodName}</div>
@@ -66,7 +78,7 @@ export default function FilpImageCardCompo({
                     alt="flavor character"
                   />
                 </span>
-                <div className="flavorValue">{flavor.value}</div>
+                <div className="flavorValue">{flavor.value}점</div>
               </style.FlavorBox>
             </style.FlexItem>
             {contents.map((item) => (

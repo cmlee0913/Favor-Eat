@@ -27,9 +27,9 @@ export default function SocialLogin() {
       });
 
       if (role === "USER") {
-        router.replace("/main");
+        router.push("/main");
       } else if (role === "GUEST") {
-        router.replace("/taste/choose");
+        router.push("/taste/choose");
       }
     }
   }, [router.isReady]);

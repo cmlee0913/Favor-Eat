@@ -23,11 +23,11 @@ export default function BottomLayout({
     );
 
     if (isSuccess) {
-      // const { accesToken, refreshToken } = result;
-      // setUserToken({
-      //   accessToken: accesToken,
-      //   refreshToken: refreshToken,
-      // });
+      const newAccessToken = result;
+      setUserToken({
+        accessToken: newAccessToken,
+        refreshToken: token.refreshToken,
+      });
       router.push("/main");
     }
   };
@@ -43,7 +43,7 @@ export default function BottomLayout({
           <br />
           하지만 음식을 고르는 것은 때로 용감함을 필요로 합니다."
           <br />
-          -CharGPT-
+          -ChatGPT-
         </style.BottomContainer>
       )}
     </>

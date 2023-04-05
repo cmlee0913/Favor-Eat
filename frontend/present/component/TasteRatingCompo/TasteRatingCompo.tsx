@@ -10,7 +10,12 @@ import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
 import { useEffect, useState } from "react";
 
-export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
+export default function TasteRatingCompo({
+  type,
+  setRatingValue,
+  recipeId,
+  ratingValue,
+}) {
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,
@@ -30,16 +35,16 @@ export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
     },
   };
   const [ratingList, setRatingList] = useState(
-    Array(5).fill({ left: false, right: false })
+    Array(5).fill({ left: false, right: false }),
   );
   const [clicked, setClicked] = useState(false);
   const [value, setValue] = useState(0);
 
-  const onMouseOver = (index: number, side: string) => {
-    setRatingActive(index, side);
+  const onMouseOver = (index: number) => {
+    setRatingActive(index);
   };
 
-  const setRatingActive = (index: number, side: string) => {
+  const setRatingActive = (index: number) => {
     const list = [...ratingList];
 
     for (let i = 0; i < list.length; i++) {
@@ -50,10 +55,6 @@ export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
       }
       //누른 index는 left냐 right에 따라 active
       if (i === index) {
-        if (side === "left") {
-          list[i] = { left: true, right: false };
-          continue;
-        }
         list[i] = { left: true, right: true };
         continue;
       }
@@ -65,47 +66,47 @@ export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
 
   const onResetRating = () => {
     //값을 활성화 한적이 없으면 reset
-    if (!clicked) {
+    if (!clicked && ratingValue === 0) {
       setRatingList(Array(5).fill({ left: false, right: false }));
       return;
     }
 
-    const { index, side } = getIndexByRatingValue();
-    setRatingActive(index, side);
+    const { index } = getIndexByRatingValue();
+    setRatingActive(index - 1);
   };
 
   const getIndexByRatingValue = () => {
-    const isLeft = value % 1 > 0;
-    const side = isLeft ? "left" : "right";
-    let index: number = isLeft ? value - 0.5 : value - 1;
+    let index: number = Math.floor(value / 1);
     if (index < 0) {
       index = 0;
     }
 
-    return { index, side };
+    return { index };
   };
 
-  const onClickRating = (ratingIconIndex: number, side: string) => {
+  const onClickRating = (ratingIconIndex: number) => {
     let value = ratingIconIndex + 1;
-    if (side === "left") {
-      value -= 0.5;
-    }
     setValue(value);
     setClicked(true);
   };
 
   useEffect(() => {
+    setValue(ratingValue);
+    setRatingActive(ratingValue - 1);
+  }, [ratingValue]);
+
+  useEffect(() => {
     if (clicked) {
-      const { index, side } = getIndexByRatingValue();
-      setRatingActive(index, side);
+      const { index } = getIndexByRatingValue();
+      setRatingActive(index - 1);
       setRatingValue(value, type);
     }
   }, [value]);
 
   //내부 요소 reset
   useEffect(() => {
-    const { index, side } = getIndexByRatingValue();
-    setRatingActive(index - 1, side);
+    const { index } = getIndexByRatingValue();
+    setRatingActive(index - 1);
     setRatingValue(value, type);
     setClicked(false);
     setValue(0);
@@ -121,16 +122,16 @@ export default function TasteRatingCompo({ type, setRatingValue, recipeId }) {
             <style.Rating
               characterType={type}
               active={shape.left}
-              onMouseOver={() => onMouseOver(index, "left")}
-              onClick={() => onClickRating(index, "left")}
+              onMouseOver={() => onMouseOver(index)}
+              onClick={() => onClickRating(index)}
             >
               {ratingImg[type].left}
             </style.Rating>
             <style.Rating
               characterType={type}
               active={shape.right}
-              onMouseOver={() => onMouseOver(index, "right")}
-              onClick={() => onClickRating(index, "right")}
+              onMouseOver={() => onMouseOver(index)}
+              onClick={() => onClickRating(index)}
             >
               {ratingImg[type].right}
             </style.Rating>

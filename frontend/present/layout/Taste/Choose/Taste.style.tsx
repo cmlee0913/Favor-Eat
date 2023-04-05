@@ -194,6 +194,18 @@ export const Glass = styled.p`
         right: 5.02%;
       }
       ${theme.devices.tablet} {
+        &:nth-child(1) {
+          top: 47%;
+          left: 7.8%;
+        }
+        &:nth-child(2) {
+          top: 43%;
+          right: 35%;
+        }
+        &:nth-child(3) {
+          top: 47%;
+          right: 5.02%;
+        }
       }
 
       ${theme.devices.mobile} {
@@ -243,12 +255,23 @@ export const Hill = styled.p`
 
       ${theme.devices.tablet} {
         &:nth-child(1) {
+          height: 12.67%;
+          top: 35%;
         }
         &:nth-child(2) {
+          width: 77%;
+          height: 10.78%;
+          top: 40%;
         }
         &:nth-child(3) {
+          width: 64%;
+          height: 7.9%;
+          top: 45%;
         }
         &:nth-child(4) {
+          width: 76%;
+          height: 12.48%;
+          top: 45%;
         }
       }
 
@@ -307,6 +330,7 @@ export const CharacterNameStyle = css`
   font-size: 1.3rem;
   text-align: center;
   margin-top: 10px;
+  font-family: Pretendard-Bold;
 
   ${theme.devices.tablet} {
     font-size: 0.9rem;
@@ -352,32 +376,24 @@ export const Character = styled.div`
   }
 `;
 
-export const Introduction = styled.p`
-  & p.Introduction {
-    z-index: 9999;
-    position: absolute;
-    margin: 0;
+export const Introduction = styled.div`
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: Pretendard-Bold;
+  z-index: 999;
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  letter-spacing: 0.2rem;
+  & > div {
+    margin: 0.1rem;
+    word-break: keep-all;
+  }
 
-    /* introduction text */
-    :nth-child(1) {
-      font-size: 1.8rem;
-      font-weight: 600;
-      text-align: center;
-      width: 100%;
-      left: 50%;
-      top: 15%;
-      transform: translateX(-50%) translateY(-50%);
-      line-height: 2.8rem;
-      letter-spacing: 0.1px;
-
-      ${theme.devices.tablet} {
-        font-size: 1.5rem;
-      }
-      ${theme.devices.mobile} {
-        font-size: 1.5rem;
-        top: 20%;
-      }
-    }
+  ${theme.devices.mobile} {
+    font-size: 1.2rem;
   }
 `;
 
@@ -393,9 +409,13 @@ export const ChooseButton = styled.div`
   bottom: 15vh;
   left: 50%;
   transform: translateX(-50%);
+  word-break: keep-all;
+  text-align: center;
+  font-family: Pretendard-Bold;
 
   :hover {
     cursor: pointer;
+    background-color: ${theme.colors.main.skyblue};
   }
 
   ${theme.devices.tablet} {

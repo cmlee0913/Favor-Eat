@@ -23,20 +23,6 @@ export function MobileRecipeCompo({
         <style.ImageWrapper>
           <Image src={imgSrc} alt="음식 사진" width={1000} height={1000} />
         </style.ImageWrapper>
-        <div>
-          <style.BottomContent>
-            <div className="flex">
-              <div className="foodName">{foodName}</div>
-              <Image
-                className="flavorCharacter"
-                src={theme.characterImg[flavorType]}
-                alt="맛 캐릭터"
-              />
-              <div className="flavorValue">{flavorValue}</div>
-            </div>
-            <style.NextButton />
-          </style.BottomContent>
-        </div>
       </style.Container>
     </>
   );

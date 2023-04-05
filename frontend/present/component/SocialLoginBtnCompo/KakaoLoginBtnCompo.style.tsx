@@ -7,19 +7,38 @@ export const Container = styled.div`
   position: absolute;
   top: 30%;
   left: 12%;
+  z-index: 50;
+
+  ${theme.devices.tablet} {
+    top: 50%;
+    left: 7%;
+  }
 `;
 
 export const LoginGuideText = styled.div`
-  font-size: 24px;
+  font-size: 3rem;
   margin-bottom: 30px;
   font-family: "Pretendard-SemiBold";
 
+  &.Mobile {
+    display: none;
+  }
+
   ${theme.devices.tablet} {
-    font-size: 20px;
+    &.Mobile {
+      display: block;
+    }
+
+    &.PC {
+      display: none;
+    }
+
+    font-size: 2rem;
     margin-bottom: 25px;
   }
+
   ${theme.devices.mobile} {
-    font-size: 16px;
+    font-size: 200%;
   }
 `;
 
@@ -27,7 +46,7 @@ export const BtnContainer = styled.div`
   background-color: #ffe812;
   width: fit-content;
   padding: 20px 30px;
-  border-radius: 30px;
+  border-radius: 2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -60,15 +79,15 @@ export const KakaoLogo = styled(kakaoLogoSvg)`
 `;
 
 export const ButtonName = styled.span`
-  font-size: 20px;
+  font-size: 1.5rem;
   margin-left: 15px;
   font-family: "Pretendard-Bold";
   ${theme.devices.tablet} {
-    font-size: 16px;
+    font-size: 2rem;
     margin-left: 7px;
   }
   ${theme.devices.mobile} {
-    font-size: 12px;
+    font-size: 150%;
     margin-left: 7px;
   }
 `;

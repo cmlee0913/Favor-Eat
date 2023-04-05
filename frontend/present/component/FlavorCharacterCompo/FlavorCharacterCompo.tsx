@@ -8,6 +8,7 @@ export default function FlavorCharacterCompo({
   title,
   value,
   img,
+  onClick,
   hoverActive,
   hoverInactive,
 }: FlavorCharacterProps) {
@@ -30,7 +31,13 @@ export default function FlavorCharacterCompo({
       <style.CharacterWrapper>
         <style.Title>{title}</style.Title>
         <style.Character>
-          <Image src={img} width={20} height={20} alt="맛 캐릭터" />
+          <Image
+            src={img}
+            width={20}
+            height={20}
+            alt="맛 캐릭터"
+            onClick={onClick}
+          />
         </style.Character>
         <div>
           <style.FlavorLevel>{value}단계</style.FlavorLevel>

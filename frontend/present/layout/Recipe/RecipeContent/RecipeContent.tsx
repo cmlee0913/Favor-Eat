@@ -8,6 +8,6 @@ export default function RecipeContent({RecipeArr, selectIdx, setSelectedIdx}:Rec
             {RecipeArr[selectIdx].content}
         </style.MobileContent>
         
-        <RecipeAccordian RecipeArr={RecipeArr} selectIdx={selectIdx} setSelectedIdx={setSelectedIdx}/>
+        <RecipeAccordian RecipeArr={RecipeArr} setSelectedIdx={setSelectedIdx}/>
     </style.Content>
 }

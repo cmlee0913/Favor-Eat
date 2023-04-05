@@ -6,7 +6,7 @@ import HambugerCenter from "@/assets/icon/Hambuger/HambugerCenter.svg";
 import HambugerTop from "@/assets/icon/Hambuger/HambugerTop.svg";
 import { HambugerInnerProps } from "@/types/Hambuger/dummy";
 
-function Hambuger({ isOpen, setIsOpen }:HambugerInnerProps) {
+function Hambuger({ isOpen, setIsOpen }: HambugerInnerProps) {
   const hamburgerBarHandler = () => {
     setIsOpen(!isOpen);
   };

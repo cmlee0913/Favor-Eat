@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 import TopLayout from "@/present/layout/Taste/Analysis/TopLayout";
 import MiddleLayout from "@/present/layout/Taste/Analysis/MiddleLayout";
@@ -16,6 +16,9 @@ import { getTasteRecipeList } from "@/action/apis/taste";
 
 import * as style from "@/present/layout/Taste/Analysis/AnalysisLayout.style";
 import { FoodForTasteResponseType } from "@/types/api/tasteApiType";
+import { cursorImageAtom, cursorIsShowAtom } from "@/store/cursorStore";
+import { useRouter } from "next/router";
+import { theme } from "@/constant/theme";
 
 const requestRecipeList = async (requestCount: number, token: string) => {
   const { isSuccess, result } = await getTasteRecipeList(requestCount, token);
@@ -39,12 +42,31 @@ export default function Analysis() {
   const [canStop, setCanStop] = useState(false);
   const [requestCount, setRequestCount] = useState(0);
   const [recipeList, setRecipeList] = useState<Array<RecipeData>>([]);
-
   const [currentIndex, setCurrentIndex] = useAtom(currentIndexAtom);
   const [recipeRatingList, setRecipeRatingList] = useAtom(recipeRatingListAtom);
   const [, setCurrentRecipeData] = useAtom(currentRecipeDataAtom);
 
+  const setCursorImage = useSetAtom(cursorImageAtom);
+  const setCursorShow = useSetAtom(cursorIsShowAtom);
+  const router = useRouter();
+
   const [token] = useAtom(userTokenSave);
+
+  //cursor setting
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const { character } = router.query;
+    setCursorImage(
+      theme.characterImg[
+        typeof character === "string" ? character : character[0]
+      ],
+    );
+    setCursorShow(true);
+    return () => {
+      setCursorShow(false);
+    };
+  }, [router.isReady]);
 
   useEffect(() => {
     if (currentIndex !== -1) return;
@@ -59,7 +81,6 @@ export default function Analysis() {
   useEffect(() => {
     if (currentIndex === -1) return;
     if (currentIndex >= recipeList.length) {
-      //TODO : 서버에서 새로운 데이터 받아오기
       setRequestCount((current) => current + 1);
       requestRecipeList(requestCount + 1, token.accessToken).then((list) => {
         setRecipeList(list);

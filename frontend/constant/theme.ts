@@ -17,6 +17,7 @@ const colors = {
       dark_3: "#4340B5",
       dark_4: "#4242CE",
     },
+    grey: "#ABAFC4",
   },
   character: {
     spicy: "#FF7473",
@@ -59,6 +60,7 @@ const colors = {
     light_1: "#ffffff",
     light_2: "#b4b4b4",
     light_3: "#767676",
+    dark_0: "#D1D5E0",
     dark_1: "#3b3b3b",
     dark_2: "#33314a",
     dark_3: "#34314C",
@@ -73,7 +75,7 @@ const trans = "all 0.2s ease-out";
 
 const devices = {
   mobile: `@media only screen and (max-width: 426px)`,
-  tablet: `@media only screen and (max-width: 769px)`,
+  tablet: `@media only screen and (max-width: 1000px)`,
   desktop: `@media only screen and (max-width: 2000px)`,
 };
 

@@ -93,24 +93,27 @@ export const FlexItem = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  height: fit-content;
 
   .foodName {
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-family: Pretendard-Mideum;
+    max-width: 1vw;
+    word-break: keep-all;
   }
   .flavorValue {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-family: Pretendard-Mideum;
   }
 
   .contentName {
     font-size: 1rem;
-    font-weight: 700;
+    font-family: Pretendard-Mideum;
   }
 
   .contentValue {
     font-size: 1rem;
-    font-weight: 500;
+    font-family: Pretendard-Mideum;
   }
 `;
 
@@ -137,6 +140,7 @@ export const LikeHateBox = styled.div`
 export const FavorButtonStyle = css`
   width: 1.8rem;
   height: 1.8rem;
+  z-index: 2.5;
   path {
     fill: ${color.thumb};
   }

@@ -21,10 +21,14 @@ import SpicyHoverBoxMobile from "@/assets/image/SpicyHoverBoxMobile.png";
 import SweetHoverBoxMobile from "@/assets/image/SweetHoverBoxMobile.png";
 import SaltyHoverBoxMobile from "@/assets/image/SaltyHoverBoxMobile.png";
 import { useState } from "react";
+import useModal from "@/action/hooks/useModal";
+import { useAtom, useSetAtom } from "jotai";
+import { modalContentAtom } from "@/store/modalStore";
+import RecipeEvaluateContentCompo from "@/present/component/RecipeEvaluateContentCompo/RecipeEvaluateContentCompo";
 
 export default function RecipeFlavorLayout({
-  values,
   recipeImage,
+  tasteInfo,
 }: RecipeFlavorProps) {
   const flavorStaticData = {
     spicy: {
@@ -70,11 +74,11 @@ export default function RecipeFlavorLayout({
   };
 
   const flavorList: Array<FlavorCharacter> = [];
-  values.forEach((item) => {
+  Object.keys(tasteInfo).forEach((item) => {
     const obj: any = {
-      ...flavorStaticData[item.type],
-      value: item.value,
-      type: item.type,
+      ...flavorStaticData[item],
+      value: tasteInfo[item],
+      type: item,
     };
     flavorList.push(obj);
   });
@@ -93,6 +97,13 @@ export default function RecipeFlavorLayout({
     hoverBoxValue.spicy,
   );
   const [infoShow, setInfoShow] = useState(false);
+
+  const { openModal } = useModal();
+  const [, setModalContext] = useAtom(modalContentAtom);
+  const onClickCharacter = () => {
+    setModalContext(<RecipeEvaluateContentCompo />);
+    openModal();
+  };
 
   return (
     <style.Container>
@@ -113,6 +124,7 @@ export default function RecipeFlavorLayout({
         </style.MobileHover>
         {flavorList.map((item, index) => (
           <FlavorCharacterCompo
+            onClick={onClickCharacter}
             key={index}
             {...item}
             value={Math.floor(item.value)}
@@ -123,11 +135,11 @@ export default function RecipeFlavorLayout({
       </style.CharacterContainer>
 
       <style.ProgressContainer>
-        {values.map((item, index) => (
+        {Object.keys(tasteInfo).map((item, index) => (
           <FlavorProgressCompo
             key={index}
-            type={item.type}
-            value={item.value}
+            type={item}
+            value={tasteInfo[item]}
           />
         ))}
       </style.ProgressContainer>

@@ -84,14 +84,14 @@ export default function TasteEvaluateBoxCompo({
   recipeData,
   buttonActive,
 }: TasteEvaluateBoxCompoProps) {
-  const isTablet = useMediaQuery("(min-width: 769px)");
+  const isTablet = useMediaQuery("(min-width: 1000px)");
   const isMobile = useMediaQuery("(min-width: 426px)");
   const { recipeId, recipeName, imageSrc } = recipeData;
   const router = useRouter();
 
   //hover info box
   const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy
+    hoverBoxValue.spicy,
   );
   const [leftInfoShow, setLeftInfoShow] = useState(false);
   const [rightInfoShow, setRightInfoShow] = useState(false);
@@ -114,12 +114,10 @@ export default function TasteEvaluateBoxCompo({
 
   //각 맛 별 점수
   const [ratingValues, setRatingValues] = useState<Array<number>>(
-    Array(4).fill(0)
+    Array(4).fill(0),
   );
   const setRatingValue = (value: number, type: string) => {
     //이미지 평가 완료 버튼 활성화
-    setCanMoveToNext(true);
-
     let index = 0;
 
     switch (type) {
@@ -136,6 +134,12 @@ export default function TasteEvaluateBoxCompo({
     const valueList = [...ratingValues];
     valueList[index] = value;
     setRatingValues(valueList);
+
+    let isNotZero = true;
+    valueList.forEach((value) => {
+      if (value === 0) isNotZero = false;
+    });
+    setCanMoveToNext(isNotZero);
   };
 
   const [currentIndex, setCurrentIndex] = useAtom(currentIndexAtom);
@@ -169,7 +173,6 @@ export default function TasteEvaluateBoxCompo({
     const oldRatingList = [...recipeRatingList];
     oldRatingList.push(newRatingValue);
     setRecipeRatingList(oldRatingList);
-    setRatingValues([0, 0, 0, 0]);
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -180,17 +183,18 @@ export default function TasteEvaluateBoxCompo({
     );
 
     if (isSuccess) {
-      // const { accesToken, refreshToken } = result;
-      // setUserToken({
-      //   accessToken: accesToken,
-      //   refreshToken: refreshToken,
-      // });
+      const newAccessToken = result;
+      setUserToken({
+        accessToken: newAccessToken,
+        refreshToken: token.refreshToken,
+      });
       router.push("/main");
     }
   };
 
   useEffect(() => {
     setCanMoveToNext(false);
+    setRatingValues([0, 0, 0, 0]);
   }, [recipeId]);
 
   return (
@@ -269,6 +273,7 @@ export default function TasteEvaluateBoxCompo({
                 </style.ValueText>
                 <div className="rating"></div>
                 <TasteRatingCompo
+                  ratingValue={0}
                   type={item.type}
                   setRatingValue={setRatingValue}
                   recipeId={recipeId}
@@ -324,6 +329,7 @@ export default function TasteEvaluateBoxCompo({
                         &nbsp;입니다
                       </style.ValueText>
                       <TasteRatingCompo
+                        ratingValue={0}
                         recipeId={recipeId}
                         type={item.type}
                         setRatingValue={setRatingValue}
@@ -362,6 +368,7 @@ export default function TasteEvaluateBoxCompo({
                         &nbsp;입니다
                       </style.ValueText>
                       <TasteRatingCompo
+                        ratingValue={0}
                         type={item.type}
                         setRatingValue={setRatingValue}
                         recipeId={recipeId}
