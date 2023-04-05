@@ -35,7 +35,7 @@ export default function main() {
 
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 5000);
 
     return () => {
       setCursorShow(false);
