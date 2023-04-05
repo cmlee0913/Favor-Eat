@@ -4,7 +4,9 @@ import { logoutAsync } from "./auth";
 
 export const moveHandler = (router, path, setIsOpen) => {
   router.push(path);
-  setIsOpen(false);
+  setTimeout(() => {
+    setIsOpen(false);
+  }, 1000);
 };
 
 export const menu = (
