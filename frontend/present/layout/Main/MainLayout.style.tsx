@@ -1,10 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { theme } from "@/constant/theme";
 
-import MainFoodActive from "@/assets/icon/Main/MainFoodActive.svg";
-import AnotherFoodActive from "@/assets/icon/Main/AnotherFoodActive.svg";
-import MainFoodInactive from "@/assets/icon/Main/MainFoodInactive.svg";
-import AnotherFoodInactive from "@/assets/icon/Main/AnotherFoodInactive.svg";
 import RefreshIcon from "@/assets/icon/Main/RefreshIcon.svg";
 
 const white = theme.colors.mono.light_1;
@@ -77,17 +73,15 @@ export const Right = styled.div`
 
 export const Slogan = styled.div`
   font-size: 3rem;
-  font-weight: 900;
+  font-family: Inter-Black;
 
-  ${theme.devices.tablet} {
+  font-weight: ${theme.devices.tablet} {
     order: 2;
     font-size: 2.5rem;
-    font-weight: 900;
   }
   ${theme.devices.mobile} {
     order: 2;
     font-size: 1.5rem;
-    font-weight: 900;
   }
 `;
 
@@ -107,51 +101,11 @@ export const CharacterImage = styled.div`
   }
 `;
 
-const RecommendIconStyle = css`
-  width: 4.5rem;
-  height: 4.5rem;
-  :hover {
-    cursor: pointer;
-  }
-
-  ${theme.devices.tablet} {
-    width: 13vw;
-    height: auto;
-  }
-  :hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const RecommendIcons = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-
-  ${theme.devices.tablet} {
-    order: 3;
-  }
-`;
-
-export const MainRecommendActive = styled(MainFoodActive)`
-  ${RecommendIconStyle}
-`;
-export const MainRecommendInactive = styled(MainFoodInactive)`
-  ${RecommendIconStyle}
-`;
-
-export const AnotherRecommendInactive = styled(AnotherFoodInactive)`
-  ${RecommendIconStyle}
-`;
-export const AnotherRecommendActive = styled(AnotherFoodActive)`
-  ${RecommendIconStyle}
-`;
-
 export const RefreshButton = styled(RefreshIcon)`
-  width: 3rem;
-  height: 3rem;
+  width: 2.3rem;
+  height: 2.3rem;
   position: absolute;
-  top: 5vh;
+  top: 10vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 90;
@@ -178,7 +132,7 @@ export const MobileImageContainer = styled.div`
     bottom: 10%;
     ::-webkit-scrollbar-track {
       border-radius: 10px;
-      background-color: ${theme.colors.main.purple.light_1};
+      background-color: ${theme.colors.background.violet};
     }
 
     ::-webkit-scrollbar {
@@ -187,7 +141,8 @@ export const MobileImageContainer = styled.div`
 
     ::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: ${theme.colors.main.purple.dark_1};
+      background-color: #b7b7ed;
+      border: 3.5px solid ${theme.colors.background.violet};
     }
   }
 

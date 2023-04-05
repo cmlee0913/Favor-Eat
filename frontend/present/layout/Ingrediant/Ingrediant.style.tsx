@@ -32,6 +32,7 @@ export const Contentbar = styled.div<{
     text-align: center;
 
     p {
+      font-family: "Inter-Medium" !important;
       position: relative;
       padding: 0;
       margin: 0 !important;

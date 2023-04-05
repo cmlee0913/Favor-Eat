@@ -31,7 +31,7 @@ export const MyPageUser = styled.div`
 
 export const HoverGrid = styled.div`
   display: grid;
-  grid-template-columns: 3fr 5fr;
+  grid-template-columns: 1fr 3fr;
 
   ${theme.devices.tablet} {
     grid-template-columns: 1.5fr 5fr;
@@ -39,16 +39,14 @@ export const HoverGrid = styled.div`
 `;
 
 export const HoverImageContainer = styled.div`
-  display: grid;
-  align-items: center;
+  width: 95%;
+  height: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
 `;
 
-export const HoverImageWrapper = styled.div`
-  img {
-    width: 100%;
-    height: auto;
-  }
-`;
+export const HoverImageWrapper = styled.div``;
 
 // MyPageAccordian.tsx
 export const MyPageAccordian = styled.div`
@@ -72,7 +70,7 @@ export const FlavorDataContainer = styled.div`
   grid-template-columns: 1fr 3fr;
 
   gap: 5px;
-  margin-top: 8px;
+  margin: 1rem 0;
 
   font-family: "Pretendard-Medium";
 

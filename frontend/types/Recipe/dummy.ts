@@ -1,6 +1,5 @@
 export interface RecipeImgProps {
   mainImg: any;
-  subImg: any;
 }
 
 export interface RecipeNavType {
@@ -9,14 +8,14 @@ export interface RecipeNavType {
   isOpen: boolean;
 }
 
-export interface RecipeProps {
-  RecipeArr: Array<RecipeNavType>;
-  selectIdx: number;
-}
-
 export interface RecipeContentProps {
   RecipeArr: Array<RecipeNavType>;
   selectIdx: number;
+  setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface RecipeAcordianProps {
+  RecipeArr: Array<RecipeNavType>;
   setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -41,7 +40,7 @@ export interface RecipeData {
   quantity: string;
   time: string;
   level: string;
-  image: string;
+  image: any;
   nutrientInfo: {
     calorie: number;
     moisture: number;
@@ -78,6 +77,7 @@ interface RecipeList {
 }
 
 interface ingredientsInFoods {
+  name: string;
   unit: string;
   amount: string;
 }

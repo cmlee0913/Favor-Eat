@@ -330,6 +330,7 @@ export const CharacterNameStyle = css`
   font-size: 1.3rem;
   text-align: center;
   margin-top: 10px;
+  font-family: Pretendard-Bold;
 
   ${theme.devices.tablet} {
     font-size: 0.9rem;
@@ -378,7 +379,7 @@ export const Character = styled.div`
 export const Introduction = styled.div`
   font-size: 1.8rem;
   font-weight: 600;
-  font-family: Pretendard-Medium;
+  font-family: Pretendard-Bold;
   z-index: 999;
   position: absolute;
   top: 10vh;
@@ -410,9 +411,11 @@ export const ChooseButton = styled.div`
   transform: translateX(-50%);
   word-break: keep-all;
   text-align: center;
+  font-family: Pretendard-Bold;
 
   :hover {
     cursor: pointer;
+    background-color: ${theme.colors.main.skyblue};
   }
 
   ${theme.devices.tablet} {

@@ -7,6 +7,12 @@ import "../constant/font.css";
 import CustomCursor from "@/present/common/CustomCursor/CustomCursor";
 import ModalCompo from "@/present/component/ModalCompo/ModalCompo";
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname;
 

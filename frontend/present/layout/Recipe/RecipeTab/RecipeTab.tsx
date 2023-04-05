@@ -8,6 +8,8 @@ export default function RecipeTab({
   ingredientsInFoodList,
   recipesList,
 }: RecipeProcessProps) {
+
+  // 요리 과정
   const recipeProcess = recipesList.map((elem, idx) => {
     return (
       <style.RecipeProcessCompo key={idx}>
@@ -20,11 +22,15 @@ export default function RecipeTab({
     );
   });
 
+  // 요리 재료
   const Ingredients = ingredientsInFoodList.map((elem, idx) => {
     return (
       <style.Ingredient key={idx}>
-        {elem.amount}
-        {elem.unit}
+        <div>{elem.name}</div>
+        <div>
+          {elem.amount}
+          {elem.unit}
+        </div>
       </style.Ingredient>
     );
   });

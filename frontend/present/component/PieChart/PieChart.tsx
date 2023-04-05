@@ -5,20 +5,15 @@ import useMediaQuery from "@/action/hooks/useMediaQuery";
 import * as styles from "./PieChart.styles";
 import { MainNutrient } from "@/types/Recipe/dummy";
 
+let calorieVal = 0
+let moistureVal = 0
+
 const CenteredMetric = ({
   centerX,
-  centerY,
-  // calorie,
-  // moisture,
-  //   radius,
-  //   innerRadius,
-  //   arcGenerator,
+  centerY
 }) => {
   const isTablet = useMediaQuery("(min-width: 769px)");
   const isPhone = useMediaQuery("(min-width: 426px)");
-
-  // console.log(`${isTablet}`);
-  // console.log(`${isPhone}`);
 
   let titleCoordinateY = centerY - 40;
   let subTitleCoordinateY = centerY + 40;
@@ -65,21 +60,19 @@ const CenteredMetric = ({
         textAnchor="middle"
         style={{
           fontSize: `${titleFont}`,
-          fontWeight: 600,
         }}
       >
         총 영양 비율
       </text>
       <text
         x={centerX}
-        y={centerY}
+        y={centerY + 10}
         textAnchor="middle"
         style={{
           fontSize: `${subTitleFont}`,
-          fontWeight: 600,
         }}
       >
-        총 칼로리 : {500}kcal
+        총 칼로리 : {calorieVal}kcal
       </text>
       <text
         x={centerX}
@@ -87,10 +80,9 @@ const CenteredMetric = ({
         textAnchor="middle"
         style={{
           fontSize: `${subTitleFont}`,
-          fontWeight: 600,
         }}
       >
-        수분 : {500}g
+        수분 : {moistureVal}g
       </text>
     </>
   );
@@ -154,6 +146,9 @@ const Piechart = ({
       ? (symbolSize = 25)
       : `${!isTablet && isPhone ? (symbolSize = 10) : (symbolSize = 5)}`
   }`;
+
+  calorieVal = calorie
+  moistureVal = moisture
 
   return (
     // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
@@ -253,7 +248,7 @@ const Piechart = ({
                 // 추가 효과 설정 (hover하면 textColor를 olive로 변경)
                 on: "hover",
                 style: {
-                  itemTextColor: "gray",
+                  itemTextColor: theme.colors.main.blue,
                 },
               },
             ],
@@ -267,7 +262,8 @@ const Piechart = ({
           labels: {
             text: {
               fontSize: `${labelFontSize}`,
-              fill: "#000000",
+              fill: theme.colors.mono.light_1,
+              fontFamily: "Inter-ExtraBold",
             },
           },
           /**
@@ -277,6 +273,7 @@ const Piechart = ({
             text: {
               fontSize: `${legendFontSize}`,
               fill: "#000000",
+              fontFamily: "Pretendard-Medium",
             },
           },
         }}

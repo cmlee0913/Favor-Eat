@@ -23,7 +23,7 @@ export const TopContainer = styled.div`
 
 export const Title = styled.div`
   font-size: 1.5rem;
-  font-weight: 700;
+  font-family: Pretendard-Bold;
 
   ${theme.devices.tablet} {
     font-size: 1.2rem;
@@ -35,7 +35,7 @@ export const Title = styled.div`
 
 export const Count = styled.div`
   font-size: 1.5rem;
-  margin-top: 5px;
+  font-family: Pretendard-SemiBold;
 
   ${theme.devices.tablet} {
     font-size: 1.2rem;
@@ -48,9 +48,16 @@ export const Count = styled.div`
 //middle
 export const MiddleContainer = styled.div`
   width: 100%;
+  height: 50vh;
+  min-height: fit-content;
   flex-direction: row;
   ${FlexCenter}
   background-color: ${theme.colors.main.purple.light_1};
+
+  ${theme.devices.tablet} {
+    height: 30vh;
+    justify-content: flex-start;
+  }
 
   & > div {
     background-color: ${theme.colors.main.purple.light_1};
@@ -120,6 +127,10 @@ export const Button = styled.button<{ show: boolean }>`
     height: 9rem;
     cursor: pointer;
 
+    :hover {
+      scale: 1.1;
+    }
+
     ${theme.devices.tablet} {
       width: 5rem;
       height: 5rem;
@@ -130,8 +141,10 @@ export const Button = styled.button<{ show: boolean }>`
     }
   }
 
+  /* name */
   & div {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    font-family: Pretendard-Mideum;
 
     ${theme.devices.tablet} {
       font-size: 1.1rem;
@@ -142,6 +155,7 @@ export const Button = styled.button<{ show: boolean }>`
 export const BottomContainer = styled.div`
   width: 100%;
   text-align: center;
+  font-family: Pretendard-Mideum;
 
   font-size: 0.8rem;
   ${theme.devices.tablet} {

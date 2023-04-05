@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as style from "./MyPage.style";
 
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { getUserDataByToken, userTokenSave } from "@/store/userStore";
 import { getMyTaste } from "@/action/apis/myPage";
 
@@ -22,19 +22,18 @@ import MyPageFlavorData from "./MyPageFlavorData";
 import { FlavorStaticData } from "@/types/MyPage/dummy";
 
 import LeftTitleBox from "@/present/common/TitleBox/LeftTitleBox/LeftTitleBox";
-import Image from "next/image";
+import { isHoverAtom } from "@/store/hoverStore";
+import HoverInfoCompo from "@/present/component/HoverInfoCompo/HoverInfoCompo";
 
 export default function MyPageUser() {
   const [name, setName] = useState("로그인 해주세요!");
-  const [selectedFlavorType, setSelectedFlavorType] = useState("spicy");
-  const [hoverImage, setHoverImage] = useState(SpicyHoverBoxPc);
-  const [isHover, setIsHover] = useState(false);
   const [flavors, setFlavors] = useState({
     oily: 0,
     salty: 0,
     spicy: 0,
     sweet: 0,
   });
+  const isHover = useAtomValue(isHoverAtom);
 
   const [token] = useAtom(userTokenSave);
 
@@ -70,8 +69,6 @@ export default function MyPageUser() {
       title: "매워요",
       subtitle: "맵기",
       img: Spicy,
-      pcHover: SpicyHoverBoxPc,
-      mobileHover: SpicyHoverBoxMobile,
       value: flavors.spicy,
     },
     {
@@ -79,8 +76,6 @@ export default function MyPageUser() {
       title: "달아요",
       subtitle: "달기",
       img: Sweet,
-      pcHover: SweetHoverBoxPC,
-      mobileHover: SweetHoverBoxMobile,
       value: flavors.sweet,
     },
     {
@@ -88,8 +83,6 @@ export default function MyPageUser() {
       title: "짜요",
       subtitle: "짜기",
       img: Salty,
-      pcHover: SaltyHoverBoxPC,
-      mobileHover: SaltyHoverBoxMobile,
       value: flavors.salty,
     },
     {
@@ -97,19 +90,9 @@ export default function MyPageUser() {
       title: "기름져요",
       subtitle: "기름지기",
       img: Oily,
-      pcHover: SaltyHoverBoxPC,
-      mobileHover: SaltyHoverBoxMobile,
       value: flavors.oily,
     },
   ];
-
-  useEffect(() => {
-    flavorData.forEach((item, index) => {
-      if (item.type === selectedFlavorType) {
-        setHoverImage(flavorData[index].pcHover);
-      }
-    });
-  }, [selectedFlavorType]);
 
   return (
     <style.MyPageUser>
@@ -119,20 +102,11 @@ export default function MyPageUser() {
       />
       <style.HoverGrid>
         <style.HoverImageContainer>
-          {isHover ? (
-            <style.HoverImageWrapper>
-              <Image src={hoverImage} alt="item.type" />
-            </style.HoverImageWrapper>
-          ) : null}
+          {isHover ? <HoverInfoCompo /> : null}
         </style.HoverImageContainer>
         <div>
           {flavorData.map((item, index) => (
-            <MyPageFlavorData
-              key={index}
-              setHoverType={setSelectedFlavorType}
-              setIsHover={setIsHover}
-              item={item}
-            />
+            <MyPageFlavorData key={index} item={item} />
           ))}
         </div>
       </style.HoverGrid>

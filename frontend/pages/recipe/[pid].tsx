@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import GridLayout from "@/present/layout/GridLayout/GridLayout";
 import RecipeImg from "@/present/layout/Recipe/RecipeImg/RecipeImg";
 
-import Test from "@/assets/image/test.jpg";
 import RecipeNav from "@/present/layout/Recipe/RecipeNav/RecipeNav";
 import RecipeContent from "@/present/layout/Recipe/RecipeContent/RecipeContent";
 import { RecipeData, RecipeNavType } from "@/types/Recipe/dummy";
@@ -10,7 +9,7 @@ import RecipeTab from "@/present/layout/Recipe/RecipeTab/RecipeTab";
 
 import * as style from "@/present/layout/Recipe/pageStyle";
 
-import { FlavorInfo } from "@/types/RecipeFlavor/dummy";
+import NoImg from "@/assets/image/NoImg.png"
 import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
 import { useAtom } from "jotai";
 import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
@@ -18,17 +17,19 @@ import Ingrediant from "@/present/layout/Ingrediant/Ingrediant";
 import { useRouter } from "next/router";
 import { getAsync } from "@/action/apis/apis";
 import { apiURL } from "@/store/constants";
+import { userTokenSave } from "@/store/userStore";
 
-export default function Recipe() {
+function Recipe() {
   const router = useRouter();
   const { pid } = router.query;
+  const [token, setUserToken] = useAtom(userTokenSave);
 
   const [recipeData, setRecipeData] = useState<RecipeData>({
     name: "",
     quantity: "",
     time: "",
     level: "",
-    image: "",
+    image: NoImg,
     nutrientInfo: {
       calorie: 0,
       moisture: 0,
@@ -58,6 +59,7 @@ export default function Recipe() {
     recipesList: [],
     ingredientsInFoodList: [],
   });
+
   //색상 선택
   const [selectIdx, setSelectedIdx] = useState(0);
   const [RecipeArr, setRecipeArr] = useState<Array<RecipeNavType>>([
@@ -65,7 +67,7 @@ export default function Recipe() {
       category: "맛",
       content: (
         <RecipeFlavorLayout
-          recipeImage={Test}
+          recipeImage={recipeData.image}
           tasteInfo={recipeData.tasteInfo}
         />
       ),
@@ -89,11 +91,13 @@ export default function Recipe() {
     },
   ]);
 
-  console.log(recipeData);
-
   useEffect(() => {
     if (pid) {
-      getAsync(`https://j8d108.p.ssafy.io/api/foods/${pid}`).then((res) => {
+      getAsync(`${apiURL}/foods/${pid}`, {
+        headers: {
+          Authorization: `Bearer ${token.accessToken}`,
+        },
+      }).then((res) => {
         if (res.isSuccess) {
           setRecipeData({ ...res.result });
           setRecipeArr([
@@ -101,7 +105,7 @@ export default function Recipe() {
               category: "맛",
               content: (
                 <RecipeFlavorLayout
-                  recipeImage={Test}
+                  recipeImage={res.result.image}
                   tasteInfo={res.result.tasteInfo}
                 />
               ),
@@ -145,13 +149,10 @@ export default function Recipe() {
     setRecipeArr([...tmp]);
   }, [selectIdx]);
 
-  //TestImg
-  const subImg = [Test, Test, Test];
-
   //레시피 즐겨찾기 여부
   //레시피 데이터 들고올때 초기화 필요
   const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
-    recipeFavorCheckedAtom
+    recipeFavorCheckedAtom,
   );
 
   return (
@@ -159,7 +160,7 @@ export default function Recipe() {
       {/* PC ver */}
       <GridLayout>
         {/* 음식 이미지 */}
-        <RecipeImg mainImg={recipeData.image} subImg={subImg} />
+        <RecipeImg mainImg={recipeData.image} />
 
         {/* 음식 상세 정보 */}
         <div>
@@ -199,3 +200,6 @@ export default function Recipe() {
     </style.PageContainer>
   );
 }
+
+
+export default memo(Recipe)

@@ -15,7 +15,7 @@ import defaultImage from "@/assets/image/default-image.png";
 import NextIcon from "@/assets/icon/Next.svg";
 
 import { useEffect, useState } from "react";
-import { HoverBoxImageType } from "@/types/RecipeFlavor/dummy";
+import { FlavorType, HoverBoxImageType } from "@/types/RecipeFlavor/dummy";
 import { FlavorObject } from "@/types/Taste/dummy";
 import Image from "next/image";
 import useMediaQuery from "@/action/hooks/useMediaQuery";
@@ -23,10 +23,12 @@ import Button from "@/present/common/Button/Button";
 import { useRouter } from "next/router";
 import { TasteEvaluateBoxCompoProps } from "@/types/TasteEvaluateBoxCompo/dummy";
 import { currentIndexAtom, recipeRatingListAtom } from "@/store/tasteStore";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { RecipeRatingType } from "@/types/store/tasteStoreTypes";
 import { sendFirstRecipeTasteValue } from "@/action/apis/taste";
 import { userTokenSave } from "@/store/userStore";
+import { hoverTypeAtom, isHoverAtom } from "@/store/hoverStore";
+import HoverInfoCompo from "../HoverInfoCompo/HoverInfoCompo";
 
 const hoverBoxValue = {
   spicy: {
@@ -84,31 +86,29 @@ export default function TasteEvaluateBoxCompo({
   recipeData,
   buttonActive,
 }: TasteEvaluateBoxCompoProps) {
-  const isTablet = useMediaQuery("(min-width: 769px)");
+  const isTablet = useMediaQuery("(min-width: 1000px)");
   const isMobile = useMediaQuery("(min-width: 426px)");
   const { recipeId, recipeName, imageSrc } = recipeData;
   const router = useRouter();
 
   //hover info box
-  const [hoverBoxImage, setHoverBoxImage] = useState<HoverBoxImageType>(
-    hoverBoxValue.spicy,
-  );
-  const [leftInfoShow, setLeftInfoShow] = useState(false);
+  const setHoverType = useSetAtom(hoverTypeAtom);
+  const [isHover, setIsHover] = useAtom(isHoverAtom);
   const [rightInfoShow, setRightInfoShow] = useState(false);
-  const onActive = (type: string, isLeft: boolean) => {
-    setHoverBoxImage(hoverBoxValue[type]);
+
+  const onActive = (type: FlavorType, isLeft: boolean) => {
+    setHoverType(type);
+    setIsHover(true);
 
     if (isLeft) {
       //화면 깜빡임 방지
-      setLeftInfoShow(false);
-      setLeftInfoShow(true);
+      setRightInfoShow(false);
       return;
     }
-    setRightInfoShow(false);
     setRightInfoShow(true);
   };
   const onInactive = () => {
-    setLeftInfoShow(false);
+    setIsHover(false);
     setRightInfoShow(false);
   };
 
@@ -173,7 +173,6 @@ export default function TasteEvaluateBoxCompo({
     const oldRatingList = [...recipeRatingList];
     oldRatingList.push(newRatingValue);
     setRecipeRatingList(oldRatingList);
-    setRatingValues([0, 0, 0, 0]);
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -195,6 +194,7 @@ export default function TasteEvaluateBoxCompo({
 
   useEffect(() => {
     setCanMoveToNext(false);
+    setRatingValues([0, 0, 0, 0]);
   }, [recipeId]);
 
   return (
@@ -214,14 +214,10 @@ export default function TasteEvaluateBoxCompo({
           <style.ChracterContainer>
             <style.ImageContainer>
               <div>{recipeName}</div>
-              {leftInfoShow ? (
-                <Image
-                  className="hoverInfo"
-                  src={hoverBoxImage.mobileImage}
-                  width={1000}
-                  height={1000}
-                  alt="맛 레벨 정보"
-                />
+              {isHover && !rightInfoShow ? (
+                <div>
+                  <HoverInfoCompo />
+                </div>
               ) : (
                 <Image
                   src={imageSrc ? imageSrc : defaultImage}
@@ -248,10 +244,10 @@ export default function TasteEvaluateBoxCompo({
                         <div
                           className="hover"
                           onMouseOver={() => {
-                            setHoverBoxImage(hoverBoxValue[item.type]);
-                            setLeftInfoShow(true);
+                            setHoverType(item.type);
+                            setIsHover(true);
                           }}
-                          onMouseOut={() => setLeftInfoShow(false)}
+                          onMouseOut={() => setIsHover(false)}
                         >
                           <div>?</div>
                         </div>
@@ -301,9 +297,7 @@ export default function TasteEvaluateBoxCompo({
           </style.Header>
           <style.PcBody>
             <style.InfoBox>
-              {leftInfoShow ? (
-                <Image src={hoverBoxImage.pcImage} alt="맛 레벨 기준" />
-              ) : null}
+              {isHover && !rightInfoShow ? <HoverInfoCompo /> : null}
             </style.InfoBox>
             <div className="row">
               {ratingObjList[0].map((item, index) => {
@@ -340,9 +334,7 @@ export default function TasteEvaluateBoxCompo({
               })}
             </div>
             <style.InfoBox>
-              {rightInfoShow ? (
-                <Image src={hoverBoxImage.pcImage} alt="맛 레벨 기준" />
-              ) : null}
+              {isHover && rightInfoShow ? <HoverInfoCompo /> : null}
             </style.InfoBox>
             <div className="row">
               {ratingObjList[1].map((item, index) => {
