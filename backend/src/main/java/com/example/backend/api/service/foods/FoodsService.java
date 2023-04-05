@@ -6,6 +6,8 @@ import com.example.backend.api.dto.foods.response.ResponseRecommendFood;
 import com.example.backend.api.dto.foods.response.ResponseTasteInfo;
 import com.example.backend.api.entity.foods.Favorites;
 import com.example.backend.api.entity.foods.NonFavorites;
+import com.example.backend.api.entity.foods.Recommends;
+import com.example.backend.api.entity.foods.SamplingFoods;
 import com.example.backend.api.entity.idclass.UsersFoodsID;
 import com.example.backend.api.repository.foods.FavoritesRepository;
 import com.example.backend.api.repository.foods.FoodsRepository;
@@ -56,7 +58,7 @@ public class FoodsService {
             .oily(averageFlavorValues.get("fatness")).build();
 
         return foodsRepository.findById(id).orElseThrow(NullPointerException::new)
-            .toDTO(evaluationsRepository.findByNoAndFoodsId(no, id).isPresent(), foodsTasteInfo);
+            .toDTO(favoritesRepository.findById(new UsersFoodsID(no, id)).isPresent(), foodsTasteInfo);
     }
 
     /**
@@ -66,13 +68,13 @@ public class FoodsService {
     public List<ResponseBasicFoodInfo> getSamplingFoodList(Long index) {
         return samplingFoodsRepository.findAll(PageRequest.of(Math.toIntExact(index), 100))
             .getContent().stream()
-            .map(samplingfoods -> samplingfoods.toDTO())
+            .map(SamplingFoods::toDTO)
             .collect(Collectors.toList());
     }
 
     public List<ResponseBasicFoodInfo> getFavorFoodList(Long no) {
         return favoritesRepository.findByNo(no).stream()
-            .map(favorites -> favorites.toDTO())
+            .map(Favorites::toDTO)
             .collect(Collectors.toList());
     }
 
@@ -104,7 +106,7 @@ public class FoodsService {
 
     public List<ResponseRecommendFood> getRecommendFoodList(Long no) {
         return recommendsRepository.findByNo(no).stream()
-            .map(recommends -> recommends.toDTO())
+            .map(Recommends::toDTO)
             .collect(Collectors.toList());
     }
 
