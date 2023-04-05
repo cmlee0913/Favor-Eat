@@ -17,12 +17,19 @@ export default function Diary() {
     const { isSuccess, result } = await getDiaryList(token);
     if (isSuccess) {
       setData(result);
+      console.log(result);
     }
   };
 
   useEffect(() => {
+    setCurDate(new Date());
+  }, []);
+
+  useEffect(() => {
     if (token.accessToken) {
       requestDiaryList(token.accessToken, curDate);
+      console.log(curDate);
+      console.log("__________________________________");
     }
   }, [token, curDate]);
 

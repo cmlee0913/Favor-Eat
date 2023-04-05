@@ -20,8 +20,9 @@ export default function Diary() {
   const { pid } = router.query;
   const [data, setData] = useState(null);
 
+  const emotionImages = ["", Emotion1, Emotion2, Emotion3, Emotion4, Emotion5];
+
   const strDate = new Date(parseInt(data?.registedDate)).toLocaleDateString();
-  const emotionImages = [0, Emotion1, Emotion2, Emotion3, Emotion4, Emotion5];
 
   const goEdit = () => {
     router.push(`/diary/edit/${data.id}`);
@@ -41,7 +42,9 @@ export default function Diary() {
     }
   }, [token, pid]);
 
-  const emotionImagePath = data?.emotion ? emotionImages[data.emotion] : "";
+  const emotionImagePath = emotionImages[data?.emotion]
+    ? emotionImages[data?.emotion]
+    : "/default.png";
 
   return (
     <style.DiaryDetailContainer>
@@ -55,14 +58,14 @@ export default function Diary() {
           <style.DiaryDetailLeftGrid>
             <div>오늘의 감정</div>
             <div>
-              {/* {data?.emotion && (
+              {data?.emotion && (
                 <Image
                   src={emotionImagePath}
                   alt="emotion"
                   width={150}
                   height={150}
                 />
-              )} */}
+              )}
             </div>
             <div>오늘의 사진첩</div>
             <div>{data?.responsePhotoAttributes}</div>

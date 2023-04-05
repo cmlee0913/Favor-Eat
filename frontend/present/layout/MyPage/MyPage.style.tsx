@@ -171,7 +171,7 @@ export const ButtonContainer = styled.button`
   color: ${theme.colors.mono.light_1};
   border: none;
   background-color: ${theme.colors.main.blue};
-  /* font-size: 1.5rem; */
+  font-size: 1.5rem;
   padding: 0.5rem 1.5rem;
   min-width: 5rem;
   border-radius: 2rem;

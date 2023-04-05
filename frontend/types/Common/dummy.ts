@@ -1,6 +1,6 @@
 export interface ButtonProps {
   context: string;
-  handler: React.MouseEventHandler<HTMLButtonElement>;
+  handler: any;
 }
 
 export interface ApiStateRes {

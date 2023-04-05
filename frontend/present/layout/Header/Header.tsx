@@ -7,7 +7,7 @@ import HambugerBar from "@/present/component/HambugerBar/HambugerBar";
 import * as style from "./Header.style";
 import Menu from "../Menu/Menu";
 
-function Header() {
+function Header({ isDiary }: { isDiary: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const isMain = router.pathname === "/main" ? true : false;
@@ -24,10 +24,12 @@ function Header() {
     }
   }, [isOpen]);
 
+  const isTransparent = isDiary || isOpen || isMain ? true : false;
+
   return (
     <style.Container>
       {/* MenuHeader */}
-      <style.HeaderContainer isOpen={isOpen || isMain}>
+      <style.HeaderContainer isOpen={isTransparent}>
         {isMain ? (
           <div></div>
         ) : (
@@ -37,8 +39,7 @@ function Header() {
         <HambugerBar isOpen={isOpen} setIsOpen={setIsOpen} />
       </style.HeaderContainer>
       {/* MenuInner */}
-      {isOpen && <Menu setIsOpen={setIsOpen}/>}
-
+      {isOpen && <Menu setIsOpen={setIsOpen} />}
     </style.Container>
   );
 }
