@@ -23,3 +23,13 @@ export interface MyPageContentProps {
   selectIdx: number;
   setSelectedIdx: React.Dispatch<React.SetStateAction<number>>;
 }
+
+export interface ItemProps {
+  src: string;
+  recipeId: number;
+}
+
+export interface nextItemType {
+  groupKey: number;
+  key: number;
+}

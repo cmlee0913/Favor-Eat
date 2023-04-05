@@ -23,7 +23,7 @@ export const Container = styled.div`
     ${theme.devices.tablet} {
       display: flex;
       flex-direction: column-reverse;
-      padding: 5.5rem 1rem 1rem 1rem;
+      padding-top: 5.5rem;
       width: 100%;
     }
   }
