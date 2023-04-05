@@ -6,6 +6,7 @@ export default function Document() {
     <Html lang="en">
       <GlobalStyle />
       <Head>
+        <link rel="shortcut icon" href="/public/favicon.ico" />
         <script
           defer
           src="https://developers.kakao.com/sdk/js/kakao.min.js"

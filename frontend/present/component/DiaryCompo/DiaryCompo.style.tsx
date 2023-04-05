@@ -236,11 +236,75 @@ export const DiaryEditContainer = styled.div`
 
   div.title {
     font-family: "Pretand Medium";
-    font-size: 30px;
+    font-size: 0.8rem;
+    margin-bottom: 2vh;
   }
 `;
 
 export const DiaryEditTitle = styled.div`
   display: flex;
+  justify-content: space-between;
+`;
+
+export const DiaryEditTitleInput = styled.div`
+  input {
+    border: none;
+    width: 500px;
+    font-size: 1.2rem;
+  }
+
+  margin-bottom: 3vh;
+`;
+
+export const DiaryImageContainer = styled.div`
+  margin-bottom: 3vh;
+`;
+
+export const DiaryEmotionContainer = styled.div`
+  margin-bottom: 3vh;
+`;
+
+export const EmotionImageWrapper = styled.div<{ bgColor: string }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2vw;
+
+  padding: 15px;
+  background-color: ${(props) => props.bgColor};
+  border-radius: 15px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+  }
+
+  div {
+    text-align: center;
+  }
+`;
+
+export const DiaryContentContainer = styled.div`
+  textArea {
+    border: none;
+    border-radius: 15px;
+    background-color: ${theme.colors.main.purple.light_1};
+
+    padding: 20px;
+    min-width: 90vw;
+    min-height: 20vh;
+
+    font-family: "Pretendard Bold";
+    color: ${theme.colors.main.purple.dark_1};
+
+    margin-bottom: 5vh;
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
   justify-content: space-between;
 `;

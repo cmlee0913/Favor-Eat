@@ -6,6 +6,7 @@ import "../constant/font.css";
 
 import CustomCursor from "@/present/common/CustomCursor/CustomCursor";
 import ModalCompo from "@/present/component/ModalCompo/ModalCompo";
+import { useState } from "react";
 
 declare global {
   interface Window {
@@ -15,8 +16,7 @@ declare global {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter().pathname;
-
-  console.log(router);
+  const isDiary = router === "/diary/[pid]" ? true : false;
 
   return (
     <Provider>
@@ -24,9 +24,10 @@ export default function App({ Component, pageProps }: AppProps) {
       router == "/myPage" ||
       router == "/info" ||
       router == "/alarm" ||
-      // router.includes("diary") ||
+      router == "/favorite" ||
+      router.includes("diary") ||
       router.includes("recipe") ? (
-        <Header />
+        <Header isDiary={isDiary} />
       ) : null}
       <CustomCursor />
       <Component {...pageProps} />

@@ -9,7 +9,7 @@ import Emotion3 from "@/assets/image/Emotion/emotion3.png";
 import Emotion4 from "@/assets/image/Emotion/emotion4.png";
 import Emotion5 from "@/assets/image/Emotion/emotion5.png";
 
-const emotionImages = [0, Emotion1, Emotion2, Emotion3, Emotion4, Emotion5];
+const emotionImages = ["", Emotion1, Emotion2, Emotion3, Emotion4, Emotion5];
 
 const DiaryItem = ({ id, title, emotion, content, registedDate }) => {
   const router = useRouter();
@@ -26,7 +26,11 @@ const DiaryItem = ({ id, title, emotion, content, registedDate }) => {
   return (
     <style.DiaryItemContainer>
       <style.DiaryImageWrapper>
-        {/* <Image src={emotionImages[emotion]} alt="emotion" onClick={goDetail} /> */}
+        <Image
+          src={emotionImages[emotion] ? emotionImages[emotion] : "/default.png"}
+          alt="emotion"
+          onClick={goDetail}
+        />
       </style.DiaryImageWrapper>
       <style.DiaryContentWrapper onClick={goDetail}>
         <div>{strDate}</div>
