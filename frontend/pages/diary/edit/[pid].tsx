@@ -17,6 +17,8 @@ import Emotion3 from "@/assets/image/Diary/CircleEmotion/emotion3.png";
 import Emotion4 from "@/assets/image/Diary/CircleEmotion/emotion4.png";
 import Emotion5 from "@/assets/image/Diary/CircleEmotion/emotion5.png";
 
+import { theme } from "@/constant/theme";
+
 export default function Diary() {
   const [token] = useAtom(userTokenSave);
   const router = useRouter();
@@ -28,13 +30,6 @@ export default function Diary() {
     emotion: "",
     responsePhotoAttributes: [],
   });
-
-  // const setEmotionValue = (value) => {
-  //   setDiary((prev) => ({
-  //     ...prev,
-  //     emotion: value,
-  //   }));
-  // };
 
   // 일기 정보를 가져옵니다.
   const requestDiaryDetail = async (token: string, pid: string) => {
@@ -52,6 +47,7 @@ export default function Diary() {
 
   const putClick = async () => {
     putDiary(token.accessToken, diary, pid);
+    await router.push("/diary");
   };
 
   // 일기를 삭제합니다.
@@ -59,6 +55,61 @@ export default function Diary() {
     deleteDiary(token.accessToken, pid);
     router.push("/diary");
   };
+
+  const emotions = [
+    {
+      src: Emotion1,
+      alt: "매우 긍정적",
+      emotion: "1",
+      color: theme.colors.character.sweet,
+    },
+    {
+      src: Emotion2,
+      alt: "긍정적",
+      emotion: "2",
+      color: theme.colors.character.etc,
+    },
+    {
+      src: Emotion3,
+      alt: "보통",
+      emotion: "3",
+      color: theme.colors.character.oily,
+    },
+    {
+      src: Emotion4,
+      alt: "부정적",
+      emotion: "4",
+      color: theme.colors.character.salty,
+    },
+    {
+      src: Emotion5,
+      alt: "매우 부정적",
+      emotion: "5",
+      color: theme.colors.character.spicy,
+    },
+  ];
+
+  const emotionHandler = (elem) =>
+    setDiary((prev) => ({
+      ...prev,
+      emotion: elem.emotion,
+    }));
+
+  const emotionArr = emotions.map((elem, idx) => {
+    const color = elem.emotion === diary.emotion ? elem.color : "#cccccc";
+    return (
+      <style.EmotionImageWrapper key={idx} bgColor={color}>
+        <Image
+          src={elem.src}
+          alt={elem.alt}
+          onClick={() => {
+            emotionHandler(elem);
+          }}
+        />
+        <div>{elem.alt}</div>
+      </style.EmotionImageWrapper>
+    );
+  });
 
   return (
     <style.DiaryEditContainer>
@@ -111,77 +162,7 @@ export default function Diary() {
 
       <style.DiaryEmotionContainer>
         <div className="title">오늘의 감정</div>
-        <div style={{ display: "flex" }}>
-          <style.EmotionImageWrapper>
-            <Image
-              src={Emotion1}
-              alt="Emotion1"
-              onClick={() =>
-                setDiary((prev) => ({
-                  ...prev,
-                  emotion: "1",
-                }))
-              }
-            />
-            <div>매우 긍정적</div>
-          </style.EmotionImageWrapper>
-
-          <style.EmotionImageWrapper>
-            <Image
-              src={Emotion2}
-              alt="Emotion2"
-              onClick={() =>
-                setDiary((prev) => ({
-                  ...prev,
-                  emotion: "2",
-                }))
-              }
-            />
-            <div>긍정적</div>
-          </style.EmotionImageWrapper>
-
-          <style.EmotionImageWrapper>
-            <Image
-              src={Emotion3}
-              alt="Emotion3"
-              onClick={() =>
-                setDiary((prev) => ({
-                  ...prev,
-                  emotion: "3",
-                }))
-              }
-            />
-            <div>보통</div>
-          </style.EmotionImageWrapper>
-
-          <style.EmotionImageWrapper>
-            <Image
-              src={Emotion4}
-              alt="Emotion4"
-              onClick={() =>
-                setDiary((prev) => ({
-                  ...prev,
-                  emotion: "4",
-                }))
-              }
-            />
-            <div>부정적</div>
-          </style.EmotionImageWrapper>
-
-          <style.EmotionImageWrapper>
-            <Image
-              src={Emotion5}
-              alt="Emotion5"
-              onClick={() =>
-                setDiary((prev) => ({
-                  ...prev,
-                  emotion: "5",
-                }))
-              }
-            />
-            <div>매우 부정적</div>
-          </style.EmotionImageWrapper>
-        </div>
+        <div style={{ display: "flex" }}>{emotionArr}</div>
       </style.DiaryEmotionContainer>
 
       <style.DiaryContentContainer>
