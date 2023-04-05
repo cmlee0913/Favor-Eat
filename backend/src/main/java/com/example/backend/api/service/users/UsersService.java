@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class UsersService {
     private final EvaluationsRepository evaluationsRepository;
 
     /**
-     * remove refresh token
+     * Remove refresh token
      *
      * @param no must not be null
      * @return entity with No equal to given value
@@ -46,6 +47,14 @@ public class UsersService {
         return usersRepository.save(users);
     }
 
+    /**
+     * Returns the user's flavor information and whether they agree to the alarm using the given
+     * value.
+     *
+     * @param no must not be null
+     * @return the user's flavor information and whether they agree to the alarm.
+     * @throws NullPointerException can't find user
+     */
     public ResponseUserInfo getUserInfo(Long no) {
         log.info("getUserInfo() 호출");
         Users users = usersRepository.findByNo(no).orElseThrow(NullPointerException::new);
@@ -65,24 +74,22 @@ public class UsersService {
 
 
     /**
-     * save evaluations and change user's role
+     * Save evaluations and change user's role
      *
      * @param no                      must not be null
      * @param requestTasteEvaluations must not be null
-     * @return entity
-     * @throws RuntimeException failed to save evaluations
+     * @return saved entity
      */
     @Transactional(rollbackOn = RuntimeException.class)
     public Users registInitialEvaluations(Long no,
-        List<RequestTasteEvaluations> requestTasteEvaluations) throws RuntimeException {
+        List<RequestTasteEvaluations> requestTasteEvaluations) {
 
-        for (RequestTasteEvaluations tasteEvaluations : requestTasteEvaluations) {
-            evaluationsRepository.save(tasteEvaluations.toEntity(no));
-        }
+        evaluationsRepository.saveAll(requestTasteEvaluations.stream()
+            .map(evaluation -> evaluation.toEntity(no))
+            .collect(Collectors.toList()));
 
         Optional<Users> users = usersRepository.findByNo(no);
         users.ifPresentOrElse(user -> user.updateRole(Role.USER), () -> {
-            log.info("사용자 존재 X");
             throw new RuntimeException();
         });
 
@@ -91,26 +98,37 @@ public class UsersService {
     }
 
     /**
-     * remove refresh token
+     * Save evaluation
      *
      * @param no                      must not be null
      * @param requestTasteEvaluations must not be null
-     * @throws RuntimeException failed to save evaluation
      */
     @Transactional
-    public void registEvaluations(Long no, RequestTasteEvaluations requestTasteEvaluations)
-        throws RuntimeException {
+    public void registEvaluations(Long no, RequestTasteEvaluations requestTasteEvaluations) {
         evaluationsRepository.save(requestTasteEvaluations.toEntity(no));
     }
 
+    /**
+     * Return an evaluation with the given values.
+     *
+     * @param no      must not be null
+     * @param foodsId must not be null
+     * @return evaluation
+     * @throws NullPointerException entity is not exist
+     */
     public ResponseTasteInfo getEvaluations(Long no, Long foodsId) {
         return evaluationsRepository.findByNoAndFoodsId(no, foodsId)
             .map(Evaluations::toDTO).orElseThrow(NullPointerException::new);
     }
 
+    /**
+     * Request bigdata server to store the recommendation list.
+     *
+     * @param no must not be null
+     * @throws RuntimeException response 500 error
+     */
     public void requestRegistRecommends(Long no) {
-        log.info("사용자 업데이트 완료, 빅데이터와 연결 시도");
-        // 요청 보내기
+        log.info("빅데이터와 연결 시작");
         Map<String, Long> params = new HashMap<>();
         params.put("no", no);
 
@@ -121,13 +139,13 @@ public class UsersService {
 
         RestTemplate rt = new RestTemplate();
         ResponseEntity<Object> response = rt.exchange(
-            "http://j8d108.p.ssafy.io:6000/predict", //{요청할 서버 주소}
-            HttpMethod.POST, //{요청할 방식}
-            entity, // {요청할 때 보낼 데이터}
+            "http://j8d108.p.ssafy.io:6000/predict",
+            HttpMethod.POST,
+            entity,
             Object.class
         );
 
-        log.info("사용자 업데이트 완료, 빅데이터와 연결 종료");
+        log.info("빅데이터와 연결 종료");
         if (response.getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
             throw new RuntimeException("빅데이터 에러 발생");
         }
