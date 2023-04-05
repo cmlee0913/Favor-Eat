@@ -7,6 +7,10 @@ export const Container = styled.div`
   display: inline-block;
   margin: 1vw;
 
+  :hover {
+    cursor: pointer;
+  }
+
   ${theme.devices.tablet} {
     width: 30vw;
     height: 30vw;
