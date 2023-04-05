@@ -36,7 +36,7 @@ ResultLayoutProps) {
           title: "나는 으른 입맛일까?", // 인자값으로 받은 title
           description: "나의 입맛 연령 테스트 결과를 구경해보세요", // 인자값으로 받은 title
           imageUrl:
-            "https://cdn.pixabay.com/photo/2016/10/13/19/15/bibimbap-1738580_960_720.jpg",
+            "https://leechangmin-s3-bucket.s3.ap-northeast-2.amazonaws.com/FavorEat.png",
           link: {
             webUrl: url,
           },
