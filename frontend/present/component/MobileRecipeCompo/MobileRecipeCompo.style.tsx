@@ -10,6 +10,7 @@ export const Container = styled.div`
   ${theme.devices.tablet} {
     width: 30vw;
     height: 30vw;
+    max-height: 200px;
   }
 
   ${theme.devices.mobile} {

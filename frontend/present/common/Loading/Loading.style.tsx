@@ -9,7 +9,7 @@ export const ContainerLoading = styled.div`
   gap: 3rem;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 10000;
   position: absolute;
   background-color: ${theme.colors.mono.light_1};
 

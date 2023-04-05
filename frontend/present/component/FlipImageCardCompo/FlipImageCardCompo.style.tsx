@@ -17,8 +17,9 @@ export const CardWrapper = styled.div<{
 }>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  min-height: 180px;
-  min-width: 200px;
+  min-height: 210px;
+  min-width: 230px;
+  transition: ${theme.trans};
 
   .card {
     .back {
@@ -96,10 +97,11 @@ export const FlexItem = styled.div`
   height: fit-content;
 
   .foodName {
-    font-size: 1rem;
-    font-family: Pretendard-Mideum;
-    max-width: 1vw;
+    font-size: 1.1rem;
+    font-family: Pretendard-Bold;
+    max-width: 60%;
     word-break: keep-all;
+    margin-bottom: 10px;
   }
   .flavorValue {
     font-size: 1rem;
