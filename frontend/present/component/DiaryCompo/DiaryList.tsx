@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import * as style from "./DiaryCompo.style";
 
 import DiaryItem from "./DiaryItem";
-import MyButton from "./MyButton";
+import DiaryLongButton from "./DiaryLongButton";
+import DiaryControlMenu from "./DiaryControlMenu";
 
 const sortOptionList = [
   { value: "latest", name: "최신 순" },
@@ -15,22 +16,6 @@ const filterOptionList = [
   { value: "good", name: "좋은 감정만" },
   { value: "bad", name: "안 좋은 감정만" },
 ];
-
-const ControlMenu = React.memo(({ value, onChange, optionList }: any) => {
-  return (
-    <select
-      className="ControlMenu"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {optionList.map((it, idx) => (
-        <option key={idx} value={it.value}>
-          {it.name}
-        </option>
-      ))}
-    </select>
-  );
-});
 
 const DiaryList = ({ diaryList }) => {
   const router = useRouter();
@@ -56,50 +41,44 @@ const DiaryList = ({ diaryList }) => {
     // 날짜 정렬 콜백함수
     const compare = (a, b) => {
       if (sortType === "latest") {
-        return parseInt(a.date) - parseInt(b.date);
+        return parseInt(a.registedDate) - parseInt(b.registedDate);
       } else {
-        return parseInt(b.date) - parseInt(a.date);
+        return parseInt(b.registedDate) - parseInt(a.registedDate);
       }
     };
 
     // 감정 정렬함수
     const filteredList =
       filter === "all" ? copyList : copyList.filter((it) => filterCallBack(it));
-
     // 날짜 정렬함수(감정점수를 필터시킨것을 정렬)
     const sortedList = filteredList.sort(compare);
-
     return sortedList;
   };
 
+  const newDiary = () => {
+   router.push("/diary/new");
+  };
+  
   return (
     <div>
       <style.ControlMenuContainer>
-        <ControlMenu
+        <DiaryControlMenu
           value={sortType}
           onChange={setSortType}
           optionList={sortOptionList}
         />
-        <ControlMenu
+        <DiaryControlMenu
           value={filter}
           onChange={setFilter}
           optionList={filterOptionList}
         />
-        <MyButton
-          type={"positive"}
-          text={"새 일기 쓰기"}
-          onClick={() => router.push("/diary/new")}
-        />
+        <DiaryLongButton text={"새 일기 쓰기"} onClick={newDiary} />
       </style.ControlMenuContainer>
       {getProcessedDiaryList().map((it) => (
         <DiaryItem key={it.id} {...it} />
       ))}
     </div>
   );
-};
-
-DiaryList.defaultProps = {
-  diaryList: [],
 };
 
 export default DiaryList;
