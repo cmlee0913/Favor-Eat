@@ -28,7 +28,7 @@ export default function InfoAccordian({
 
   return (
     <style.InfoAccodian>
-      <RightTitleBox title="출처" />
+      <RightTitleBox title="프로젝트 정보" />
       {accordians}
     </style.InfoAccodian>
   );

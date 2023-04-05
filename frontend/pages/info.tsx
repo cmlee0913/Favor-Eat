@@ -15,17 +15,17 @@ export default function Info() {
   const [selectIdx, setSelectedIdx] = useState(0);
   const [infoArr, setInfoArr] = useState<Array<InfoTypes>>([
     {
-      category: "만개의 레시피/식품 영양 크롤링",
+      category: "데이터 출처",
       content: <InfoDataSource />,
       isOpen: true,
     },
     {
-      category: "기술 스택 아이콘/이름 넣기 백/프",
+      category: "기술 스택",
       content: <InfoTechStack />,
       isOpen: false,
     },
     {
-      category: "노션/피그마 etc",
+      category: "프로젝트 관리",
       content: <InfoArchive />,
       isOpen: false,
     },

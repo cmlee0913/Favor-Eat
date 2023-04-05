@@ -8,7 +8,6 @@ const white = theme.colors.mono.light_1;
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   overflow: hidden;
   gap: 9vw;
   width: 100vw;
@@ -27,11 +26,15 @@ export const Container = styled.div`
 `;
 
 export const Foods = styled.div`
+  position: fixed;
+  top: 0;
+  left: 10vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   row-gap: 5px;
   column-gap: 5px;
+  width: 45vw;
   background-color: ${theme.colors.main.purple.light_1};
   box-shadow: inset 2.5vw 0 ${white}, inset -2.5vw 0 ${white};
   position: relative;
@@ -59,6 +62,11 @@ export const Foods = styled.div`
 `;
 
 export const Right = styled.div`
+  position: fixed;
+  right: 4vw;
+  top: 50%;
+  width: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,8 +74,11 @@ export const Right = styled.div`
   gap: 5vh;
 
   ${theme.devices.tablet} {
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10vh;
     gap: 2vh;
-    height: 30%;
   }
 `;
 
@@ -75,7 +86,7 @@ export const Slogan = styled.div`
   font-size: 3rem;
   font-family: Inter-Black;
 
-  font-weight: ${theme.devices.tablet} {
+  ${theme.devices.tablet} {
     order: 2;
     font-size: 2.5rem;
   }
@@ -91,8 +102,8 @@ export const CharacterImage = styled.div`
 
   ${theme.devices.tablet} {
     order: 1;
-    height: 50%;
-    width: auto;
+    width: 60%;
+    height: auto;
   }
 
   img {

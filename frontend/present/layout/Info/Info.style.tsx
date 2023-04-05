@@ -76,8 +76,44 @@ export const InfoAccodian = styled.div`
   }
 `;
 
-export const InfoDataSource = styled.div``;
+export const InfoDataSource = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-export const InfoTechStack = styled.div``;
+  & > div {
+    :hover {
+      cursor: pointer;
+    }
 
-export const InfoArchive = styled.div``;
+    span {
+      border-bottom: 2px solid ${theme.colors.mono.dark_3};
+    }
+  }
+`;
+
+export const InfoTechStack = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .category {
+    margin: 0.5rem 0;
+  }
+`;
+
+export const InfoArchive = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & > div {
+    :hover {
+      cursor: pointer;
+    }
+
+    span {
+      border-bottom: 2px solid ${theme.colors.mono.dark_3};
+    }
+  }
+`;
