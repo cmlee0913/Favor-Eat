@@ -10,6 +10,7 @@ import MyHeader from "@/present/component/DiaryCompo/MyHeader";
 import { useAtom } from "jotai";
 import { getUserDataByToken, userTokenSave } from "@/store/userStore";
 import { putDiary, deleteDiary, getDiaryDetail } from "@/action/apis/diary";
+import { theme } from "@/constant/theme";
 
 import Emotion1 from "@/assets/image/Diary/CircleEmotion/emotion1.png";
 import Emotion2 from "@/assets/image/Diary/CircleEmotion/emotion2.png";
@@ -38,6 +39,60 @@ export default function Diary() {
       setDiary(result);
     }
   };
+  const emotions = [
+    {
+      src: Emotion1,
+      alt: "매우 긍정적",
+      emotion: "1",
+      color: theme.colors.character.sweet,
+    },
+    {
+      src: Emotion2,
+      alt: "긍정적",
+      emotion: "2",
+      color: theme.colors.character.etc,
+    },
+    {
+      src: Emotion3,
+      alt: "보통",
+      emotion: "3",
+      color: theme.colors.character.oily,
+    },
+    {
+      src: Emotion4,
+      alt: "부정적",
+      emotion: "4",
+      color: theme.colors.character.salty,
+    },
+    {
+      src: Emotion5,
+      alt: "매우 부정적",
+      emotion: "5",
+      color: theme.colors.character.spicy,
+    },
+  ];
+
+  const emotionHandler = (elem) =>
+    setDiary((prev) => ({
+      ...prev,
+      emotion: elem.emotion,
+    }));
+
+  const emotionArr = emotions.map((elem, idx) => {
+    const color = elem.emotion === diary.emotion ? elem.color : "#cccccc";
+    return (
+      <style.EmotionImageWrapper key={idx} bgColor={color}>
+        <Image
+          src={elem.src}
+          alt={elem.alt}
+          onClick={() => {
+            emotionHandler(elem);
+          }}
+        />
+        <div>{elem.alt}</div>
+      </style.EmotionImageWrapper>
+    );
+  });
 
   useEffect(() => {
     if (token.accessToken && pid) {
@@ -47,7 +102,7 @@ export default function Diary() {
 
   const putClick = async () => {
     putDiary(token.accessToken, diary, pid);
-    await router.push("/diary");
+    router.push(`/diary/`);
   };
 
   // 일기를 삭제합니다.
@@ -179,7 +234,9 @@ export default function Diary() {
           }
         />
       </style.DiaryContentContainer>
-      <Button context="수정 완료" handler={putClick}></Button>
+      <div>
+        <Button context="수정 완료" handler={putClick}></Button>
+      </div>
     </style.DiaryEditContainer>
   );
 }

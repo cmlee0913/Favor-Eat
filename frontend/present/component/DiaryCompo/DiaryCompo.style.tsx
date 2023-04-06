@@ -3,6 +3,7 @@ import { theme } from "@/constant/theme";
 
 import Image from "next/image";
 import DiaryImage from "@/assets/image/Diary/DiaryDetailPage.png";
+import MobileDiaryImage from "@/assets/image/Diary/MobileDiaryDetailPage.png";
 
 // Common Diary Style
 export const DiaryHeader = styled.div`
@@ -20,6 +21,10 @@ export const DiaryHeaderTitle = styled.div`
   font-family: "Pretendard-Bold";
   color: ${theme.colors.main.purple.dark_4};
   font-size: 1.6rem;
+
+  ${theme.devices.mobile} {
+    font-size: 1rem;
+  }
 `;
 
 export const DiaryButton = styled.div`
@@ -38,6 +43,12 @@ export const DiaryButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${theme.devices.mobile} {
+    width: 4rem;
+    font-size: 8px;
+    padding: 0.2rem 0.5rem;
+  }
 `;
 
 // Diary.tsx
@@ -61,6 +72,11 @@ export const DiaryArrowButton = styled.div`
     position: relative;
     top: -0.2rem;
   }
+
+  ${theme.devices.mobile} {
+    border-radius: 2px;
+    font-size: 1rem;
+  }
 `;
 
 export const DiaryLongButton = styled.div`
@@ -79,6 +95,11 @@ export const DiaryLongButton = styled.div`
 
   font-family: "Pretendard-medium";
   font-size: 1.1rem;
+
+  ${theme.devices.mobile} {
+    height: 20px;
+    font-size: 0.9rem;
+  }
 `;
 
 export const ControlMenuContainer = styled.div`
@@ -91,6 +112,10 @@ export const ControlMenuContainer = styled.div`
     width: 20vw;
     border-radius: 5px;
     height: 35px;
+
+    ${theme.devices.mobile} {
+      height: 20px;
+    }
   }
 `;
 
@@ -102,6 +127,10 @@ export const DiaryItemContainer = styled.div`
   display: grid;
   gap: 30px;
   grid-template-columns: 1fr 4fr 1fr;
+
+  ${theme.devices.mobile} {
+    gap: 5px;
+  }
 `;
 
 export const DiaryImageWrapper = styled.div`
@@ -113,6 +142,10 @@ export const DiaryImageWrapper = styled.div`
   img {
     width: 180px;
     height: auto;
+
+    ${theme.devices.mobile} {
+      width: 90px;
+    }
   }
 `;
 
@@ -130,12 +163,20 @@ export const DiaryContentWrapper = styled.div`
 
   font-size: 1.2rem;
   font-family: "Pretendard-Bold";
+
+  ${theme.devices.mobile} {
+    font-size: 10px;
+  }
 `;
 
 export const DiaryButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${theme.devices.mobile} {
+    font-size: 8px;
+  }
 `;
 
 // DiaryDetail.tsx([pid].tsx)
@@ -151,6 +192,19 @@ export const DiaryDetailContainer = styled.div`
   height: 100vh;
 
   overflow: hidden; // 스크롤 없애기
+
+  ${theme.devices.tablet} {
+    margin: 0vw;
+    width: 100vw;
+  }
+
+  ${theme.devices.mobile} {
+    background-size: cover;
+    background-image: url(${MobileDiaryImage.src});
+    margin-left: 0vw;
+
+    justify-content: center; /* div 내부 컨텐츠 중앙 정렬 */
+  }
 `;
 
 export const DiaryDetailNote = styled.div`
@@ -160,6 +214,17 @@ export const DiaryDetailNote = styled.div`
   left: 22%;
   width: 56vw;
   height: 65vh;
+
+  ${theme.devices.mobile} {
+    top: 15%;
+    left: 5%;
+
+    width: 90vw;
+
+    display: grid;
+
+    justify-content: center; /* div 내부 컨텐츠 중앙 정렬 */
+  }
 `;
 
 export const DiaryDetailStyle = styled.div`
@@ -182,6 +247,12 @@ export const DiaryDetailStyle = styled.div`
     height: 2rem;
     margin-left: 1rem; /* 이미지와 텍스트 사이 간격 */
   }
+
+  ${theme.devices.mobile} {
+    font-size: 1rem;
+
+    margin-left: 0;
+  }
 `;
 
 export const DiaryDetailGrid = styled.div`
@@ -189,6 +260,10 @@ export const DiaryDetailGrid = styled.div`
 
   display: grid;
   grid-template-columns: 4fr 5fr;
+
+  ${theme.devices.mobile} {
+    display: block;
+  }
 `;
 
 export const DiaryDetailLeftGrid = styled.div`
@@ -198,6 +273,14 @@ export const DiaryDetailLeftGrid = styled.div`
   font-size: 1.2rem;
   font-family: "Pretandard SemiBold";
   color: ${theme.colors.main.purple.dark_1};
+
+  ${theme.devices.tablet} {
+    font-size: 0.8rem;
+  }
+
+  ${theme.devices.mobile} {
+    display: block;
+  }
 `;
 
 export const DiaryDetailRightGrid = styled.div`
@@ -209,12 +292,20 @@ export const DiaryDetailRightGrid = styled.div`
       font-size: 1.2rem;
       font-family: "Pretandard SemiBold";
       color: ${theme.colors.main.purple.dark_3};
+
+      ${theme.devices.tablet} {
+        font-size: 0.8rem;
+      }
     }
 
     :nth-child(2) {
       font-size: 1.2rem;
       font-family: "Pretandard SemiBold";
       color: ${theme.colors.main.purple.dark_1};
+
+      ${theme.devices.tablet} {
+        font-size: 0.8rem;
+      }
     }
 
     :nth-child(3) {
@@ -222,9 +313,21 @@ export const DiaryDetailRightGrid = styled.div`
       font-family: "Pretandard SemiBold";
       color: ${theme.colors.mono.dark_3};
 
+      width: 25vw;
+      height: 30vh;
+
       border-radius: 10px;
       padding: 20px;
       background-color: ${theme.colors.main.purple.light_1};
+
+      ${theme.devices.tablet} {
+        font-size: 0.8rem;
+      }
+
+      ${theme.devices.mobile} {
+        width: 80vw;
+        padding: 5px;
+      }
     }
   }
 `;
@@ -249,7 +352,7 @@ export const DiaryEditTitle = styled.div`
 export const DiaryEditTitleInput = styled.div`
   input {
     border: none;
-    width: 500px;
+    width: 90%;
     font-size: 1.2rem;
   }
 
@@ -274,10 +377,17 @@ export const EmotionImageWrapper = styled.div<{ bgColor: string }>`
   background-color: ${(props) => props.bgColor};
   border-radius: 15px;
 
+  font-size: 0.5rem;
+
   img {
     width: 100px;
     height: 100px;
     border-radius: 15px;
+
+    ${theme.devices.tablet} {
+      width: 9vw;
+      height: 9vw;
+    }
   }
 
   div {
@@ -299,6 +409,11 @@ export const DiaryContentContainer = styled.div`
     color: ${theme.colors.main.purple.dark_1};
 
     margin-bottom: 5vh;
+
+    ${theme.devices.mobile} {
+      padding: 5px;
+      min-width: 90vw;
+    }
   }
 `;
 
