@@ -19,6 +19,7 @@ import { FoodForTasteResponseType } from "@/types/api/tasteApiType";
 import { cursorImageAtom, cursorIsShowAtom } from "@/store/cursorStore";
 import { useRouter } from "next/router";
 import { theme } from "@/constant/theme";
+import CharacterStaticData from "@/constant/characterData";
 
 const requestRecipeList = async (requestCount: number, token: string) => {
   const { isSuccess, result } = await getTasteRecipeList(requestCount, token);
@@ -58,9 +59,9 @@ export default function Analysis() {
 
     const { character } = router.query;
     setCursorImage(
-      theme.characterImg[
+      CharacterStaticData[
         typeof character === "string" ? character : character[0]
-      ],
+      ].tripImage,
     );
     setCursorShow(true);
     return () => {

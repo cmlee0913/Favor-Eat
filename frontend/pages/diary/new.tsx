@@ -32,8 +32,13 @@ export default function NewDiary() {
     console.log(diary);
   };
 
+  const backToDiary = async () => {
+    await router.back();
+  };
+
   const postClick = async () => {
     postDiary(token.accessToken, diary);
+    await router.push("/diary");
   };
 
   const emotions = [
@@ -151,7 +156,7 @@ export default function NewDiary() {
       </style.DiaryContentContainer>
 
       <style.ButtonsContainer>
-        <Button context="뒤로가기" handler={postClick}></Button>
+        <Button context="뒤로가기" handler={backToDiary}></Button>
         <Button context="작성하기" handler={postClick}></Button>
       </style.ButtonsContainer>
     </style.DiaryEditContainer>

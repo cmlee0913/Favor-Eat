@@ -2,9 +2,9 @@ import * as style from "./Taste.style";
 
 import Image from "next/image";
 
-import Spicy from "@/assets/image/Character/Spicy.png";
-import Sweet from "@/assets/image/Character/Sweet.png";
-import Salty from "@/assets/image/Character/Salty.png";
+import Spicy from "@/assets/image/Character/SpicyTrip.png";
+import Sweet from "@/assets/image/Character/SweetTrip.png";
+import Salty from "@/assets/image/Character/SaltyTrip.png";
 import { useState } from "react";
 
 export default function Character({ changeCharacter }) {
@@ -34,6 +34,8 @@ export default function Character({ changeCharacter }) {
             <Image
               src={item.img}
               alt={item.type}
+              width={300}
+              height={300}
               onClick={() => onClickCharacter(index)}
             />
             <div>{item.name}</div>
