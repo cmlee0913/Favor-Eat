@@ -140,7 +140,6 @@ export default function NewDiary() {
         <div className="title">오늘의 일기</div>
         <textarea
           placeholder="오늘은 어땠나요..?"
-          // name="content"
           value={diary.content}
           onChange={(e) =>
             setDiary((prev) => ({
