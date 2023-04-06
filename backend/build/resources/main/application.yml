@@ -1,0 +1,23 @@
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  profiles:
+    active:
+      - prod
+    group:
+      test:
+        - key-test
+        - db-test
+        - oauth-test
+      prod:
+        - key-prod
+        - db-prod
+        - oauth-prod
+    include:
+      - db
+      - key
+      - oauth
+      - jwt
+      - swagger
