@@ -9,6 +9,7 @@ export default function InfoTechStack() {
         <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white" />{" "}
         <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=Typescript&logoColor=white" />{" "}
         <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white" />{" "}
+        <img src="https://img.shields.io/badge/reactrouter-CA4245?style=flat-square&logo=reactrouter&logoColor=white" />{" "}
         <img src="https://img.shields.io/badge/styledComponent-DB7093?style=flat-square&logo=styled-components&logoColor=black" />{" "}
         <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=PWA&logoColor=white" />{" "}
         <img src="https://img.shields.io/badge/jotai-333333?style=flat-square" />

@@ -18,8 +18,6 @@ import Emotion3 from "@/assets/image/Diary/CircleEmotion/emotion3.png";
 import Emotion4 from "@/assets/image/Diary/CircleEmotion/emotion4.png";
 import Emotion5 from "@/assets/image/Diary/CircleEmotion/emotion5.png";
 
-import { theme } from "@/constant/theme";
-
 export default function Diary() {
   const [token] = useAtom(userTokenSave);
   const router = useRouter();
@@ -39,60 +37,6 @@ export default function Diary() {
       setDiary(result);
     }
   };
-  const emotions = [
-    {
-      src: Emotion1,
-      alt: "매우 긍정적",
-      emotion: "1",
-      color: theme.colors.character.sweet,
-    },
-    {
-      src: Emotion2,
-      alt: "긍정적",
-      emotion: "2",
-      color: theme.colors.character.etc,
-    },
-    {
-      src: Emotion3,
-      alt: "보통",
-      emotion: "3",
-      color: theme.colors.character.oily,
-    },
-    {
-      src: Emotion4,
-      alt: "부정적",
-      emotion: "4",
-      color: theme.colors.character.salty,
-    },
-    {
-      src: Emotion5,
-      alt: "매우 부정적",
-      emotion: "5",
-      color: theme.colors.character.spicy,
-    },
-  ];
-
-  const emotionHandler = (elem) =>
-    setDiary((prev) => ({
-      ...prev,
-      emotion: elem.emotion,
-    }));
-
-  const emotionArr = emotions.map((elem, idx) => {
-    const color = elem.emotion === diary.emotion ? elem.color : "#cccccc";
-    return (
-      <style.EmotionImageWrapper key={idx} bgColor={color}>
-        <Image
-          src={elem.src}
-          alt={elem.alt}
-          onClick={() => {
-            emotionHandler(elem);
-          }}
-        />
-        <div>{elem.alt}</div>
-      </style.EmotionImageWrapper>
-    );
-  });
 
   useEffect(() => {
     if (token.accessToken && pid) {
