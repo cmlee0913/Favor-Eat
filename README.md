@@ -300,5 +300,3 @@
 
 ## 스케줄
 ![OMZ_Schedule](/uploads/9d4ff3aa13fb8758bffbf81e71b75ca9/OMZ_Schedule.PNG)
-
-
