@@ -1,0 +1,43 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${kakao-client-id}
+            client-secret: ${kakao-client-secret}
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope: account_email, profile_nickname
+            client-name: Kakao
+
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+--- # test 설정
+spring:
+  config:
+    activate:
+      on-profile: "oauth-test"
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            redirect-uri: http://j8d108.p.ssafy.io:8000/api/login/oauth2/code/kakao
+
+--- # dev 설정
+spring:
+  config:
+    activate:
+      on-profile: "oauth-prod"
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            redirect-uri: https://j8d108.p.ssafy.io/api/login/oauth2/code/kakao
