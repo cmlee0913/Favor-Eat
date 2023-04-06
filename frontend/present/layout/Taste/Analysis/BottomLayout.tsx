@@ -12,22 +12,17 @@ export default function BottomLayout({
   evaluatedCount,
 }: BottomLayoutProps) {
   const [recipeRatingList] = useAtom(recipeRatingListAtom);
-  const [token, setUserToken] = useAtom(userTokenSave);
+  const [token] = useAtom(userTokenSave);
 
   const router = useRouter();
 
   const onClickStop = async () => {
-    const { isSuccess, result } = await sendFirstRecipeTasteValue(
+    const { isSuccess } = await sendFirstRecipeTasteValue(
       recipeRatingList,
       token.accessToken,
     );
 
     if (isSuccess) {
-      const newAccessToken = result;
-      setUserToken({
-        accessToken: newAccessToken,
-        refreshToken: token.refreshToken,
-      });
       router.push("/main");
     }
   };
