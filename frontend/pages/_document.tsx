@@ -6,11 +6,12 @@ export default function Document() {
     <Html lang="en">
       <GlobalStyle />
       <Head>
-        <link rel="shortcut icon" href="/public/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <script
           defer
           src="https://developers.kakao.com/sdk/js/kakao.min.js"
         ></script>
+        <title>Favor Eat</title>
       </Head>
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#000000" />
