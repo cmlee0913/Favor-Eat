@@ -25,7 +25,7 @@ export default function FilpImageCardCompo({
   const { width, height } = useImageRatioSize(
     imgSrc,
     windowSize.width * 0.23,
-    windowSize.height * 0.37,
+    windowSize.height * 0.33,
   );
 
   const getCharacter = (type: string) => {

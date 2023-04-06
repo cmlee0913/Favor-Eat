@@ -35,7 +35,7 @@ export default function main() {
 
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 5000);
 
     return () => {
       setCursorShow(false);
@@ -61,44 +61,52 @@ export default function main() {
   }, [refreshCount]);
 
   useEffect(() => {
-    if (token.accessToken) {
-      setIsFetching(true);
+    try {
+      if (token.accessToken) {
+        setIsFetching(true);
 
-      getRecommendFoodList(token.accessToken).then((response) => {
-        const { isSuccess, result } = response;
-        if (isSuccess) {
-          setIsFetching(false);
-          const list = [];
-          result.forEach((item: MainFoodResponse) => {
-            const maxValueFlavor: Flavor = {
-              type: "spicy",
-              value: -1,
-            };
-            const flavorObj = item.responseTasteInfo;
-            Object.keys(flavorObj).forEach((key: FlavorType) => {
-              if (flavorObj[key] > maxValueFlavor.value) {
-                maxValueFlavor.type = key;
-                maxValueFlavor.value = flavorObj[key];
-              }
+        getRecommendFoodList(token.accessToken).then((response) => {
+          const { isSuccess, result } = response;
+          if (isSuccess) {
+            const list = [];
+            result.forEach((item: MainFoodResponse) => {
+              const maxValueFlavor: Flavor = {
+                type: "spicy",
+                value: -1,
+              };
+              const flavorObj = item.responseTasteInfo;
+              Object.keys(flavorObj).forEach((key: FlavorType) => {
+                if (flavorObj[key] > maxValueFlavor.value) {
+                  maxValueFlavor.type = key;
+                  maxValueFlavor.value = flavorObj[key];
+                }
+              });
+
+              const obj: MainFood = {
+                foodName: item.name,
+                imgSrc: item.image,
+                flavor: maxValueFlavor,
+                contents: [],
+                recipeId: item.id,
+              };
+
+              setTimeout(() => {
+                setIsFetching(false);
+              }, 1500);
+              obj.contents.push({ key: "레시피 난이도", value: item.level });
+              obj.contents.push({ key: "소요시간", value: item.time });
+
+              list.push(obj);
             });
-
-            const obj: MainFood = {
-              foodName: item.name,
-              imgSrc: item.image,
-              flavor: maxValueFlavor,
-              contents: [],
-              recipeId: 0,
-            };
-
-            obj.contents.push({ key: "레시피 난이도", value: item.level });
-            obj.contents.push({ key: "소요시간", value: item.time });
-
-            list.push(obj);
-          });
-          setAllFoodList(list);
-          setRefreshCount(0);
-        }
-      });
+            setAllFoodList(list);
+            setRefreshCount(0);
+          } else {
+            setIsFetching(false);
+          }
+        });
+      }
+    } catch (e) {
+      setIsFetching(false);
     }
   }, [token.accessToken]);
 

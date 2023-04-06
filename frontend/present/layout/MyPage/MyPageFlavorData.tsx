@@ -12,18 +12,16 @@ import SaltyLeft from "@/assets/icon/taste/rating/SaltyLeft.svg";
 import SaltyRight from "@/assets/icon/taste/rating/SaltyRight.svg";
 import OilyLeft from "@/assets/icon/taste/rating/OilyLeft.svg";
 import OilyRight from "@/assets/icon/taste/rating/OilyRight.svg";
+import { useSetAtom } from "jotai";
+import { hoverTypeAtom, isHoverAtom } from "@/store/hoverStore";
 
 interface MyPageFlavorDataProps {
   item: FlavorStaticData;
-  setHoverType: React.Dispatch<React.SetStateAction<string>>;
-  setIsHover: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function MyPageFlavorData({
-  item,
-  setHoverType,
-  setIsHover,
-}: MyPageFlavorDataProps) {
+export default function MyPageFlavorData({ item }: MyPageFlavorDataProps) {
+  const setIsHover = useSetAtom(isHoverAtom);
+  const setHoverType = useSetAtom(hoverTypeAtom);
   const ratingImg = {
     spicy: {
       left: <SpicyLeft />,

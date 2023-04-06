@@ -62,10 +62,25 @@ export const sendFirstRecipeTasteValue = async (
     });
     requestList.push(obj);
   });
-  const response = await postAsync(`/users`, requestList, {
+  let response = await postAsync(`/users`, requestList, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
+
+  if (response.isSuccess) {
+    const newAccessToken = response.result;
+    console.log(newAccessToken);
+
+    const tokenObj = JSON.parse(localStorage.getItem("userToken"));
+    tokenObj.accessToken = newAccessToken;
+    localStorage.setItem("userToken", JSON.stringify(tokenObj));
+
+    response = await postAsync("/users/recommends", null, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  }
   return response;
 };

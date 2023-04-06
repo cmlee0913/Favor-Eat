@@ -127,6 +127,10 @@ export const Button = styled.button<{ show: boolean }>`
     height: 9rem;
     cursor: pointer;
 
+    :hover {
+      scale: 1.1;
+    }
+
     ${theme.devices.tablet} {
       width: 5rem;
       height: 5rem;

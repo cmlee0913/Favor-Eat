@@ -2,7 +2,6 @@ import React, { useState, useEffect, memo } from "react";
 import GridLayout from "@/present/layout/GridLayout/GridLayout";
 import RecipeImg from "@/present/layout/Recipe/RecipeImg/RecipeImg";
 
-import Test from "@/assets/image/test.jpg";
 import RecipeNav from "@/present/layout/Recipe/RecipeNav/RecipeNav";
 import RecipeContent from "@/present/layout/Recipe/RecipeContent/RecipeContent";
 import { RecipeData, RecipeNavType } from "@/types/Recipe/dummy";
@@ -10,7 +9,7 @@ import RecipeTab from "@/present/layout/Recipe/RecipeTab/RecipeTab";
 
 import * as style from "@/present/layout/Recipe/pageStyle";
 
-import NoImg from "@/assets/image/NoImg.png"
+import NoImg from "@/assets/image/NoImg.png";
 import RecipeFlavorLayout from "@/present/layout/Recipe/RecipeFlavor/RecipeFlavorLayout";
 import { useAtom } from "jotai";
 import { recipeFavorCheckedAtom } from "@/store/recipeDetail";
@@ -68,7 +67,7 @@ function Recipe() {
       category: "맛",
       content: (
         <RecipeFlavorLayout
-          recipeImage={Test}
+          recipeImage={recipeData.image}
           tasteInfo={recipeData.tasteInfo}
         />
       ),
@@ -101,12 +100,13 @@ function Recipe() {
       }).then((res) => {
         if (res.isSuccess) {
           setRecipeData({ ...res.result });
+          setRecipeFavorChecked(res.result.isFavorites);
           setRecipeArr([
             {
               category: "맛",
               content: (
                 <RecipeFlavorLayout
-                  recipeImage={Test}
+                  recipeImage={res.result.image}
                   tasteInfo={res.result.tasteInfo}
                 />
               ),
@@ -153,7 +153,7 @@ function Recipe() {
   //레시피 즐겨찾기 여부
   //레시피 데이터 들고올때 초기화 필요
   const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
-    recipeFavorCheckedAtom
+    recipeFavorCheckedAtom,
   );
 
   return (
@@ -202,5 +202,4 @@ function Recipe() {
   );
 }
 
-
-export default memo(Recipe)
+export default memo(Recipe);

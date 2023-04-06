@@ -1,8 +1,19 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { apiURL } from "@/store/constants";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { apiURL, kakaoLoginUrl } from "@/store/constants";
 import { ApiResult } from "@/types/api/apiType";
 
 const API = axios.create({ baseURL: apiURL });
+
+API.interceptors.response.use(
+  (res: AxiosResponse) => res,
+  async (err: AxiosError) => {
+    if (err.response.status === 401) {
+      localStorage.clear();
+      window.location.href = kakaoLoginUrl;
+      return Promise.reject(err);
+    }
+  },
+);
 
 /**
 * GET HTTP 요청을 처리하는 API 유틸 함수

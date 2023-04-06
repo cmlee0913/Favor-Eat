@@ -24,7 +24,7 @@ export interface FlavorInfo {
 }
 
 export interface RecipeFlavorProps {
-  recipeImage: StaticImageData;
+  recipeImage: string;
   tasteInfo: {
     spicy: number;
     sweet: number;

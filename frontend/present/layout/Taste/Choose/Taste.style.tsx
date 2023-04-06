@@ -345,17 +345,17 @@ export const CharacterNameStyle = css`
 `;
 
 export const Character = styled.div`
-  width: 4rem;
-  height: auto;
+  width: auto;
+  height: 4.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   ${theme.devices.tablet} {
-    width: 3rem;
+    height: 3.5rem;
   }
   ${theme.devices.mobile} {
-    width: 2.5rem;
+    height: 3rem;
   }
 
   &:hover {

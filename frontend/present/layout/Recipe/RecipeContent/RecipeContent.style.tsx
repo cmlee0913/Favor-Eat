@@ -7,6 +7,8 @@ export const MobileContent = styled.div`
   ${theme.devices.tablet} {
     display: block;
     margin: 2rem;
+    position: relative;
+    top: 10vh;
   }
 `;
 

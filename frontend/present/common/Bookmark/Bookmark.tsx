@@ -15,17 +15,19 @@ function Bookmark() {
   const [recipeFavorChecked, setRecipeFavorChecked] = useAtom(
     recipeFavorCheckedAtom,
   );
-  const idx = useRouter().query.pid;
+  const router = useRouter();
+  const idx = router.query.pid;
   const [token] = useAtom(userTokenSave);
 
   const bookMarkHandler = () => {
     if (!token.accessToken) return;
     if (!recipeFavorChecked) {
       saveFoodFavor(token.accessToken, idx);
+      setRecipeFavorChecked(true);
     } else {
       deleteFoodFavor(token.accessToken, idx);
+      setRecipeFavorChecked(false);
     }
-    setRecipeFavorChecked((current) => !current);
   };
 
   return (

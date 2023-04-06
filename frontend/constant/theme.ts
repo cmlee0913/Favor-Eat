@@ -24,6 +24,7 @@ const colors = {
     sweet: "#FFC952",
     salty: "#47B8E0",
     oily: "#ABAFC4",
+    etc:"#71D171"
   },
   characterLevel: {
     spicy: {
@@ -68,6 +69,7 @@ const colors = {
   background: {
     pink: "#FFF3F5",
     violet: "#EBEBFF",
+    gray: "#E8EAEF",
   },
 };
 

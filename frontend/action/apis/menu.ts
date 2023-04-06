@@ -12,7 +12,7 @@ export const moveHandler = (router, path, setIsOpen) => {
 export const menu = (
   router: NextRouter,
   setIsOpen: Function,
-  images: Array<JSX.Element>,
+  images: Array<JSX.Element>
 ) => {
   return [
     {
@@ -32,11 +32,11 @@ export const menu = (
       },
     },
     {
-      name: "알람설정",
+      name: "식단일기",
       image: images[2],
       alt: "Cheese",
       handler: () => {
-        moveHandler(router, "/alarm", setIsOpen);
+        moveHandler(router, "/diary", setIsOpen);
       },
     },
     {
