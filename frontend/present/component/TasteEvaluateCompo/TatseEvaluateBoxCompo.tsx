@@ -183,11 +183,6 @@ export default function TasteEvaluateBoxCompo({
     );
 
     if (isSuccess) {
-      const newAccessToken = result;
-      setUserToken({
-        accessToken: newAccessToken,
-        refreshToken: token.refreshToken,
-      });
       router.push("/main");
     }
   };
