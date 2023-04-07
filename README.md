@@ -188,6 +188,21 @@
 
 ▲ 먹은 음식과 그 날의 감정을 기록할 수 있는 식단 일기 페이지  
 
+### 으른 입맛 테스트 페이지
+<img src="/uploads/fa0ace980e3270302ca6e3dfb0b0bfcf/12_adult_taste.png" style="display: inline-block" height=323px/>
+<img src="/uploads/02a0e8c714efd75df72a155d96bf0a27/12_adult_taste.png" style="display: inline-block" height=323px />  
+
+▲ 입맛 연령 측정을 위한 설문 화면  
+
+<img src="/uploads/133553f000be4b25f33bba22c9b621ed/13_adult_taste_result.png" style="display: inline-block" height=323px/>
+<img src="/uploads/a409c27f3b32821a17f21052c7b68c52/13_adult_taste_result.png" style="display: inline-block" height=323px />  
+
+▲ 결과 화면  
+
+<img src="/uploads/b143bb7178c564e6845138fc2bb08687/14_result_share.png" style="display: inline-block" height=323px/>  
+
+▲ 결과를 공유하면 카카오톡에 올라오는 말풍선  
+
 
 
 <br />
