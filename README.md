@@ -65,7 +65,13 @@
 - 추천을 위한 알고리즘 개발
 
 **이창민(팀원/BE)**
-- yet
+- 백엔드 API, ERD 설계
+- Oauth2 기반 로그인 구현
+- 식단 일기 관련 API 개발
+- Spring Profile을 활용한 빌드 스테이지 분리
+- Git, Jenkins 활용 컨테이너 CI 환경 구축
+- NGINX 활용 Secure 적용, 프록시 서버 구현
+- Docker 활용 컨테이너 관리 및 배포 환경 구축
 
 **이효진(팀원/FE Team Leader)**
 - 디자이너와 소통하며 일정 조절, 세부 기획 조절
