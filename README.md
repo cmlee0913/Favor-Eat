@@ -1,4 +1,4 @@
-## <img src="/uploads/3a6a7a0e250a4c681745053a3f008818/OMZ_favicon.png" width=16px; hegith=16px;/> FAVOREAT 소개
+## <img src="/uploads/3a6a7a0e250a4c681745053a3f008818/OMZ_favicon.png" width=16px; hegith=16px;/> FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
 
 😋[메뉴 추천] 서비스
 
@@ -14,7 +14,6 @@
 
 <span style="background-color: #D6BBFF; border-radius: 5px;">**FAVOREAT**</span>을 통해 많은 분들이 메뉴 선택에서의 고민을 덜고, 좀 더 즐겁게 식사를 즐길 수 있기를 바랍니다.
 
-SSAFY 8기 특화 프로젝트 3등
 
 
 <br /><br />
