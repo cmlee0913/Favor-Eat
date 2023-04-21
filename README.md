@@ -1,4 +1,4 @@
-## <img src="![OMZ_favicon](https://user-images.githubusercontent.com/43628924/233582553-a905130c-9538-4d17-859e-625589f23a40.png)" width=16px; hegith=16px;/> FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
+## <img src="/images/OMZ_favicon.png" width=16px; hegith=16px;/> FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
 
 😋[메뉴 추천] 서비스
 
@@ -147,78 +147,78 @@
 ## 서비스 화면
 ### 가이드 페이지
 ![01_guide](https://user-images.githubusercontent.com/43628924/233582819-afe85f09-304b-4087-8ade-b349a8207375.gif)
-<img src="/uploads/503bd4bc71ab05f7e37eba4010f76d8d/01_guide.gif" style="display: inline-block" height=323px />  
+<img src="/images/01_guide.gif" style="display: inline-block" height=323px />  
 
 ▲ 서비스를 소개하는 가이드 페이지  
 
 ### 초기 취향 파악 페이지
-<img src="/uploads/c53157cfd58ebeedf775187e1f3d9b51/02_character_select.png" style="display: inline-block" height=323px/>
-<img src="/uploads/2ab515e1f5cae89bf92cd867100327e4/02_character_select.png" style="display: inline-block" height=323px />  
+<img src="/images/02_character_select.png" style="display: inline-block" height=323px/>
+<img src="/images/02_character_select.png" style="display: inline-block" height=323px />  
 
 ▲ 같이 맛 평가를 할 캐릭터 선택 페이지  
 
-<img src="/uploads/07ee795504b6ab853bf5abf3e54663d3/03_initial_evaluations.png" style="display: inline-block" height=323px/>
-<img src="/uploads/7193dc15dfa8f288f9f568781c8ecbdb/03_intial_evaluations.png" style="display: inline-block" height=323px />  
+<img src="/images/03_initial_evaluations.png" style="display: inline-block" height=323px/>
+<img src="/images/03_intial_evaluations.png" style="display: inline-block" height=323px />  
 
 ▲ 취향 파악을 위해 맛을 평가하는 페이지  
 
-<img src="/uploads/5f5861dc2354d2544e393f5c9c2cb243/04_inital_input.png" style="display: inline-block" height=323px/>
-<img src="/uploads/e040a520c1f11069bd3609d570d680c4/04_initial_input.png" style="display: inline-block" height=323px />  
+<img src="/images/04_inital_input.png" style="display: inline-block" height=323px/>
+<img src="/images/04_initial_input.png" style="display: inline-block" height=323px />  
 
 ▲ 맛을 평가하는 화면   
 
-<img src="/uploads/cb4a6cb7f3ac9ff615fb84a0f100400b/05_end_initial_evaluations.png" style="display: inline-block" height=323px/>
-<img src="/uploads/21085a255c0950eddbf5551190e3f5e5/05_end_initial_evaluations.png" style="display: inline-block" height=323px />  
+<img src="/images/05_end_initial_evaluations.png" style="display: inline-block" height=323px/>
+<img src="/images/05_end_initial_evaluations.png" style="display: inline-block" height=323px />  
 
 ▲ 5개의 음식을 평가하면 '맛 평가 종료하기' 버튼이 생긴다.  
 
 ### 메인 페이지
-<img src="/uploads/a5aebad5608beddaee163b51492995f5/06_main.gif" style="display: inline-block" />
-<img src="/uploads/adc2f70d4e23d0f21fe55592af35b8a2/06_main.png" style="display: inline-block" height=323px />  
+<img src="/images/06_main.gif" style="display: inline-block" />
+<img src="/images/06_main.png" style="display: inline-block" height=323px />  
 
 ▲ 추천 받은 음식을 볼 수 있는 메인 페이지  
 
 ### 음식 페이지
-<img src="/uploads/e87d0ab2200241de1387d4dec9748359/07_recipe.gif" style="display: inline-block" />
-<img src="/uploads/fefc3da74676820a1d80765c18f64d18/07_recipe.gif" style="display: inline-block" height=323px />  
+<img src="/images/07_recipe.gif" style="display: inline-block" />
+<img src="/images/07_recipe.gif" style="display: inline-block" height=323px />  
 
 ▲ 음식의 상세정보를 확인할 수 있는 음식 페이지  
 
 ### 햄버거 바
-<img src="/uploads/d0e6a18f14be475659389185b21a305d/08_hambuger_bar.png" style="display: inline-block" height=323px/>
-<img src="/uploads/4f81ebc5b2d11f847352601a1654268b/08_hambuger_bar.png" style="display: inline-block" height=323px />  
+<img src="/images/08_hambuger_bar.png" style="display: inline-block" height=323px/>
+<img src="/images/08_hambuger_bar.png" style="display: inline-block" height=323px />  
 
 ▲ 메뉴 이동을 위한 햄버거 바  
 
 ### 마이페이지
-<img src="/uploads/e441a3bd2994e09cd4124b908a59990b/09_mypage.png" style="display: inline-block" height=323px/>
-<img src="/uploads/da7bd99310d06534c95eaacbe14ad92e/09_mypage.png" style="display: inline-block" height=323px />  
+<img src="/images/09_mypage.png" style="display: inline-block" height=323px/>
+<img src="/images/09_mypage.png" style="display: inline-block" height=323px />  
 
 ▲ 내가 선호하는 맛 정보와 즐겨찾기한 레시피를 볼 수 있는 마이 페이지  
 
-<img src="/uploads/7a8efebbe7d343a0a1f8cb593703b01d/10_more.png" style="display: inline-block" height=323px/>
-<img src="/uploads/afe07ee0c58b044ad267d82fc9cf685d/10_more.png" style="display: inline-block" height=323px />  
+<img src="/images/10_more.png" style="display: inline-block" height=323px/>
+<img src="/images/10_more.png" style="display: inline-block" height=323px />  
 
 ▲ '더보기'버튼을 클릭해 즐겨찾기한 레시피 목록을 볼 수 있다.  
 
 ### 식단 일기 페이지
-<img src="/uploads/81886d7da1df000ac945f003d7b22211/11_diary.gif" style="display: inline-block" />
-<img src="/uploads/b3c85ad01cdf4f3786cf7c72d55e5bd7/11_diary.gif" style="display: inline-block" height=323px />  
+<img src="/images/11_diary.gif" style="display: inline-block" />
+<img src="/images/11_diary.gif" style="display: inline-block" height=323px />  
 
 ▲ 먹은 음식과 그 날의 감정을 기록할 수 있는 식단 일기 페이지  
 
 ### 으른 입맛 테스트 페이지
-<img src="/uploads/fa0ace980e3270302ca6e3dfb0b0bfcf/12_adult_taste.png" style="display: inline-block" height=323px/>
-<img src="/uploads/02a0e8c714efd75df72a155d96bf0a27/12_adult_taste.png" style="display: inline-block" height=323px />  
+<img src="/images/12_adult_taste.png" style="display: inline-block" height=323px/>
+<img src="/images/12_adult_taste.png" style="display: inline-block" height=323px />  
 
 ▲ 입맛 연령 측정을 위한 설문 화면  
 
-<img src="/uploads/133553f000be4b25f33bba22c9b621ed/13_adult_taste_result.png" style="display: inline-block" height=323px/>
-<img src="/uploads/a409c27f3b32821a17f21052c7b68c52/13_adult_taste_result.png" style="display: inline-block" height=323px />  
+<img src="/images/13_adult_taste_result.png" style="display: inline-block" height=323px/>
+<img src="/images/13_adult_taste_result.png" style="display: inline-block" height=323px />  
 
 ▲ 결과 화면  
 
-<img src="/uploads/b143bb7178c564e6845138fc2bb08687/14_result_share.png" style="display: inline-block" height=323px/>  
+<img src="/images/14_result_share.png" style="display: inline-block" height=323px/>  
 
 ▲ 결과를 공유하면 카카오톡에 올라오는 말풍선  
 
@@ -298,7 +298,7 @@
 
 
 ## 시스템 아키텍처
-![OMZ_System_Architecture](/uploads/57d12c90b97b889b16ad527abe047157/OMZ_System_Architecture.png)
+![OMZ_System_Architecture](/images/OMZ_System_Architecture.png)
 
 <br />
 <br />
@@ -306,7 +306,7 @@
 
 
 ## ERD
-![OMZ_ERD](/uploads/44b5260bcf72fa69b4abaa4fcc1598c9/OMZ_ERD.png)
+![OMZ_ERD](/images/OMZ_ERD.png)
 
 <br />
 <br />
@@ -316,11 +316,11 @@
 
 
 ## API 명세서
-![Diary](/uploads/f99bab343b1737493bdc43411b031015/Diary.png)
+![Diary](/images/Diary.png)
 
-![Foods](/uploads/eedbcba60a94776dae7ee0352abcaed3/Foods.png)
+![Foods](/images/Foods.png)
 
-![Users](/uploads/161834d58f7155c92e612c26b1edba00/Users.png)
+![Users](/images/Users.png)
 
 
 
@@ -333,4 +333,4 @@
 
 
 ## 스케줄
-![OMZ_Schedule](/uploads/9d4ff3aa13fb8758bffbf81e71b75ca9/OMZ_Schedule.PNG)
+![OMZ_Schedule](/images/OMZ_Schedule.PNG)
