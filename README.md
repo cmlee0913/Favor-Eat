@@ -1,4 +1,4 @@
-## <img src="/uploads/3a6a7a0e250a4c681745053a3f008818/OMZ_favicon.png" width=16px; hegith=16px;/> FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
+## ![OMZ_favicon](https://user-images.githubusercontent.com/43628924/233582553-a905130c-9538-4d17-859e-625589f23a40.png) FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
 
 😋[메뉴 추천] 서비스
 
@@ -146,7 +146,7 @@
 
 ## 서비스 화면
 ### 가이드 페이지
-<img src="/uploads/56fd2017a96547bd998dc71b128a5728/01_guide.gif" style="display: inline-block" />
+![01_guide](https://user-images.githubusercontent.com/43628924/233582819-afe85f09-304b-4087-8ade-b349a8207375.gif)
 <img src="/uploads/503bd4bc71ab05f7e37eba4010f76d8d/01_guide.gif" style="display: inline-block" height=323px />  
 
 ▲ 서비스를 소개하는 가이드 페이지  
