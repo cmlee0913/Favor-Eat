@@ -1,4 +1,4 @@
-## ![OMZ_favicon](https://user-images.githubusercontent.com/43628924/233582553-a905130c-9538-4d17-859e-625589f23a40.png) FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
+## <img src="![OMZ_favicon](https://user-images.githubusercontent.com/43628924/233582553-a905130c-9538-4d17-859e-625589f23a40.png)" width=16px; hegith=16px;/> FAVOREAT 소개 (SSAFY 8기 특화 프로젝트 3등)
 
 😋[메뉴 추천] 서비스
 
